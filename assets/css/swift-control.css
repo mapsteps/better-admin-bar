@@ -1,0 +1,142 @@
+@-webkit-keyframes slidingArrow {
+	from {
+		left: 62px;
+	}
+
+	to {
+		left: 70px;
+	}
+}
+
+@keyframes slidingArrow {
+	from {
+		left: 62px;
+	}
+
+	to {
+		left: 70px;
+	}
+}
+
+.swift-control-widgets {
+	position: fixed;
+	left: 0;
+	top: 50%;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	z-index: 1000; /* Must be on top of .wpbf-navigation with z-index: 555 */
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+.swift-control-widgets .widget-setting .widget-link {
+	background-color: #860ee6;
+}
+
+.swift-control-widgets .widget-setting .widget-link:hover {
+	background-color: #860ee6;
+}
+
+.swift-control-widgets .widget-setting a {
+	color: #fff;
+}
+
+.swift-control-widgets.is-expanded .widget-setting::after {
+	opacity: 0;
+	-webkit-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.swift-control-widgets .widget-setting::after {
+	position: absolute;
+	left: 62px;
+	content: "\f060";
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	color: #860ee6;
+	-webkit-animation: slidingArrow 1s ease-in-out infinite alternate;
+	animation: slidingArrow 1s ease-in-out infinite alternate;
+	-webkit-transition: all 1s;
+	transition: all 1s;
+}
+
+.swift-control-widgets.is-expanded .widget-item {
+	left: 0;
+	opacity: 1;
+	visibility: visible;
+}
+
+.swift-control-widgets .widget-item {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	position: relative;
+	left: -55px;
+	margin: 0;
+	padding: 0;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.35s;
+}
+
+.swift-control-widgets .widget-setting {
+	left: 0;
+	opacity: 1;
+	visibility: visible;
+}
+
+.swift-control-widgets .widget-setting .widget-link {
+	border-top-width: 0;
+}
+
+.swift-control-widgets .widget-link {
+	display: inline-block;
+	width: 55px;
+	height: 55px;
+	line-height: 55px;
+	text-align: center;
+	color: #616666;
+	background-color: #f5f5f7;
+	border-top: 1px solid #e1e1e7;
+}
+
+.swift-control-widgets .widget-link:hover {
+	background-color: #ededf0;
+}
+
+.swift-control-widgets .is-disabled .widget-link {
+	opacity: 0.4;
+	background-color: #f5f5f7;
+}
+
+.swift-control-widgets .is-disabled .widget-title {
+	background-color: #bbb;
+}
+
+.swift-control-widgets .widget-title {
+	position: absolute;
+	left: 55px;
+	margin-left: 0;
+	padding: 7px 10px;
+	width: max-content;
+	line-height: 1;
+	font-size: 12px !important;
+	font-weight: 400 !important;
+	color: #fff;
+	background-color: rgba(62, 67, 73, 0.8);
+	border-radius: 4px;
+	opacity: 0;
+	visibility: hidden;
+	-webkit-transition: all 0.2s linear;
+	transition: all 0.2s linear;
+}
+
+.swift-control-widgets .widget-link:hover + .widget-title {
+	margin-left: 9px;
+	visibility: visible;
+	opacity: 1;
+}

@@ -1,0 +1,96 @@
+(function ($) {
+	var isRequesting = false;
+	var elms = {};
+	var $elms = {};
+	var loading = {};
+	var ajax = {};
+
+	/**
+	 * Call the main functions here.
+	 */
+	function init() {
+		elms.saveButton = document.querySelector('button.save-general-settings');
+		elms.savedStatusBar = document.querySelector('.general-settings-area .saved-status-bar');
+		elms.settingFields = document.querySelectorAll('.general-settings-area .general-setting-field');
+
+		setupColorPicker();
+
+		elms.saveButton.addEventListener('click', function (e) {
+			e.preventDefault();
+			ajax.saveSettings();
+		});
+	}
+
+	/**
+	 * Setup color picker for color picker fields.
+	 */
+	function setupColorPicker() {
+		$('.color-picker-field').wpColorPicker({
+			palettes: true,
+			hide: true
+		});
+	}
+
+	loading.start = function () {
+		elms.saveButton.disabled = true;
+	}
+
+	loading.stop = function () {
+		elms.saveButton.disabled = false;
+	}
+
+	/**
+	 * Send ajax request to save the settings.
+	 */
+	ajax.saveSettings = function () {
+		if (isRequesting) return;
+		isRequesting = true;
+		loading.start();
+
+		var data = {};
+
+		data.action = 'swift_control_save_general_settings';
+		data.nonce = SwiftControl.nonces.saveGeneralSettings;
+
+		[].slice.call(elms.settingFields).forEach(function (field) {
+			if (field.type === 'checkbox') {
+				data[field.name] = field.checked ? 1 : 0;
+			} else {
+				data[field.name] = field.value;
+			}
+		});
+
+		$.ajax({
+			url: ajaxurl,
+			type: 'post',
+			dataType: 'json',
+			data: data
+		}).done(function (r) {
+			switchSavedStatus('show');
+
+			// We need some delay to give visual effect.
+			setTimeout(function () {
+				switchSavedStatus('hide');
+			}, 2500);
+		}).always(function () {
+			loading.stop();
+			isRequesting = false;
+		});
+	};
+
+	/**
+	 * Switch saved status in the metabox headers.
+	 *
+	 * @param {string} state Whether or not to show the "Saved" status. 
+	 *                       Accepted values: "show" or "hide". Default is "show".
+	 */
+	function switchSavedStatus(state) {
+		if (state === 'hide') {
+			elms.savedStatusBar.classList.remove('is-shown');
+		} else {
+			elms.savedStatusBar.classList.add('is-shown');
+		}
+	}
+
+	init();
+})(jQuery);

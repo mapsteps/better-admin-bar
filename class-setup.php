@@ -1,0 +1,246 @@
+<?php
+/**
+ * Setup Swift Control.
+ *
+ * @package Swift_Control
+ */
+
+namespace SwiftControl;
+
+/**
+ * Setup Swift Control.
+ */
+class Setup {
+	/**
+	 * Setup action & filter hooks.
+	 */
+	public function __construct() {
+		add_action( 'init', array( $this, 'setup_text_domain' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
+		add_action( 'admin_menu', array( $this, 'add_submenu_page' ) );
+		add_action( 'wp', array( $this, 'check_page' ) );
+
+		add_action( 'wp_ajax_swift_control_change_widgets_order', array( new Ajax\Change_Widgets_Order(), 'ajax' ) );
+		add_action( 'wp_ajax_swift_control_change_widget_settings', array( new Ajax\Change_Widget_Settings(), 'ajax' ) );
+		add_action( 'wp_ajax_swift_control_save_general_settings', array( new Ajax\Save_General_Settings(), 'ajax' ) );
+
+		add_filter( 'plugin_action_links', array( $this, 'add_settings_link' ), 10, 4 );
+
+		$misc_settings = get_option( 'swift_control_misc_settings', array() );
+
+		if ( isset( $misc_settings['remove_admin_bar'] ) && ! empty( $misc_settings['remove_admin_bar'] ) ) {
+			add_filter( 'show_admin_bar', '__return_false' );
+		}
+	}
+
+	/**
+	 * Setup textdomain.
+	 */
+	public function setup_text_domain() {
+		load_plugin_textdomain( 'swift-control', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
+	}
+
+	/**
+	 * Enqueue admin styles & scripts.
+	 */
+	public function admin_scripts() {
+		$current_screen = get_current_screen();
+
+		if ( 'settings_page_swift-control' !== $current_screen->id ) {
+			return;
+		}
+
+		// Font Awesome 5.
+		wp_enqueue_style( 'font-awesome', SWIFT_CONTROL_PLUGIN_URL . '/assets/vendor/fontawesome-free/css/all.min.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
+
+		// Font Awesome Icon Picker.
+		wp_enqueue_style( 'fontawesome-iconpicker', SWIFT_CONTROL_PLUGIN_URL . '/assets/vendor/fontawesome-iconpicker/fontawesome-iconpicker.min.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
+
+		// Settings page styling.
+		wp_enqueue_style( 'settings-page', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/settings-page.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
+		wp_enqueue_style( 'setting-fields', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/setting-fields.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
+
+		// Swift Control admin styling.
+		wp_enqueue_style( 'swift-control-admin', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/swift-control-admin.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
+
+		// Color picker dependency.
+		wp_enqueue_style( 'wp-color-picker' );
+		wp_enqueue_style( 'wp-color-picker' );
+
+		// jQuery UI dependencies.
+		wp_enqueue_script( 'jquery-ui-core' );
+		wp_enqueue_script( 'jquery-ui-widget' );
+		wp_enqueue_script( 'jquery-ui-mouse' );
+		wp_enqueue_script( 'jquery-ui-sortable' );
+
+		// Font Awesome Icon Picker.
+		wp_enqueue_script( 'fontawesome-iconpicker', SWIFT_CONTROL_PLUGIN_URL . '/assets/vendor/fontawesome-iconpicker/fontawesome-iconpicker.min.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
+
+		// Color picker alpha.
+		wp_enqueue_script( 'wp-color-picker-alpha', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ), '2.1.3', true );
+
+		wp_enqueue_script( 'swift-control-widget-settings', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/swift-control-widget-settings.js', array( 'jquery-ui-sortable', 'fontawesome-iconpicker' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'swift-control-general-settings', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/swift-control-general-settings.js', array( 'wp-color-picker-alpha' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
+
+		wp_localize_script(
+			'swift-control-widget-settings',
+			'SwiftControl',
+			array(
+				'nonces' => array(
+					'changeWidgetsOrder'   => wp_create_nonce( 'change_widgets_order' ),
+					'changeWidgetSettings' => wp_create_nonce( 'change_widget_settings' ),
+					'saveGeneralSettings'  => wp_create_nonce( 'save_general_settings' ),
+				),
+				'labels' => array(
+					'edit' => __( 'Edit', 'swift-control' ),
+					'save' => __( 'Save', 'swift-control' ),
+				),
+			)
+		);
+	}
+
+	/**
+	 * Add settings link to plugin list page.
+	 *
+	 * @param array  $actions     An array of plugin action links.
+	 * @param string $plugin_file Path to the plugin file relative to the plugins directory.
+	 * @param array  $plugin_data An array of plugin data. See `get_plugin_data()`.
+	 * @param string $context     The plugin context. By default this can include 'all', 'active', 'inactive',
+	 *                            'recently_activated', 'upgrade', 'mustuse', 'dropins', and 'search'.
+	 *
+	 * @return array The modified plugin action links.
+	 */
+	public function add_settings_link( $actions, $plugin_file, $plugin_data, $context ) {
+		if ( SWIFT_CONTROL_PLUGIN_BASENAME === $plugin_file ) {
+			$settings_link = '<a href="' . esc_url( admin_url( 'options-general.php?page=swift-control' ) ) . '">' . __( 'Settings', 'swift-control' ) . '</a>';
+
+			array_unshift( $actions, $settings_link );
+		}
+
+		return $actions;
+	}
+
+	/**
+	 * Add submenu under "Settings" menu item.
+	 */
+	public function add_submenu_page() {
+		add_options_page( __( 'WP Swift Control', 'swift-control' ), __( 'Swift Control', 'swift-control' ), 'manage_options', 'swift-control', array( $this, 'page_output' ) );
+	}
+
+	/**
+	 * Swift Control page output.
+	 */
+	public function page_output() {
+		require __DIR__ . '/templates/admin-page.php';
+	}
+
+	/**
+	 * Whether or not to show the widgets in frontend.
+	 * Only display the widgets when there's any active one.
+	 */
+	public function check_page() {
+		// Only show to logged-in admin users.
+		if ( ! is_user_logged_in() || ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		// Stop if this is a customizer preview.
+		if ( is_customize_preview() ) {
+			return;
+		}
+
+		// Stop if current page is in edit mode inside page builder.
+		if ( swift_control_is_inside_page_builder() ) {
+			return;
+		}
+
+		// Stop if swift control doesn't have active widgets.
+		if ( ! swift_control_has_active_widgets() ) {
+			return;
+		}
+
+		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'inline_styles' ) );
+		add_action( 'wp_footer', array( $this, 'frontend_output' ), 5 );
+	}
+
+	/**
+	 * Enqueue frontend assets.
+	 */
+	public function frontend_scripts() {
+		$misc_settings       = get_option( 'swift_control_misc_settings', array() );
+		$remove_font_awesome = isset( $misc_settings['remove_font_awesome'] ) ? absint( $misc_settings['remove_font_awesome'] ) : 0;
+
+		/**
+		 * If "Don't enqueue Font Awesome" setting is un-checked (disabled),
+		 * then deregister any existing Font Awesome css, and enqueue our version.
+		 */
+		if ( ! $remove_font_awesome ) {
+			// Font Awesome 5.
+			wp_deregister_style( 'font-awesome' );
+			wp_enqueue_style( 'font-awesome', SWIFT_CONTROL_PLUGIN_URL . '/assets/vendor/fontawesome-free/css/all.min.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
+		}
+
+		// Swift Control frontend styling.
+		wp_enqueue_style( 'swift-control', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/swift-control.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
+	}
+
+	/**
+	 * Output the widgets to frontend.
+	 */
+	public function frontend_output() {
+		require __DIR__ . '/templates/frontend-output.php';
+	}
+
+	/**
+	 * Output the inline styles to frontend.
+	 */
+	public function inline_styles() {
+
+		$color_settings = swift_control_get_color_settings();
+		$default_colors = swift_control_get_default_color_settings();
+		$css            = '';
+
+		if ( $color_settings['setting_button_bg_color'] !== $default_colors['setting_button_bg_color'] ) {
+			$css .= '.swift-control-widgets .widget-setting .widget-link, .swift-control-widgets .widget-setting .widget-link:hover {';
+			$css .= 'background-color: ' . esc_attr( $color_settings['setting_button_bg_color'] ) . ';';
+			$css .= '}';
+
+			$css .= '.swift-control-widgets .widget-setting::after {';
+			$css .= 'color: ' . esc_attr( $color_settings['setting_button_bg_color'] ) . ';';
+			$css .= '}';
+		}
+
+		if ( $color_settings['setting_button_icon_color'] !== $default_colors['setting_button_icon_color'] ) {
+			$css .= '.swift-control-widgets .widget-setting a {';
+			$css .= 'color: ' . esc_attr( $color_settings['setting_button_icon_color'] ) . ';';
+			$css .= '}';
+		}
+
+		if ( $color_settings['widget_bg_color_hover'] !== $default_colors['widget_bg_color_hover'] ) {
+			$css .= '.swift-control-widgets .widget-link:hover {';
+			$css .= 'background-color: ' . esc_attr( $color_settings['widget_bg_color_hover'] ) . ';';
+			$css .= '}';
+		}
+
+		if ( $color_settings['widget_bg_color'] !== $default_colors['widget_bg_color'] ) {
+			$css .= '.swift-control-widgets .widget-link {';
+			$css .= 'background-color: ' . esc_attr( $color_settings['widget_bg_color'] ) . ';';
+			$css .= '}';
+
+			$css .= '.swift-control-widgets .is-disabled .widget-link {';
+			$css .= 'background-color: ' . esc_attr( $color_settings['widget_bg_color'] ) . ';';
+			$css .= '}';
+		}
+
+		if ( $color_settings['widget_icon_color'] !== $default_colors['widget_icon_color'] ) {
+			$css .= '.swift-control-widgets .widget-link {';
+			$css .= 'color: ' . esc_attr( $color_settings['widget_icon_color'] ) . ';';
+			$css .= '}';
+		}
+
+		wp_add_inline_style( 'swift-control', $css );
+
+	}
+
+}
