@@ -136,7 +136,7 @@ class Setup {
 	 * Add submenu under "Settings" menu item.
 	 */
 	public function add_submenu_page() {
-		add_options_page( __( 'WP Swift Control', 'swift-control' ), __( 'Swift Control', 'swift-control' ), 'manage_options', 'swift-control', array( $this, 'page_output' ) );
+		add_options_page( __( 'WP Swift Control', 'swift-control' ), __( 'Swift Control', 'swift-control' ), 'delete_others_posts', 'swift-control', array( $this, 'page_output' ) );
 	}
 
 	/**
@@ -152,7 +152,7 @@ class Setup {
 	 */
 	public function check_page() {
 		// Only show to logged-in admin users.
-		if ( ! is_user_logged_in() || ! current_user_can( 'manage_options' ) ) {
+		if ( ! is_user_logged_in() || ! current_user_can( 'delete_others_posts' ) ) {
 			return;
 		}
 
