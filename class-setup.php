@@ -15,6 +15,18 @@ class Setup {
 	 * Setup action & filter hooks.
 	 */
 	public function __construct() {
+		add_action( 'plugins_loaded', array( $this, 'setup' ) );
+	}
+
+	/**
+	 * Setup action & filters.
+	 */
+	public function setup() {
+		// Stop if Swift Control Pro is active.
+		if ( defined( 'SWIFT_CONTROL_PRO_PLUGIN_URL' ) ) {
+			return;
+		}
+
 		add_action( 'init', array( $this, 'setup_text_domain' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 		add_action( 'admin_menu', array( $this, 'add_submenu_page' ) );
