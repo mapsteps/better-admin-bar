@@ -281,6 +281,17 @@ function swift_control_get_color_settings() {
 }
 
 /**
+ * Get miscellaneous settings.
+ *
+ * @return array The miscellaneous settings.
+ */
+function swift_control_get_misc_settings() {
+	$misc_settings = get_option( 'swift_control_misc_settings', array() );
+
+	return $misc_settings;
+}
+
+/**
  * Parse widget settings
  *
  * @param array $widget_key The widget key.

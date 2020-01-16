@@ -38,7 +38,7 @@ class Setup {
 
 		add_filter( 'plugin_action_links', array( $this, 'add_settings_link' ), 10, 4 );
 
-		$misc_settings = get_option( 'swift_control_misc_settings', array() );
+		$misc_settings = swift_control_get_misc_settings();
 
 		if ( isset( $misc_settings['remove_admin_bar'] ) && ! empty( $misc_settings['remove_admin_bar'] ) ) {
 			add_filter( 'show_admin_bar', '__return_false' );
@@ -180,7 +180,7 @@ class Setup {
 	 * Enqueue frontend assets.
 	 */
 	public function frontend_scripts() {
-		$misc_settings       = get_option( 'swift_control_misc_settings', array() );
+		$misc_settings       = swift_control_get_misc_settings();
 		$remove_font_awesome = isset( $misc_settings['remove_font_awesome'] ) ? absint( $misc_settings['remove_font_awesome'] ) : 0;
 
 		/**

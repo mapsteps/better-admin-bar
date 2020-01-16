@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-$misc_settings       = get_option( 'swift_control_misc_settings', array() );
+$misc_settings       = swift_control_get_misc_settings();
 $remove_admin_bar    = isset( $misc_settings['remove_admin_bar'] ) ? absint( $misc_settings['remove_admin_bar'] ) : 0;
 $remove_font_awesome = isset( $misc_settings['remove_font_awesome'] ) ? absint( $misc_settings['remove_font_awesome'] ) : 0;
 $delete_on_uninstall = isset( $misc_settings['delete_on_uninstall'] ) ? absint( $misc_settings['delete_on_uninstall'] ) : 0;
