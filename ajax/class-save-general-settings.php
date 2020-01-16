@@ -104,18 +104,8 @@ class Save_General_Settings {
 			$misc_settings[ $field ] = $this->data[ $field ];
 		}
 
-		$switch_blog = is_multisite() && ! is_main_site() ? true : false;
-
-		if ( $switch_blog ) {
-			switch_to_blog( get_network()->site_id );
-		}
-
 		update_option( 'swift_control_color_settings', $color_settings );
 		update_option( 'swift_control_misc_settings', $misc_settings );
-
-		if ( $switch_blog ) {
-			restore_current_blog();
-		}
 
 		wp_send_json_success( __( 'The settings are saved' ), 'swift-control' );
 	}

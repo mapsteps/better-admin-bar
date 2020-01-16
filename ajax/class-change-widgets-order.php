@@ -68,18 +68,7 @@ class Change_Widgets_Order {
 	 * Save the data.
 	 */
 	public function save() {
-		$switch_blog = is_multisite() && ! is_main_site() ? true : false;
-
-		if ( $switch_blog ) {
-			switch_to_blog( get_network()->site_id );
-		}
-
 		update_option( 'swift_control_active_widgets', $this->data['active_widgets'] );
-
-		if ( $switch_blog ) {
-			restore_current_blog();
-		}
-
 		wp_send_json_success( __( 'Widget order is changed' ), 'swift-control' );
 	}
 }

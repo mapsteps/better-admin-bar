@@ -83,18 +83,8 @@ function swift_control_settings_output_widget_item( $widget_key ) {
  * @return boolean Whether swift control has active widget or not.
  */
 function swift_control_has_active_widgets() {
-	$switch_blog = is_multisite() && ! is_main_site() ? true : false;
-
-	if ( $switch_blog ) {
-		switch_to_blog( get_network()->site_id );
-	}
-
 	// Fetch active widgets from db.
 	$active_widgets = get_option( 'swift_control_active_widgets' );
-
-	if ( $switch_blog ) {
-		restore_current_blog();
-	}
 
 	// Check if this is fresh install.
 	if ( false === $active_widgets ) {
@@ -145,18 +135,8 @@ function swift_control_get_unused_default_active_widgets() {
  * @return array The active widgets.
  */
 function swift_control_get_active_widgets() {
-	$switch_blog = is_multisite() && ! is_main_site() ? true : false;
-
-	if ( $switch_blog ) {
-		switch_to_blog( get_network()->site_id );
-	}
-
 	// Fetch active widgets from db.
 	$active_widgets = get_option( 'swift_control_active_widgets' );
-
-	if ( $switch_blog ) {
-		restore_current_blog();
-	}
 
 	// Check if this is fresh install.
 	if ( false === $active_widgets ) {
@@ -248,17 +228,7 @@ function swift_control_get_default_widget_settings() {
  * @return array The saved settings.
  */
 function swift_control_get_saved_widget_settings() {
-	$switch_blog = is_multisite() && ! is_main_site() ? true : false;
-
-	if ( $switch_blog ) {
-		switch_to_blog( get_network()->site_id );
-	}
-
 	$settings = get_option( 'swift_control_widget_settings', array() );
-
-	if ( $switch_blog ) {
-		restore_current_blog();
-	}
 
 	return $settings;
 }
@@ -301,18 +271,7 @@ function swift_control_get_default_color_settings() {
  * @return array The color settings.
  */
 function swift_control_get_color_settings() {
-	$switch_blog = is_multisite() && ! is_main_site() ? true : false;
-
-	if ( $switch_blog ) {
-		switch_to_blog( get_network()->site_id );
-	}
-
-	$saved_color_settings = get_option( 'swift_control_color_settings', array() );
-
-	if ( $switch_blog ) {
-		restore_current_blog();
-	}
-
+	$saved_color_settings   = get_option( 'swift_control_color_settings', array() );
 	$default_color_settings = swift_control_get_default_color_settings();
 	$color_settings         = array();
 
@@ -329,17 +288,7 @@ function swift_control_get_color_settings() {
  * @return array The miscellaneous settings.
  */
 function swift_control_get_misc_settings() {
-	$switch_blog = is_multisite() && ! is_main_site() ? true : false;
-
-	if ( $switch_blog ) {
-		switch_to_blog( get_network()->site_id );
-	}
-
 	$misc_settings = get_option( 'swift_control_misc_settings', array() );
-
-	if ( $switch_blog ) {
-		restore_current_blog();
-	}
 
 	return $misc_settings;
 }

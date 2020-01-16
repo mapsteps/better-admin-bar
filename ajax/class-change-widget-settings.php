@@ -99,17 +99,7 @@ class Change_Widget_Settings {
 			}
 		}
 
-		$switch_blog = is_multisite() && ! is_main_site() ? true : false;
-
-		if ( $switch_blog ) {
-			switch_to_blog( get_network()->site_id );
-		}
-
 		update_option( 'swift_control_widget_settings', $widget_settings );
-
-		if ( $switch_blog ) {
-			restore_current_blog();
-		}
 
 		wp_send_json_success(
 			array(
