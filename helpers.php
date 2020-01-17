@@ -404,21 +404,18 @@ function swift_control_parse_widget_name( $widget_name, $widget_key, $settings =
 function swift_control_parse_widget_url( $widget_url, $widget_key, $settings = array() ) {
 	global $wp;
 
-	if ( 'theme_customizer' === $widget_key ) {
-		$widget_url = add_query_arg(
-			array(
-				'url' => rawurlencode( home_url( $wp->request ) ),
-			),
-			$widget_url
-		);
-	} else {
-		if ( 'auto' === $widget_url ) {
-			switch ( $widget_key ) {
-				case 'edit_post_type':
-					$widget_url = swift_control_get_edit_post_url();
-					break;
-			}
-		}
+	switch ( $widget_key ) {
+		case 'theme_customizer':
+			$widget_url = add_query_arg(
+				array(
+					'url' => rawurlencode( home_url( $wp->request ) ),
+				),
+				$widget_url
+			);
+			break;
+		case 'edit_post_type':
+			$widget_url = swift_control_pro_get_edit_post_url();
+			break;
 	}
 
 	return $widget_url;
