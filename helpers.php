@@ -414,7 +414,7 @@ function swift_control_parse_widget_url( $widget_url, $widget_key, $settings = a
 			);
 			break;
 		case 'edit_post_type':
-			$widget_url = swift_control_pro_get_edit_post_url();
+			$widget_url = swift_control_get_edit_post_url();
 			break;
 	}
 
