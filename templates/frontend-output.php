@@ -85,10 +85,8 @@ foreach ( $active_widgets as $widget_key ) {
 <script>
 	(function () {
 		document.querySelector('.swift-control-widgets .widget-setting').addEventListener('click', function (e) {
-			if (!this.parentNode.classList.contains('is-expanded')) {
-				e.preventDefault();
-				this.parentNode.classList.add('is-expanded');
-			}
+			e.preventDefault();
+			this.parentNode.classList.toggle('is-expanded');
 		});
 
 		var disabledItems = document.querySelectorAll('.swift-control-widgets .widget-item.is-disabled a');
