@@ -3,6 +3,10 @@
  * General fields
  * ------------------------------
  */
+.setting-fields.is-gapless {
+	padding: 0;
+}
+
 .setting-fields {
 	padding: 25px 15px;
 }
@@ -16,6 +20,10 @@ hr {
 .setting-fields .field:last-child,
 .setting-fields .fields:last-child {
 	margin-bottom: 0;
+}
+
+.setting-fields.is-gapless .field {
+	margin-bottom: 10px;
 }
 
 .setting-fields .field {
@@ -42,8 +50,12 @@ hr {
 	width: 35%;
 }
 
-.field .label {
+.field .label.is-strong {
 	font-weight: 600;
+}
+
+.field .label {
+	font-weight: 400;
 }
 
 .field.is-horizontal .field-body {
@@ -62,11 +74,13 @@ hr {
 	line-height: 1.5;
 	cursor: pointer;
 }
+
 .label input {
 	position: absolute;
 	z-index: -1;
 	opacity: 0;
 }
+
 .label .indicator {
 	position: absolute;
 	top: 0;
@@ -77,33 +91,46 @@ hr {
 	-webkit-transition: all 0.2s ease-in-out;
 	transition: all 0.2s ease-in-out;
 }
+
 .radio-label .indicator {
 	border-radius: 50%;
 }
+
 .label:hover input ~ .indicator,
 .label input:focus ~ .indicator {
 	background-color: #ccc;
 }
+
 .label input:checked ~ .indicator {
 	background-color: #b524ff;
 }
+
 .label:hover input:not([disabled]):checked ~ .indicator,
 .label input:checked:focus ~ .indicator {
 	background-color: #a320e6;
 }
+
 .label input:disabled ~ .indicator {
 	background-color: #e6e6e6;
 	opacity: 0.6;
 	pointer-events: none;
 }
+
 .label .indicator::after {
 	display: none;
 	position: absolute;
 	content: "";
 }
+
 .label input:checked ~ .indicator::after {
 	display: block;
 }
+
+.setting-fields .checkbox-label,
+.setting-field .checkbox-label {
+	padding-left: 30px;
+}
+
 .checkbox-label .indicator::after {
 	left: 8px;
 	top: 4px;
@@ -113,9 +140,11 @@ hr {
 	border-width: 0 2px 2px 0;
 	transform: rotate(45deg);
 }
+
 .checkbox-label input:disabled ~ .indicator::after {
 	border-color: #7b7b7b;
 }
+
 .radio-label .indicator::after {
 	left: 7px;
 	top: 7px;
@@ -124,14 +153,17 @@ hr {
 	border-radius: 50%;
 	background-color: #fff;
 }
+
 .radio-label input:disabled ~ .indicator::after {
 	background-color: #7b7b7b;
 }
+
 .select-label {
 	position: relative;
 	display: inline-block;
 	width: 100%;
 }
+
 .select-label select {
 	display: inline-block;
 	width: 100%;
@@ -146,18 +178,22 @@ hr {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 }
+
 .select-label select::-ms-expand {
 	display: none;
 }
+
 .select-label select:hover,
 .select-label select:focus {
 	color: #000;
 	background-color: #ccc;
 }
+
 .select-label select:disabled {
 	opacity: 0.5;
 	pointer-events: none;
 }
+
 .select-label .arrow {
 	position: absolute;
 	top: 16px;
@@ -169,10 +205,12 @@ hr {
 	border-width: 8px 5px 0 5px;
 	border-color: #7b7b7b transparent transparent transparent;
 }
+
 .select-label select:hover ~ .arrow,
 .select-label select:focus ~ .arrow {
 	border-top-color: #000;
 }
+
 .select-label select:disabled ~ .arrow {
 	border-top-color: #ccc;
 }

@@ -73,6 +73,11 @@
 	border-width: 0;
 }
 
+.settingstuff .neatbox.has-subboxes.is-smooth {
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
 /**
  * .is-smooth means:
  * .has-shadow + is-rounded + .no-border
@@ -96,6 +101,13 @@
 	background-color: transparent;
 }
 
+.settingstuff .neatbox.has-subboxes.is-smooth table {
+	border-width: 0;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 3px 10px -2px rgba(94, 135, 161, 0.3);
+	box-shadow: 0 3px 10px -2px rgba(94, 135, 161, 0.3);
+}
+
 .settingstuff .neatbox .label {
 	display: block;
 }
@@ -106,6 +118,22 @@
 
 .settingstuff .neatbox .is-medium {
 	width: 75%;
+}
+
+.settingstuff .neatbox.has-subboxes.is-grouped.ungroup-last-box h2:nth-child(5),
+.settingstuff
+	.neatbox.has-subboxes.is-grouped.ungroup-last-box
+	h2:nth-last-child(3) {
+	margin-top: 20px;
+}
+
+.settingstuff .neatbox.has-subboxes.is-grouped h2 {
+	margin-top: 0;
+}
+
+.settingstuff .neatbox.has-subboxes.is-grouped h2 {
+	margin-top: 0;
+	border-top: 1px solid #eee;
 }
 
 .settingstuff .neatbox.has-subboxes h2 {
@@ -202,6 +230,11 @@
 .settingstuff .buttons p.submit {
 	margin: 0;
 	padding: 0;
+}
+
+/* Extra Styles */
+.CodeMirror-wrap {
+	border: 1px solid #ddd;
 }
 
 /* Overview Styles */
