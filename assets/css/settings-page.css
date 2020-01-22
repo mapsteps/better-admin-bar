@@ -103,7 +103,8 @@
 
 .settingstuff .neatbox.has-subboxes.is-smooth table {
 	border-width: 0;
-	border-radius: 3px;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
 	-webkit-box-shadow: 0 3px 10px -2px rgba(94, 135, 161, 0.3);
 	box-shadow: 0 3px 10px -2px rgba(94, 135, 161, 0.3);
 }
@@ -120,20 +121,28 @@
 	width: 75%;
 }
 
-.settingstuff .neatbox.has-subboxes.is-grouped.ungroup-last-box h2:nth-child(5),
-.settingstuff
-	.neatbox.has-subboxes.is-grouped.ungroup-last-box
-	h2:nth-last-child(3) {
-	margin-top: 20px;
+.settingstuff .neatbox.has-subboxes.is-grouped table:last-child {
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
 }
 
-.settingstuff .neatbox.has-subboxes.is-grouped h2 {
-	margin-top: 0;
+.settingstuff .neatbox.has-subboxes.is-grouped table {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.settingstuff .neatbox.has-subboxes.is-grouped h2:first-child {
+	margin-top: 20px;
+	border-top-width: 0;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
 }
 
 .settingstuff .neatbox.has-subboxes.is-grouped h2 {
 	margin-top: 0;
 	border-top: 1px solid #eee;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
 }
 
 .settingstuff .neatbox.has-subboxes h2 {
@@ -164,16 +173,17 @@
 
 .settingstuff .has-subboxes .form-table {
 	margin-top: 0;
+	background-color: #fff;
 }
 
 .settingstuff .form-table {
 	margin-top: 7px;
-	background-color: #fff;
 }
 
 .settingstuff .neatbox .form-table th:empty {
 	padding-right: 0;
-	width: 0;
+	padding-left: 0;
+	width: 15px;
 }
 
 .settingstuff .neatbox .form-table th:empty ~ td {
@@ -221,6 +231,11 @@
 	margin-bottom: 2px;
 	padding-left: 15px;
 	padding-right: 15px;
+}
+
+.settingstuff .neatbox ~ p.submit {
+	margin-top: 20px;
+	padding-top: 0;
 }
 
 .settingstuff .buttons {
