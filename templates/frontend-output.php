@@ -12,9 +12,12 @@ $active_widgets = swift_control_get_active_widgets();
 // Get saved widget settings.
 $saved_widget_settings = swift_control_get_saved_widget_settings();
 
-$transition_delay = 0;
-$widget_list      = '';
-$extra_styles     = '';
+$widget_list  = '';
+$extra_styles = '';
+
+$transition_value = 75;
+$showing_delay    = 0;
+$hiding_delay     = ( count( $active_widgets ) - 1 ) * $transition_value;
 
 foreach ( $active_widgets as $widget_key ) {
 	// If the setting from database is empty, then take the data from default settings.
@@ -49,17 +52,18 @@ foreach ( $active_widgets as $widget_key ) {
 	ob_start();
 	?>
 
-	[data-widget-key="<?php echo esc_attr( $widget_key ); ?>"] {
-		transition-delay: 0ms;
+	.swift-control-widgets [data-widget-key="<?php echo esc_attr( $widget_key ); ?>"] {
+		transition-delay: <?php echo esc_attr( $hiding_delay ); ?>ms;
 	}
 
 	.swift-control-widgets.is-expanded [data-widget-key="<?php echo esc_attr( $widget_key ); ?>"] {
-		transition-delay: <?php echo esc_attr( $transition_delay ); ?>ms;
+		transition-delay: <?php echo esc_attr( $showing_delay ); ?>ms;
 	}
 
 	<?php
-	$extra_styles     .= ob_get_clean();
-	$transition_delay += 75;
+	$extra_styles  .= ob_get_clean();
+	$showing_delay += $transition_value;
+	$hiding_delay  -= $transition_value;
 }
 ?>
 
