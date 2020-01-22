@@ -232,7 +232,14 @@
 			$('.swift-control-page .active-items .widget-item').removeClass('edit-mode');
 			$('.swift-control-page .active-items .edit-button').html(SwiftControl.labels.edit);
 			setWidgetTextFieldState('all', true);
-			$('.icon-picker-trigger').data('iconpicker').hide();
+
+			/**
+			 * Simply doing `$('.icon-picker-trigger').data('iconpicker').hide();` doesn't work.
+			 * That's why we need to loop them.
+			 */
+			$('.icon-picker-trigger').each(function (i, el) {
+				$(el).data('iconpicker').hide();
+			});
 		} else {
 			var editButton = widgetItem.querySelector('.edit-button');
 			editButton.innerHTML = SwiftControl.labels.edit;
