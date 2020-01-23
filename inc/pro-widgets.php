@@ -9,31 +9,31 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 return array(
 	'page_builders'     => array(
-		'text'       => __( 'Page Builder Support (Coming Soon!)', 'swift-control' ),
+		'text'       => __( 'Page Builder Support', 'swift-control' ),
 		'url'        => 'https://wpswiftcontrol.com/pro/',
 		'new_tab'    => true,
 		'icon_class' => 'fas fa-unlock-alt',
 	),
 	'custom_links'      => array(
-		'text'       => __( 'Custom Links (Coming Soon!)', 'swift-control' ),
+		'text'       => __( 'Unlimited Custom Controls', 'swift-control' ),
 		'url'        => 'https://wpswiftcontrol.com/pro/',
 		'new_tab'    => true,
 		'icon_class' => 'fas fa-unlock-alt',
 	),
 	'custom_post_types' => array(
-		'text'       => __( 'Custom Post Type Support (Coming Soon!)', 'swift-control' ),
+		'text'       => __( 'Custom Post Type Support', 'swift-control' ),
 		'url'        => 'https://wpswiftcontrol.com/pro/',
 		'new_tab'    => true,
 		'icon_class' => 'fas fa-unlock-alt',
 	),
 	'woocommerce'       => array(
-		'text'       => __( 'WooCommerce Support (Coming Soon!)', 'swift-control' ),
+		'text'       => __( 'WooCommerce Support', 'swift-control' ),
 		'url'        => 'https://wpswiftcontrol.com/pro/',
 		'new_tab'    => true,
 		'icon_class' => 'fas fa-unlock-alt',
 	),
 	'logout'            => array(
-		'text'         => __( 'Login/Logout (Coming Soon!)', 'swift-control' ),
+		'text'         => __( 'Logout Widget', 'swift-control' ),
 		'url'          => 'https://wpswiftcontrol.com/pro/',
 		'icon_class'   => 'fas fa-unlock-alt',
 		'redirect_url' => '',
