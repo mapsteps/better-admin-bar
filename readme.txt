@@ -28,6 +28,12 @@ Navigate to Settings > WP Swift Control to change the order the controls are dis
 
 == Changelog ==
 
+= 1.2.1 January 08, 2020 =
+* Tweak: Second click on the Swift Control Icon will now close the Swift Control panel
+* Tweak: Changed capabilities so that Swift Control is now also visible to Editors & not only Administrators
+* Fixed: In editing mode, hitting ESC doesn't close icon picker
+* Fixed: Conflicts if PRO version is active
+
 = 1.2 January 08, 2020 =
 * New: Swift Control is now collapsed by default
 * Tweak: Hide Swift Control from WordPress customizer
