@@ -554,11 +554,13 @@
  * Menu settings area
  * --------------------------------------------------
  */
-.swift-control-settings .general-settings-area {
+.swift-control-settings .general-settings-area,
+.swift-control-settings .export-import-area {
 	position: relative;
 }
 
-.swift-control-settings .general-settings-area .neatbox {
+.swift-control-settings .general-settings-area .neatbox,
+.swift-control-settings .export-import-area .neatbox {
 	margin-bottom: 0;
 	max-width: 700px;
 }

@@ -32,6 +32,10 @@ class Setup {
 		add_action( 'admin_menu', array( $this, 'add_submenu_page' ) );
 		add_action( 'wp', array( $this, 'check_page' ) );
 
+		// Process export-import.
+		add_action( 'admin_init', array( $this, 'process_export' ) );
+		add_action( 'admin_init', array( $this, 'process_import' ) );
+
 		add_action( 'wp_ajax_swift_control_change_widgets_order', array( new Ajax\Change_Widgets_Order(), 'ajax' ) );
 		add_action( 'wp_ajax_swift_control_change_widget_settings', array( new Ajax\Change_Widget_Settings(), 'ajax' ) );
 		add_action( 'wp_ajax_swift_control_save_general_settings', array( new Ajax\Save_General_Settings(), 'ajax' ) );
@@ -252,6 +256,56 @@ class Setup {
 		}
 
 		wp_add_inline_style( 'swift-control', $css );
+
+	}
+
+	/**
+	 * Process widget export.
+	 */
+	public function process_export() {
+
+		if ( ! isset( $_POST['swift_control_action'] ) || 'export' !== $_POST['swift_control_action'] ) {
+			return;
+		}
+
+		if ( ! isset( $_POST['nonce'] ) || empty( $_POST['nonce'] ) ) {
+			return;
+		}
+
+		if ( ! wp_verify_nonce( $_POST['nonce'], 'swift_control_export_widgets' ) ) {
+			return;
+		}
+
+		$exporter = new Helpers\Export();
+
+		$exporter->export();
+
+	}
+
+	/**
+	 * Process widget import.
+	 */
+	public function process_import() {
+
+		if ( ! isset( $_FILES['swift_control_import_file'] ) || empty( $_FILES['swift_control_import_file'] ) ) {
+			return;
+		}
+
+		if ( ! isset( $_POST['swift_control_action'] ) || 'import' !== $_POST['swift_control_action'] ) {
+			return;
+		}
+
+		if ( ! isset( $_POST['nonce'] ) || empty( $_POST['nonce'] ) ) {
+			return;
+		}
+
+		if ( ! wp_verify_nonce( $_POST['nonce'], 'swift_control_import_widgets' ) ) {
+			return;
+		}
+
+		$importer = new Helpers\Import();
+
+		$importer->import();
 
 	}
 

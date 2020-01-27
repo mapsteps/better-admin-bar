@@ -108,6 +108,13 @@ $GLOBALS['swift_control_widget_settings']  = $saved_widget_settings;
 				</ul>
 			</div>
 
+			<div class="export-import-area">
+				<?php
+				require __DIR__ . '/export-widgets.php';
+				require __DIR__ . '/import-widgets.php';
+				?>
+			</div>
+
 		</div><!-- .right-section -->
 	</div><!-- .cols -->
 </div><!-- .swift-control-page -->
