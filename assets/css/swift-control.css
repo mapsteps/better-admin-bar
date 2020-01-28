@@ -18,6 +18,11 @@
 	}
 }
 
+.swift-control-widgets.is-rtl {
+	left: auto;
+	right: 0;
+}
+
 .swift-control-widgets {
 	position: fixed;
 	left: 0;
@@ -44,8 +49,8 @@
 
 .swift-control-widgets.is-expanded .widget-setting::after {
 	opacity: 0;
-	-webkit-transition: all 0.3s;
-	transition: all 0.3s;
+	-webkit-transition: all .3s;
+	transition: all .3s;
 }
 
 .swift-control-widgets .widget-setting::after {
@@ -61,10 +66,20 @@
 	transition: all 1s;
 }
 
+.swift-control-widgets.is-rtl.is-expanded .widget-item {
+	left: auto;
+	right: 0;
+}
+
 .swift-control-widgets.is-expanded .widget-item {
 	left: 0;
 	opacity: 1;
 	visibility: visible;
+}
+
+.swift-control-widgets.is-rtl .widget-item {
+	left: auto;
+	right: -55px;
 }
 
 .swift-control-widgets .widget-item {
@@ -81,6 +96,11 @@
 	opacity: 0;
 	visibility: hidden;
 	transition: all 0.35s;
+}
+
+.swift-control-widgets.is-rtl .widget-setting {
+	left: auto;
+	right: 0;
 }
 
 .swift-control-widgets .widget-setting {

@@ -74,7 +74,7 @@ foreach ( $active_widgets as $widget_key ) {
 	?>
 </style>
 
-<ul class="swift-control-widgets">
+<ul class="swift-control-widgets <?php echo esc_attr( is_rtl() ? 'is-rtl' : '' ); ?>">
 
 	<li class="widget-item widget-setting">
 		<a class="widget-link" href="<?php echo esc_url( admin_url( 'options-general.php?page=swift-control' ) ); ?>" target="_blank">
