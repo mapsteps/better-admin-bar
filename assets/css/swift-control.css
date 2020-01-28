@@ -18,6 +18,26 @@
 	}
 }
 
+@-webkit-keyframes slidingArrowRTL {
+	from {
+		right: 62px;
+	}
+
+	to {
+		right: 70px;
+	}
+}
+
+@keyframes slidingArrowRTL {
+	from {
+		right: 62px;
+	}
+
+	to {
+		right: 70px;
+	}
+}
+
 .swift-control-widgets.is-rtl {
 	left: auto;
 	right: 0;
@@ -47,10 +67,22 @@
 	color: #fff;
 }
 
+.swift-control-widgets.is-rtl.is-expanded .widget-setting::after {
+	opacity: 0;
+}
+
 .swift-control-widgets.is-expanded .widget-setting::after {
 	opacity: 0;
 	-webkit-transition: all .3s;
 	transition: all .3s;
+}
+
+.swift-control-widgets.is-rtl .widget-setting::after {
+	left: auto;
+	right: 62px;
+	content: "\f061";
+	-webkit-animation: slidingArrowRTL 1s ease-in-out infinite alternate;
+	animation: slidingArrowRTL 1s ease-in-out infinite alternate;
 }
 
 .swift-control-widgets .widget-setting::after {
