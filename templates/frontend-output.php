@@ -88,19 +88,32 @@ foreach ( $active_widgets as $widget_key ) {
 
 <script>
 	(function () {
-		document.querySelector('.swift-control-widgets .widget-setting').addEventListener('click', function (e) {
-			e.preventDefault();
-			this.parentNode.classList.toggle('is-expanded');
-		});
+		var widgetsMenu = document.querySelector('.swift-control-widgets');
 
-		var disabledItems = document.querySelectorAll('.swift-control-widgets .widget-item.is-disabled a');
+		function init() {
+			if (!widgetsMenu) return;
+			setupMenu();
+			checkDisabledWidget();
+		}
 
-		if (!disabledItems.length) return;
-
-		[].slice.call(disabledItems).forEach(function (el) {
-			el.addEventListener('click', function (e) {
+		function setupMenu() {
+			document.querySelector('.swift-control-widgets .widget-setting').addEventListener('click', function (e) {
 				e.preventDefault();
+				this.parentNode.classList.toggle('is-expanded');
 			});
-		});
+		}
+
+		function checkDisabledWidget() {
+			var disabledItems = document.querySelectorAll('.swift-control-widgets .widget-item.is-disabled a');
+			if (!disabledItems.length) return;
+
+			[].slice.call(disabledItems).forEach(function (el) {
+				el.addEventListener('click', function (e) {
+					e.preventDefault();
+				});
+			});
+		}
+
+		init();
 	})();
 </script>

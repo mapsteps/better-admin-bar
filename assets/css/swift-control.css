@@ -38,9 +38,18 @@
 	}
 }
 
+.swift-control-widgets.is-rtl.is-hidden-mode {
+	left: auto;
+	right: -55px;
+}
+
 .swift-control-widgets.is-rtl {
 	left: auto;
 	right: 0;
+}
+
+.swift-control-widgets.is-hidden-mode {
+	left: -55px;
 }
 
 .swift-control-widgets {
@@ -53,6 +62,7 @@
 	z-index: 1000; /* Must be on top of .wpbf-navigation with z-index: 555 */
 	-webkit-transform: translateY(-50%);
 	transform: translateY(-50%);
+	transition: left .35s;
 }
 
 .swift-control-widgets .widget-setting .widget-link {
@@ -67,10 +77,7 @@
 	color: #fff;
 }
 
-.swift-control-widgets.is-rtl.is-expanded .widget-setting::after {
-	opacity: 0;
-}
-
+.swift-control-widgets.is-hidden-mode .widget-setting::after,
 .swift-control-widgets.is-expanded .widget-setting::after {
 	opacity: 0;
 	-webkit-transition: all .3s;

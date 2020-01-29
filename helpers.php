@@ -431,8 +431,12 @@ function swift_control_parse_widget_url( $widget_url, $widget_key, $settings = a
  * @return string The parsed widget class.
  */
 function swift_control_parse_widget_class( $widget_class, $widget_key, $settings = array() ) {
-	if ( ! is_singular() && 'edit_post_type' === $widget_key ) {
-		$widget_class = 'is-disabled';
+	$space_prefix = empty( $widget_class ) ? '' : ' ';
+
+	if ( 'edit_post_type' === $widget_key ) {
+		if ( ! is_singular() ) {
+			$widget_class .= $space_prefix . 'is-disabled';
+		}
 	}
 
 	return $widget_class;
