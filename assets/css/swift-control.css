@@ -167,9 +167,8 @@
 	background-color: #ededf0;
 }
 
-.swift-control-widgets .is-disabled .widget-link {
-	opacity: 0.4;
-	background-color: #f5f5f7;
+.swift-control-widgets .is-disabled .widget-link i {
+	opacity: .4;
 }
 
 .swift-control-widgets .is-disabled .widget-title {
