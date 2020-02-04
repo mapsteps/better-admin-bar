@@ -9,7 +9,8 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 $setting_url = admin_url( 'options-general.php?page=swift-control' );
 
-$active_widgets = swift_control_get_active_widgets();
+$active_widgets   = swift_control_get_active_widgets();
+$display_settings = swift_control_get_display_settings();
 
 // Get saved widget settings.
 $saved_widget_settings = swift_control_get_saved_widget_settings();
@@ -87,6 +88,10 @@ $position['y']            = isset( $saved_position['y'] ) ? (float) esc_attr( $s
 $position['y_direction']  = isset( $saved_position['y_direction'] ) ? esc_attr( $saved_position['y_direction'] ) : 'bottom';
 $position['y_percentage'] = isset( $saved_position['y_percentage'] ) ? (float) esc_attr( $saved_position['y_percentage'] ) : 0;
 
+$has_arrow_class = $display_settings['remove_indicator'] ? '' : 'has-arrow';
+$expanded_class  = $display_settings['expanded'] ? 'is-expanded' : '';
+$pinned_class    = '';
+
 if ( ! isset( $saved_position['x_direction'] ) ) {
 	if ( is_rtl() ) {
 		$position['x_direction'] = 'right';
@@ -96,9 +101,6 @@ if ( ! isset( $saved_position['x_direction'] ) ) {
 } else {
 	$pinned_class = 'right' === $position['x_direction'] ? 'is-pinned-right' : '';
 }
-
-$has_arrow_class = $display_settings['remove_indicator'] ? '' : 'has-arrow';
-$expanded_class  = $display_settings['expanded'] ? 'is-expanded' : '';
 ?>
 
 <ul class="swift-control-widgets is-invisible <?php echo esc_attr( $has_arrow_class ); ?> <?php echo esc_attr( $expanded_class ); ?> <?php echo esc_attr( $pinned_class ); ?>">
