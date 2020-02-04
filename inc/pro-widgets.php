@@ -15,7 +15,7 @@ return array(
 		'icon_class' => 'fas fa-unlock-alt',
 	),
 	'custom_links'      => array(
-		'text'       => __( 'Unlimited Custom Controls', 'swift-control' ),
+		'text'       => __( 'Custom Controls', 'swift-control' ),
 		'url'        => 'https://wpswiftcontrol.com/pro/',
 		'new_tab'    => true,
 		'icon_class' => 'fas fa-unlock-alt',
