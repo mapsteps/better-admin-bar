@@ -31,6 +31,8 @@ Navigate to Settings > WP Swift Control to change the order the controls are dis
 = 1.4 February 04, 2020 =
 * New: Hide admin bar based on user roles
 * New: Drag & Drop Swift Control panel
+* New: Option to expand Swift Control panel by default
+* New: Option to remove indicator arrow
 
 = 1.3 January 28, 2020 =
 * New: Export/Import functionality
