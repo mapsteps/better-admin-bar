@@ -3,8 +3,21 @@
 	background-color: #f1f1f1;
 }
 
+/**
+ * --------------------------------------------------
+ * General
+ * --------------------------------------------------
+ */
+.swift-control-settings .is-fullwidth {
+	width: 100%;
+}
+
 .swift-control-settings .label.checkbox-label {
 	padding-left: 30px;
+}
+
+.swift-control-settings .label > p:first-child {
+	margin-top: 0;
 }
 
 .swift-control-settings .widget-item .label {
@@ -584,6 +597,10 @@
  * Role multiselect
  * --------------------------------------------------
  */
+.swift-control-settings .select2-container--default .select2-selection--multiple .select2-selection__rendered {
+	display: flex;
+}
+
 .swift-control-settings .select2-label .select2-container {
 	display: block;
 }
