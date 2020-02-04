@@ -31,6 +31,7 @@ class Setup {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 		add_action( 'admin_menu', array( $this, 'add_submenu_page' ) );
 		add_action( 'wp', array( $this, 'check_page' ) );
+		add_action( 'wp', array( $this, 'remove_admin_bar' ) );
 
 		// Process export-import.
 		add_action( 'admin_init', array( $this, 'process_export' ) );
@@ -42,12 +43,6 @@ class Setup {
 		add_action( 'wp_ajax_swift_control_save_position', array( new Ajax\Save_Position(), 'ajax' ) );
 
 		add_filter( 'plugin_action_links', array( $this, 'add_settings_link' ), 10, 4 );
-
-		$misc_settings = swift_control_get_misc_settings();
-
-		if ( isset( $misc_settings['remove_admin_bar'] ) && ! empty( $misc_settings['remove_admin_bar'] ) ) {
-			add_filter( 'show_admin_bar', '__return_false' );
-		}
 	}
 
 	/**
@@ -185,6 +180,39 @@ class Setup {
 		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'inline_styles' ) );
 		add_action( 'wp_footer', array( $this, 'frontend_output' ), 5 );
+	}
+
+	/**
+	 * Remove admin bar on frontend for certain roles.
+	 */
+	public function remove_admin_bar() {
+		$misc_settings = swift_control_get_misc_settings();
+
+		if ( ! isset( $misc_settings['remove_admin_bar'] ) || empty( $misc_settings['remove_admin_bar'] ) ) {
+			return;
+		}
+
+		$selected_roles = $misc_settings['remove_admin_bar'];
+
+		// Backward compatibility: old value's format is int (0 / 1).
+		if ( is_numeric( $selected_roles ) ) {
+			add_filter( 'show_admin_bar', '__return_false' );
+			return;
+		}
+
+		if ( in_array( 'all', $misc_settings['remove_admin_bar'], true ) ) {
+			add_filter( 'show_admin_bar', '__return_false' );
+			return;
+		} else {
+			$current_user = wp_get_current_user();
+
+			foreach ( $current_user->roles as $role ) {
+				if ( in_array( $role, $selected_roles, true ) ) {
+					add_filter( 'show_admin_bar', '__return_false' );
+					break;
+				}
+			}
+		}
 	}
 
 	/**
