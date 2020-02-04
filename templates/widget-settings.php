@@ -47,6 +47,7 @@ $GLOBALS['swift_control_widget_settings']  = $saved_widget_settings;
 			<div class="general-settings-area">
 				<?php
 				require __DIR__ . '/color-settings.php';
+				require __DIR__ . '/display-settings.php';
 				require __DIR__ . '/misc-settings.php';
 				?>
 				<p class="submit">

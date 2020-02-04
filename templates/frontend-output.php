@@ -7,6 +7,8 @@
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
+$setting_url = admin_url( 'options-general.php?page=swift-control' );
+
 $active_widgets = swift_control_get_active_widgets();
 
 // Get saved widget settings.
@@ -74,10 +76,35 @@ foreach ( $active_widgets as $widget_key ) {
 	?>
 </style>
 
-<ul class="swift-control-widgets <?php echo esc_attr( is_rtl() ? 'is-rtl' : '' ); ?>">
+<?php
+$position       = array();
+$saved_position = get_user_meta( get_current_user_id(), 'swift_control_position', true );
+$saved_position = empty( $saved_position ) ? array() : $saved_position;
+
+$position['x']            = isset( $saved_position['x'] ) ? (float) esc_attr( $saved_position['x'] ) : 0;
+$position['x_direction']  = isset( $saved_position['x_direction'] ) ? esc_attr( $saved_position['x_direction'] ) : 'left';
+$position['y']            = isset( $saved_position['y'] ) ? (float) esc_attr( $saved_position['y'] ) : 0;
+$position['y_direction']  = isset( $saved_position['y_direction'] ) ? esc_attr( $saved_position['y_direction'] ) : 'bottom';
+$position['y_percentage'] = isset( $saved_position['y_percentage'] ) ? (float) esc_attr( $saved_position['y_percentage'] ) : 0;
+
+if ( ! isset( $saved_position['x_direction'] ) ) {
+	if ( is_rtl() ) {
+		$position['x_direction'] = 'right';
+
+		$pinned_class = 'is-pinned-right';
+	}
+} else {
+	$pinned_class = 'right' === $position['x_direction'] ? 'is-pinned-right' : '';
+}
+
+$has_arrow_class = $display_settings['remove_indicator'] ? '' : 'has-arrow';
+$expanded_class  = $display_settings['expanded'] ? 'is-expanded' : '';
+?>
+
+<ul class="swift-control-widgets is-invisible <?php echo esc_attr( $has_arrow_class ); ?> <?php echo esc_attr( $expanded_class ); ?> <?php echo esc_attr( $pinned_class ); ?>">
 
 	<li class="widget-item widget-setting">
-		<a class="widget-link" href="<?php echo esc_url( admin_url( 'options-general.php?page=swift-control' ) ); ?>" target="_blank">
+		<a class="widget-link" href="<?php echo esc_url( $setting_url ); ?>" target="_blank">
 			<i class="fas fa-cog"></i>
 		</a>
 	</li>
@@ -86,34 +113,25 @@ foreach ( $active_widgets as $widget_key ) {
 
 </ul>
 
-<script>
-	(function () {
-		var widgetsMenu = document.querySelector('.swift-control-widgets');
+<div class="swift-control-helper-panels"></div>
 
-		function init() {
-			if (!widgetsMenu) return;
-			setupMenu();
-			checkDisabledWidget();
-		}
-
-		function setupMenu() {
-			document.querySelector('.swift-control-widgets .widget-setting').addEventListener('click', function (e) {
-				e.preventDefault();
-				this.parentNode.classList.toggle('is-expanded');
-			});
-		}
-
-		function checkDisabledWidget() {
-			var disabledItems = document.querySelectorAll('.swift-control-widgets .widget-item.is-disabled a');
-			if (!disabledItems.length) return;
-
-			[].slice.call(disabledItems).forEach(function (el) {
-				el.addEventListener('click', function (e) {
-					e.preventDefault();
-				});
-			});
-		}
-
-		init();
-	})();
-</script>
+<?php
+wp_localize_script(
+	'swift-control',
+	'swiftControlOpt',
+	array(
+		'size'          => 55,
+		'settingButton' => array(
+			'hidingDelay' => $showing_delay + 350,
+		),
+		'position'      => array(
+			'x'            => $position['x'],
+			'x_direction'  => $position['x_direction'],
+			'y'            => $position['y'],
+			'y_direction'  => $position['y_direction'],
+			'y_percentage' => $position['y_percentage'],
+		),
+		'ajaxUrl'       => admin_url( 'admin-ajax.php' ),
+		'nonce'         => wp_create_nonce( 'save_position' ),
+	)
+);

@@ -294,6 +294,22 @@ function swift_control_get_misc_settings() {
 }
 
 /**
+ * Get display settings.
+ *
+ * @return array The display settings.
+ */
+function swift_control_get_display_settings() {
+	$saved_settings = get_option( 'swift_control_display_settings', array() );
+
+	$display_settings = array(
+		'remove_indicator' => isset( $saved_settings['remove_indicator'] ) ? absint( $saved_settings['remove_indicator'] ) : 0,
+		'expanded'         => isset( $saved_settings['expanded'] ) ? absint( $saved_settings['expanded'] ) : 0,
+	);
+
+	return $display_settings;
+}
+
+/**
  * Parse widget settings
  *
  * @param array $widget_key The widget key.

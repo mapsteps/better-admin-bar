@@ -39,6 +39,7 @@ class Setup {
 		add_action( 'wp_ajax_swift_control_change_widgets_order', array( new Ajax\Change_Widgets_Order(), 'ajax' ) );
 		add_action( 'wp_ajax_swift_control_change_widget_settings', array( new Ajax\Change_Widget_Settings(), 'ajax' ) );
 		add_action( 'wp_ajax_swift_control_save_general_settings', array( new Ajax\Save_General_Settings(), 'ajax' ) );
+		add_action( 'wp_ajax_swift_control_save_position', array( new Ajax\Save_Position(), 'ajax' ) );
 
 		add_filter( 'plugin_action_links', array( $this, 'add_settings_link' ), 10, 4 );
 
@@ -72,6 +73,9 @@ class Setup {
 		// Font Awesome Icon Picker.
 		wp_enqueue_style( 'fontawesome-iconpicker', SWIFT_CONTROL_PLUGIN_URL . '/assets/vendor/fontawesome-iconpicker/fontawesome-iconpicker.min.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
 
+		// Select2.
+		wp_enqueue_style( 'select2', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/select2.min.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
+
 		// Settings page styling.
 		wp_enqueue_style( 'settings-page', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/settings-page.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
 		wp_enqueue_style( 'setting-fields', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/setting-fields.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
@@ -89,6 +93,9 @@ class Setup {
 		wp_enqueue_script( 'jquery-ui-mouse' );
 		wp_enqueue_script( 'jquery-ui-sortable' );
 
+		// Select2.
+		wp_enqueue_script( 'select2', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/select2.min.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
+
 		// Font Awesome Icon Picker.
 		wp_enqueue_script( 'fontawesome-iconpicker', SWIFT_CONTROL_PLUGIN_URL . '/assets/vendor/fontawesome-iconpicker/fontawesome-iconpicker.min.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 
@@ -96,7 +103,7 @@ class Setup {
 		wp_enqueue_script( 'wp-color-picker-alpha', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ), '2.1.3', true );
 
 		wp_enqueue_script( 'swift-control-widget-settings', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/swift-control-widget-settings.js', array( 'jquery-ui-sortable', 'fontawesome-iconpicker' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
-		wp_enqueue_script( 'swift-control-general-settings', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/swift-control-general-settings.js', array( 'wp-color-picker-alpha' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'swift-control-general-settings', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/swift-control-general-settings.js', array( 'select2', 'wp-color-picker-alpha' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 
 		wp_localize_script(
 			'swift-control-widget-settings',
@@ -199,6 +206,10 @@ class Setup {
 
 		// Swift Control frontend styling.
 		wp_enqueue_style( 'swift-control', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/swift-control.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
+
+		// Swift Control frontend script.
+		wp_enqueue_script( 'interact', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/interact.min.js', array(), SWIFT_CONTROL_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'swift-control', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/swift-control.js', array( 'interact' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 	}
 
 	/**

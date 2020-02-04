@@ -5,6 +5,8 @@
 	var loading = {};
 	var ajax = {};
 
+	var adminBarRemovalRoles = [];
+
 	/**
 	 * Call the main functions here.
 	 */
@@ -19,6 +21,8 @@
 			e.preventDefault();
 			ajax.saveSettings();
 		});
+
+		setupAdminBarRemovalRoles();
 	}
 
 	/**
@@ -55,6 +59,11 @@
 		[].slice.call(elms.settingFields).forEach(function (field) {
 			if (field.type === 'checkbox') {
 				data[field.name] = field.checked ? 1 : 0;
+			} else if (field.tagName.toLowerCase() === 'select') {
+				if (field.name === 'remove_admin_bar[]') {
+					data[field.name] = adminBarRemovalRoles;
+
+				}
 			} else {
 				data[field.name] = field.value;
 			}
@@ -90,6 +99,55 @@
 		} else {
 			elms.savedStatusBar.classList.add('is-shown');
 		}
+	}
+
+	function setupAdminBarRemovalRoles() {
+		$elms.removeAdminBar = $('.swift-control-settings .remove-admin-bar');
+		var selectedRoles = [];
+
+		$elms.removeAdminBar.select2();
+
+		setAdminBarRemovalRoles($elms.removeAdminBar.select2('data'));
+
+		$elms.removeAdminBar.on('select2:select', function (e) {
+			var roleObjects = $elms.removeAdminBar.select2('data');
+			var newSelections = [];
+
+			if (e.params.data.id === 'all') {
+				$elms.removeAdminBar.val('all');
+				$elms.removeAdminBar.trigger('change');
+			} else {
+				if (roleObjects.length) {
+					roleObjects.forEach(function (role) {
+						if (role.id !== 'all') {
+							newSelections.push(role.id);
+						}
+					});
+
+					$elms.removeAdminBar.val(newSelections);
+					$elms.removeAdminBar.trigger('change');
+				}
+			}
+
+			// Use the modified list.
+			setAdminBarRemovalRoles($elms.removeAdminBar.select2('data'));
+		});
+
+		$elms.removeAdminBar.on('select2:unselect', function (e) {
+			setAdminBarRemovalRoles($elms.removeAdminBar.select2('data'));
+		});
+	}
+
+	function setAdminBarRemovalRoles(roleObjects) {
+		adminBarRemovalRoles = [];
+
+		if (!roleObjects || !roleObjects.length) {
+			return;
+		}
+
+		roleObjects.forEach(function (role) {
+			adminBarRemovalRoles.push(role.id);
+		});
 	}
 
 	init();
