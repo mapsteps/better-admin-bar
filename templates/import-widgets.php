@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 <form method="post" action="<?php menu_page_url( 'swift-control', true ); ?>" enctype="multipart/form-data">
 	<input type="hidden" name="swift_control_action" value="import">
-	<?php wp_nonce_field( 'swift_control_import_widgets', 'nonce' ); ?>
+	<?php wp_nonce_field( 'swift_control_import_widgets', 'swift_control_import_nonce' ); ?>
 
 	<div class="neatbox is-smooth has-bigger-heading has-medium-gap">
 		<h2><?php _e( 'Import Widgets', 'swift-control' ); ?></h2>
@@ -28,6 +28,6 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 			</div>
 		</div>
 
-		<?php submit_button( __( 'Import File', 'swift-control' ) ); ?>
+		<?php submit_button( __( 'Import File', 'swift-control' ), 'primary', 'submit_import' ); ?>
 	</div>
 </form>

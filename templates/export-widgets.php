@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 <form method="post" action="<?php menu_page_url( 'swift-control', true ); ?>">
 	<input type="hidden" name="swift_control_action" value="export">
-	<?php wp_nonce_field( 'swift_control_export_widgets', 'nonce' ); ?>
+	<?php wp_nonce_field( 'swift_control_export_widgets', 'swift_control_export_nonce' ); ?>
 
 	<div class="neatbox is-smooth has-bigger-heading has-medium-gap">
 		<h2><?php _e( 'Export Widgets', 'swift-control' ); ?></h2>
@@ -33,6 +33,6 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 		</div><!-- .neatbox-content -->
 
-		<?php submit_button( __( 'Export File', 'swift-control' ) ); ?>
+		<?php submit_button( __( 'Export File', 'swift-control' ), 'primary', 'submit_export' ); ?>
 	</div><!-- .neatbox -->
 </form>

@@ -307,11 +307,11 @@ class Setup {
 			return;
 		}
 
-		if ( ! isset( $_POST['nonce'] ) || empty( $_POST['nonce'] ) ) {
+		if ( ! isset( $_POST['swift_control_export_nonce'] ) || empty( $_POST['swift_control_export_nonce'] ) ) {
 			return;
 		}
 
-		if ( ! wp_verify_nonce( $_POST['nonce'], 'swift_control_export_widgets' ) ) {
+		if ( ! wp_verify_nonce( $_POST['swift_control_export_nonce'], 'swift_control_export_widgets' ) ) {
 			return;
 		}
 
@@ -334,11 +334,11 @@ class Setup {
 			return;
 		}
 
-		if ( ! isset( $_POST['nonce'] ) || empty( $_POST['nonce'] ) ) {
+		if ( ! isset( $_POST['swift_control_import_nonce'] ) || empty( $_POST['swift_control_import_nonce'] ) ) {
 			return;
 		}
 
-		if ( ! wp_verify_nonce( $_POST['nonce'], 'swift_control_import_widgets' ) ) {
+		if ( ! wp_verify_nonce( $_POST['swift_control_import_nonce'], 'swift_control_import_widgets' ) ) {
 			return;
 		}
 
