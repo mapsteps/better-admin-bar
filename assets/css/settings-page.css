@@ -1,10 +1,4 @@
 /* General */
-.border-box,
-.border-box * {
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
 .cols {
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -33,6 +27,12 @@
 }
 
 /* Settings Page */
+.settingstuff,
+.settingstuff * {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
 .settingstuff h1 .version {
 	font-size: 60%;
 	opacity: 0.6;
