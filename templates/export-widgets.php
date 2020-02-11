@@ -15,9 +15,9 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 	<div class="neatbox is-smooth has-bigger-heading has-medium-gap">
 		<h2><?php _e( 'Export Widgets', 'swift-control' ); ?></h2>
 
-		<div class="neatbox-content">
+		<div class="neatbox-content has-bottom-gapless">
 
-			<p class="intro">
+			<p>
 				<?php _e( 'Use the export button to export to a .json file which you can then import to another Swift Control installation.', 'swift-control' ); ?>
 			</p>
 

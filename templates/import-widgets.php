@@ -15,8 +15,8 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 	<div class="neatbox is-smooth has-bigger-heading has-medium-gap">
 		<h2><?php _e( 'Import Widgets', 'swift-control' ); ?></h2>
 
-		<div class="neatbox-content">
-			<p class="intro">
+		<div class="neatbox-content has-bottom-gapless">
+			<p>
 				<?php _e( 'Select the Widgets JSON file you would like to import. When you click the import button below, Swift Control will import the widgets.', 'swift-control' ); ?>
 			</p>
 
