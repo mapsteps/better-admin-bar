@@ -8,6 +8,18 @@
  * General
  * --------------------------------------------------
  */
+.cols {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
+.cols .col:last-child {
+	justify-self: flex-end;
+}
+
 .swift-control-settings .is-fullwidth {
 	width: 100%;
 }
