@@ -714,10 +714,6 @@
 		padding-left: 0;
 	}
 
-	.swift-control-settings .general-settings-area {
-		/** In case we need this in the future */
-	}
-
 	.swift-control-settings .left-section .neatbox,
 	.swift-control-settings .right-section .neatbox,
 	.swift-control-settings .general-settings-area .neatbox {
