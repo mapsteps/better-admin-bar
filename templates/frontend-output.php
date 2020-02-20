@@ -8,6 +8,7 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 $setting_url = admin_url( 'options-general.php?page=swift-control' );
+$widget_size = 55;
 
 $active_widgets   = swift_control_get_active_widgets();
 $display_settings = swift_control_get_display_settings();
@@ -101,6 +102,19 @@ if ( ! isset( $saved_position['x_direction'] ) ) {
 } else {
 	$pinned_class = 'right' === $position['x_direction'] ? 'is-pinned-right' : '';
 }
+
+if ( empty( $saved_position ) ) {
+	$half_expanded_height = ( ( $widget_size * count( $active_widgets ) ) + $widget_size ) / 2;
+	?>
+
+	<style>
+		.swift-control-widgets.is-expanded {
+			margin-top: -<?php echo esc_attr( $half_expanded_height ); ?>px;
+		}
+	</style>
+
+	<?php
+}
 ?>
 
 <ul class="swift-control-widgets is-invisible <?php echo esc_attr( $has_arrow_class ); ?> <?php echo esc_attr( $expanded_class ); ?> <?php echo esc_attr( $pinned_class ); ?>">
@@ -122,7 +136,7 @@ wp_localize_script(
 	'swift-control',
 	'swiftControlOpt',
 	array(
-		'size'          => 55,
+		'size'          => $widget_size,
 		'settingButton' => array(
 			'hidingDelay' => $showing_delay + 350,
 		),

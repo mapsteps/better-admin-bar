@@ -115,15 +115,21 @@ class Save_General_Settings {
 		$misc_settings    = array();
 
 		foreach ( $this->color_setting_fields as $field ) {
-			$color_settings[ $field ] = $this->data[ $field ];
+			if ( isset( $this->data[ $field ] ) ) {
+				$color_settings[ $field ] = $this->data[ $field ];
+			}
 		}
 
 		foreach ( $this->display_setting_fields as $field ) {
-			$display_settings[ $field ] = $this->data[ $field ];
+			if ( isset( $this->data[ $field ] ) ) {
+				$display_settings[ $field ] = $this->data[ $field ];
+			}
 		}
 
 		foreach ( $this->misc_setting_fields as $field ) {
-			$misc_settings[ $field ] = $this->data[ $field ];
+			if ( isset( $this->data[ $field ] ) ) {
+				$misc_settings[ $field ] = $this->data[ $field ];
+			}
 		}
 
 		update_option( 'swift_control_color_settings', $color_settings );
