@@ -177,6 +177,10 @@ class Setup {
 			return;
 		}
 
+		if ( ! apply_filters( 'swift_control_frontend_display', true ) ) {
+			return;
+		}
+
 		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'inline_styles' ) );
 		add_action( 'wp_footer', array( $this, 'frontend_output' ), 5 );
