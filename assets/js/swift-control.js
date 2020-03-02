@@ -30,7 +30,7 @@
 	}
 
 	function setupMenu() {
-		document.querySelector('.swift-control-widgets .widget-setting a').addEventListener('click', function (e) {
+		document.querySelector('.swift-control-widgets .swift-control-widget-setting a').addEventListener('click', function (e) {
 			e.preventDefault();
 
 			if (!this.parentNode.parentNode.classList.contains('is-dragging')) {
@@ -40,7 +40,7 @@
 	}
 
 	function checkDisabledWidget() {
-		var disabledItems = document.querySelectorAll('.swift-control-widgets .widget-item.is-disabled a');
+		var disabledItems = document.querySelectorAll('.swift-control-widgets .swift-control-widget-item.is-disabled a');
 		if (!disabledItems.length) return;
 
 		disabledItems.forEach(function (el) {
@@ -51,7 +51,7 @@
 	}
 
 	function checkInlineEditing() {
-		var inlineEdits = document.querySelectorAll('.swift-control-widgets .widget-item.inline-edit a');
+		var inlineEdits = document.querySelectorAll('.swift-control-widgets .swift-control-widget-item.inline-edit a');
 		if (!inlineEdits.length) return;
 
 		inlineEdits.forEach(function (el) {

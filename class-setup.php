@@ -261,39 +261,39 @@ class Setup {
 		$css            = '';
 
 		if ( $color_settings['setting_button_bg_color'] !== $default_colors['setting_button_bg_color'] ) {
-			$css .= '.swift-control-widgets .widget-setting .widget-link, .swift-control-widgets .widget-setting .widget-link:hover {';
+			$css .= '.swift-control-widgets .swift-control-widget-setting .swift-control-widget-link, .swift-control-widgets .swift-control-widget-setting .swift-control-widget-link:hover {';
 			$css .= 'background-color: ' . esc_attr( $color_settings['setting_button_bg_color'] ) . ';';
 			$css .= '}';
 
-			$css .= '.swift-control-widgets .widget-setting::after {';
+			$css .= '.swift-control-widgets .swift-control-widget-setting::after {';
 			$css .= 'color: ' . esc_attr( $color_settings['setting_button_bg_color'] ) . ';';
 			$css .= '}';
 		}
 
 		if ( $color_settings['setting_button_icon_color'] !== $default_colors['setting_button_icon_color'] ) {
-			$css .= '.swift-control-widgets .widget-setting a {';
+			$css .= '.swift-control-widgets .swift-control-widget-setting a {';
 			$css .= 'color: ' . esc_attr( $color_settings['setting_button_icon_color'] ) . ';';
 			$css .= '}';
 		}
 
 		if ( $color_settings['widget_bg_color_hover'] !== $default_colors['widget_bg_color_hover'] ) {
-			$css .= '.swift-control-widgets .widget-link:hover {';
+			$css .= '.swift-control-widgets .swift-control-widget-link:hover {';
 			$css .= 'background-color: ' . esc_attr( $color_settings['widget_bg_color_hover'] ) . ';';
 			$css .= '}';
 		}
 
 		if ( $color_settings['widget_bg_color'] !== $default_colors['widget_bg_color'] ) {
-			$css .= '.swift-control-widgets .widget-link {';
+			$css .= '.swift-control-widgets .swift-control-widget-link {';
 			$css .= 'background-color: ' . esc_attr( $color_settings['widget_bg_color'] ) . ';';
 			$css .= '}';
 
-			$css .= '.swift-control-widgets .is-disabled .widget-link {';
+			$css .= '.swift-control-widgets .is-disabled .swift-control-widget-link {';
 			$css .= 'background-color: ' . esc_attr( $color_settings['widget_bg_color'] ) . ';';
 			$css .= '}';
 		}
 
 		if ( $color_settings['widget_icon_color'] !== $default_colors['widget_icon_color'] ) {
-			$css .= '.swift-control-widgets .widget-link {';
+			$css .= '.swift-control-widgets .swift-control-widget-link {';
 			$css .= 'color: ' . esc_attr( $color_settings['widget_icon_color'] ) . ';';
 			$css .= '}';
 		}

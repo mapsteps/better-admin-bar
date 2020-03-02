@@ -85,27 +85,27 @@
 	transition: left 0.35s, opacity 0.25s;
 }
 
-.swift-control-widgets .widget-setting .widget-link {
+.swift-control-widgets .swift-control-widget-setting .swift-control-widget-link {
 	background-color: #860ee6;
 }
 
-.swift-control-widgets .widget-setting .widget-link:hover {
+.swift-control-widgets .swift-control-widget-setting .swift-control-widget-link:hover {
 	background-color: #860ee6;
 }
 
-.swift-control-widgets .widget-setting a {
+.swift-control-widgets .swift-control-widget-setting a {
 	color: #fff;
 }
 
-.swift-control-widgets.is-hidden-mode .widget-setting::after,
-.swift-control-widgets.is-expanded .widget-setting::after {
+.swift-control-widgets.is-hidden-mode .swift-control-widget-setting::after,
+.swift-control-widgets.is-expanded .swift-control-widget-setting::after {
 	opacity: 0;
 	-webkit-transition: all 0.3s;
 	transition: all 0.3s;
 }
 
-.swift-control-widgets.is-dragged-right .widget-setting::after,
-.swift-control-widgets.is-pinned-right .widget-setting::after {
+.swift-control-widgets.is-dragged-right .swift-control-widget-setting::after,
+.swift-control-widgets.is-pinned-right .swift-control-widget-setting::after {
 	left: auto;
 	right: 62px;
 	content: "\f061";
@@ -113,7 +113,7 @@
 	animation: slidingArrowReversed 1s ease-in-out infinite alternate;
 }
 
-.swift-control-widgets.is-dragged-left .widget-setting::after {
+.swift-control-widgets.is-dragged-left .swift-control-widget-setting::after {
 	left: 62px;
 	right: auto;
 	content: "\f060";
@@ -121,11 +121,11 @@
 	animation: slidingArrow 1s ease-in-out infinite alternate;
 }
 
-.swift-control-widgets.has-arrow .widget-setting::after {
+.swift-control-widgets.has-arrow .swift-control-widget-setting::after {
 	display: inline-block;
 }
 
-.swift-control-widgets .widget-setting::after {
+.swift-control-widgets .swift-control-widget-setting::after {
 	display: none;
 	position: absolute;
 	left: 62px;
@@ -139,23 +139,23 @@
 	transition: all 1s;
 }
 
-.swift-control-widgets.is-pinned-right.is-expanded .widget-item {
+.swift-control-widgets.is-pinned-right.is-expanded .swift-control-widget-item {
 	left: auto;
 	right: 0;
 }
 
-.swift-control-widgets.is-expanded .widget-item {
+.swift-control-widgets.is-expanded .swift-control-widget-item {
 	left: 0;
 	opacity: 1;
 	visibility: visible;
 }
 
-.swift-control-widgets.is-pinned-right .widget-item {
+.swift-control-widgets.is-pinned-right .swift-control-widget-item {
 	left: auto;
 	right: -55px;
 }
 
-.swift-control-widgets .widget-item {
+.swift-control-widgets .swift-control-widget-item {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -171,22 +171,22 @@
 	transition: all 0.35s;
 }
 
-.swift-control-widgets.is-pinned-right .widget-setting {
+.swift-control-widgets.is-pinned-right .swift-control-widget-setting {
 	left: auto;
 	right: 0;
 }
 
-.swift-control-widgets .widget-setting {
+.swift-control-widgets .swift-control-widget-setting {
 	left: 0;
 	opacity: 1;
 	visibility: visible;
 }
 
-.swift-control-widgets .widget-setting .widget-link {
+.swift-control-widgets .swift-control-widget-setting .swift-control-widget-link {
 	border-top-width: 0;
 }
 
-.swift-control-widgets .widget-link {
+.swift-control-widgets .swift-control-widget-link {
 	display: inline-block;
 	width: 55px;
 	height: 55px;
@@ -197,25 +197,25 @@
 	border-top: 1px solid #e1e1e7;
 }
 
-.swift-control-widgets .widget-link:hover {
+.swift-control-widgets .swift-control-widget-link:hover {
 	background-color: #ededf0;
 }
 
-.swift-control-widgets .is-disabled .widget-link i {
+.swift-control-widgets .is-disabled .swift-control-widget-link i {
 	opacity: .4;
 }
 
-.swift-control-widgets .is-disabled .widget-title {
+.swift-control-widgets .is-disabled .swift-control-widget-title {
 	background-color: #bbb;
 }
 
-.swift-control-widgets.is-pinned-right .widget-title {
+.swift-control-widgets.is-pinned-right .swift-control-widget-title {
 	left: auto;
 	right: 55px;
 	margin-right: 0;
 }
 
-.swift-control-widgets .widget-title {
+.swift-control-widgets .swift-control-widget-title {
 	position: absolute;
 	left: 55px;
 	margin-left: 0;
@@ -233,12 +233,12 @@
 	transition: all 0.2s linear;
 }
 
-.swift-control-widgets.is-pinned-right .widget-link:hover + .widget-title {
+.swift-control-widgets.is-pinned-right .swift-control-widget-link:hover + .swift-control-widget-title {
 	margin-left: auto;
 	margin-right: 9px;
 }
 
-.swift-control-widgets .widget-link:hover + .widget-title {
+.swift-control-widgets .swift-control-widget-link:hover + .swift-control-widget-title {
 	margin-left: 9px;
 	visibility: visible;
 	opacity: 1;

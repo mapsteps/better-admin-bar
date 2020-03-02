@@ -42,11 +42,11 @@ foreach ( $active_widgets as $widget_key ) {
 	ob_start();
 	?>
 
-	<li class="widget-item <?php echo esc_attr( $widget_class ); ?>" data-widget-key="<?php echo esc_attr( $widget_key ); ?>">
-		<a class="widget-link" href="<?php echo esc_url( $widget_url ); ?>" <?php echo $target_attr; ?>>
+	<li class="swift-control-widget-item <?php echo esc_attr( $widget_class ); ?>" data-widget-key="<?php echo esc_attr( $widget_key ); ?>">
+		<a class="swift-control-widget-link" href="<?php echo esc_url( $widget_url ); ?>" <?php echo $target_attr; ?>>
 			<i class="<?php echo esc_attr( $icon_class ); ?>"></i>
 		</a>
-		<span class="widget-title"><?php echo esc_html( $widget_name ); ?></span>
+		<span class="swift-control-widget-title"><?php echo esc_html( $widget_name ); ?></span>
 	</li>
 
 	<?php
@@ -105,8 +105,8 @@ if ( ! isset( $saved_position['x_direction'] ) ) {
 
 <ul class="swift-control-widgets is-invisible <?php echo esc_attr( $has_arrow_class ); ?> <?php echo esc_attr( $expanded_class ); ?> <?php echo esc_attr( $pinned_class ); ?>">
 
-	<li class="widget-item widget-setting">
-		<a class="widget-link" href="<?php echo esc_url( $setting_url ); ?>" target="_blank">
+	<li class="swift-control-widget-item swift-control-widget-setting">
+		<a class="swift-control-widget-link" href="<?php echo esc_url( $setting_url ); ?>" target="_blank">
 			<i class="fas fa-cog"></i>
 		</a>
 	</li>
