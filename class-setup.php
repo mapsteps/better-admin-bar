@@ -240,8 +240,8 @@ class Setup {
 		wp_enqueue_style( 'swift-control', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/swift-control.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
 
 		// Swift Control frontend script.
-		wp_enqueue_script( 'interact', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/interact.min.js', array(), SWIFT_CONTROL_PLUGIN_VERSION, true );
-		wp_enqueue_script( 'swift-control', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/swift-control.js', array( 'interact' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'swift-interact', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/interact.min.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'swift-control', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/swift-control.js', array( 'jquery', 'swift-interact' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 	}
 
 	/**
