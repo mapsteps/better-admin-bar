@@ -159,6 +159,12 @@
 				event.target.classList.remove('is-pinned-right');
 			}
 
+			if (position.y < 0) {
+				position.y = position.y < (halfHeight * -1) ? (halfHeight - (swiftControlOpt.size / 2)) * -1 : position.y;
+			} else {
+				position.y = position.y > halfHeight ? halfHeight - (swiftControlOpt.size / 2) : position.y;
+			}
+
 			event.target.classList.add('is-adjusting');
 			event.target.style.webkitTransform = event.target.style.transform =
 				'translate(' + position.x + 'px, ' + position.y + 'px)';
@@ -198,6 +204,7 @@
 
 		position.x = position.x_direction === 'left' ? position.x = 0 : docWidth - widgetSize;
 		position.y = (position.y_percentage / 100) * halfHeight;
+		position.y = position.y > halfHeight ? halfHeight - (swiftControlOpt.size / 2) : position.y;
 		position.y = position.y_direction === 'top' ? position.y * -1 : position.y;
 
 		menu.style.webkitTransform = menu.style.transform =
