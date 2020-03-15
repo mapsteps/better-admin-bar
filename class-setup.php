@@ -181,9 +181,23 @@ class Setup {
 			return;
 		}
 
+		add_filter( 'body_class', array( $this, 'add_body_class' ) );
+
 		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'inline_styles' ) );
 		add_action( 'wp_footer', array( $this, 'frontend_output' ), 5 );
+	}
+
+	/**
+	 * Add a class to body_class().
+	 *
+	 * @param array $classes The body classes.
+	 * @return array $classes The modified body classes.
+	 */
+	public function add_body_class( $classes ) {
+		$classes[] = 'has-swift-control';
+
+		return $classes;
 	}
 
 	/**

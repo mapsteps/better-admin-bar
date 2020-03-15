@@ -48,6 +48,10 @@
 	}
 }
 
+body.has-swift-control {
+	height: auto;
+}
+
 .swift-control-widgets.is-pinned-right.is-hidden-mode {
 	left: 100%;
 }
