@@ -3,7 +3,7 @@ Contributors: davidvongries
 Tags: Quick Edit, Admin Bar, Replace Admin Bar, Frontend Access, Swift Edit, Swift
 Requires at least: 4.0
 Tested up to: 5.3.2
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,6 +27,10 @@ Navigate to Settings > WP Swift Control to change the order the controls are dis
 2. WP Swift Control Admin Settings Page
 
 == Changelog ==
+
+= 1.4.2 March 15, 2020 =
+* Fixed: Swift Control was able to be thrown outside of window
+* New: Added "has-swift-control" class to body_class()
 
 = 1.4.1 March 05, 2020 =
 * New: filter (swift_control_frontend_display) to hide/show panel from certain pages/archives
