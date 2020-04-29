@@ -3,6 +3,8 @@
 		NodeList.prototype.forEach = Array.prototype.forEach;
 	}
 
+	if (!window.swiftControlOpt) return;
+
 	var ajax = {};
 
 	var menu = document.querySelector('.swift-control-widgets');
