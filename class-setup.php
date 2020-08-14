@@ -63,7 +63,7 @@ class Setup {
 		}
 
 		// Font Awesome 5.
-		wp_enqueue_style( 'font-awesome', SWIFT_CONTROL_PLUGIN_URL . '/assets/vendor/fontawesome-free/css/all.min.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
+		wp_enqueue_style( 'font-awesome', SWIFT_CONTROL_PLUGIN_URL . '/assets/vendor/fontawesome-free/css/all.min.css', array(), '5.14.0' );
 
 		// Font Awesome Icon Picker.
 		wp_enqueue_style( 'fontawesome-iconpicker', SWIFT_CONTROL_PLUGIN_URL . '/assets/vendor/fontawesome-iconpicker/fontawesome-iconpicker.min.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
@@ -245,8 +245,9 @@ class Setup {
 		 */
 		if ( ! $remove_font_awesome ) {
 			// Font Awesome 5.
-			wp_deregister_style( 'font-awesome' );
-			wp_enqueue_style( 'font-awesome', SWIFT_CONTROL_PLUGIN_URL . '/assets/vendor/fontawesome-free/css/all.min.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
+			wp_dequeue_style( 'font-awesome' );
+			wp_dequeue_style( 'fontawesome' );
+			wp_enqueue_style( 'font-awesome', SWIFT_CONTROL_PLUGIN_URL . '/assets/vendor/fontawesome-free/css/all.min.css', array(), '5.14.0' );
 		}
 
 		// Swift Control frontend styling.
