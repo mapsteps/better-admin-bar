@@ -1,4 +1,4 @@
-=== WP Swift Control ===
+=== Swift Control - A Better WordPress Admin Bar ===
 Contributors: davidvongries
 Tags: Quick Edit, Admin Bar, Replace Admin Bar, Frontend Access, Swift Edit, Swift
 Requires at least: 4.0
@@ -8,9 +8,9 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
-Replace the WordPress admin bar and give logged-in users a more intuitive control panel.
+Replace the default WordPress admin bar and give logged-in users the user experience they deserve.
 
-[WP Swift Control](https://wpswiftcontrol.com/) allows you to quickly navigate to the key areas of your website like the theme customizer, your WordPress dashboard and edit the current page/post/custom post type.
+[Swift Control](https://wpswiftcontrol.com/) allows you to quickly navigate to the key areas of your website like the theme customizer, your WordPress dashboard and edit the current page/post/custom post type.
 
 == Installation ==
 1. Download the swift-control.zip file to your computer.
@@ -20,11 +20,11 @@ Replace the WordPress admin bar and give logged-in users a more intuitive contro
 
 == Frequently Asked Questions ==
 = Where can I define what controls are shown on the front end? =
-Navigate to Settings > WP Swift Control to change the order the controls are displayed in and choose which ones you would like to show.
+Navigate to Settings > Swift Control to change the order the controls are displayed in and choose which ones you would like to show.
 
 == Screenshots ==
-1. WP Swift Control
-2. WP Swift Control Admin Settings Page
+1. Swift Control
+2. Swift Control Admin Settings Page
 
 == Changelog ==
 
