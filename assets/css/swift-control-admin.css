@@ -595,13 +595,15 @@
  * Color picker
  * --------------------------------------------------
  */
-.color-settings-box .wp-picker-input-wrap .button.wp-picker-clear {
-	margin-left: 6px;
-	min-height: 30px;
+.iris-picker-inner {
+	display: grid;
+	grid-template-columns: 1fr 20px 20px;
+	grid-gap: 7px;
 }
 
-.color-settings-box .wp-color-result .color-alpha {
-	height: 28px !important;
+.iris-picker-inner > * {
+	width: 100% !important;
+	margin-left: 0 !important;
 }
 
 /**

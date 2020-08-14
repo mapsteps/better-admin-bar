@@ -28,7 +28,7 @@ class Setup {
 		}
 
 		add_action( 'init', array( $this, 'setup_text_domain' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ), 999 );
 		add_action( 'admin_menu', array( $this, 'add_submenu_page' ) );
 		add_action( 'wp', array( $this, 'check_page' ) );
 		add_action( 'wp', array( $this, 'remove_admin_bar' ) );
@@ -80,7 +80,6 @@ class Setup {
 
 		// Color picker dependency.
 		wp_enqueue_style( 'wp-color-picker' );
-		wp_enqueue_style( 'wp-color-picker' );
 
 		// jQuery UI dependencies.
 		wp_enqueue_script( 'jquery-ui-core' );
@@ -95,7 +94,7 @@ class Setup {
 		wp_enqueue_script( 'fontawesome-iconpicker', SWIFT_CONTROL_PLUGIN_URL . '/assets/vendor/fontawesome-iconpicker/fontawesome-iconpicker.min.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 
 		// Color picker alpha.
-		wp_enqueue_script( 'wp-color-picker-alpha', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ), '2.1.3', true );
+		wp_enqueue_script( 'wp-color-picker-alpha', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/wp-color-picker-alpha.js', array( 'wp-color-picker', 'wp-i18n' ), '2.1.3', true );
 
 		wp_enqueue_script( 'swift-control-widget-settings', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/swift-control-widget-settings.js', array( 'jquery-ui-sortable', 'fontawesome-iconpicker' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 		wp_enqueue_script( 'swift-control-general-settings', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/swift-control-general-settings.js', array( 'select2', 'wp-color-picker-alpha' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
