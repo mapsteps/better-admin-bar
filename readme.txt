@@ -3,7 +3,7 @@ Contributors: davidvongries
 Tags: Quick Edit, Admin Bar, Replace Admin Bar, Frontend Access, Swift Edit, Swift
 Requires at least: 4.0
 Tested up to: 5.5
-Stable tag: 1.4.2
+Stable tag: 1.4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,6 +27,9 @@ Navigate to Settings > Swift Control to change the order the controls are displa
 2. Swift Control Admin Settings Page
 
 == Changelog ==
+
+= 1.4.3 August 17, 2020 =
+* Fixed: FontAwesome doesn't load properly on frontend in some cases
 
 = 1.4.2 August 14, 2020 =
 * Fixed: Color picker issue in WordPress 5.5
