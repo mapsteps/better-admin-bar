@@ -19,3 +19,4 @@ delete_option( 'swift_control_widget_settings' );
 delete_option( 'swift_control_widget_settings' );
 delete_option( 'swift_control_color_settings' );
 delete_option( 'swift_control_misc_settings' );
+delete_option( 'swift_control_discontinue_message' );

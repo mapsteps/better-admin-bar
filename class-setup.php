@@ -43,6 +43,11 @@ class Setup {
 		add_action( 'wp_ajax_swift_control_save_position', array( new Ajax\Save_Position(), 'ajax' ) );
 
 		add_filter( 'plugin_action_links', array( $this, 'add_settings_link' ), 10, 4 );
+
+		add_action( 'admin_enqueue_scripts', array( $this, 'global_admin_ajax' ) );
+		add_action( 'admin_notices', array( $this, 'admin_notices' ) );
+		add_action( 'wp_ajax_sc_notice_dismissal', array( $this, 'sc_notice_dismissal' ) );
+
 	}
 
 	/**
@@ -50,6 +55,97 @@ class Setup {
 	 */
 	public function setup_text_domain() {
 		load_plugin_textdomain( 'swift-control', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
+	}
+
+	/**
+	 * Admin notices.
+	 */
+	public function admin_notices() {
+
+		// Stop here if notice has been dismissed.
+		if ( ! empty( get_option( 'swift_control_discontinue_message', 0 ) ) ) {
+			return;
+		}
+
+		// Stop here if current user can't manage options.
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		?>
+
+		<script>
+
+			jQuery(document).ready(function($) {
+
+				var ajax = {};
+
+				function init() {
+					window.addEventListener('load', function (e) {
+						setupActivationNoticeDismissal();
+					});
+				}
+
+				function setupActivationNoticeDismissal() {
+					var panel = document.querySelector('.swift-control-discontinue-notice.is-dismissible');
+					if (!panel) return;
+					panel.querySelector('.notice-dismiss').addEventListener('click', ajax.saveDismissal);
+				}
+
+				ajax.saveDismissal = function (e) {
+					$.ajax({
+						url: ajaxurl,
+						type: 'post',
+						data: {
+							action: 'sc_notice_dismissal',
+							nonce: swiftControlDismissal.nonces.dismissalNonce,
+							dismiss: 1
+						}
+					}).always(function (r) {
+						if (r.success) console.log(r.data);
+					});
+				};
+
+				init();
+
+			});
+
+		</script>
+
+		<div class="notice notice-info swift-control-discontinue-notice is-dismissible">
+			<h2>Swift Control (Free) will be discontinued December 31, 2020.</h2>
+
+			<p>
+				We are going to discontinue the free version of Swift Control to solely focus on development of the PRO version.<br>
+				As a valued user of our plugin we would like to offer you an <strong style="color: green;">90% discount</strong> on Swift Control PRO (yearly plan) for the first year.
+			</p>
+
+			<p>Swift Control will be removed from the WordPress repository on December 31, 2020.</p>
+
+			<p><a href="https://wpswiftcontrol.com/?edd_action=add_to_cart&download_id=241&edd_options%5Bprice_id%5D=1&discount=SCPRO90" style="font-weight: 700;" class="button button-primary">Get Swift Control PRO and save 90%</a></p>
+		</div>
+
+		<?php
+
+	}
+
+	/**
+	 * Save activation notice dismissal.
+	 */
+	public function sc_notice_dismissal() {
+		$nonce   = isset( $_POST['nonce'] ) ? $_POST['nonce'] : 0;
+		$dismiss = isset( $_POST['dismiss'] ) ? absint( $_POST['dismiss'] ) : 0;
+
+		if ( empty( $dismiss ) ) {
+			wp_send_json_error( __( 'Invalid Request', 'page-builder-framework' ) );
+		}
+
+		if ( ! wp_verify_nonce( $nonce, 'Swift_Control_Dismiss_Discontinue_Notice' ) ) {
+			wp_send_json_error( __( 'Invalid Token', 'page-builder-framework' ) );
+		}
+
+		update_option( 'swift_control_discontinue_message', 1 );
+		wp_send_json_success( __( 'Activation notice has been dismissed', 'page-builder-framework' ) );
 	}
 
 	/**
@@ -111,6 +207,22 @@ class Setup {
 				'labels' => array(
 					'edit' => __( 'Edit', 'swift-control' ),
 					'save' => __( 'Save', 'swift-control' ),
+				),
+			)
+		);
+	}
+
+	/**
+	 * Enqueue admin ajax.
+	 */
+	public function global_admin_ajax() {
+
+		wp_localize_script(
+			'jquery',
+			'swiftControlDismissal',
+			array(
+				'nonces' => array(
+					'dismissalNonce' => wp_create_nonce( 'Swift_Control_Dismiss_Discontinue_Notice' ),
 				),
 			)
 		);
