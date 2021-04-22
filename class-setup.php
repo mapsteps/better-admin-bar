@@ -113,16 +113,18 @@ class Setup {
 		</script>
 
 		<div class="notice notice-info swift-control-discontinue-notice is-dismissible">
-			<h2>Swift Control (Free) will be discontinued December 31, 2020.</h2>
+			<h2>Get 50% OFF Swift Control PRO!</h2>
 
 			<p>
-				We are going to discontinue the free version of Swift Control to solely focus on development of the PRO version.<br>
-				As a valued user of our plugin we would like to offer you an <strong style="color: green;">80% discount</strong> on Swift Control PRO (yearly plan) for the first year.
+				Thank you for checking out Swift Control! 🎉<br>
+				As a valued user of our plugin we would like to offer you a <strong style="color: green;">50% discount</strong> on <strong>Swift Control PRO</strong> (yearly plan) for the first year.
 			</p>
 
-			<p>Swift Control will be removed from the WordPress repository on <strong>December 31, 2020</strong>.</p>
+			<p><strong>Alternatively, check out our <a target="_blank" href="https://wp-pagebuilderframework.com/pricing/">Agency Bundle</a> which includes Swift Control PRO for free.</strong></p>
 
-			<p><a href="https://wpswiftcontrol.com/?edd_action=add_to_cart&download_id=241&edd_options%5Bprice_id%5D=1&discount=SCPRO80" style="font-weight: 700;" class="button button-primary">Get Swift Control PRO and save 80%</a> <strong>Coupon limited to 100 users!</strong></p>
+			<p>Grab it while it lasts.</p>
+
+			<p><a target="_blank" href="https://wpswiftcontrol.com/?edd_action=add_to_cart&download_id=241&edd_options%5Bprice_id%5D=1&discount=SCPRO50" style="font-weight: 700;" class="button button-primary">Get Swift Control PRO and save 50%</a> <strong>Coupon limited to 100 users!</strong></p>
 		</div>
 
 		<?php
