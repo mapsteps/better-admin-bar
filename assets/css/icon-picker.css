@@ -65,3 +65,7 @@
 .icon-picker--search-wrapper {
   width: 70%;
 }
+
+.icon-picker--search-wrapper input {
+  width: 100%;
+}
