@@ -356,7 +356,7 @@ function swift_control_get_edit_post_url() {
 function swift_control_is_inside_page_builder() {
 	global $post;
 
-	if ( isset( $_GET['elementor-preview'] ) || isset( $_GET['et_fb'] ) || isset( $_GET['fl_builder'] ) || isset( $_GET['brizy-edit-iframe'] ) ) {
+	if ( isset( $_GET['elementor-preview'] ) || isset( $_GET['fl_builder'] ) || isset( $_GET['brizy-edit-iframe'] ) || isset( $_GET['ct_builder'] ) ) {
 		return true;
 	}
 
@@ -397,7 +397,9 @@ function swift_control_parse_widget_name( $widget_name, $widget_key, $settings =
 		global $post;
 
 		if ( false !== stripos( $widget_name, '{post_type}' ) ) {
-			$widget_name = str_ireplace( '{post_type}', $post->post_type, $widget_name );
+			$post_type_object        = get_post_type_object( $post->post_type );
+			$post_type_singular_name = $post_type_object->labels->singular_name;
+			$widget_name             = str_ireplace( '{post_type}', $post_type_singular_name, $widget_name );
 		}
 	} else {
 		if ( 'edit_post_type' === $widget_key ) {
