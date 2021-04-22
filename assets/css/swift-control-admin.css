@@ -172,15 +172,18 @@
 	max-width: 700px;
 }
 
+.swift-control-settings .left-section .widget-item:last-child {
+	border-bottom-width: 0;
+}
+
 .swift-control-settings .left-section .widget-item {
-	padding: 10px 20px 10px 10px;
 	margin-bottom: 0;
 	border: none;
 	border-bottom: 1px solid #eee;
 }
 
-.swift-control-settings .left-section .widget-item:last-child {
-	border-bottom-width: 0;
+.swift-control-settings .left-section .widget-item .widget-default-area {
+	padding: 10px 20px 10px 10px;
 }
 
 /**
@@ -369,23 +372,27 @@
 	background-color: #eee;
 }
 
+.swift-control-settings .widget-item .widget-icon .icon-picker-container {
+	line-height: normal;
+}
+
 .swift-control-settings .widget-icon .dashicons {
 	line-height: inherit;
 }
 
-.swift-control-settings .widget-item .icon-picker-trigger:hover {
+.swift-control-settings .widget-item .icon-picker:hover {
 	background-color: rgba(134, 14, 230, 1);
 }
 
-.swift-control-settings .widget-item .icon-picker-trigger:hover:before {
+.swift-control-settings .widget-item .icon-picker:hover:before {
 	opacity: 1;
 }
 
-.swift-control-settings .available-items-box .widget-item .icon-picker-trigger {
+.swift-control-settings .available-items-box .widget-item .icon-picker {
 	display: none;
 }
 
-.swift-control-settings .widget-item .icon-picker-trigger {
+.swift-control-settings .widget-item .icon-picker {
 	display: none;
 	position: absolute;
 	width: 100%;
@@ -399,23 +406,24 @@
 	color: #fff;
 	background-color: transparent;
 	border: 2px solid rgba(134, 14, 230, 1);
+	outline: none;
 	cursor: pointer;
 }
 
-.swift-control-settings .edit-mode .icon-picker-trigger {
+.swift-control-settings .edit-mode .icon-picker {
 	display: block;
 	-webkit-transition: all 0.2s ease-in-out;
 	transition: all 0.2s ease-in-out;
 }
 
-.swift-control-settings .widget-item .icon-picker-trigger.use-icon::before {
+.swift-control-settings .widget-item .icon-picker.use-icon::before {
 	content: "\f304";
 	font-family: "Font Awesome 5 Free";
 	font-weight: 900;
 	border-radius: 50%;
 }
 
-.swift-control-settings .widget-item .icon-picker-trigger::before {
+.swift-control-settings .widget-item .icon-picker::before {
 	content: "Select";
 	opacity: 0;
 	-webkit-transition: all 0.2s ease-in-out;
@@ -450,16 +458,20 @@
 	border-width: 0;
 	border-radius: 3px;
 	cursor: pointer;
-}
-
-.swift-control-settings .edit-mode .edit-button {
-	color: #000;
-	background-color: #eee;
+	outline: none;
 }
 
 .swift-control-settings .widget-item .edit-button:hover {
 	color: #000;
 	background-color: #eee;
+}
+
+.swift-control-settings .edit-mode .edit-button,
+.swift-control-settings .edit-mode .edit-button:hover {
+	/* color: #000; */
+	/* background-color: #eee; */
+	background-color: #860ee6;
+	color: #fff;
 }
 
 /** Menu item's control on available items area **/

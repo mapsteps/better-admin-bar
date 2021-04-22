@@ -92,14 +92,10 @@
 				$trigger = trigger;
 			}
 
-			$trigger.iconpicker({
-				hideOnSelect: true
-			});
+			$trigger.iconPicker();
 		} else {
 			// If trigger param is omitted.
-			$('.swift-control-settings .icon-picker-trigger').iconpicker({
-				hideOnSelect: true
-			});
+			// $(".swift-control-settings .icon-picker").iconPicker();
 		}
 	}
 
@@ -118,10 +114,10 @@
 			}
 		});
 
+		$(document).on('iconPicker:selected', onIconpickerSelected);
+
 
 		// Widget events.
-		$('.swift-control-settings .icon-picker-trigger').on('iconpickerSelected', onIconpickerSelected);
-		$('.swift-control-settings .icon-picker-trigger').on('iconpickerHidden', onIconpickerHidden);
 		$('.swift-control-settings .widget-item-col .edit-button').on('click', onEditButtonClick);
 		$('.swift-control-settings .widget-items .dblclick-trigger').on('dblclick', onWidgetDoubleClick);
 		$('.swift-control-page .widget-text-field').on('keydown', onWidgetEnter);
@@ -151,14 +147,9 @@
 		switchEditMode(widgetItem);
 	}
 
-	function onIconpickerSelected(e) {
-		var icon = e.iconpickerInstance.element[0].parentNode.parentNode.querySelector('.widget-icon > i');
-		icon.className = e.iconpickerValue;
-	}
-
-	function onIconpickerHidden(e) {
-		var trigger = e.iconpickerInstance.element[0].parentNode.querySelector('.icon-picker-trigger');
-		trigger.blur();
+	function onIconpickerSelected(evt, trigger, selectedIcon) {
+		var icon = trigger.parentNode.parentNode.querySelector('.widget-icon > i');
+		icon.className = selectedIcon;
 	}
 
 	function onWidgetEnter(e) {
@@ -232,22 +223,16 @@
 			$('.swift-control-page .active-items .widget-item').removeClass('edit-mode');
 			$('.swift-control-page .active-items .edit-button').html(SwiftControl.labels.edit);
 			setWidgetTextFieldState('all', true);
-
-			/**
-			 * Simply doing `$('.icon-picker-trigger').data('iconpicker').hide();` doesn't work.
-			 * That's why we need to loop them.
-			 */
-			$('.icon-picker-trigger').each(function (i, el) {
-				$(el).data('iconpicker').hide();
-			});
 		} else {
 			var editButton = widgetItem.querySelector('.edit-button');
 			editButton.innerHTML = SwiftControl.labels.edit;
 
 			widgetItem.classList.remove('edit-mode');
 			setWidgetTextFieldState(widgetItem, true);
-			$(widgetItem).find('.icon-picker-trigger').data('iconpicker').hide();
 		}
+
+		$(".icon-picker-container").remove();
+		$(document).unbind(".icon-picker");
 
 		window.getSelection().removeAllRanges();
 	}

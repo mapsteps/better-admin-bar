@@ -33,7 +33,7 @@ function swift_control_settings_output_widget_item( $widget_key ) {
 	?>
 
 	<li class="widget-item" data-widget-key="<?php echo esc_attr( $widget_key ); ?>">
-		<div class="cols">
+		<div class="cols widget-default-area">
 			<div class="col widget-item-col drag-wrapper">
 				&nbsp;
 				<span class="drag-handle"></span>
@@ -41,7 +41,7 @@ function swift_control_settings_output_widget_item( $widget_key ) {
 			<div class="col widget-item-col icon-wrapper">
 				<div class="widget-icon dblclick-trigger">
 					<i class="<?php echo esc_attr( $icon_class ); ?>"></i>
-					<button type="button" class="icon-picker-trigger blur-trigger"></button>
+					<button type="button" class="icon-picker blur-trigger"></button>
 				</div>
 			</div>
 			<div class="col widget-item-col text-wrapper">

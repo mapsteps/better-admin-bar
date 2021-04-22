@@ -92,7 +92,7 @@ $GLOBALS['swift_control_widget_settings']  = $saved_widget_settings;
 						$widget_settings = $locked_settings[ $widget_key ];
 						?>
 						<li class="widget-item is-locked" data-widget-key="<?php echo esc_attr( $widget_key ); ?>">
-							<div class="cols">
+							<div class="cols widget-default-area">
 								<div class="col widget-item-col drag-wrapper">
 									<span class="locked-handle fas fa-unlock-alt"></span>
 								</div>
