@@ -11,7 +11,7 @@
 	function setupNoticeDismissal() {
 		var dismissButton = document.querySelector('.swift-control-discontinue-notice.is-dismissible .notice-dismiss');
 		if (!dismissButton) return;
-		dismissButton.querySelector('.notice-dismiss').addEventListener('click', ajax.saveDismissal);
+		dismissButton.addEventListener('click', ajax.saveDismissal);
 	}
 
 	ajax.saveDismissal = function (e) {
