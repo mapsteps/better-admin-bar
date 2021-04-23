@@ -3,14 +3,15 @@
 
 	function init() {
 		window.addEventListener('load', function (e) {
-			setupNoticeDismissal();
+			// Give some time-out to wait for WordPress to do their admin notice works.
+			setTimeout(setupNoticeDismissal, 150);
 		});
 	}
 
 	function setupNoticeDismissal() {
-		var panel = document.querySelector('.swift-control-discontinue-notice.is-dismissible');
-		if (!panel) return;
-		panel.querySelector('.notice-dismiss').addEventListener('click', ajax.saveDismissal);
+		var dismissButton = document.querySelector('.swift-control-discontinue-notice.is-dismissible .notice-dismiss');
+		if (!dismissButton) return;
+		dismissButton.querySelector('.notice-dismiss').addEventListener('click', ajax.saveDismissal);
 	}
 
 	ajax.saveDismissal = function (e) {
