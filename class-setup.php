@@ -44,9 +44,9 @@ class Setup {
 
 		add_filter( 'plugin_action_links', array( $this, 'add_settings_link' ), 10, 4 );
 
-		add_action( 'admin_enqueue_scripts', array( $this, 'global_admin_ajax' ) );
-		add_action( 'admin_notices', array( $this, 'admin_notices' ) );
-		add_action( 'wp_ajax_sc_notice_dismissal', array( $this, 'sc_notice_dismissal' ) );
+		add_action( 'admin_notices', array( $this, 'discount_notice' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'discount_notice_script' ) );
+		add_action( 'wp_ajax_sc_discount_notice_dismissal', array( $this, 'dismiss_discount_notice' ) );
 
 	}
 
@@ -58,9 +58,9 @@ class Setup {
 	}
 
 	/**
-	 * Admin notices.
+	 * Admin discount notice.
 	 */
-	public function admin_notices() {
+	public function discount_notice() {
 
 		// Stop here if notice has been dismissed.
 		if ( ! empty( get_option( 'swift_control_discontinue_message', 0 ) ) ) {
@@ -73,44 +73,6 @@ class Setup {
 		}
 
 		?>
-
-		<script>
-
-			jQuery(document).ready(function($) {
-
-				var ajax = {};
-
-				function init() {
-					window.addEventListener('load', function (e) {
-						setupActivationNoticeDismissal();
-					});
-				}
-
-				function setupActivationNoticeDismissal() {
-					var panel = document.querySelector('.swift-control-discontinue-notice.is-dismissible');
-					if (!panel) return;
-					panel.querySelector('.notice-dismiss').addEventListener('click', ajax.saveDismissal);
-				}
-
-				ajax.saveDismissal = function (e) {
-					$.ajax({
-						url: ajaxurl,
-						type: 'post',
-						data: {
-							action: 'sc_notice_dismissal',
-							nonce: swiftControlDismissal.nonces.dismissalNonce,
-							dismiss: 1
-						}
-					}).always(function (r) {
-						if (r.success) console.log(r.data);
-					});
-				};
-
-				init();
-
-			});
-
-		</script>
 
 		<div class="notice notice-info swift-control-discontinue-notice is-dismissible">
 			<h2>Get 50% OFF Swift Control PRO!</h2>
@@ -132,22 +94,51 @@ class Setup {
 	}
 
 	/**
-	 * Save activation notice dismissal.
+	 * Script that handles discount notice dismissal.
 	 */
-	public function sc_notice_dismissal() {
+	public function discount_notice_script() {
+
+		// Stop here if notice has been dismissed.
+		if ( ! empty( get_option( 'swift_control_discontinue_message', 0 ) ) ) {
+			return;
+		}
+
+		// Stop here if current user can't manage options.
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		wp_enqueue_script( 'swift-control-discount', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/discount-notice.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
+
+		wp_localize_script(
+			'swift-control-discount',
+			'swiftControlDismissal',
+			array(
+				'nonces' => array(
+					'dismissalNonce' => wp_create_nonce( 'Swift_Control_Dismiss_Discount_Notice' ),
+				),
+			)
+		);
+
+	}
+
+	/**
+	 * Dismiss discount notice.
+	 */
+	public function dismiss_discount_notice() {
 		$nonce   = isset( $_POST['nonce'] ) ? $_POST['nonce'] : 0;
 		$dismiss = isset( $_POST['dismiss'] ) ? absint( $_POST['dismiss'] ) : 0;
 
 		if ( empty( $dismiss ) ) {
-			wp_send_json_error( __( 'Invalid Request', 'page-builder-framework' ) );
+			wp_send_json_error( __( 'Invalid Request', 'swift-control' ) );
 		}
 
-		if ( ! wp_verify_nonce( $nonce, 'Swift_Control_Dismiss_Discontinue_Notice' ) ) {
-			wp_send_json_error( __( 'Invalid Token', 'page-builder-framework' ) );
+		if ( ! wp_verify_nonce( $nonce, 'Swift_Control_Dismiss_Discount_Notice' ) ) {
+			wp_send_json_error( __( 'Invalid Token', 'swift-control' ) );
 		}
 
 		update_option( 'swift_control_discontinue_message', 1 );
-		wp_send_json_success( __( 'Activation notice has been dismissed', 'page-builder-framework' ) );
+		wp_send_json_success( __( 'Discount notice has been dismissed', 'swift-control' ) );
 	}
 
 	/**
@@ -219,22 +210,6 @@ class Setup {
 				'labels' => array(
 					'edit' => __( 'Edit', 'swift-control' ),
 					'save' => __( 'Save', 'swift-control' ),
-				),
-			)
-		);
-	}
-
-	/**
-	 * Enqueue admin ajax.
-	 */
-	public function global_admin_ajax() {
-
-		wp_localize_script(
-			'jquery',
-			'swiftControlDismissal',
-			array(
-				'nonces' => array(
-					'dismissalNonce' => wp_create_nonce( 'Swift_Control_Dismiss_Discontinue_Notice' ),
 				),
 			)
 		);
