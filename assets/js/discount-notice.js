@@ -2,16 +2,11 @@
 	var ajax = {};
 
 	function init() {
-		window.addEventListener('load', function (e) {
-			// Give some time-out to wait for WordPress to do their admin notice works.
-			setTimeout(setupNoticeDismissal, 150);
-		});
-	}
-
-	function setupNoticeDismissal() {
-		var dismissButton = document.querySelector('.swift-control-discontinue-notice.is-dismissible .notice-dismiss');
-		if (!dismissButton) return;
-		dismissButton.addEventListener('click', ajax.saveDismissal);
+		$(document).on(
+			"click",
+			".swift-control-discontinue-notice.is-dismissible .notice-dismiss",
+			ajax.saveDismissal
+		);
 	}
 
 	ajax.saveDismissal = function (e) {
