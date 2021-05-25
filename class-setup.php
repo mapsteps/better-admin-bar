@@ -152,6 +152,7 @@ class Setup {
 		}
 
 		// Font Awesome 5.
+		$this->deregister_font_awesome();
 		wp_enqueue_style( 'font-awesome', SWIFT_CONTROL_PLUGIN_URL . '/assets/vendor/fontawesome-free/css/all.min.css', array(), '5.14.0' );
 
 		// Icon picker.
@@ -343,12 +344,7 @@ class Setup {
 		 * then deregister any existing Font Awesome css, and enqueue our version.
 		 */
 		if ( ! $remove_font_awesome ) {
-			// Font Awesome 5.
-			wp_deregister_style( 'font-awesome' );
-			wp_deregister_style( 'fontawesome' );
-			wp_dequeue_style( 'font-awesome' );
-			wp_dequeue_style( 'fontawesome' );
-
+			$this->deregister_font_awesome();
 			wp_enqueue_style( 'font-awesome', SWIFT_CONTROL_PLUGIN_URL . '/assets/vendor/fontawesome-free/css/all.min.css', array(), '5.14.0' );
 		}
 
@@ -358,6 +354,20 @@ class Setup {
 		// Swift Control frontend script.
 		wp_enqueue_script( 'swift-interact', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/interact.min.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 		wp_enqueue_script( 'swift-control', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/swift-control.js', array( 'jquery', 'swift-interact' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
+	}
+
+	/**
+	 * Dequeue & deregister existing Font Awesome
+	 * to prevent conflict with our enqueue.
+	 */
+	public function deregister_font_awesome() {
+
+		wp_dequeue_style( 'font-awesome' );
+		wp_dequeue_style( 'fontawesome' );
+
+		wp_deregister_style( 'font-awesome' );
+		wp_deregister_style( 'fontawesome' );
+
 	}
 
 	/**
