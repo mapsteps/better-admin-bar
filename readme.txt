@@ -2,7 +2,7 @@
 Contributors: davidvongries
 Tags: Quick Edit, Admin Bar, Replace Admin Bar, Frontend Access, Swift Edit, Swift
 Requires at least: 4.0
-Tested up to: 5.7
+Tested up to: 5.8
 Stable tag: 1.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
