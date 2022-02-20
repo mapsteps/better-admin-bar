@@ -166,7 +166,7 @@ class Setup {
 		wp_enqueue_style( 'setting-fields', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/css/setting-fields.css', array(), BETTER_ADMIN_BAR_PLUGIN_VERSION );
 
 		// Better Admin Bar admin styling.
-		wp_enqueue_style( 'bab-admin', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/css/admin.css', array(), BETTER_ADMIN_BAR_PLUGIN_VERSION );
+		wp_enqueue_style( 'swift-control-admin', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/css/swift-control-admin.css', array(), BETTER_ADMIN_BAR_PLUGIN_VERSION );
 
 		// Color picker dependency.
 		wp_enqueue_style( 'wp-color-picker' );
