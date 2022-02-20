@@ -8,7 +8,7 @@
  * Author URI: https://github.com/MapSteps/
  * Text Domain: better-admin-bar
  *
- * @package Swift_Control
+ * @package Better_Admin_Bar
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );

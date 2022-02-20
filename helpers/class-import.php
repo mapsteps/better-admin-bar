@@ -2,10 +2,10 @@
 /**
  * Setup import functions.
  *
- * @package Swift_Control
+ * @package Better_Admin_Bar
  */
 
-namespace SwiftControl\Helpers;
+namespace Bab\Helpers;
 
 /**
  * Setup widget import functions.
@@ -36,7 +36,7 @@ class Import {
 			add_settings_error(
 				'swift_control_import',
 				esc_attr( 'swift-control-invalid-import' ),
-				__( 'Please upload a valid .json file', 'swift-control' )
+				__( 'Please upload a valid .json file', 'better-admin-bar' )
 			);
 			return;
 		}
@@ -47,7 +47,7 @@ class Import {
 			add_settings_error(
 				'swift_control_import',
 				esc_attr( 'swift-control-import-not-exist' ),
-				__( 'Please upload a file to import', 'swift-control' )
+				__( 'Please upload a file to import', 'better-admin-bar' )
 			);
 			return;
 		}
@@ -59,7 +59,7 @@ class Import {
 			add_settings_error(
 				'swift_control_import',
 				esc_attr( 'swift-control-empty-import' ),
-				__( 'Your import is empty', 'swift-control' )
+				__( 'Your import is empty', 'better-admin-bar' )
 			);
 			return;
 		}
@@ -75,7 +75,7 @@ class Import {
 		add_settings_error(
 			'swift_control_import',
 			esc_attr( 'swift-control-widgets-imported' ),
-			__( 'Widgets imported', 'swift-control' ),
+			__( 'Widgets imported', 'better-admin-bar' ),
 			'success'
 		);
 
@@ -83,7 +83,7 @@ class Import {
 			add_settings_error(
 				'swift_control_import',
 				esc_attr( 'swift-control-settings-imported' ),
-				__( 'Settings imported', 'swift-control' ),
+				__( 'Settings imported', 'better-admin-bar' ),
 				'success'
 			);
 		}

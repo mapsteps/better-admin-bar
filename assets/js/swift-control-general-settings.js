@@ -54,7 +54,7 @@
 		var data = {};
 
 		data.action = 'swift_control_save_general_settings';
-		data.nonce = SwiftControl.nonces.saveGeneralSettings;
+		data.nonce = Bab.nonces.saveGeneralSettings;
 
 		[].slice.call(elms.settingFields).forEach(function (field) {
 			if (field.type === 'checkbox') {

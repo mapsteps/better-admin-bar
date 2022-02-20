@@ -2,10 +2,10 @@
 /**
  * Autoloading
  *
- * @package Swift_Control
+ * @package Better_Admin_Bar
  */
 
-namespace SwiftControl;
+namespace Bab;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 

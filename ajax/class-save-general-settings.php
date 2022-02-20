@@ -2,10 +2,10 @@
 /**
  * Change widget item's setting.
  *
- * @package Swift_Control
+ * @package Better_Admin_Bar
  */
 
-namespace SwiftControl\Ajax;
+namespace Bab\Ajax;
 
 /**
  * Class to manage ajax request of changing widget item's setting.
@@ -90,7 +90,7 @@ class Save_General_Settings {
 	public function validate() {
 		// Check if nonce is incorrect.
 		if ( ! check_ajax_referer( 'save_general_settings', 'nonce', false ) ) {
-			wp_send_json_error( __( 'Invalid token', 'swift-control' ) );
+			wp_send_json_error( __( 'Invalid token', 'better-admin-bar' ) );
 		}
 
 		// Check if there is empty field.
@@ -100,7 +100,7 @@ class Save_General_Settings {
 					$field_name = str_ireplace( '_', ' ', $field );
 					$field_name = ucfirst( $field_name );
 
-					wp_send_json_error( $field_name . ' ' . __( 'is empty', 'swift-control' ) );
+					wp_send_json_error( $field_name . ' ' . __( 'is empty', 'better-admin-bar' ) );
 				}
 			}
 		}
@@ -136,6 +136,6 @@ class Save_General_Settings {
 		update_option( 'swift_control_display_settings', $display_settings );
 		update_option( 'swift_control_misc_settings', $misc_settings );
 
-		wp_send_json_success( __( 'The settings are saved' ), 'swift-control' );
+		wp_send_json_success( __( 'The settings are saved' ), 'better-admin-bar' );
 	}
 }

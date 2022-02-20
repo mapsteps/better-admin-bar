@@ -1,8 +1,8 @@
 <?php
 /**
- * Script to run on Swift Control's un-installation.
+ * Script to run on Better Admin Bar's un-installation.
  *
- * @package Swift_Control
+ * @package Better_Admin_Bar
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );

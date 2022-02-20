@@ -1,8 +1,8 @@
 <?php
 /**
- * Swift Control miscellaneous settings template.
+ * Better Admin Bar miscellaneous settings template.
  *
- * @package Swift_Control
+ * @package Better_Admin_Bar
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
@@ -27,17 +27,17 @@ $roles     = $roles_obj->role_names;
 
 <div class="neatbox is-smooth has-medium-gap has-bigger-heading general-settings-box">
 	<h2>
-		<?php _e( 'Misc', 'swift-control' ); ?>
+		<?php _e( 'Misc', 'better-admin-bar' ); ?>
 	</h2>
 	<div class="setting-fields">
 
 		<div class="field">
 			<label for="remove_admin_bar" class="label select2-label">
 				<p>
-					<?php _e( 'Remove Admin Bar from the frontend for:', 'swift-control' ); ?>
+					<?php _e( 'Remove Admin Bar from the frontend for:', 'better-admin-bar' ); ?>
 				</p>
 				<select name="remove_admin_bar[]" id="remove_admin_bar" class="general-setting-field multiselect remove-admin-bar is-fullwidth" multiple>
-					<option value="all" <?php echo esc_attr( in_array( 'all', $misc_settings['remove_admin_bar'], true ) ? 'selected' : '' ); ?>><?php _e( 'All', 'swift-control' ); ?></option>
+					<option value="all" <?php echo esc_attr( in_array( 'all', $misc_settings['remove_admin_bar'], true ) ? 'selected' : '' ); ?>><?php _e( 'All', 'better-admin-bar' ); ?></option>
 
 					<?php foreach ( $roles as $role_key => $role_name ) : ?>
 						<?php
@@ -57,7 +57,7 @@ $roles     = $roles_obj->role_names;
 
 		<div class="field">
 			<label for="remove_font_awesome" class="label checkbox-label">
-				<?php _e( "Don't load FontAwesome 5 (your theme or another plugin may already include it)", 'swift-control' ); ?>
+				<?php _e( "Don't load FontAwesome 5 (your theme or another plugin may already include it)", 'better-admin-bar' ); ?>
 				<input type="checkbox" name="remove_font_awesome" id="remove_font_awesome" value="1" class="general-setting-field" <?php checked( $remove_font_awesome, 1 ); ?>>
 				<div class="indicator"></div>
 			</label>
@@ -65,7 +65,7 @@ $roles     = $roles_obj->role_names;
 
 		<div class="field">
 			<label for="delete_on_uninstall" class="label checkbox-label">
-				<?php _e( 'Remove data on uninstall', 'swift-control' ); ?>
+				<?php _e( 'Remove data on uninstall', 'better-admin-bar' ); ?>
 				<input type="checkbox" name="delete_on_uninstall" id="delete_on_uninstall" value="1" class="general-setting-field" <?php checked( $delete_on_uninstall, 1 ); ?>>
 				<div class="indicator"></div>
 			</label>

@@ -2,10 +2,10 @@
 /**
  * Setup export functions.
  *
- * @package Swift_Control
+ * @package Better_Admin_Bar
  */
 
-namespace SwiftControl\Helpers;
+namespace Bab\Helpers;
 
 /**
  * Setup widget export functions.

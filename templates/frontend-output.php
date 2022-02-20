@@ -1,8 +1,8 @@
 <?php
 /**
- * Swift Control's frontend output template.
+ * Better Admin Bar's frontend output template.
  *
- * @package Swift_Control
+ * @package Better_Admin_Bar
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
@@ -119,7 +119,7 @@ if ( ! isset( $saved_position['x_direction'] ) ) {
 
 <?php
 wp_localize_script(
-	'swift-control',
+	'better-admin-bar',
 	'swiftControlOpt',
 	array(
 		'size'          => 55,

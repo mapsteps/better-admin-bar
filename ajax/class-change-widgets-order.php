@@ -2,10 +2,10 @@
 /**
  * Change widget order.
  *
- * @package Swift_Control
+ * @package Better_Admin_Bar
  */
 
-namespace SwiftControl\Ajax;
+namespace Bab\Ajax;
 
 /**
  * Class to manage ajax request of changing widget order.
@@ -60,7 +60,7 @@ class Change_Widgets_Order {
 	public function validate() {
 		// Check if nonce is incorrect.
 		if ( ! check_ajax_referer( 'change_widgets_order', 'nonce', false ) ) {
-			wp_send_json_error( __( 'Invalid token', 'swift-control' ) );
+			wp_send_json_error( __( 'Invalid token', 'better-admin-bar' ) );
 		}
 	}
 
@@ -69,6 +69,6 @@ class Change_Widgets_Order {
 	 */
 	public function save() {
 		update_option( 'swift_control_active_widgets', $this->data['active_widgets'] );
-		wp_send_json_success( __( 'Widget order is changed' ), 'swift-control' );
+		wp_send_json_success( __( 'Widget order is changed' ), 'better-admin-bar' );
 	}
 }

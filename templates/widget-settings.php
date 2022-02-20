@@ -1,8 +1,8 @@
 <?php
 /**
- * Swift Control widget settings template.
+ * Better Admin Bar widget settings template.
  *
- * @package Swift_Control
+ * @package Better_Admin_Bar
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
@@ -30,9 +30,9 @@ $GLOBALS['swift_control_widget_settings']  = $saved_widget_settings;
 
 			<div class="neatbox is-smooth has-bigger-heading active-items-box">
 				<h2>
-					<?php _e( 'Swift Control', 'swift-control' ); ?>
+					<?php _e( 'Swift Control', 'better-admin-bar' ); ?>
 					<span class="saved-status">
-						<?php _e( 'Updated', 'swift-control' ); ?> 🚀
+						<?php _e( 'Updated', 'better-admin-bar' ); ?> 🚀
 					</span>
 				</h2>
 				<ul id="active-items" class="widget-items active-items">
@@ -52,11 +52,11 @@ $GLOBALS['swift_control_widget_settings']  = $saved_widget_settings;
 				?>
 				<p class="submit">
 					<button type="button" name="submit" id="submit" class="button button-primary save-general-settings" value="Save Changes">
-						<?php _e( 'Save Changes', 'swift-control' ); ?>
+						<?php _e( 'Save Changes', 'better-admin-bar' ); ?>
 					</button>
 				</p>
 
-				<div class="saved-status-bar"><?php _e( 'Your settings have been saved.', 'swift-control' ); ?></div>
+				<div class="saved-status-bar"><?php _e( 'Your settings have been saved.', 'better-admin-bar' ); ?></div>
 			</div><!-- .general-settings-area -->
 
 		</div><!-- .left-section -->
@@ -64,7 +64,7 @@ $GLOBALS['swift_control_widget_settings']  = $saved_widget_settings;
 		<div class="col right-section">
 
 			<div class="neatbox has-bigger-heading is-clean available-items-box">
-				<h2><?php _e( 'Available Widgets', 'swift-control' ); ?></h2>
+				<h2><?php _e( 'Available Widgets', 'better-admin-bar' ); ?></h2>
 
 				<?php
 				/**
@@ -83,7 +83,7 @@ $GLOBALS['swift_control_widget_settings']  = $saved_widget_settings;
 			</div>
 
 			<div class="neatbox has-bigger-heading is-clean pro-items-box">
-				<h2><?php _e( 'PRO Widgets', 'swift-control' ); ?></h2>
+				<h2><?php _e( 'PRO Widgets', 'better-admin-bar' ); ?></h2>
 				<ul id="pro-items" class="widget-items pro-items">
 
 					<?php
@@ -100,7 +100,7 @@ $GLOBALS['swift_control_widget_settings']  = $saved_widget_settings;
 									<?php echo esc_html( $widget_settings['text'] ); ?>
 								</div>
 								<div class="col widget-item-col actions-wrapper">
-									<a href="<?php echo esc_url( $widget_settings['url'] ); ?>" target="_blank" class="pro-unlock"><?php _e( 'Unlock', 'swift-control' ); ?></a>
+									<a href="<?php echo esc_url( $widget_settings['url'] ); ?>" target="_blank" class="pro-unlock"><?php _e( 'Unlock', 'better-admin-bar' ); ?></a>
 								</div>
 							</div>
 						</li>

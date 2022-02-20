@@ -1,8 +1,8 @@
 <?php
 /**
- * Swift Control color settings template.
+ * Better Admin Bar color settings template.
  *
- * @package Swift_Control
+ * @package Better_Admin_Bar
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
@@ -13,7 +13,7 @@ $color_settings         = swift_control_get_color_settings();
 
 <div class="neatbox is-smooth has-medium-gap has-bigger-heading color-settings-box">
 	<h2>
-		<?php _e( 'Color Settings', 'swift-control' ); ?>
+		<?php _e( 'Color Settings', 'better-admin-bar' ); ?>
 	</h2>
 	<div class="setting-fields">
 

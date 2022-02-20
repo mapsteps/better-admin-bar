@@ -1,8 +1,8 @@
 <?php
 /**
- * Swift Control page template.
+ * Better Admin Bar page template.
  *
- * @package Swift_Control
+ * @package Better_Admin_Bar
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
