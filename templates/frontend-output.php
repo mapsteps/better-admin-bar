@@ -119,7 +119,7 @@ if ( ! isset( $saved_position['x_direction'] ) ) {
 
 <?php
 wp_localize_script(
-	'better-admin-bar',
+	'swift-control',
 	'swiftControlOpt',
 	array(
 		'size'          => 55,

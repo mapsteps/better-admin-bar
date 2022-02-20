@@ -15,7 +15,7 @@
 			type: 'post',
 			data: {
 				action: 'sc_discount_notice_dismissal',
-				nonce: swiftControlDismissal.nonces.dismissalNonce,
+				nonce: babDismissal.nonces.dismissalNonce,
 				dismiss: 1
 			}
 		}).always(function (r) {

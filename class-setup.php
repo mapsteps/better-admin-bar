@@ -86,7 +86,7 @@ class Setup {
 
 			<p>Grab it while it lasts.</p>
 
-			<p><a target="_blank" href="https://wpswiftcontrol.com/?edd_action=add_to_cart&download_id=241&edd_options%5Bprice_id%5D=1&discount=SCPRO50" style="font-weight: 700;" class="button button-primary">Get Better Admin Bar PRO and save 50%</a> <strong>Coupon limited to 100 users!</strong></p>
+			<p><a target="_blank" href="https://betteradminbar.com/?edd_action=add_to_cart&download_id=241&edd_options%5Bprice_id%5D=1&discount=SCPRO50" style="font-weight: 700;" class="button button-primary">Get Better Admin Bar PRO and save 50%</a> <strong>Coupon limited to 100 users!</strong></p>
 		</div>
 
 		<?php
@@ -108,11 +108,11 @@ class Setup {
 			return;
 		}
 
-		wp_enqueue_script( 'swift-control-discount', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/js/discount-notice.js', array( 'jquery' ), BETTER_ADMIN_BAR_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'bab-control-discount', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/js/discount-notice.js', array( 'jquery' ), BETTER_ADMIN_BAR_PLUGIN_VERSION, true );
 
 		wp_localize_script(
-			'swift-control-discount',
-			'swiftControlDismissal',
+			'bab-control-discount',
+			'babDismissal',
 			array(
 				'nonces' => array(
 					'dismissalNonce' => wp_create_nonce( 'Better_Admin_Bar_Dismiss_Discount_Notice' ),
@@ -166,7 +166,7 @@ class Setup {
 		wp_enqueue_style( 'setting-fields', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/css/setting-fields.css', array(), BETTER_ADMIN_BAR_PLUGIN_VERSION );
 
 		// Better Admin Bar admin styling.
-		wp_enqueue_style( 'swift-control-admin', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/css/swift-control-admin.css', array(), BETTER_ADMIN_BAR_PLUGIN_VERSION );
+		wp_enqueue_style( 'bab-admin', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/css/admin.css', array(), BETTER_ADMIN_BAR_PLUGIN_VERSION );
 
 		// Color picker dependency.
 		wp_enqueue_style( 'wp-color-picker' );
@@ -196,11 +196,12 @@ class Setup {
 		// Color picker alpha.
 		wp_enqueue_script( 'wp-color-picker-alpha', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/js/wp-color-picker-alpha.js', array( 'wp-color-picker', 'wp-i18n' ), '2.1.3', true );
 
-		wp_enqueue_script( 'swift-control-widget-settings', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/js/swift-control-widget-settings.js', array( 'jquery-ui-sortable', 'icon-picker' ), BETTER_ADMIN_BAR_PLUGIN_VERSION, true );
-		wp_enqueue_script( 'swift-control-general-settings', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/js/swift-control-general-settings.js', array( 'select2', 'wp-color-picker-alpha' ), BETTER_ADMIN_BAR_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'bab-widget-settings', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/js/widget-settings.js', array( 'jquery-ui-sortable', 'icon-picker' ), BETTER_ADMIN_BAR_PLUGIN_VERSION, true );
+
+		wp_enqueue_script( 'bab-general-settings', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/js/general-settings.js', array( 'select2', 'wp-color-picker-alpha' ), BETTER_ADMIN_BAR_PLUGIN_VERSION, true );
 
 		wp_localize_script(
-			'swift-control-widget-settings',
+			'bab-widget-settings',
 			'Bab',
 			array(
 				'nonces' => array(
@@ -349,11 +350,11 @@ class Setup {
 		}
 
 		// Better Admin Bar frontend styling.
-		wp_enqueue_style( 'better-admin-bar', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/css/swift-control.css', array(), BETTER_ADMIN_BAR_PLUGIN_VERSION );
+		wp_enqueue_style( 'swift-control', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/css/swift-control.css', array(), BETTER_ADMIN_BAR_PLUGIN_VERSION );
 
 		// Better Admin Bar frontend script.
 		wp_enqueue_script( 'interact', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/js/interact.min.js', array( 'jquery' ), BETTER_ADMIN_BAR_PLUGIN_VERSION, true );
-		wp_enqueue_script( 'better-admin-bar', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/js/swift-control.js', array( 'jquery', 'interact' ), BETTER_ADMIN_BAR_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'swift-control', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/js/swift-control.js', array( 'jquery', 'interact' ), BETTER_ADMIN_BAR_PLUGIN_VERSION, true );
 	}
 
 	/**
@@ -424,7 +425,7 @@ class Setup {
 			$css .= '}';
 		}
 
-		wp_add_inline_style( 'better-admin-bar', $css );
+		wp_add_inline_style( 'swift-control', $css );
 
 	}
 
