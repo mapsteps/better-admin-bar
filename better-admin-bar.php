@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Better Admin Bar
  * Plugin URI: https://betteradminbar.com/
- * Description: Hide WordPress admin bar, replace it with a better control.
+ * Description: Hide WordPress admin bar, replace it with a better swift control.
  * Version: 3.6.0
  * Author: David Vongries
  * Author URI: https://github.com/MapSteps/
