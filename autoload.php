@@ -5,7 +5,7 @@
  * @package Better_Admin_Bar
  */
 
-namespace Bab;
+namespace SwiftControl;
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 

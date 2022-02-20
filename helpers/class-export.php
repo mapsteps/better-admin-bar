@@ -5,7 +5,7 @@
  * @package Better_Admin_Bar
  */
 
-namespace Bab\Helpers;
+namespace SwiftControl\Helpers;
 
 /**
  * Setup widget export functions.

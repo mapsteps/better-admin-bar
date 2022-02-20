@@ -5,7 +5,7 @@
  * @package Better_Admin_Bar
  */
 
-namespace Bab\Ajax;
+namespace SwiftControl\Ajax;
 
 /**
  * Class to manage ajax request of changing widget order.

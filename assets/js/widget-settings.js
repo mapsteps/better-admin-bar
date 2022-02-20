@@ -2,7 +2,7 @@
  * Used global objects:
  * - ajaxurl
  * - jQuery
- * - Bab
+ * - SwiftControl
  */
 (function ($) {
 	var statusButton = document.querySelector('.active-widgets-box .saved-status');
@@ -195,7 +195,7 @@
 		escapeEditMode('all');
 		widgetItem.classList.add('edit-mode');
 		setWidgetTextFieldState(widgetItem, false);
-		widgetItem.querySelector('.edit-button').innerHTML = Bab.labels.save;
+		widgetItem.querySelector('.edit-button').innerHTML = SwiftControl.labels.save;
 	}
 
 	/**
@@ -220,11 +220,11 @@
 	function escapeEditMode(widgetItem) {
 		if (widgetItem === 'all') {
 			$('.swift-control-settings .active-items .widget-item').removeClass('edit-mode');
-			$('.swift-control-settings .active-items .edit-button').html(Bab.labels.edit);
+			$('.swift-control-settings .active-items .edit-button').html(SwiftControl.labels.edit);
 			setWidgetTextFieldState('all', true);
 		} else {
 			var editButton = widgetItem.querySelector('.edit-button');
-			editButton.innerHTML = Bab.labels.edit;
+			editButton.innerHTML = SwiftControl.labels.edit;
 
 			widgetItem.classList.remove('edit-mode');
 			setWidgetTextFieldState(widgetItem, true);
@@ -320,7 +320,7 @@
 		var data = {};
 
 		data.action = 'swift_control_change_widget_settings';
-		data.nonce = Bab.nonces.changeWidgetSettings;
+		data.nonce = SwiftControl.nonces.changeWidgetSettings;
 		data.widget_key = itemData.widget_key;
 
 		for (var prop in itemData.settings) {
@@ -358,7 +358,7 @@
 			dataType: 'json',
 			data: {
 				action: 'swift_control_change_widgets_order',
-				nonce: Bab.nonces.changeWidgetsOrder,
+				nonce: SwiftControl.nonces.changeWidgetsOrder,
 				active_widgets: activeWidget
 			}
 		}).done(function (r) {

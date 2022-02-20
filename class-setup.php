@@ -5,7 +5,7 @@
  * @package Better_Admin_Bar
  */
 
-namespace Bab;
+namespace SwiftControl;
 
 /**
  * Setup Better Admin Bar.
@@ -204,7 +204,7 @@ class Setup {
 
 		wp_localize_script(
 			'swift-control-widget-settings',
-			'Bab',
+			'SwiftControl',
 			array(
 				'nonces' => array(
 					'changeWidgetsOrder'   => wp_create_nonce( 'change_widgets_order' ),
