@@ -108,11 +108,11 @@ class Setup {
 			return;
 		}
 
-		wp_enqueue_script( 'bab-control-discount', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/js/discount-notice.js', array( 'jquery' ), BETTER_ADMIN_BAR_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'swift-control-control-discount', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/js/discount-notice.js', array( 'jquery' ), BETTER_ADMIN_BAR_PLUGIN_VERSION, true );
 
 		wp_localize_script(
-			'bab-control-discount',
-			'babDismissal',
+			'swift-control-control-discount',
+			'swiftControlDismissal',
 			array(
 				'nonces' => array(
 					'dismissalNonce' => wp_create_nonce( 'Better_Admin_Bar_Dismiss_Discount_Notice' ),
@@ -196,12 +196,12 @@ class Setup {
 		// Color picker alpha.
 		wp_enqueue_script( 'wp-color-picker-alpha', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/js/wp-color-picker-alpha.js', array( 'wp-color-picker', 'wp-i18n' ), '2.1.3', true );
 
-		wp_enqueue_script( 'bab-widget-settings', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/js/widget-settings.js', array( 'jquery-ui-sortable', 'icon-picker' ), BETTER_ADMIN_BAR_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'swift-control-widget-settings', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/js/widget-settings.js', array( 'jquery-ui-sortable', 'icon-picker' ), BETTER_ADMIN_BAR_PLUGIN_VERSION, true );
 
-		wp_enqueue_script( 'bab-general-settings', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/js/general-settings.js', array( 'select2', 'wp-color-picker-alpha' ), BETTER_ADMIN_BAR_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'swift-control-general-settings', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/js/general-settings.js', array( 'select2', 'wp-color-picker-alpha' ), BETTER_ADMIN_BAR_PLUGIN_VERSION, true );
 
 		wp_localize_script(
-			'bab-widget-settings',
+			'swift-control-widget-settings',
 			'Bab',
 			array(
 				'nonces' => array(
