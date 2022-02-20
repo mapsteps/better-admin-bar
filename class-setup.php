@@ -108,7 +108,7 @@ class Setup {
 			return;
 		}
 
-		wp_enqueue_script( 'swift-control-control-discount', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/js/discount-notice.js', array( 'jquery' ), BETTER_ADMIN_BAR_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'swift-control-control-discount', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/discount-notice.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 
 		wp_localize_script(
 			'swift-control-control-discount',
@@ -153,20 +153,20 @@ class Setup {
 
 		// Font Awesome 5.
 		$this->deregister_font_awesome();
-		wp_enqueue_style( 'font-awesome', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/vendor/fontawesome-free/css/all.min.css', array(), '5.14.0' );
+		wp_enqueue_style( 'font-awesome', SWIFT_CONTROL_PLUGIN_URL . '/assets/vendor/fontawesome-free/css/all.min.css', array(), '5.14.0' );
 
 		// Icon picker.
-		wp_enqueue_style( 'icon-picker', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/css/icon-picker.css', array(), BETTER_ADMIN_BAR_PLUGIN_VERSION );
+		wp_enqueue_style( 'icon-picker', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/icon-picker.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
 
 		// Select2.
-		wp_enqueue_style( 'select2', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/css/select2.min.css', array(), BETTER_ADMIN_BAR_PLUGIN_VERSION );
+		wp_enqueue_style( 'select2', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/select2.min.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
 
 		// Settings page styling.
-		wp_enqueue_style( 'settings-page', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/css/settings-page.css', array(), BETTER_ADMIN_BAR_PLUGIN_VERSION );
-		wp_enqueue_style( 'setting-fields', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/css/setting-fields.css', array(), BETTER_ADMIN_BAR_PLUGIN_VERSION );
+		wp_enqueue_style( 'settings-page', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/settings-page.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
+		wp_enqueue_style( 'setting-fields', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/setting-fields.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
 
 		// Better Admin Bar admin styling.
-		wp_enqueue_style( 'swift-control-admin', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/css/swift-control-admin.css', array(), BETTER_ADMIN_BAR_PLUGIN_VERSION );
+		wp_enqueue_style( 'swift-control-admin', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/swift-control-admin.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
 
 		// Color picker dependency.
 		wp_enqueue_style( 'wp-color-picker' );
@@ -178,12 +178,12 @@ class Setup {
 		wp_enqueue_script( 'jquery-ui-sortable' );
 
 		// Select2.
-		wp_enqueue_script( 'select2', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/js/select2.min.js', array( 'jquery' ), BETTER_ADMIN_BAR_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'select2', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/select2.min.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 
 		// Icon picker.
-		wp_enqueue_script( 'icon-picker', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/js/icon-picker.js', array( 'jquery' ), BETTER_ADMIN_BAR_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'icon-picker', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/icon-picker.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 
-		$icons = file_get_contents( BETTER_ADMIN_BAR_PLUGIN_DIR . '/assets/json/fontawesome5.json' );
+		$icons = file_get_contents( SWIFT_CONTROL_PLUGIN_DIR . '/assets/json/fontawesome5.json' );
 		$icons = json_decode( $icons, true );
 		$icons = $icons ? $icons : array();
 
@@ -194,11 +194,11 @@ class Setup {
 		);
 
 		// Color picker alpha.
-		wp_enqueue_script( 'wp-color-picker-alpha', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/js/wp-color-picker-alpha.js', array( 'wp-color-picker', 'wp-i18n' ), '2.1.3', true );
+		wp_enqueue_script( 'wp-color-picker-alpha', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/wp-color-picker-alpha.js', array( 'wp-color-picker', 'wp-i18n' ), '2.1.3', true );
 
-		wp_enqueue_script( 'swift-control-widget-settings', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/js/widget-settings.js', array( 'jquery-ui-sortable', 'icon-picker' ), BETTER_ADMIN_BAR_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'swift-control-widget-settings', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/widget-settings.js', array( 'jquery-ui-sortable', 'icon-picker' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 
-		wp_enqueue_script( 'swift-control-general-settings', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/js/general-settings.js', array( 'select2', 'wp-color-picker-alpha' ), BETTER_ADMIN_BAR_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'swift-control-general-settings', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/general-settings.js', array( 'select2', 'wp-color-picker-alpha' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 
 		wp_localize_script(
 			'swift-control-widget-settings',
@@ -229,7 +229,7 @@ class Setup {
 	 * @return array The modified plugin action links.
 	 */
 	public function add_settings_link( $actions, $plugin_file, $plugin_data, $context ) {
-		if ( BETTER_ADMIN_BAR_PLUGIN_BASENAME === $plugin_file ) {
+		if ( SWIFT_CONTROL_PLUGIN_BASENAME === $plugin_file ) {
 			$settings_link = '<a href="' . esc_url( admin_url( 'options-general.php?page=better-admin-bar' ) ) . '">' . __( 'Settings', 'better-admin-bar' ) . '</a>';
 
 			array_unshift( $actions, $settings_link );
@@ -346,15 +346,15 @@ class Setup {
 		 */
 		if ( ! $remove_font_awesome ) {
 			$this->deregister_font_awesome();
-			wp_enqueue_style( 'font-awesome', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/vendor/fontawesome-free/css/all.min.css', array(), '5.14.0' );
+			wp_enqueue_style( 'font-awesome', SWIFT_CONTROL_PLUGIN_URL . '/assets/vendor/fontawesome-free/css/all.min.css', array(), '5.14.0' );
 		}
 
 		// Better Admin Bar frontend styling.
-		wp_enqueue_style( 'swift-control', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/css/swift-control.css', array(), BETTER_ADMIN_BAR_PLUGIN_VERSION );
+		wp_enqueue_style( 'swift-control', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/swift-control.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
 
 		// Better Admin Bar frontend script.
-		wp_enqueue_script( 'interact', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/js/interact.min.js', array( 'jquery' ), BETTER_ADMIN_BAR_PLUGIN_VERSION, true );
-		wp_enqueue_script( 'swift-control', BETTER_ADMIN_BAR_PLUGIN_URL . '/assets/js/swift-control.js', array( 'jquery', 'interact' ), BETTER_ADMIN_BAR_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'interact', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/interact.min.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'swift-control', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/swift-control.js', array( 'jquery', 'interact' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 	}
 
 	/**
