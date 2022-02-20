@@ -57,8 +57,8 @@
 	 * Register necessary elements which are related to settings area.
 	 */
 	function setupSettingsArea() {
-		$elms.page = $('.swift-control-page');
-		$elms.activeItemsArea = $('.left-section');
+		$elms.heatboxStacked = $(".stacked-heatbox-placeholder");
+		$elms.activeItemsArea = $('.swift-control-settings-panel .heatbox-sidebar');
 
 		moveSettingsArea();
 	}
@@ -71,9 +71,9 @@
 	 */
 	function moveSettingsArea() {
 		if (window.innerWidth < 992) {
-			$('.general-settings-area').appendTo($elms.page);
+			$('.sidebar-heatbox').appendTo($elms.heatboxStacked);
 		} else {
-			$('.general-settings-area').appendTo($elms.activeItemsArea);
+			$('.sidebar-heatbox').appendTo($elms.activeItemsArea);
 		}
 	}
 
@@ -116,13 +116,12 @@
 
 		$(document).on('iconPicker:selected', onIconpickerSelected);
 
-
 		// Widget events.
 		$('.swift-control-settings .widget-item-col .edit-button').on('click', onEditButtonClick);
 		$('.swift-control-settings .widget-items .dblclick-trigger').on('dblclick', onWidgetDoubleClick);
-		$('.swift-control-page .widget-text-field').on('keydown', onWidgetEnter);
-		$('.swift-control-page .new-tab-field').on('keydown', onWidgetEnter);
-		$('.swift-control-page .widget-item .blur-trigger').on('click', onBlurTriggerClick);
+		$('.swift-control-settings .widget-text-field').on('keydown', onWidgetEnter);
+		$('.swift-control-settings .new-tab-field').on('keydown', onWidgetEnter);
+		$('.swift-control-settings .widget-item .blur-trigger').on('click', onBlurTriggerClick);
 	}
 
 	function onEditButtonClick(e) {
@@ -220,8 +219,8 @@
 	 */
 	function escapeEditMode(widgetItem) {
 		if (widgetItem === 'all') {
-			$('.swift-control-page .active-items .widget-item').removeClass('edit-mode');
-			$('.swift-control-page .active-items .edit-button').html(Bab.labels.edit);
+			$('.swift-control-settings .active-items .widget-item').removeClass('edit-mode');
+			$('.swift-control-settings .active-items .edit-button').html(Bab.labels.edit);
 			setWidgetTextFieldState('all', true);
 		} else {
 			var editButton = widgetItem.querySelector('.edit-button');

@@ -8,7 +8,7 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 ?>
 
-<div class="heatbox is-clean pro-widgets-box">
+<div class="heatbox sidebar-heatbox is-clean pro-widgets-box">
 	<h2><?php _e( 'PRO Widgets', 'better-admin-bar' ); ?></h2>
 
 	<ul id="pro-items" class="widget-items pro-items">

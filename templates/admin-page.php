@@ -76,8 +76,12 @@ $GLOBALS['swift_control_widget_settings']  = $saved_widget_settings;
 
 				<div class="heatbox-column-container">
 					<div class="heatbox-main">
+						<?php require_once __DIR__ . '/setting-boxes/active-widgets.php'; ?>
+
+						<!-- On mobile screen / when the layout is stacked, the heatboxes from the "heatbox-sidebar" will be moved here -->
+						<div class="stacked-heatbox-placeholder"></div>
+
 						<?php
-						require_once __DIR__ . '/setting-boxes/active-widgets.php';
 						require_once __DIR__ . '/setting-boxes/color-settings.php';
 						require_once __DIR__ . '/setting-boxes/display-settings.php';
 						require_once __DIR__ . '/setting-boxes/misc-settings.php';

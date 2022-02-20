@@ -8,7 +8,7 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 ?>
 
-<div class="heatbox is-clean available-widgets-box">
+<div class="heatbox sidebar-heatbox is-clean available-widgets-box">
 	<h2><?php _e( 'Available Widgets', 'better-admin-bar' ); ?></h2>
 
 	<?php
