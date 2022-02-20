@@ -147,7 +147,7 @@ class Setup {
 	public function admin_scripts() {
 		$current_screen = get_current_screen();
 
-		if ( 'settings_page_swift-control' !== $current_screen->id ) {
+		if ( 'settings_page_better-admin-bar' !== $current_screen->id ) {
 			return;
 		}
 
