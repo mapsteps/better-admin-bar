@@ -14,9 +14,15 @@ if ( ! $delete_on_uninstall ) {
 	return;
 }
 
+// Delete the core options.
 delete_option( 'swift_control_active_widgets' );
 delete_option( 'swift_control_widget_settings' );
-delete_option( 'swift_control_widget_settings' );
 delete_option( 'swift_control_color_settings' );
+delete_option( 'swift_control_admin_bar_settings' );
 delete_option( 'swift_control_misc_settings' );
+
+// Delete the notice(s) option(s).
 delete_option( 'swift_control_discontinue_message' );
+
+// Delete the backwards compatibility option(s).
+delete_option( 'swift_control_compat_migrate_options' );

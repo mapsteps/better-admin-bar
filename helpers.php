@@ -294,6 +294,17 @@ function swift_control_get_misc_settings() {
 }
 
 /**
+ * Get admin bar settings.
+ *
+ * @return array The admin bar settings.
+ */
+function swift_control_get_admin_bar_settings() {
+	$misc_settings = get_option( 'swift_control_admin_bar_settings', array() );
+
+	return $misc_settings;
+}
+
+/**
  * Get display settings.
  *
  * @return array The display settings.

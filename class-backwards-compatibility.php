@@ -1,0 +1,231 @@
+<?php
+/**
+ * Backwards compatibility.
+ *
+ * @package Better_Admin_Bar
+ */
+
+namespace SwiftControl;
+
+use WP_Roles;
+
+defined( 'ABSPATH' ) || die( "Can't access directly" );
+
+/**
+ * Class that handles backwards compatibility.
+ */
+class Backwards_Compatibility {
+
+	/**
+	 * The class instance.
+	 *
+	 * @var object
+	 */
+	public static $instance;
+
+	/**
+	 * Get instance of the class.
+	 */
+	public static function get_instance() {
+
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+
+	}
+
+	/**
+	 * Init the class setup.
+	 */
+	public static function init() {
+		$instance = new Backwards_Compatibility();
+		$instance->setup();
+	}
+
+	/**
+	 * Setup the class.
+	 */
+	public function setup() {
+
+		add_action( 'admin_init', array( $this, 'options_compatibility' ) );
+
+	}
+
+	/**
+	 * Run compatibility checking on admin_init hook.
+	 */
+	public function options_compatibility() {
+
+		// Don't run checking on heartbeat request.
+		if ( isset( $_POST['action'] ) && 'heartbeat' === $_POST['action'] ) {
+			return;
+		}
+
+		$this->migrate_options();
+
+		do_action( 'swift_control_options_compatibility' );
+
+	}
+
+	/**
+	 * Move the "remove_admin_bar" sub option key.
+	 * It will be moved from "swift_control_misc_settings" option name to "swift_control_admin_bar_settings" option name.
+	 */
+	public function move_admin_bar_from_misc() {
+
+		// Make sure we don't check again.
+		if ( get_option( 'swift_control_compat_move_admin_bar_from_misc' ) ) {
+			return;
+		}
+
+		// Update the settings meta if necessary.
+		if ( $should_update ) {
+			update_option( $misc_option_name, $misc_opts );
+			update_option( $admin_bar_option_name, $admin_bar_opts );
+		}
+
+		do_action( 'swift_control_compat_move_admin_bar_from_misc' );
+
+		// Make sure we don't check again.
+		update_option( 'swift_control_compat_move_admin_bar_from_misc', 1 );
+
+	}
+
+	/**
+	 * Migrate settings / options.
+	 *
+	 * - Move "remove_admin_bar" sub-option key.
+	 *   It will be moved from "swift_control_misc_settings" option name to "swift_control_admin_bar_settings" option name.
+	 * - Move old admin bar settings (before getting bought by David) to the new settings.
+	 *   Migrate it from "admin_bar_settings" option name to "swift_control_admin_bar_settings" option name.
+	 */
+	public function migrate_options() {
+
+		// Make sure we don't check again.
+		if ( get_option( 'swift_control_compat_migrate_options' ) ) {
+			return;
+		}
+
+		$old_option_name  = 'admin_bar_settings'; // From the old "Better Admin Bar" plugin.
+		$misc_option_name = 'swift_control_misc_settings';
+		$new_option_name  = 'swift_control_admin_bar_settings';
+
+		$old_options = get_option( $old_option_name, array() );
+		$misc_opts   = get_option( $misc_option_name, array() );
+		$new_options = get_option( $new_option_name, array() );
+
+		$should_update = false;
+
+		// Move "remove_admin_bar" sub-option key.
+		if ( isset( $misc_opts['remove_admin_bar'] ) ) {
+			$new_options['remove_by_roles'] = $misc_opts['remove_admin_bar'];
+
+			$should_update = true;
+
+			unset( $misc_opts['remove_admin_bar'] );
+		}
+
+		if ( isset( $old_options['hide_admin_bar'] ) ) {
+			$new_options['remove_by_roles'] = array( 'all' );
+
+			$should_update = true;
+
+			unset( $old_options['hide_admin_bar'] );
+		}
+
+		if ( isset( $old_options['show_admin'] ) ) {
+			$roles_obj = new WP_Roles();
+			$roles     = $roles_obj->role_names;
+			$hide_from = array();
+
+			foreach ( $roles as $role_key => $role_name ) {
+				if ( 'administrator' !== $role_key ) {
+					array_push( $hide_from, $role_key );
+				}
+			}
+
+			$new_options['remove_by_roles'] = $hide_from;
+
+			$should_update = true;
+
+			unset( $old_options['show_admin'] );
+		}
+
+		if ( isset( $old_options['fix_multiline'] ) ) {
+			$new_options['prevent_new_line'] = 1;
+
+			$should_update = true;
+
+			unset( $old_options['fix_multiline'] );
+		}
+
+		/**
+		 * Although in the old plugin it says "Hide Below",
+		 * the implementation was using @media (max-width: value) instead of @media (max-width: value - 1).
+		 *
+		 * That means, tehcnically, it's not "hide_below", but "hide on max-width".
+		 */
+		if ( isset( $old_options['hide_below'] ) ) {
+			$new_options['hide_on_max_width'] = $old_options['hide_below'] . 'px';
+
+			$should_update = true;
+
+			unset( $old_options['hide_below'] );
+		}
+
+		if ( isset( $old_options['active_opacity'] ) ) {
+			$new_options['active_opacity'] = $old_options['active_opacity'];
+
+			$should_update = true;
+
+			unset( $old_options['active_opacity'] );
+		}
+
+		if ( isset( $old_options['inactive_opacity'] ) ) {
+			$new_options['inactive_opacity'] = $old_options['inactive_opacity'];
+
+			$should_update = true;
+
+			unset( $old_options['inactive_opacity'] );
+		}
+
+		if ( isset( $old_options['hover_area'] ) ) {
+			$new_options['hoverable_area_height'] = $old_options['hover_area'];
+
+			$should_update = true;
+
+			unset( $old_options['hover_area'] );
+		}
+
+		if ( isset( $old_options['hover_area'] ) ) {
+			$new_options['hover_area_height'] = $old_options['hover_area'];
+
+			$should_update = true;
+
+			unset( $old_options['hover_area'] );
+		}
+
+		if ( isset( $old_options['hover_delay'] ) ) {
+			$new_options['transition_delay'] = $old_options['hover_delay'];
+
+			$should_update = true;
+
+			unset( $old_options['hover_delay'] );
+		}
+
+		// Update the options it should.
+		if ( $should_update ) {
+			update_option( $new_option_name, $new_options );
+			delete_option( $old_option_name );
+		}
+
+		do_action( 'swift_control_compat_migrate_options' );
+
+		// Make sure we don't check again.
+		update_option( 'swift_control_compat_migrate_options', 1 );
+
+	}
+
+}
