@@ -5,21 +5,171 @@
 
 /**
  * --------------------------------------------------
- * General
+ * Heatbox adjustment
  * --------------------------------------------------
  */
-.cols {
-	display: -webkit-box;
-	display: -ms-flexbox;
+.heatbox {
+	position: relative;
+}
+
+.heatbox h2 {
+	position: relative;
+}
+
+.heatbox-cols {
 	display: flex;
-	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
 }
 
-.cols .col:last-child {
-	justify-self: flex-end;
+.swift-control-settings .heatbox-main {
+	min-height: 50px;
+	width: 53%;
 }
 
+.swift-control-settings .heatbox-sidebar {
+	width: 45%;
+}
+
+.swift-control-settings .heatbox-sidebar .widget-items {
+	padding: 8px;
+	background-color: #f4f4f4;
+}
+
+.swift-control-settings .heatbox-sidebar .widget-items .widget-item:first-child {
+	margin-top: 0;
+}
+
+.swift-control-settings .heatbox-sidebar .widget-item {
+	margin-top: 8px;
+}
+
+.heatbox .checkbox-label .is-disabled {
+	opacity: 0.6;
+}
+
+.heatbox .heatbox-overlay.is-hidden {
+	display: none;
+}
+
+.heatbox .heatbox-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.1);
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+}
+
+/**
+ * ------------------------------
+ * Setting fields
+ * ------------------------------
+ */
+.setting-fields.is-gapless {
+	padding: 0;
+}
+
+.setting-fields {
+	padding: 25px 15px;
+}
+
+.setting-fields .label {
+	display: block;
+}
+
+hr {
+	margin: 20px 0;
+	border-top: 1px solid #eee;
+	border-bottom: 0;
+}
+
+.setting-fields .field:last-child,
+.setting-fields .fields:last-child {
+	margin-bottom: 0;
+}
+
+.setting-fields.is-gapless .field {
+	margin-bottom: 10px;
+}
+
+.setting-fields .field {
+	margin-bottom: 20px;
+}
+
+.fields {
+	display: flex;
+	flex-wrap: wrap;
+	position: relative;
+}
+
+.fields .field {
+	position: relative;
+}
+
+.field.is-horizontal {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.field.is-horizontal .field-label {
+	width: 35%;
+}
+
+.field .label {
+	font-weight: 600;
+}
+
+.field.is-horizontal .field-body {
+	padding-left: 20px;
+	width: 65%;
+}
+
+.swift-control-tools-panel p.submit {
+	margin-bottom: 0;
+}
+
+/**
+ * --------------------------------------------------
+ * Featured products
+ * --------------------------------------------------
+ */
+.featured-products > h2 {
+	text-align: center;
+	margin-bottom: 50px;
+	font-size: 24px;
+}
+
+.featured-products .products {
+	display: flex;
+	justify-content: space-between;
+}
+
+.featured-products .products li {
+	width: 32%;
+}
+
+.featured-products .products .subheadline {
+	font-weight: 600;
+	margin-top: -6px;
+}
+
+.featured-products .products img {
+	max-width: 100%;
+}
+
+.featured-products .credit {
+	margin-top: 20px;
+	text-align: center;
+	opacity: 0.5;
+}
+
+/**
+ * --------------------------------------------------
+ * General
+ * --------------------------------------------------
+ */
 .swift-control-settings .is-fullwidth {
 	width: 100%;
 }
@@ -45,14 +195,8 @@
 	border-radius: 0;
 }
 
-.swift-control-page {
+.heatbox-container-center {
 	max-width: 1300px;
-}
-
-.swift-control-page > .cols {
-	-webkit-box-align: start;
-	-ms-flex-align: start;
-	align-items: flex-start;
 }
 
 /**
@@ -118,12 +262,12 @@
  * Saved status
  * --------------------------------------------------
  */
-.swift-control-settings .neatbox .saved-status.is-shown,
+.swift-control-settings .heatbox .saved-status.is-shown,
 .swift-control-settings .saved-status-bar.is-shown {
 	opacity: 1;
 }
 
-.swift-control-settings .neatbox .saved-status {
+.swift-control-settings .heatbox .saved-status {
 	position: absolute;
 	right: 20px;
 	top: 50%;
@@ -162,27 +306,21 @@
  * Active items area
  * --------------------------------------------------
  */
-.swift-control-settings .left-section {
-	min-height: 50px;
-	width: 55%;
-}
-
-.swift-control-settings .left-section .neatbox {
-	margin-bottom: 0;
+.swift-control-settings .heatbox-main .heatbox {
 	max-width: 700px;
 }
 
-.swift-control-settings .left-section .widget-item:last-child {
+.swift-control-settings .heatbox-main .widget-item:last-child {
 	border-bottom-width: 0;
 }
 
-.swift-control-settings .left-section .widget-item {
+.swift-control-settings .heatbox-main .widget-item {
 	margin-bottom: 0;
 	border: none;
 	border-bottom: 1px solid #eee;
 }
 
-.swift-control-settings .left-section .widget-item .widget-default-area {
+.swift-control-settings .heatbox-main .widget-item .widget-default-area {
 	padding: 10px 20px 10px 10px;
 }
 
@@ -191,32 +329,19 @@
  * Available items area
  * --------------------------------------------------
  */
-.swift-control-settings .right-section .neatbox {
+.swift-control-settings .heatbox-sidebar .heatbox {
 	width: 100%;
 }
 
-.swift-control-settings .right-section {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-wrap: wrap;
-	flex-wrap: wrap;
-	-webkit-box-pack: end;
-	-ms-flex-pack: end;
-	justify-content: flex-end;
-	padding-left: 50px;
-	width: 45%;
-}
-
-.swift-control-settings .right-section .neatbox {
+.swift-control-settings .heatbox-sidebar .heatbox {
 	max-width: 530px;
 }
 
-.swift-control-settings .right-section .widget-item:last-child {
+.swift-control-settings .heatbox-sidebar .widget-item:last-child {
 	margin-bottom: 0;
 }
 
-.swift-control-settings .right-section .widget-item {
+.swift-control-settings .heatbox-sidebar .widget-item {
 	padding: 10px 20px 10px 15px;
 }
 
@@ -237,7 +362,7 @@
  * Pro items metabox
  * --------------------------------------------------
  */
-.swift-control-settings .pro-items-box {
+.swift-control-settings .pro-widgets-box {
 	margin-top: 0;
 }
 
@@ -329,23 +454,23 @@
 
 /** Menu item columns on available items area **/
 
-.swift-control-settings .right-section .widget-item .drag-wrapper {
+.swift-control-settings .heatbox-sidebar .widget-item .drag-wrapper {
 	width: 8%;
 }
 
-.swift-control-settings .right-section .widget-item .icon-wrapper {
+.swift-control-settings .heatbox-sidebar .widget-item .icon-wrapper {
 	width: 12%;
 }
 
-.swift-control-settings .right-section .widget-item .text-wrapper {
+.swift-control-settings .heatbox-sidebar .widget-item .text-wrapper {
 	width: 33%;
 }
 
-.swift-control-settings .right-section .widget-item .extra-settings-wrapper {
+.swift-control-settings .heatbox-sidebar .widget-item .extra-settings-wrapper {
 	width: 27%;
 }
 
-.swift-control-settings .right-section .widget-item .actions-wrapper {
+.swift-control-settings .heatbox-sidebar .widget-item .actions-wrapper {
 	width: 17%;
 }
 
@@ -476,7 +601,7 @@
 
 /** Menu item's control on available items area **/
 
-.swift-control-settings .right-section .widget-item .widget-item-control {
+.swift-control-settings .heatbox-sidebar .widget-item .widget-item-control {
 	display: none;
 }
 
@@ -592,13 +717,12 @@
  * --------------------------------------------------
  */
 .swift-control-settings .general-settings-area,
-.swift-control-settings .export-import-area {
+.swift-control-settings .swift-control-tools-panel {
 	position: relative;
 }
 
-.swift-control-settings .general-settings-area .neatbox,
-.swift-control-settings .export-import-area .neatbox {
-	margin-bottom: 0;
+.swift-control-settings .general-settings-area .heatbox,
+.swift-control-settings .swift-control-tools-panel .heatbox {
 	max-width: 700px;
 }
 
@@ -623,7 +747,10 @@
  * Role multiselect
  * --------------------------------------------------
  */
-.swift-control-settings .select2-container--default .select2-selection--multiple .select2-selection__rendered {
+.swift-control-settings
+	.select2-container--default
+	.select2-selection--multiple
+	.select2-selection__rendered {
 	display: flex;
 }
 
@@ -650,19 +777,22 @@
 	}
 
 	/** Menu item's columns width on available items area */
-	.swift-control-settings .right-section .widget-item .icon-wrapper {
+	.swift-control-settings .heatbox-sidebar .widget-item .icon-wrapper {
 		width: 17%;
 	}
 
-	.swift-control-settings .right-section .widget-item .text-wrapper {
+	.swift-control-settings .heatbox-sidebar .widget-item .text-wrapper {
 		width: 40%;
 	}
 
-	.swift-control-settings .right-section .widget-item .extra-settings-wrapper {
+	.swift-control-settings
+		.heatbox-sidebar
+		.widget-item
+		.extra-settings-wrapper {
 		width: 20%;
 	}
 
-	.swift-control-settings .right-section .widget-item .actions-wrapper {
+	.swift-control-settings .heatbox-sidebar .widget-item .actions-wrapper {
 		width: 13%;
 	}
 
@@ -673,7 +803,7 @@
 
 @media (max-width: 991.32px) {
 	/** Available items area */
-	.swift-control-settings .right-section .widget-item {
+	.swift-control-settings .heatbox-sidebar .widget-item {
 		padding-left: 10px;
 	}
 
@@ -695,19 +825,22 @@
 	}
 
 	/** Menu item's columns width on available items area */
-	.swift-control-settings .right-section .widget-item .icon-wrapper {
+	.swift-control-settings .heatbox-sidebar .widget-item .icon-wrapper {
 		width: 12%;
 	}
 
-	.swift-control-settings .right-section .widget-item .text-wrapper {
+	.swift-control-settings .heatbox-sidebar .widget-item .text-wrapper {
 		width: 33%;
 	}
 
-	.swift-control-settings .right-section .widget-item .extra-settings-wrapper {
+	.swift-control-settings
+		.heatbox-sidebar
+		.widget-item
+		.extra-settings-wrapper {
 		width: 30%;
 	}
 
-	.swift-control-settings .right-section .widget-item .actions-wrapper {
+	.swift-control-settings .heatbox-sidebar .widget-item .actions-wrapper {
 		width: 17%;
 	}
 
@@ -715,22 +848,22 @@
 		width: 75%;
 	}
 
-	.swift-control-settings .left-section,
-	.swift-control-settings .right-section,
+	.swift-control-settings .heatbox-main,
+	.swift-control-settings .heatbox-sidebar,
 	.swift-control-settings .general-settings-area {
 		width: 100%;
 	}
 
-	.swift-control-settings .right-section {
+	.swift-control-settings .heatbox-sidebar {
 		-webkit-box-pack: start;
 		-ms-flex-pack: start;
 		justify-content: flex-start;
 		padding-left: 0;
 	}
 
-	.swift-control-settings .left-section .neatbox,
-	.swift-control-settings .right-section .neatbox,
-	.swift-control-settings .general-settings-area .neatbox {
+	.swift-control-settings .heatbox-main .heatbox,
+	.swift-control-settings .heatbox-sidebar .heatbox,
+	.swift-control-settings .general-settings-area .heatbox {
 		max-width: 100%;
 	}
 
@@ -741,22 +874,22 @@
 
 @media (max-width: 575.32px) {
 	/** Active items area */
-	.swift-control-settings .left-section .widget-item {
+	.swift-control-settings .heatbox-main .widget-item {
 		padding-right: 10px;
 	}
 
 	/** Available items area */
-	.swift-control-settings .right-section .widget-item {
+	.swift-control-settings .heatbox-sidebar .widget-item {
 		padding-right: 10px;
 	}
 
 	/** Menu item's columns width */
 	.swift-control-settings .widget-item .drag-wrapper,
-	.swift-control-settings .right-section .widget-item .drag-wrapper {
+	.swift-control-settings .heatbox-sidebar .widget-item .drag-wrapper {
 		width: 7%;
 	}
 	.swift-control-settings .widget-item .icon-wrapper,
-	.swift-control-settings .right-section .widget-item .icon-wrapper {
+	.swift-control-settings .heatbox-sidebar .widget-item .icon-wrapper {
 		width: 17%;
 	}
 	.swift-control-settings .widget-item .text-wrapper {
@@ -770,15 +903,18 @@
 	}
 
 	/** Menu item's columns width on available items area */
-	.swift-control-settings .right-section .widget-item .text-wrapper {
+	.swift-control-settings .heatbox-sidebar .widget-item .text-wrapper {
 		width: 45%;
 	}
 
-	.swift-control-settings .right-section .widget-item .extra-settings-wrapper {
+	.swift-control-settings
+		.heatbox-sidebar
+		.widget-item
+		.extra-settings-wrapper {
 		width: 13%;
 	}
 
-	.swift-control-settings .right-section .widget-item .actions-wrapper {
+	.swift-control-settings .heatbox-sidebar .widget-item .actions-wrapper {
 		width: 25%;
 	}
 
@@ -800,7 +936,7 @@
 	}
 
 	/** Menu item's settings on available items area **/
-	.swift-control-settings .right-section .widget-item .widget-icon {
+	.swift-control-settings .heatbox-sidebar .widget-item .widget-icon {
 		width: 25px;
 		height: 25px;
 		line-height: 25px;

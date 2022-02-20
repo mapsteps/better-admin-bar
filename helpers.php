@@ -33,21 +33,21 @@ function swift_control_settings_output_widget_item( $widget_key ) {
 	?>
 
 	<li class="widget-item" data-widget-key="<?php echo esc_attr( $widget_key ); ?>">
-		<div class="cols widget-default-area">
-			<div class="col widget-item-col drag-wrapper">
+		<div class="heatbox-cols widget-default-area">
+			<div class="widget-item-col drag-wrapper">
 				&nbsp;
 				<span class="drag-handle"></span>
 			</div>
-			<div class="col widget-item-col icon-wrapper">
+			<div class="widget-item-col icon-wrapper">
 				<div class="widget-icon dblclick-trigger">
 					<i class="<?php echo esc_attr( $icon_class ); ?>"></i>
 					<button type="button" class="icon-picker blur-trigger"></button>
 				</div>
 			</div>
-			<div class="col widget-item-col text-wrapper">
+			<div class="widget-item-col text-wrapper">
 				<input type="text" name="swift_control_<?php echo esc_attr( $widget_key ); ?>_text" class="text-field widget-text-field dblclick-trigger" value="<?php echo esc_html( $widget_name ); ?>" readonly>
 			</div>
-			<div class="col widget-item-col extra-settings-wrapper">
+			<div class="widget-item-col extra-settings-wrapper">
 
 				<?php if ( isset( $default_widget_settings['redirect_url'] ) || isset( $widget_settings['redirect_url'] ) ) : ?>
 					<div class="widget-item-control edit-mode-control redirect-url-setting">
@@ -66,7 +66,7 @@ function swift_control_settings_output_widget_item( $widget_key ) {
 				<?php endif; ?>
 
 			</div>
-			<div class="col widget-item-col actions-wrapper">
+			<div class="widget-item-col actions-wrapper">
 				<button type="button" class="widget-item-control edit-button">
 					<?php _e( 'Edit', 'better-admin-bar' ); ?>
 				</button>

@@ -5,7 +5,7 @@
  * - Bab
  */
 (function ($) {
-	var statusButton = document.querySelector('.active-items-box .saved-status');
+	var statusButton = document.querySelector('.active-widgets-box .saved-status');
 	var isRequesting = false;
 	var elms = {};
 	var $elms = {};

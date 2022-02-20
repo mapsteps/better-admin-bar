@@ -1,6 +1,6 @@
 <?php
 /**
- * Better Admin Bar color settings template.
+ * Color settings template.
  *
  * @package Better_Admin_Bar
  */
@@ -11,10 +11,11 @@ $default_color_settings = swift_control_get_default_color_settings();
 $color_settings         = swift_control_get_color_settings();
 ?>
 
-<div class="neatbox is-smooth has-medium-gap has-bigger-heading color-settings-box">
+<div class="heatbox color-settings-box">
 	<h2>
 		<?php _e( 'Color Settings', 'better-admin-bar' ); ?>
 	</h2>
+
 	<div class="setting-fields">
 
 		<div class="field is-horizontal">

@@ -30,6 +30,7 @@ class Setup {
 		add_action( 'init', array( $this, 'setup_text_domain' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ), 999 );
 		add_action( 'admin_menu', array( $this, 'add_submenu_page' ) );
+		add_filter( 'admin_body_class', array( $this, 'admin_body_class' ), 20 );
 		add_action( 'wp', array( $this, 'check_page' ) );
 		add_action( 'wp', array( $this, 'remove_admin_bar' ) );
 
@@ -162,8 +163,7 @@ class Setup {
 		wp_enqueue_style( 'select2', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/select2.min.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
 
 		// Settings page styling.
-		wp_enqueue_style( 'settings-page', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/settings-page.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
-		wp_enqueue_style( 'setting-fields', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/setting-fields.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
+		wp_enqueue_style( 'heatbox', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/heatbox.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
 
 		// Better Admin Bar admin styling.
 		wp_enqueue_style( 'swift-control-admin', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/swift-control-admin.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
@@ -195,6 +195,8 @@ class Setup {
 
 		// Color picker alpha.
 		wp_enqueue_script( 'wp-color-picker-alpha', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/wp-color-picker-alpha.js', array( 'wp-color-picker', 'wp-i18n' ), '2.1.3', true );
+
+		wp_enqueue_script( 'swift-control-settings-page', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/settings-page.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 
 		wp_enqueue_script( 'swift-control-widget-settings', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/widget-settings.js', array( 'jquery-ui-sortable', 'icon-picker' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 
@@ -250,6 +252,39 @@ class Setup {
 	 */
 	public function page_output() {
 		require __DIR__ . '/templates/admin-page.php';
+	}
+
+	/**
+	 * Modify admin body class.
+	 *
+	 * @param string $classes The class names.
+	 */
+	public function admin_body_class( $classes ) {
+
+		$current_user = wp_get_current_user();
+		$classes     .= ' swift-control-user-' . $current_user->user_nicename;
+
+		$roles = $current_user->roles;
+		$roles = $roles ? $roles : array();
+
+		foreach ( $roles as $role ) {
+			$classes .= ' swift-control-role-' . $role;
+		}
+
+		$screens = array(
+			'settings_page_better-admin-bar',
+		);
+
+		$screen = get_current_screen();
+
+		if ( ! in_array( $screen->id, $screens, true ) ) {
+			return $classes;
+		}
+
+		$classes .= ' heatbox-admin has-header';
+
+		return $classes;
+
 	}
 
 	/**

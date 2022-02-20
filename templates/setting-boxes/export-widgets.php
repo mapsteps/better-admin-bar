@@ -1,6 +1,6 @@
 <?php
 /**
- * Better Admin Bar export widgets template.
+ * Export widgets template.
  *
  * @package Better_Admin_Bar
  */
@@ -12,10 +12,10 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 	<input type="hidden" name="swift_control_action" value="export">
 	<?php wp_nonce_field( 'swift_control_export_widgets', 'swift_control_export_nonce' ); ?>
 
-	<div class="neatbox is-smooth has-bigger-heading has-medium-gap">
+	<div class="heatbox export-widgets-box">
 		<h2><?php _e( 'Export Widgets', 'better-admin-bar' ); ?></h2>
 
-		<div class="neatbox-content has-bottom-gapless">
+		<div class="heatbox-content has-bottom-gapless">
 
 			<p>
 				<?php _e( 'Use the export button to export to a .json file which you can then import to another Better Admin Bar installation.', 'better-admin-bar' ); ?>
@@ -31,8 +31,8 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 				</div>
 			</div>
 
-		</div><!-- .neatbox-content -->
+			<?php submit_button( __( 'Export File', 'better-admin-bar' ), 'primary', 'submit_export' ); ?>
 
-		<?php submit_button( __( 'Export File', 'better-admin-bar' ), 'primary', 'submit_export' ); ?>
+		</div><!-- .heatbox-content -->
 	</div><!-- .neatbox -->
 </form>

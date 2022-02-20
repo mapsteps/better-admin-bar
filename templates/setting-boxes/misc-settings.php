@@ -1,6 +1,6 @@
 <?php
 /**
- * Better Admin Bar miscellaneous settings template.
+ * Miscellaneous settings template.
  *
  * @package Better_Admin_Bar
  */
@@ -25,7 +25,7 @@ $roles_obj = new \WP_Roles();
 $roles     = $roles_obj->role_names;
 ?>
 
-<div class="neatbox is-smooth has-medium-gap has-bigger-heading general-settings-box">
+<div class="heatbox misc-settings-box">
 	<h2>
 		<?php _e( 'Misc', 'better-admin-bar' ); ?>
 	</h2>
