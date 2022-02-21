@@ -94,6 +94,13 @@ class Backwards_Compatibility {
 
 		$should_update = false;
 
+		if ( get_option( 'admin_bar_settings_compat' ) ) {
+			$should_update = true;
+
+			$new_options['overflow_layout'] = 1;
+			delete_option( 'admin_bar_settings_compat' );
+		}
+
 		// Move "remove_admin_bar" sub-option key.
 		if ( isset( $misc_options['remove_admin_bar'] ) ) {
 			$new_options['remove_by_roles'] = $misc_options['remove_admin_bar'];

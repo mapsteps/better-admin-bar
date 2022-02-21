@@ -21,11 +21,11 @@ require __DIR__ . '/ajax/class-save-general-settings.php';
 require __DIR__ . '/ajax/class-save-position.php';
 
 // Require backwards compatibility class.
-// require __DIR__ . '/class-backwards-compatibility.php';
+require __DIR__ . '/class-backwards-compatibility.php';
 
 // Require setup class.
 require __DIR__ . '/class-setup.php';
 
 // Init classes.
 // Backwards_Compatibility::init();
-new Setup();
+Setup::init();

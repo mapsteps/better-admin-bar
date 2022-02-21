@@ -299,9 +299,15 @@ function swift_control_get_misc_settings() {
  * @return array The admin bar settings.
  */
 function swift_control_get_admin_bar_settings() {
-	$misc_settings = get_option( 'swift_control_admin_bar_settings', array() );
+	$saved_settings = get_option( 'swift_control_admin_bar_settings', array() );
 
-	return $misc_settings;
+	$admin_bar_settings = array(
+		'disable_swift_control' => isset( $saved_settings['disable_swift_control'] ) ? absint( $saved_settings['disable_swift_control'] ) : 0,
+		'remove_indicator'      => isset( $saved_settings['remove_indicator'] ) ? absint( $saved_settings['remove_indicator'] ) : 0,
+		'overflow_layout'       => isset( $saved_settings['overflow_layout'] ) ? absint( $saved_settings['overflow_layout'] ) : 0,
+	);
+
+	return $admin_bar_settings;
 }
 
 /**

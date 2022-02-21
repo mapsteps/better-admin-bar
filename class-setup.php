@@ -12,11 +12,45 @@ namespace SwiftControl;
  */
 class Setup {
 	/**
+	 * Whether or not to remove admin bar for current user.
+	 *
+	 * @var bool
+	 */
+	public static $remove_admin_bar = false;
+
+	/**
+	 * The class instance.
+	 *
+	 * @var object
+	 */
+	public static $instance;
+
+	/**
+	 * Get instance of the class.
+	 */
+	public static function get_instance() {
+
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+
+	}
+
+	/**
+	 * Init the class setup.
+	 */
+	public static function init() {
+		self::$instance = new self();
+
+		add_action( 'plugins_loaded', array( self::$instance, 'setup' ) );
+	}
+
+	/**
 	 * Setup action & filter hooks.
 	 */
-	public function __construct() {
-		add_action( 'plugins_loaded', array( $this, 'setup' ) );
-	}
+	public function __construct() {}
 
 	/**
 	 * Setup action & filters.
@@ -33,6 +67,7 @@ class Setup {
 		add_filter( 'admin_body_class', array( $this, 'admin_body_class' ), 20 );
 		add_action( 'wp', array( $this, 'check_page' ) );
 		add_action( 'wp', array( $this, 'remove_admin_bar' ) );
+		add_action( 'wp_head', array( $this, 'admin_bar_overflow_layout' ), PHP_INT_MAX );
 
 		// Process export-import.
 		add_action( 'admin_init', array( $this, 'process_export' ) );
@@ -349,11 +384,15 @@ class Setup {
 
 		// Backward compatibility: old value's format is int (0 / 1).
 		if ( is_numeric( $selected_roles ) ) {
+			self::$remove_admin_bar = true;
+
 			add_filter( 'show_admin_bar', '__return_false' );
 			return;
 		}
 
 		if ( in_array( 'all', $admin_bar_settings['remove_by_roles'], true ) ) {
+			self::$remove_admin_bar = true;
+
 			add_filter( 'show_admin_bar', '__return_false' );
 			return;
 		} else {
@@ -361,11 +400,40 @@ class Setup {
 
 			foreach ( $current_user->roles as $role ) {
 				if ( in_array( $role, $selected_roles, true ) ) {
+					self::$remove_admin_bar = true;
+
 					add_filter( 'show_admin_bar', '__return_false' );
 					break;
 				}
 			}
 		}
+	}
+
+	/**
+	 * Set the admin bar to be displayed overflowing the page layout.
+	 */
+	public function admin_bar_overflow_layout() {
+
+		if ( self::$remove_admin_bar ) {
+			return;
+		}
+
+		$admin_bar_settings = swift_control_get_admin_bar_settings();
+
+		if ( ! $admin_bar_settings['overflow_layout'] ) {
+			return;
+		}
+		?>
+
+		<style>
+			html,
+			html body,
+			* html body{
+				margin-top: 0 !important
+			}
+		</style>
+
+		<?php
 	}
 
 	/**

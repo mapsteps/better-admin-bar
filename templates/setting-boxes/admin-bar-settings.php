@@ -50,5 +50,15 @@ $roles     = $roles_obj->role_names;
 			</label>
 		</div>
 
+		<hr>
+
+		<div class="field">
+			<label for="overflow_layout" class="label checkbox-label">
+				<?php _e( 'Enable layout overflow', 'better-admin-bar' ); ?>
+				<input type="checkbox" name="overflow_layout" id="overflow_layout" value="1" class="general-setting-field" <?php checked( $admin_bar_settings['overflow_layout'], 1 ); ?>>
+				<div class="indicator"></div>
+			</label>
+		</div>
+
 	</div>
 </div>
