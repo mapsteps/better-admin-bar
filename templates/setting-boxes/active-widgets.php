@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 <div class="heatbox active-widgets-box">
 	<h2>
 		<?php _e( 'Quick Access Panel', 'better-admin-bar' ); ?>
-		<span class="tooltip has-image">
+		<span class="heatbox-tooltip has-image">
 			<span class="dashicons dashicons-editor-help"></span>
 			<span class="tooltipcontent">
 				<img src="<?php echo esc_url( SWIFT_CONTROL_PLUGIN_URL ); ?>/assets/images/quick-access-panel.gif">

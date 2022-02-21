@@ -433,12 +433,12 @@
 }
 
 /* Tooltip */
-.heatbox h2 .tooltip {
+.heatbox-tooltip {
 	position: relative;
 	cursor: pointer;
 	padding: 5px;
 }
-.heatbox h2 .tooltip .tooltipcontent {
+.heatbox-tooltip .tooltipcontent {
 	visibility: hidden;
 	opacity: 0;
 	width: 220px;
@@ -455,13 +455,13 @@
 	z-index: 1;
 }
 
-.heatbox h2 .tooltip:hover .tooltipcontent {
+.heatbox-tooltip:hover .tooltipcontent {
 	visibility: visible;
 	opacity: 1;
 	bottom: 28px;
 }
 
-.heatbox h2 .tooltip.has-image .tooltipcontent {
+.heatbox-tooltip.has-image .tooltipcontent {
 	padding: 0;
 	text-align: left;
 	display: flex;
@@ -470,12 +470,12 @@
 	width: 370px;
 }
 
-.heatbox h2 .tooltip.has-image .tooltipcontent img {
+.heatbox-tooltip.has-image .tooltipcontent img {
 	width: 35%;
 	border-right: 1px solid #eee;
 }
 
-.heatbox h2 .tooltip.has-image .tooltipcontent span {
+.heatbox-tooltip.has-image .tooltipcontent span {
 	width: 65%;
 	padding: 20px;
 }
