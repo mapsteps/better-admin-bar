@@ -13,6 +13,7 @@
 	 */
 	function init() {
 		setupTabsNavigation();
+		setupChainingFields();
 	}
 
 	/**
@@ -65,6 +66,88 @@
 				"block"
 			);
 		});
+	}
+
+	/**
+	 * Setup fields chaining/ dependency.
+	 */
+	function setupChainingFields() {
+		var selectors = [
+			"[data-show-if-field]",
+			"[data-show-if-field-checked]",
+			"[data-show-if-field-unchecked]",
+		];
+
+		selectors.forEach(function (selector) {
+			var children = document.querySelectorAll(selector);
+			if (!children.length) return;
+
+			[].slice.call(children).forEach(function (child) {
+				setupChainingEvent(child, selector);
+			});
+		});
+	}
+
+	/**
+	 * Setup fields chaining event.
+	 *
+	 * @param {HTMLElement} child The children element.
+	 * @param selector child The selector that belongs to the children element.
+	 */
+	function setupChainingEvent(child, selector) {
+		var parentName = child.getAttribute(
+			selector.replace("[", "").replace("]", "")
+		);
+		var parentField = document.querySelector("#" + parentName);
+
+		checkChainingState(child, parentField);
+
+		parentField.addEventListener("change", function (e) {
+			checkChainingState(child, parentField);
+		});
+	}
+
+	/**
+	 * Check the children state: shown or hidden.
+	 *
+	 * @param {HTMLElement} child The children element.
+	 * @param {HTMLElement} parent The parent/ dependency element.
+	 */
+	function checkChainingState(child, parent) {
+		var parentTagName = parent.tagName.toLocaleLowerCase();
+
+		if (parentTagName === "input" && parent.type === "checkbox") {
+			if (child.dataset.showIfFieldChecked) {
+				if (parent.checked) {
+					child.style.display = "block";
+				} else {
+					child.style.display = "none";
+				}
+			} else {
+				if (!parent.checked) {
+					child.style.display = "block";
+				} else {
+					child.style.display = "none";
+				}
+			}
+
+			return;
+		}
+
+		var wantedValue = child.dataset.showIfValue;
+		var parentValue;
+
+		if (parentTagName === "select") {
+			parentValue = parent.options[parent.selectedIndex].value;
+		} else {
+			parentValue = parent.value;
+		}
+
+		if (parentValue === wantedValue) {
+			child.style.display = "block";
+		} else {
+			child.style.display = "none";
+		}
 	}
 
 	// Run the module.

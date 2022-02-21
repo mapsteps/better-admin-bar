@@ -313,8 +313,9 @@ function swift_control_get_display_settings() {
 	$saved_settings = get_option( 'swift_control_display_settings', array() );
 
 	$display_settings = array(
-		'remove_indicator' => isset( $saved_settings['remove_indicator'] ) ? absint( $saved_settings['remove_indicator'] ) : 0,
-		'expanded'         => isset( $saved_settings['expanded'] ) ? absint( $saved_settings['expanded'] ) : 0,
+		'disable_swift_control' => isset( $saved_settings['disable_swift_control'] ) ? absint( $saved_settings['disable_swift_control'] ) : 0,
+		'remove_indicator'      => isset( $saved_settings['remove_indicator'] ) ? absint( $saved_settings['remove_indicator'] ) : 0,
+		'expanded'              => isset( $saved_settings['expanded'] ) ? absint( $saved_settings['expanded'] ) : 0,
 	);
 
 	return $display_settings;
