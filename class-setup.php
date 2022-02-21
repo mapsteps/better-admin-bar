@@ -339,13 +339,13 @@ class Setup {
 	 * Remove admin bar on frontend for certain roles.
 	 */
 	public function remove_admin_bar() {
-		$misc_settings = swift_control_get_misc_settings();
+		$admin_bar_settings = swift_control_get_admin_bar_settings();
 
-		if ( ! isset( $misc_settings['remove_admin_bar'] ) || empty( $misc_settings['remove_admin_bar'] ) ) {
+		if ( ! isset( $admin_bar_settings['remove_by_roles'] ) || empty( $admin_bar_settings['remove_by_roles'] ) ) {
 			return;
 		}
 
-		$selected_roles = $misc_settings['remove_admin_bar'];
+		$selected_roles = $admin_bar_settings['remove_by_roles'];
 
 		// Backward compatibility: old value's format is int (0 / 1).
 		if ( is_numeric( $selected_roles ) ) {
@@ -353,7 +353,7 @@ class Setup {
 			return;
 		}
 
-		if ( in_array( 'all', $misc_settings['remove_admin_bar'], true ) ) {
+		if ( in_array( 'all', $admin_bar_settings['remove_by_roles'], true ) ) {
 			add_filter( 'show_admin_bar', '__return_false' );
 			return;
 		} else {

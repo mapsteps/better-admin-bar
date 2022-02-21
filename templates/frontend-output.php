@@ -12,6 +12,10 @@ $setting_url = admin_url( 'options-general.php?page=swift-control' );
 $active_widgets   = swift_control_get_active_widgets();
 $display_settings = swift_control_get_display_settings();
 
+if ( $display_settings['disable_swift_control'] ) {
+	return;
+}
+
 // Get saved widget settings.
 $saved_widget_settings = swift_control_get_saved_widget_settings();
 

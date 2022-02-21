@@ -7,15 +7,15 @@
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-$misc_settings = swift_control_get_misc_settings();
+$admin_bar_settings = swift_control_get_admin_bar_settings();
 
-if ( isset( $misc_settings['remove_admin_bar'] ) ) {
-	if ( is_numeric( $misc_settings['remove_admin_bar'] ) ) {
-		$misc_settings['remove_admin_bar'] = absint( $misc_settings['remove_admin_bar'] );
-		$misc_settings['remove_admin_bar'] = $misc_settings['remove_admin_bar'] ? array( 'all' ) : array();
+if ( isset( $admin_bar_settings['remove_by_roles'] ) ) {
+	if ( is_numeric( $admin_bar_settings['remove_by_roles'] ) ) {
+		$admin_bar_settings['remove_by_roles'] = absint( $admin_bar_settings['remove_by_roles'] );
+		$admin_bar_settings['remove_by_roles'] = $admin_bar_settings['remove_by_roles'] ? array( 'all' ) : array();
 	}
 } else {
-	$misc_settings['remove_admin_bar'] = array();
+	$admin_bar_settings['remove_by_roles'] = array();
 }
 
 $roles_obj = new \WP_Roles();
@@ -29,18 +29,18 @@ $roles     = $roles_obj->role_names;
 	<div class="setting-fields">
 
 		<div class="field">
-			<label for="remove_admin_bar" class="label select2-label">
+			<label for="remove_by_roles" class="label select2-label">
 				<p>
 					<?php _e( 'Remove Admin Bar from the frontend for:', 'better-admin-bar' ); ?>
 				</p>
-				<select name="remove_admin_bar[]" id="remove_admin_bar" class="general-setting-field multiselect remove-admin-bar is-fullwidth" multiple>
-					<option value="all" <?php echo esc_attr( in_array( 'all', $misc_settings['remove_admin_bar'], true ) ? 'selected' : '' ); ?>><?php _e( 'All', 'better-admin-bar' ); ?></option>
+				<select name="remove_by_roles[]" id="remove_by_roles" class="general-setting-field multiselect remove-admin-bar is-fullwidth" multiple>
+					<option value="all" <?php echo esc_attr( in_array( 'all', $admin_bar_settings['remove_by_roles'], true ) ? 'selected' : '' ); ?>><?php _e( 'All', 'better-admin-bar' ); ?></option>
 
 					<?php foreach ( $roles as $role_key => $role_name ) : ?>
 						<?php
 						$selected_attr = '';
 
-						if ( in_array( $role_key, $misc_settings['remove_admin_bar'], true ) ) {
+						if ( in_array( $role_key, $admin_bar_settings['remove_by_roles'], true ) ) {
 							$selected_attr = 'selected';
 						}
 						?>

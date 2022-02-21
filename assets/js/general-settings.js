@@ -60,9 +60,8 @@
 			if (field.type === 'checkbox') {
 				data[field.name] = field.checked ? 1 : 0;
 			} else if (field.tagName.toLowerCase() === 'select') {
-				if (field.name === 'remove_admin_bar[]') {
+				if (field.name === "remove_by_roles[]") {
 					data[field.name] = adminBarRemovalRoles;
-
 				}
 			} else {
 				data[field.name] = field.value;

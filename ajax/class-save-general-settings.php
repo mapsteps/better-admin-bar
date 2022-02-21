@@ -16,14 +16,14 @@ class Save_General_Settings {
 	 *
 	 * @var array
 	 */
-	private $fields = array( 'widget_bg_color', 'widget_bg_color_hover', 'widget_icon_color', 'setting_button_bg_color', 'setting_button_icon_color', 'remove_indicator', 'expanded', 'delete_on_uninstall', 'remove_font_awesome', 'remove_admin_bar' );
+	private $fields = array( 'widget_bg_color', 'widget_bg_color_hover', 'widget_icon_color', 'setting_button_bg_color', 'setting_button_icon_color', 'disable_swift_control', 'remove_indicator', 'expanded', 'delete_on_uninstall', 'remove_font_awesome', 'remove_by_roles' );
 
 	/**
 	 * Allowed empty fields.
 	 *
 	 * @var array
 	 */
-	private $empty_allowed = array( 'remove_indicator', 'expanded', 'delete_on_uninstall', 'remove_font_awesome', 'remove_admin_bar' );
+	private $empty_allowed = array( 'remove_indicator', 'expanded', 'delete_on_uninstall', 'remove_font_awesome', 'remove_by_roles' );
 
 	/**
 	 * Color setting fields.
@@ -37,14 +37,21 @@ class Save_General_Settings {
 	 *
 	 * @var array
 	 */
-	private $display_setting_fields = array( 'remove_indicator', 'expanded' );
+	private $display_setting_fields = array( 'disable_swift_control', 'remove_indicator', 'expanded' );
 
 	/**
 	 * Misc setting fields.
 	 *
 	 * @var array
 	 */
-	private $misc_setting_fields = array( 'delete_on_uninstall', 'remove_font_awesome', 'remove_admin_bar' );
+	private $misc_setting_fields = array( 'delete_on_uninstall', 'remove_font_awesome' );
+
+	/**
+	 * Admin bar setting fields.
+	 *
+	 * @var array
+	 */
+	private $admin_bar_setting_fields = array( 'remove_by_roles' );
 
 	/**
 	 * Sanitized data.
@@ -68,7 +75,7 @@ class Save_General_Settings {
 	public function sanitize() {
 		foreach ( $this->fields as $field ) {
 			if ( isset( $_POST[ $field ] ) ) {
-				if ( 'remove_admin_bar' === $field ) {
+				if ( 'remove_by_roles' === $field ) {
 					$roles = array();
 
 					foreach ( $_POST[ $field ] as $role ) {
@@ -110,9 +117,10 @@ class Save_General_Settings {
 	 * Save the data.
 	 */
 	public function save() {
-		$color_settings   = array();
-		$display_settings = array();
-		$misc_settings    = array();
+		$color_settings     = array();
+		$display_settings   = array();
+		$misc_settings      = array();
+		$admin_bar_settings = array();
 
 		foreach ( $this->color_setting_fields as $field ) {
 			if ( isset( $this->data[ $field ] ) ) {
@@ -132,9 +140,16 @@ class Save_General_Settings {
 			}
 		}
 
+		foreach ( $this->admin_bar_setting_fields as $field ) {
+			if ( isset( $this->data[ $field ] ) ) {
+				$admin_bar_settings[ $field ] = $this->data[ $field ];
+			}
+		}
+
 		update_option( 'swift_control_color_settings', $color_settings );
 		update_option( 'swift_control_display_settings', $display_settings );
 		update_option( 'swift_control_misc_settings', $misc_settings );
+		update_option( 'swift_control_admin_bar_settings', $admin_bar_settings );
 
 		wp_send_json_success( __( 'The settings are saved' ), 'better-admin-bar' );
 	}
