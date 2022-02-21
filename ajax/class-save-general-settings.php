@@ -16,14 +16,14 @@ class Save_General_Settings {
 	 *
 	 * @var array
 	 */
-	private $fields = array( 'widget_bg_color', 'widget_bg_color_hover', 'widget_icon_color', 'setting_button_bg_color', 'setting_button_icon_color', 'disable_swift_control', 'remove_indicator', 'expanded', 'delete_on_uninstall', 'remove_font_awesome', 'remove_by_roles', 'overflow_layout' );
+	private $fields = array( 'widget_bg_color', 'widget_bg_color_hover', 'widget_icon_color', 'setting_button_bg_color', 'setting_button_icon_color', 'disable_swift_control', 'remove_indicator', 'expanded', 'delete_on_uninstall', 'remove_font_awesome', 'remove_by_roles', 'overflow_layout', 'fix_horizontal_overflow' );
 
 	/**
 	 * Allowed empty fields.
 	 *
 	 * @var array
 	 */
-	private $empty_allowed = array( 'disable_swift_control', 'remove_indicator', 'expanded', 'delete_on_uninstall', 'remove_font_awesome', 'remove_by_roles', 'overflow_layout' );
+	private $empty_allowed = array( 'disable_swift_control', 'remove_indicator', 'expanded', 'delete_on_uninstall', 'remove_font_awesome', 'remove_by_roles', 'overflow_layout', 'fix_horizontal_overflow' );
 
 	/**
 	 * Color setting fields.
@@ -51,7 +51,7 @@ class Save_General_Settings {
 	 *
 	 * @var array
 	 */
-	private $admin_bar_setting_fields = array( 'remove_by_roles', 'overflow_layout' );
+	private $admin_bar_setting_fields = array( 'remove_by_roles', 'overflow_layout', 'fix_horizontal_overflow' );
 
 	/**
 	 * Sanitized data.

@@ -302,9 +302,10 @@ function swift_control_get_admin_bar_settings() {
 	$saved_settings = get_option( 'swift_control_admin_bar_settings', array() );
 
 	$admin_bar_settings = array(
-		'disable_swift_control' => isset( $saved_settings['disable_swift_control'] ) ? absint( $saved_settings['disable_swift_control'] ) : 0,
-		'remove_indicator'      => isset( $saved_settings['remove_indicator'] ) ? absint( $saved_settings['remove_indicator'] ) : 0,
-		'overflow_layout'       => isset( $saved_settings['overflow_layout'] ) ? absint( $saved_settings['overflow_layout'] ) : 0,
+		'disable_swift_control'   => isset( $saved_settings['disable_swift_control'] ) ? absint( $saved_settings['disable_swift_control'] ) : 0,
+		'remove_indicator'        => isset( $saved_settings['remove_indicator'] ) ? absint( $saved_settings['remove_indicator'] ) : 0,
+		'overflow_layout'         => isset( $saved_settings['overflow_layout'] ) ? absint( $saved_settings['overflow_layout'] ) : 0,
+		'fix_horizontal_overflow' => isset( $saved_settings['fix_horizontal_overflow'] ) ? absint( $saved_settings['fix_horizontal_overflow'] ) : 0,
 	);
 
 	return $admin_bar_settings;

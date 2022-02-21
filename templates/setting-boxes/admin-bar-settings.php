@@ -54,8 +54,16 @@ $roles     = $roles_obj->role_names;
 
 		<div class="field">
 			<label for="overflow_layout" class="label checkbox-label">
-				<?php _e( 'Enable layout overflow', 'better-admin-bar' ); ?>
+				<?php _e( 'Enable layout overflow instead of preprending admin bar before the layout.', 'better-admin-bar' ); ?>
 				<input type="checkbox" name="overflow_layout" id="overflow_layout" value="1" class="general-setting-field" <?php checked( $admin_bar_settings['overflow_layout'], 1 ); ?>>
+				<div class="indicator"></div>
+			</label>
+		</div>
+
+		<div class="field">
+			<label for="fix_horizontal_overflow" class="label checkbox-label">
+				<?php _e( 'Fix horizontal overflow when there are too many items in admin bar.', 'better-admin-bar' ); ?>
+				<input type="checkbox" name="fix_horizontal_overflow" id="fix_horizontal_overflow" value="1" class="general-setting-field" <?php checked( $admin_bar_settings['fix_horizontal_overflow'], 1 ); ?>>
 				<div class="indicator"></div>
 			</label>
 		</div>

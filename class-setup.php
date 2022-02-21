@@ -420,20 +420,24 @@ class Setup {
 
 		$admin_bar_settings = swift_control_get_admin_bar_settings();
 
-		if ( ! $admin_bar_settings['overflow_layout'] ) {
-			return;
+		if ( $admin_bar_settings['overflow_layout'] ) {
+			?>
+
+			<style>
+				html,
+				html body,
+				* html body{
+					margin-top: 0 !important
+				}
+			</style>
+
+			<?php
 		}
-		?>
 
-		<style>
-			html,
-			html body,
-			* html body{
-				margin-top: 0 !important
-			}
-		</style>
+		if ( $admin_bar_settings['fix_horizontal_overflow'] ) {
+			echo file_get_contents( __DIR__ . '/assets/css/fix-horizontal-overflow.css' );
+		}
 
-		<?php
 	}
 
 	/**
