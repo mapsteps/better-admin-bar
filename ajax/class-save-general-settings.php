@@ -23,7 +23,7 @@ class Save_General_Settings {
 	 *
 	 * @var array
 	 */
-	private $empty_allowed = array( 'remove_indicator', 'expanded', 'delete_on_uninstall', 'remove_font_awesome', 'remove_by_roles' );
+	private $empty_allowed = array( 'disable_swift_control', 'remove_indicator', 'expanded', 'delete_on_uninstall', 'remove_font_awesome', 'remove_by_roles' );
 
 	/**
 	 * Color setting fields.

@@ -11,6 +11,8 @@ $display_settings      = swift_control_get_display_settings();
 $disable_swift_control = $display_settings['disable_swift_control'];
 $remove_indicator      = $display_settings['remove_indicator'];
 $expanded              = $display_settings['expanded'];
+
+error_log(print_r($disable_swift_control, true));
 ?>
 
 <div class="heatbox display-settings-box">
