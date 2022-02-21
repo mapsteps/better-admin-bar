@@ -94,13 +94,6 @@ class Backwards_Compatibility {
 
 		$should_update = false;
 
-		// Assuming this was by updating the old "Better Admin Bar" plugin to the new one.
-		if ( ! empty( $old_options ) && empty( $new_options ) ) {
-			$should_update = true;
-
-			$display_options['disable_swift_control'] = 1;
-		}
-
 		// Move "remove_admin_bar" sub-option key.
 		if ( isset( $misc_options['remove_admin_bar'] ) ) {
 			$new_options['remove_by_roles'] = $misc_options['remove_admin_bar'];
@@ -137,7 +130,7 @@ class Backwards_Compatibility {
 		}
 
 		if ( isset( $old_options['fix_multiline'] ) ) {
-			$new_options['prevent_new_line'] = 1;
+			$new_options['fix_horizontal_overflow'] = 1;
 
 			$should_update = true;
 
