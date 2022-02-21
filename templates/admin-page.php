@@ -49,10 +49,10 @@ $GLOBALS['swift_control_widget_settings']  = $saved_widget_settings;
 			<nav>
 				<ul class="heatbox-tab-nav">
 					<li class="heatbox-tab-nav-item swift-control-settings-panel">
-						<a href="#settings"><?php _e( 'Swift Control', 'better-admin-bar' ); ?></a>
+						<a href="#settings"><?php _e( 'Quick Access Panel', 'better-admin-bar' ); ?></a>
 					</li>
 					<li class="heatbox-tab-nav-item admin-bar-panel">
-						<a href="#admin-bar"><?php _e( 'Admin Bar', 'better-admin-bar' ); ?></a>
+						<a href="#admin-bar"><?php _e( 'Admin Bar Settings', 'better-admin-bar' ); ?></a>
 					</li>
 					<li class="heatbox-tab-nav-item swift-control-tools-panel">
 						<a href="#tools"><?php _e( 'Tools', 'better-admin-bar' ); ?></a>
