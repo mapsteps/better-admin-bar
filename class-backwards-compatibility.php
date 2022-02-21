@@ -84,17 +84,13 @@ class Backwards_Compatibility {
 			return;
 		}
 
-		$old_option_name = 'admin_bar_settings'; // From the old "Better Admin Bar" plugin.
-		$new_option_name = 'swift_control_admin_bar_settings';
+		$old_option_name  = 'admin_bar_settings'; // From the old "Better Admin Bar" plugin.
+		$new_option_name  = 'swift_control_admin_bar_settings';
+		$misc_option_name = 'swift_control_misc_settings';
 
-		$misc_option_name    = 'swift_control_misc_settings';
-		$display_option_name = 'swift_control_display_settings';
-
-		$old_options = get_option( $old_option_name, array() );
-		$new_options = get_option( $new_option_name, array() );
-
-		$misc_options    = get_option( $misc_option_name, array() );
-		$display_options = get_option( $display_option_name, array() );
+		$old_options  = get_option( $old_option_name, array() );
+		$new_options  = get_option( $new_option_name, array() );
+		$misc_options = get_option( $misc_option_name, array() );
 
 		$should_update = false;
 
@@ -205,7 +201,6 @@ class Backwards_Compatibility {
 		// Update the options it should.
 		if ( $should_update ) {
 			update_option( $new_option_name, $new_options );
-			update_option( $display_option_name, $display_options );
 			update_option( $misc_option_name, $misc_options );
 
 			delete_option( $old_option_name );
