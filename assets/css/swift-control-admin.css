@@ -1,6 +1,6 @@
 /** Bootstrap override some styles, let's bring them back */
 .settings_page_better-admin-bar {
-	background-color: #f1f1f1;
+	/*background-color: #f1f1f1;*/
 }
 
 /**
@@ -23,16 +23,16 @@
 
 .swift-control-settings .heatbox-main {
 	min-height: 50px;
-	width: 53%;
+	width: 58%;
 }
 
 .swift-control-settings .heatbox-sidebar {
-	width: 45%;
+	width: 40%;
 }
 
 .swift-control-settings .heatbox-sidebar .widget-items {
-	padding: 15px;
-	background-color: #f4f4f4;
+	/*padding: 15px;*/
+	/*background-color: #f4f4f4;*/
 }
 
 .swift-control-settings
@@ -310,10 +310,6 @@ hr {
  * Active items area
  * --------------------------------------------------
  */
-.swift-control-settings .heatbox-main .heatbox {
-	max-width: 700px;
-}
-
 .swift-control-settings .heatbox-main .widget-item:last-child {
 	border-bottom-width: 0;
 }
@@ -723,11 +719,6 @@ hr {
 .swift-control-settings .general-settings-area,
 .swift-control-settings .swift-control-tools-panel {
 	position: relative;
-}
-
-.swift-control-settings .general-settings-area .heatbox,
-.swift-control-settings .swift-control-tools-panel .heatbox {
-	max-width: 700px;
 }
 
 /**
