@@ -11,6 +11,8 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 <div class="heatbox sidebar-heatbox is-clean pro-widgets-box">
 	<h2><?php _e( 'There is more!', 'better-admin-bar' ); ?></h2>
 
+	<p><?php _e( 'lorem20 - this panel needs improvement', 'better-admin-bar' ); ?></p>
+
 	<ul id="pro-items" class="widget-items pro-items">
 
 		<?php
@@ -34,4 +36,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 		<?php endforeach; ?>
 
 	</ul>
+
+	<a href="#" class="button button-primary button-larger button-full">Tedst</a>
+
 </div>
