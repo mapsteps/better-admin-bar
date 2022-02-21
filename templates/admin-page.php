@@ -82,8 +82,8 @@ $GLOBALS['swift_control_widget_settings']  = $saved_widget_settings;
 						<div class="stacked-heatbox-placeholder"></div>
 
 						<?php
-						require_once __DIR__ . '/setting-boxes/color-settings.php';
 						require_once __DIR__ . '/setting-boxes/display-settings.php';
+						require_once __DIR__ . '/setting-boxes/color-settings.php';
 						require_once __DIR__ . '/setting-boxes/misc-settings.php';
 						?>
 					</div>
