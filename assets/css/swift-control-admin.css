@@ -64,6 +64,10 @@
 	z-index: 100;
 }
 
+.heatbox-content p:last-child {
+	margin-bottom: 0;
+}
+
 /**
  * ------------------------------
  * Setting fields
