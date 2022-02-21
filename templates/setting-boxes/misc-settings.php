@@ -11,9 +11,6 @@ $misc_settings = swift_control_get_misc_settings();
 
 $remove_font_awesome = isset( $misc_settings['remove_font_awesome'] ) ? absint( $misc_settings['remove_font_awesome'] ) : 0;
 $delete_on_uninstall = isset( $misc_settings['delete_on_uninstall'] ) ? absint( $misc_settings['delete_on_uninstall'] ) : 0;
-
-$roles_obj = new \WP_Roles();
-$roles     = $roles_obj->role_names;
 ?>
 
 <div class="heatbox misc-settings-box">

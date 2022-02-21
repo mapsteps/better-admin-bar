@@ -8,10 +8,12 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 ?>
 
-<div class="heatbox sidebar-heatbox is-clean pro-widgets-box">
+<div class="heatbox sidebar-heatbox pro-widgets-box">
 	<h2><?php _e( 'There is more!', 'better-admin-bar' ); ?></h2>
 
-	<p><?php _e( 'lorem20 - this panel needs improvement', 'better-admin-bar' ); ?></p>
+	<div class="heatbox-content">
+		<p><?php _e( 'lorem20 - this panel needs improvement', 'better-admin-bar' ); ?></p>
+	</div>
 
 	<ul id="pro-items" class="widget-items pro-items">
 
@@ -37,6 +39,9 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 	</ul>
 
-	<a href="#" class="button button-primary button-larger button-full">Tedst</a>
+	<div class="heatbox-content">
+		<a href="#" class="button button-primary button-larger button-full">Tedst</a>
+	</div>
+
 
 </div>
