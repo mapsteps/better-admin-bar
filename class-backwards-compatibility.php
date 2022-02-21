@@ -144,14 +144,8 @@ class Backwards_Compatibility {
 			unset( $old_options['fix_multiline'] );
 		}
 
-		/**
-		 * Although in the old plugin it says "Hide Below",
-		 * the implementation was using @media (max-width: value) instead of @media (max-width: value - 1).
-		 *
-		 * That means, tehcnically, it's not "hide_below", but "hide on max-width".
-		 */
 		if ( isset( $old_options['hide_below'] ) ) {
-			$new_options['hide_on_max_width'] = $old_options['hide_below'] . 'px';
+			$new_options['hide_below_screen_size'] = $old_options['hide_below'] . 'px';
 
 			$should_update = true;
 
