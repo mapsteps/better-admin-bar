@@ -113,10 +113,12 @@ $GLOBALS['swift_control_widget_settings']  = $saved_widget_settings;
 		</form>
 
 		<div class="heatbox-admin-panel swift-control-tools-panel">
-			<?php
-			require_once __DIR__ . '/setting-boxes/export-widgets.php';
-			require_once __DIR__ . '/setting-boxes/import-widgets.php';
-			?>
+			<div class="swift-control-tools-container">
+				<?php
+				require_once __DIR__ . '/setting-boxes/export-widgets.php';
+				require_once __DIR__ . '/setting-boxes/import-widgets.php';
+				?>
+			</div>
 		</div>
 
 		<div class="heatbox-divider"></div>

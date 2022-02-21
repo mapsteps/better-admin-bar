@@ -45,10 +45,6 @@
 	padding: 0;
 }
 
-.swift-control-tools-panel p.submit {
-	margin-bottom: 0;
-}
-
 .setting-fields .label {
 	display: block;
 	font-weight: 600;
@@ -776,4 +772,36 @@ hr {
 		font-size: 13px;
 	}
 
+}
+
+/**
+ * --------------------------------------------------
+ * Tools
+ * --------------------------------------------------
+ */
+.swift-control-tools-container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.swift-control-tools-container .heatbox {
+	display: flex;
+	flex-direction: column;
+	flex: 0 49%;
+	margin-right: 2%;
+}
+
+.swift-control-tools-container .heatbox:nth-child(even) {
+	margin-right: 0;
+}
+
+.swift-control-tools-container p.submit {
+	margin-bottom: 0;
+}
+
+@media screen and (max-width:768px) {
+	.swift-control-tools-container .heatbox {
+		flex: 0 100%;
+		margin-right: 0;
+	}
 }
