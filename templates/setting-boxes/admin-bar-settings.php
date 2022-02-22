@@ -13,7 +13,7 @@ $roles_obj = new \WP_Roles();
 $roles     = $roles_obj->role_names;
 ?>
 
-<div class="heatbox misc-settings-box">
+<div class="heatbox admin-bar-settings-box">
 	<h2>
 		<?php _e( 'Remove Admin Bar', 'better-admin-bar' ); ?>
 	</h2>
@@ -43,7 +43,7 @@ $roles     = $roles_obj->role_names;
 	</div>
 </div>
 
-<div class="heatbox misc-settings-box">
+<div class="heatbox admin-bar-settings-box">
 	<h2>
 		<?php _e( 'Auto Hide Admin Bar', 'better-admin-bar' ); ?>
 	</h2>
@@ -92,7 +92,7 @@ $roles     = $roles_obj->role_names;
 	</div>
 </div>
 
-<div class="heatbox misc-settings-box">
+<div class="heatbox admin-bar-settings-box">
 	<h2>
 		<?php _e( 'Display Settings', 'better-admin-bar' ); ?>
 	</h2>

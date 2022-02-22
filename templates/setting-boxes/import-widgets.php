@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 		<h2><?php _e( 'Import', 'better-admin-bar' ); ?></h2>
 		<div class="heatbox-content">
 			<p>
-				<?php _e( 'Select the Widgets JSON file you would like to import. When you click the import button below, Better Admin Bar will import the widgets.', 'better-admin-bar' ); ?>
+				<?php _e( 'Select the JSON file you would like to import.', 'better-admin-bar' ); ?>
 			</p>
 			<div class="setting-fields is-gapless">
 				<div class="fields-wrapper">

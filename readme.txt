@@ -17,7 +17,7 @@ The WordPress Admin Bar reimagined. Replace the default WordPress admin bar and 
 - Hide Admin Bar for all users or specific user roles
 - Auto-hide the WordPress Admin Bar
 - Remove 32px top gap
-- Fix Menu Item Overflow in the Admin Bar
+- Fix overflowing menu items in the Admin Bar
 - Hide Admin Bar from smaller screens
 - Change the opacity of the Admin Bar
 - Change the opacity of the Admin Bar (on hover)

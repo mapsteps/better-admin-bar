@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 		<h2><?php _e( 'Export', 'better-admin-bar' ); ?></h2>
 		<div class="heatbox-content">
 			<p>
-				<?php _e( 'Use the export button to export to a .json file which you can then import to another Better Admin Bar installation.', 'better-admin-bar' ); ?>
+				<?php _e( 'Use the export button to generate a .json file which you can then import to another WordPress installation.', 'better-admin-bar' ); ?>
 			</p>
 			<div class="setting-fields is-gapless">
 				<div class="field">
