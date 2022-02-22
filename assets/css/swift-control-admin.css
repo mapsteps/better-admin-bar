@@ -154,8 +154,8 @@ hr {
 	top: 50%;
 	-webkit-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
-	color: orange;
-	font-size: 16px;
+	color: #47d87c;
+	font-size: 17px;
 }
 
 .swift-control-settings .pro-unlock:hover {
@@ -264,6 +264,19 @@ hr {
 
 /**
  * --------------------------------------------------
+ * PRO items metabox
+ * --------------------------------------------------
+ */
+.swift-control-settings .pro-widgets-box {
+	margin-top: 20px;
+}
+
+.swift-control-settings .pro-widgets-box .pro-items {
+	margin-bottom: 20px;
+}
+
+/**
+ * --------------------------------------------------
  * jQuery UI Sortable styling
  * --------------------------------------------------
  */
@@ -365,9 +378,31 @@ hr {
 	width: 17%;
 }
 
+/** Locked handle */
 .swift-control-settings .widget-item.is-locked .text-wrapper {
 	padding-left: 10px;
-	width: 75%;
+	width: 92%;
+	flex-wrap: wrap;
+}
+
+.swift-control-settings .widget-item.is-locked {
+	border:  1px solid #ededf0;
+	background-color: #f5f5f7;
+}
+
+.swift-control-settings .widget-item.is-locked .text-wrapper p {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.swift-control-settings .widget-item.is-locked .text-wrapper p:first-child {
+	margin-bottom: 6px;
+	font-size: 16px;
+}
+
+.swift-control-settings .widget-item.is-locked .text-wrapper .description {
+	font-weight: 400;
 }
 
 /**
@@ -683,7 +718,7 @@ hr {
 
 	/** Locked handle */
 	.swift-control-settings .widget-item.is-locked .text-wrapper {
-		width: 77%;
+		width: 90%;
 	}
 }
 
@@ -712,7 +747,7 @@ hr {
 
 	/** Locked handle */
 	.swift-control-settings .widget-item.is-locked .text-wrapper {
-		width: 80%;
+		width: 95%;
 	}
 
 	.swift-control-settings .heatbox-main,
@@ -759,9 +794,9 @@ hr {
 		width: 18%;
 	}
 
-	/** Drag & locked handle */
+	/** Locked handle */
 	.swift-control-settings .widget-item.is-locked .text-wrapper {
-		width: 75%;
+		width: 93%;
 	}
 
 	/** Menu item's settings */

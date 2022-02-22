@@ -8,35 +8,28 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 return array(
-	'page_builders'     => array(
-		'text'       => __( 'Page Builder Support', 'better-admin-bar' ),
-		'url'        => 'https://wpswiftcontrol.com/pro/',
-		'new_tab'    => true,
-		'icon_class' => 'fas fa-unlock-alt',
-	),
 	'custom_links'      => array(
-		'text'       => __( 'Custom Controls', 'better-admin-bar' ),
-		'url'        => 'https://wpswiftcontrol.com/pro/',
-		'new_tab'    => true,
-		'icon_class' => 'fas fa-unlock-alt',
+		'text'        => __( 'Custom Controls', 'better-admin-bar' ),
+		'description' => __( 'Add Custom Controls to your Quick Access Panel', 'better-admin-bar' ),
+	),
+	'page_builders'     => array(
+		'text'        => __( 'Page Builder Support', 'better-admin-bar' ),
+		'description' => __( 'Better Admin Bar PRO will automatically detect and launch the respective page builder if your page was created in Elementor, Brizy, Divi, Oxygen or Beaver Builder.', 'better-admin-bar' ),
 	),
 	'custom_post_types' => array(
-		'text'       => __( 'Custom Post Type Support', 'better-admin-bar' ),
-		'url'        => 'https://wpswiftcontrol.com/pro/',
-		'new_tab'    => true,
-		'icon_class' => 'fas fa-unlock-alt',
+		'text'        => __( 'Custom Post Type Support', 'better-admin-bar' ),
+		'description' => __( 'Better Admin Bar PRO automatically detects registered post types and provides you with the necessary controls.', 'better-admin-bar' ),
+		'url'         => 'https://wpswiftcontrol.com/pro/',
+		'new_tab'     => true,
+		'icon_class'  => 'fa-solid fa-octagon-check',
 	),
 	'woocommerce'       => array(
-		'text'       => __( 'WooCommerce Support', 'better-admin-bar' ),
-		'url'        => 'https://wpswiftcontrol.com/pro/',
-		'new_tab'    => true,
-		'icon_class' => 'fas fa-unlock-alt',
+		'text'        => __( 'Multisite Support', 'better-admin-bar' ),
+		'description' => __( 'Better Admin Bar PRO is 100% multisite compatible. Configure the Quick Access Panel from the main site of your network and your changes will apply to all subsites.', 'better-admin-bar' ),
 	),
 	'logout'            => array(
-		'text'         => __( 'Logout Widget', 'better-admin-bar' ),
-		'url'          => 'https://wpswiftcontrol.com/pro/',
-		'icon_class'   => 'fas fa-unlock-alt',
-		'redirect_url' => '',
+		'text'         => __( 'User Role Access', 'better-admin-bar' ),
+		'description'  => __( 'Restrict Quick Access Panel controls to specific User Roles with Better Admin Bar PRO.', 'better-admin-bar' ),
 	),
-
 );
+
