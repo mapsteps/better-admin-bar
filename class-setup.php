@@ -435,7 +435,9 @@ class Setup {
 		}
 
 		if ( $admin_bar_settings['fix_horizontal_overflow'] ) {
-			echo file_get_contents( __DIR__ . '/assets/css/fix-horizontal-overflow.css' );
+			echo '<style>' .
+			file_get_contents( __DIR__ . '/assets/css/fix-horizontal-overflow.css' ) .
+			'</style>';
 		}
 
 	}
