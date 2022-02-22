@@ -24,7 +24,7 @@ $roles     = $roles_obj->role_names;
 				<p>
 					<?php _e( 'Remove Admin Bar from the frontend for:', 'better-admin-bar' ); ?>
 				</p>
-				<select name="remove_by_roles[]" id="remove_by_roles" class="general-setting-field multiselect remove-admin-bar is-fullwidth" multiple>
+				<select name="remove_by_roles[]" id="remove_by_roles" class="general-setting-field multiselect remove-admin-bar use-select2 is-fullwidth" multiple>
 					<option value="all" <?php echo esc_attr( in_array( 'all', $admin_bar_settings['remove_by_roles'], true ) ? 'selected' : '' ); ?>><?php _e( 'All', 'better-admin-bar' ); ?></option>
 
 					<?php foreach ( $roles as $role_key => $role_name ) : ?>
@@ -41,7 +41,7 @@ $roles     = $roles_obj->role_names;
 			</label>
 		</div>
 
-		<hr>
+		<hr data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
 
 		<div class="field" data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
 			<label for="overflow_layout" class="label checkbox-label">
@@ -59,7 +59,7 @@ $roles     = $roles_obj->role_names;
 			</label>
 		</div>
 
-		<hr>
+		<hr data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
 
 		<div class="field is-horizontal" data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
 			<div class="field-label">

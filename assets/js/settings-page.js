@@ -101,32 +101,42 @@
 		);
 		var parentField = document.querySelector("#" + parentName);
 
-		checkChainingState(child, parentField);
+		var shownDisplayType = window.getComputedStyle(child).display;
+		shownDisplayType = shownDisplayType ? shownDisplayType : "block";
 
-		parentField.addEventListener("change", function (e) {
-			checkChainingState(child, parentField);
-		});
+		checkChainingState(child, shownDisplayType, parentField);
+
+		if (parentField.classList.contains("use-select2")) {
+			$(parentField).on("change", function (e) {
+				checkChainingState(child, shownDisplayType, parentField);
+			});
+		} else {
+			parentField.addEventListener("change", function (e) {
+				checkChainingState(child, shownDisplayType, parentField);
+			});
+		}
 	}
 
 	/**
 	 * Check the children state: shown or hidden.
 	 *
 	 * @param {HTMLElement} child The children element.
+	 * @param string shownDisplayType The display type of child when it's shown (e.g: "flex" or "block").
 	 * @param {HTMLElement} parent The parent/ dependency element.
 	 */
-	function checkChainingState(child, parent) {
+	function checkChainingState(child, shownDisplayType, parent) {
 		var parentTagName = parent.tagName.toLocaleLowerCase();
-		var shownDisplayType = window.getComputedStyle(child).display;
-		shownDisplayType = shownDisplayType ? shownDisplayType : "block";
 
 		if (parentTagName === "input" && parent.type === "checkbox") {
-			if (child.dataset.showIfFieldChecked) {
+			// Handle "data-show-if-field-checked".
+			if (child.hasAttribute("data-show-if-field-checked")) {
 				if (parent.checked) {
 					child.style.display = shownDisplayType;
 				} else {
 					child.style.display = "none";
 				}
 			} else {
+				// Handle "data-show-if-field-unchecked".
 				if (!parent.checked) {
 					child.style.display = shownDisplayType;
 				} else {
@@ -164,7 +174,7 @@
 			}
 		} else {
 			// Handle "data-hide-if-field".
-			if (parentValue === wantedValue) {
+			if (JSON.stringify(parentValue) === JSON.stringify(wantedValue)) {
 				child.style.display = "none";
 			} else {
 				child.style.display = shownDisplayType;
