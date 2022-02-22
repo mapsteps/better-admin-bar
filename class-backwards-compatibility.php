@@ -80,7 +80,7 @@ class Backwards_Compatibility {
 	public function migrate_options() {
 
 		// Make sure we don't check again.
-		if ( get_option( 'admin_bar_settings_backwards_compat' ) ) {
+		if ( get_option( 'swift_control_compat_migrate_options' ) ) {
 			return;
 		}
 
@@ -200,10 +200,10 @@ class Backwards_Compatibility {
 			delete_option( $old_option_name );
 		}
 
-		do_action( 'admin_bar_settings_backwards_compat' );
+		do_action( 'swift_control_compat_migrate_options' );
 
 		// Make sure we don't check again.
-		update_option( 'admin_bar_settings_backwards_compat', 1 );
+		update_option( 'swift_control_compat_migrate_options', 1 );
 
 	}
 

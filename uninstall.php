@@ -26,4 +26,4 @@ delete_option( 'swift_control_misc_settings' );
 delete_option( 'swift_control_discontinue_message' );
 
 // Delete the backwards compatibility option(s).
-delete_option( 'admin_bar_settings_backwards_compat' );
+delete_option( 'swift_control_compat_migrate_options' );
