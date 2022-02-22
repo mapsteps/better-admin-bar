@@ -50,6 +50,10 @@
 	font-weight: 600;
 }
 
+.setting-fields .description {
+	font-weight: 400;
+}
+
 hr {
 	margin: 20px 0;
 	border-top: 1px solid #eee;
