@@ -302,11 +302,17 @@ function swift_control_get_admin_bar_settings() {
 	$saved_settings = get_option( 'swift_control_admin_bar_settings', array() );
 
 	$admin_bar_settings = array(
-		'disable_swift_control'   => isset( $saved_settings['disable_swift_control'] ) ? absint( $saved_settings['disable_swift_control'] ) : 0,
-		'remove_indicator'        => isset( $saved_settings['remove_indicator'] ) ? absint( $saved_settings['remove_indicator'] ) : 0,
+		'remove_by_roles'         => isset( $saved_settings['remove_by_roles'] ) ? $saved_settings['remove_by_roles'] : array(),
 		'overflow_layout'         => isset( $saved_settings['overflow_layout'] ) ? absint( $saved_settings['overflow_layout'] ) : 0,
 		'fix_horizontal_overflow' => isset( $saved_settings['fix_horizontal_overflow'] ) ? absint( $saved_settings['fix_horizontal_overflow'] ) : 0,
+		'hide_below_screen_width' => isset( $saved_settings['hide_below_screen_width'] ) ? $saved_settings['hide_below_screen_width'] : '',
 	);
+
+	// Backward compatibility: old value's format was int (0 / 1).
+	if ( is_numeric( $admin_bar_settings['remove_by_roles'] ) ) {
+		$admin_bar_settings['remove_by_roles'] = absint( $admin_bar_settings['remove_by_roles'] );
+		$admin_bar_settings['remove_by_roles'] = $admin_bar_settings['remove_by_roles'] ? array( 'all' ) : array();
+	}
 
 	return $admin_bar_settings;
 }

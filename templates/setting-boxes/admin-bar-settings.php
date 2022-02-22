@@ -9,15 +9,6 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 $admin_bar_settings = swift_control_get_admin_bar_settings();
 
-if ( isset( $admin_bar_settings['remove_by_roles'] ) ) {
-	if ( is_numeric( $admin_bar_settings['remove_by_roles'] ) ) {
-		$admin_bar_settings['remove_by_roles'] = absint( $admin_bar_settings['remove_by_roles'] );
-		$admin_bar_settings['remove_by_roles'] = $admin_bar_settings['remove_by_roles'] ? array( 'all' ) : array();
-	}
-} else {
-	$admin_bar_settings['remove_by_roles'] = array();
-}
-
 $roles_obj = new \WP_Roles();
 $roles     = $roles_obj->role_names;
 ?>
@@ -54,7 +45,7 @@ $roles     = $roles_obj->role_names;
 
 		<div class="field">
 			<label for="overflow_layout" class="label checkbox-label">
-				<?php _e( 'Enable layout overflow instead of preprending admin bar before the layout.', 'better-admin-bar' ); ?>
+				<?php _e( 'Enable layout overflow instead of preprending admin bar before the layout', 'better-admin-bar' ); ?>
 				<input type="checkbox" name="overflow_layout" id="overflow_layout" value="1" class="general-setting-field" <?php checked( $admin_bar_settings['overflow_layout'], 1 ); ?>>
 				<div class="indicator"></div>
 			</label>
@@ -62,10 +53,19 @@ $roles     = $roles_obj->role_names;
 
 		<div class="field">
 			<label for="fix_horizontal_overflow" class="label checkbox-label">
-				<?php _e( 'Fix horizontal overflow when there are too many items in admin bar.', 'better-admin-bar' ); ?>
+				<?php _e( 'Fix horizontal overflow when there are too many items in admin bar', 'better-admin-bar' ); ?>
 				<input type="checkbox" name="fix_horizontal_overflow" id="fix_horizontal_overflow" value="1" class="general-setting-field" <?php checked( $admin_bar_settings['fix_horizontal_overflow'], 1 ); ?>>
 				<div class="indicator"></div>
 			</label>
+		</div>
+
+		<div class="field">
+			<label for="hide_below_screen_width" class="label">
+				<?php _e( 'Hide admin bar when screen width is smaller than', 'better-admin-bar' ); ?>
+			</label>
+			<div class="input-control">
+				<input type="text" name="hide_below_screen_width" id="hide_below_screen_width" class="general-setting-field" value="<?php echo esc_attr( $admin_bar_settings['hide_below_screen_width'] ); ?>">
+			</div>
 		</div>
 
 	</div>

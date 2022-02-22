@@ -67,7 +67,7 @@ class Setup {
 		add_filter( 'admin_body_class', array( $this, 'admin_body_class' ), 20 );
 		add_action( 'wp', array( $this, 'check_page' ) );
 		add_action( 'wp', array( $this, 'remove_admin_bar' ) );
-		add_action( 'wp_head', array( $this, 'admin_bar_overflow_layout' ), PHP_INT_MAX );
+		add_action( 'wp_head', array( $this, 'wp_head' ), PHP_INT_MAX );
 
 		// Process export-import.
 		add_action( 'admin_init', array( $this, 'process_export' ) );
@@ -410,9 +410,9 @@ class Setup {
 	}
 
 	/**
-	 * Set the admin bar to be displayed overflowing the page layout.
+	 * Run script on wp_head action hook.
 	 */
-	public function admin_bar_overflow_layout() {
+	public function wp_head() {
 
 		if ( self::$remove_admin_bar ) {
 			return;
@@ -420,25 +420,61 @@ class Setup {
 
 		$admin_bar_settings = swift_control_get_admin_bar_settings();
 
+		echo '<style type="text/css">';
+
 		if ( $admin_bar_settings['overflow_layout'] ) {
 			?>
 
-			<style>
-				html,
-				html body,
-				* html body{
-					margin-top: 0 !important
-				}
-			</style>
+			html,
+			html body,
+			* html body{
+				margin-top: 0 !important
+			}
 
 			<?php
 		}
 
 		if ( $admin_bar_settings['fix_horizontal_overflow'] ) {
-			echo '<style>' .
-			file_get_contents( __DIR__ . '/assets/css/fix-horizontal-overflow.css' ) .
-			'</style>';
+			echo file_get_contents( __DIR__ . '/assets/css/fix-horizontal-overflow.css' );
 		}
+
+		if ( $admin_bar_settings['hide_below_screen_width'] ) {
+			$max_width_number = 0;
+			$max_width_unit   = 'px';
+			$screen_max_width = $admin_bar_settings['hide_below_screen_width'];
+
+			// If the value includes the unit, then replace the `value_unit` (set from choice) with unit from value.
+			if ( ! is_numeric( $screen_max_width ) ) {
+				$max_width_unit   = preg_replace( '/\d+/', '', $screen_max_width );
+				$max_width_number = str_ireplace( $max_width_unit, '', $screen_max_width );
+				$max_width_number = (float) $max_width_number;
+			} else {
+				$max_width_number = (float) $screen_max_width;
+			}
+
+			--$max_width_number;
+
+			$screen_max_width = $max_width_number . $max_width_unit;
+			?>
+
+			@media (max-width: <?php echo esc_attr( $screen_max_width ); ?>) {
+				<?php if ( ! $admin_bar_settings['overflow_layout'] ) : ?>
+					html,
+					html body,
+					* html body{
+						margin-top: 0 !important
+					}
+				<?php endif; ?>
+
+				html #wpadminbar {
+					display: none !important;
+				}
+			}
+
+			<?php
+		}
+
+		echo '</style>';
 
 	}
 
