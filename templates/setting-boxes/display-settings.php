@@ -21,7 +21,7 @@ $expanded              = $display_settings['expanded'];
 
 		<div class="field">
 			<label for="disable_swift_control" class="label checkbox-label">
-				<?php _e( 'Disable quick access panel', 'better-admin-bar' ); ?>
+				<?php _e( 'Disable Quick Access Panel', 'better-admin-bar' ); ?>
 				<input type="checkbox" name="disable_swift_control" id="disable_swift_control" value="1" class="general-setting-field" <?php checked( $disable_swift_control, 1 ); ?>>
 				<div class="indicator"></div>
 			</label>
@@ -29,7 +29,7 @@ $expanded              = $display_settings['expanded'];
 
 		<div class="field" data-show-if-field-unchecked="disable_swift_control">
 			<label for="remove_indicator" class="label checkbox-label">
-				<?php _e( 'Remove indicator arrow', 'better-admin-bar' ); ?>
+				<?php _e( 'Remove Indicator Arrow', 'better-admin-bar' ); ?>
 				<input type="checkbox" name="remove_indicator" id="remove_indicator" value="1" class="general-setting-field" <?php checked( $remove_indicator, 1 ); ?>>
 				<div class="indicator"></div>
 			</label>
@@ -37,7 +37,7 @@ $expanded              = $display_settings['expanded'];
 
 		<div class="field" data-show-if-field-unchecked="disable_swift_control">
 			<label for="expanded" class="label checkbox-label">
-				<?php _e( 'Expand control panel by default', 'better-admin-bar' ); ?>
+				<?php _e( 'Expand Quick Access Panel by default', 'better-admin-bar' ); ?>
 				<input type="checkbox" name="expanded" id="expanded" value="1" class="general-setting-field" <?php checked( $expanded, 1 ); ?>>
 				<div class="indicator"></div>
 			</label>
