@@ -59,12 +59,20 @@ $roles     = $roles_obj->role_names;
 			</label>
 		</div>
 
-		<div class="field">
-			<label for="hide_below_screen_width" class="label">
-				<?php _e( 'Hide admin bar when screen width is smaller than', 'better-admin-bar' ); ?>
-			</label>
-			<div class="input-control">
-				<input type="text" name="hide_below_screen_width" id="hide_below_screen_width" class="general-setting-field" value="<?php echo esc_attr( $admin_bar_settings['hide_below_screen_width'] ); ?>">
+		<hr>
+
+		<div class="field is-horizontal">
+			<div class="field-label">
+				<label for="hide_below_screen_width" class="label">
+					<?php _e( 'Hide admin bar when screen width is smaller than', 'better-admin-bar' ); ?>
+				</label>
+			</div>
+			<div class="field-body">
+				<div class="field">
+					<div class="control">
+						<input type="text" name="hide_below_screen_width" id="hide_below_screen_width" class="general-setting-field" value="<?php echo esc_attr( $admin_bar_settings['hide_below_screen_width'] ); ?>">
+					</div>
+				</div>
 			</div>
 		</div>
 
