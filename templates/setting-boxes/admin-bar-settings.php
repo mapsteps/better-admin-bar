@@ -43,7 +43,7 @@ $roles     = $roles_obj->role_names;
 
 		<hr>
 
-		<div class="field">
+		<div class="field" data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
 			<label for="overflow_layout" class="label checkbox-label">
 				<?php _e( 'Enable layout overflow instead of preprending admin bar before the layout', 'better-admin-bar' ); ?>
 				<input type="checkbox" name="overflow_layout" id="overflow_layout" value="1" class="general-setting-field" <?php checked( $admin_bar_settings['overflow_layout'], 1 ); ?>>
@@ -51,7 +51,7 @@ $roles     = $roles_obj->role_names;
 			</label>
 		</div>
 
-		<div class="field">
+		<div class="field" data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
 			<label for="fix_horizontal_overflow" class="label checkbox-label">
 				<?php _e( 'Fix horizontal overflow when there are too many items in admin bar', 'better-admin-bar' ); ?>
 				<input type="checkbox" name="fix_horizontal_overflow" id="fix_horizontal_overflow" value="1" class="general-setting-field" <?php checked( $admin_bar_settings['fix_horizontal_overflow'], 1 ); ?>>
@@ -61,7 +61,7 @@ $roles     = $roles_obj->role_names;
 
 		<hr>
 
-		<div class="field is-horizontal">
+		<div class="field is-horizontal" data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
 			<div class="field-label">
 				<label for="hide_below_screen_width" class="label">
 					<?php _e( 'Hide admin bar when screen width is smaller than', 'better-admin-bar' ); ?>
@@ -71,6 +71,38 @@ $roles     = $roles_obj->role_names;
 				<div class="field">
 					<div class="control">
 						<input type="text" name="hide_below_screen_width" id="hide_below_screen_width" class="general-setting-field" value="<?php echo esc_attr( $admin_bar_settings['hide_below_screen_width'] ); ?>">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="field is-horizontal" data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
+			<div class="field-label">
+				<label for="inactive_opacity" class="label">
+					<?php _e( "The admin bar opacity when it is inactive", 'better-admin-bar' ); ?>
+				</label>
+			</div>
+			<div class="field-body">
+				<div class="field">
+					<div class="control">
+						<input type="number" name="inactive_opacity" id="inactive_opacity" class="general-setting-field" value="<?php echo esc_attr( $admin_bar_settings['inactive_opacity'] ); ?>">
+						<code>%</code>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="field is-horizontal" data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
+			<div class="field-label">
+				<label for="active_opacity" class="label">
+					<?php _e( "The admin bar opacity when it is active (on hover)", 'better-admin-bar' ); ?>
+				</label>
+			</div>
+			<div class="field-body">
+				<div class="field">
+					<div class="control">
+						<input type="number" name="active_opacity" id="active_opacity" class="general-setting-field" value="<?php echo esc_attr( $admin_bar_settings['active_opacity'] ); ?>">
+						<code>%</code>
 					</div>
 				</div>
 			</div>

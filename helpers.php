@@ -306,6 +306,8 @@ function swift_control_get_admin_bar_settings() {
 		'overflow_layout'         => isset( $saved_settings['overflow_layout'] ) ? absint( $saved_settings['overflow_layout'] ) : 0,
 		'fix_horizontal_overflow' => isset( $saved_settings['fix_horizontal_overflow'] ) ? absint( $saved_settings['fix_horizontal_overflow'] ) : 0,
 		'hide_below_screen_width' => isset( $saved_settings['hide_below_screen_width'] ) ? $saved_settings['hide_below_screen_width'] : '',
+		'inactive_opacity'        => isset( $saved_settings['inactive_opacity'] ) && '' !== $saved_settings['inactive_opacity'] ? absint( $saved_settings['inactive_opacity'] ) : '',
+		'active_opacity'          => isset( $saved_settings['active_opacity'] ) && '' !== $saved_settings['active_opacity'] ? absint( $saved_settings['active_opacity'] ) : '',
 	);
 
 	// Backward compatibility: old value's format was int (0 / 1).

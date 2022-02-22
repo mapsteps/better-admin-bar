@@ -461,7 +461,7 @@ class Setup {
 				<?php if ( ! $admin_bar_settings['overflow_layout'] ) : ?>
 					html,
 					html body,
-					* html body{
+					* html body {
 						margin-top: 0 !important
 					}
 				<?php endif; ?>
@@ -469,6 +469,49 @@ class Setup {
 				html #wpadminbar {
 					display: none !important;
 				}
+			}
+
+			<?php
+		}
+
+		// Needs to be exactly '' (empty string) checking, not just empty check.
+		if ( '' !== $admin_bar_settings['inactive_opacity'] ) {
+			$inactive_opacity = absint( $admin_bar_settings['inactive_opacity'] );
+			?>
+
+			html #wpadminbar {
+				opacity: <?php echo esc_attr( $inactive_opacity / 100 ); ?>;
+				-webkit-transition: all .3s ease;
+				transition: all .3s ease;
+			}
+
+			<?php
+			/**
+			 * If inactive opacity is set and active opacity is empty, then lets set the active value to use the inactive value.
+			 * Needs to be exactly '' (empty string) checking, not just empty check.
+			 */
+			if ( '' === $admin_bar_settings['active_opacity'] ) {
+				$active_opacity = $inactive_opacity;
+				?>
+
+				html #wpadminbar:hover {
+					opacity: <?php echo esc_attr( $active_opacity / 100 ); ?>
+				}
+
+				<?php
+			}
+		}
+
+		/**
+		 * The active / hover state does not depend on the inactive state.
+		 * Needs to be exactly '' (empty string) checking, not just empty check.
+		 */
+		if ( '' !== $admin_bar_settings['active_opacity'] ) {
+			$active_opacity = '' !== $admin_bar_settings['active_opacity'] ? absint( $admin_bar_settings['active_opacity'] ) : 100;
+			?>
+
+			html #wpadminbar:hover {
+				opacity: <?php echo esc_attr( $active_opacity / 100 ); ?>
 			}
 
 			<?php

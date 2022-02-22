@@ -92,10 +92,12 @@ class Backwards_Compatibility {
 		$new_options  = get_option( $new_option_name, array() );
 		$misc_options = get_option( $misc_option_name, array() );
 
-		$should_update = false;
+		$is_old_bab_user = false;
+		$should_update   = false;
 
 		if ( get_option( 'admin_bar_settings_compat' ) ) {
-			$should_update = true;
+			$is_old_bab_user = true;
+			$should_update   = true;
 
 			$new_options['overflow_layout'] = 1;
 			delete_option( 'admin_bar_settings_compat' );
@@ -152,20 +154,34 @@ class Backwards_Compatibility {
 			unset( $old_options['hide_below'] );
 		}
 
-		if ( isset( $old_options['active_opacity'] ) ) {
-			$new_options['active_opacity'] = $old_options['active_opacity'];
-
-			$should_update = true;
-
-			unset( $old_options['active_opacity'] );
-		}
-
 		if ( isset( $old_options['inactive_opacity'] ) ) {
 			$new_options['inactive_opacity'] = $old_options['inactive_opacity'];
 
 			$should_update = true;
 
 			unset( $old_options['inactive_opacity'] );
+		} else {
+			// Old "Better Admin Bar" plugin implemented 30 (%) as default inactive opacity.
+			if ( $is_old_bab_user ) {
+				$new_options['inactive_opacity'] = 30;
+
+				$should_update = true;
+			}
+		}
+
+		if ( isset( $old_options['active_opacity'] ) ) {
+			$new_options['active_opacity'] = $old_options['active_opacity'];
+
+			$should_update = true;
+
+			unset( $old_options['active_opacity'] );
+		} else {
+			// Old "Better Admin Bar" plugin implemented 100 (%) as default active opacity.
+			if ( $is_old_bab_user ) {
+				$new_options['active_opacity'] = 100;
+
+				$should_update = true;
+			}
 		}
 
 		if ( isset( $old_options['hover_area'] ) ) {

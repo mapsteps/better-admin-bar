@@ -74,6 +74,7 @@
 	function setupChainingFields() {
 		var selectors = [
 			"[data-show-if-field]",
+			"[data-hide-if-field]",
 			"[data-show-if-field-checked]",
 			"[data-show-if-field-unchecked]",
 		];
@@ -115,17 +116,19 @@
 	 */
 	function checkChainingState(child, parent) {
 		var parentTagName = parent.tagName.toLocaleLowerCase();
+		var shownDisplayType = window.getComputedStyle(child).display;
+		shownDisplayType = shownDisplayType ? shownDisplayType : "block";
 
 		if (parentTagName === "input" && parent.type === "checkbox") {
 			if (child.dataset.showIfFieldChecked) {
 				if (parent.checked) {
-					child.style.display = "block";
+					child.style.display = shownDisplayType;
 				} else {
 					child.style.display = "none";
 				}
 			} else {
 				if (!parent.checked) {
-					child.style.display = "block";
+					child.style.display = shownDisplayType;
 				} else {
 					child.style.display = "none";
 				}
@@ -134,19 +137,38 @@
 			return;
 		}
 
-		var wantedValue = child.dataset.showIfValue;
+		var wantedValue = child.hasAttribute("data-show-if-field")
+			? child.dataset.showIfValue
+			: child.dataset.hideIfValue;
 		var parentValue;
 
 		if (parentTagName === "select") {
-			parentValue = parent.options[parent.selectedIndex].value;
+			if (parent.multiple) {
+				parentValue = $(parent).val();
+				wantedValue = JSON.parse(wantedValue);
+			} else {
+				if (parent.selectedIndex > -1) {
+					parentValue = parent.options[parent.selectedIndex].value;
+				}
+			}
 		} else {
 			parentValue = parent.value;
 		}
 
-		if (parentValue === wantedValue) {
-			child.style.display = "block";
+		// Handle "data-show-if-field".
+		if (child.hasAttribute("data-show-if-field")) {
+			if (parentValue === wantedValue) {
+				child.style.display = shownDisplayType;
+			} else {
+				child.style.display = "none";
+			}
 		} else {
-			child.style.display = "none";
+			// Handle "data-hide-if-field".
+			if (parentValue === wantedValue) {
+				child.style.display = "none";
+			} else {
+				child.style.display = shownDisplayType;
+			}
 		}
 	}
 
