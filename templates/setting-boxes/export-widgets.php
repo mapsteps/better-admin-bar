@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 	<form method="post" action="<?php menu_page_url( 'better-admin-bar', true ); ?>">
 		<input type="hidden" name="swift_control_action" value="export">
 		<?php wp_nonce_field( 'swift_control_export_widgets', 'swift_control_export_nonce' ); ?>
-		<h2><?php _e( 'Export Widgets', 'better-admin-bar' ); ?></h2>
+		<h2><?php _e( 'Export', 'better-admin-bar' ); ?></h2>
 		<div class="heatbox-content">
 			<p>
 				<?php _e( 'Use the export button to export to a .json file which you can then import to another Better Admin Bar installation.', 'better-admin-bar' ); ?>

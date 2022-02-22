@@ -94,7 +94,7 @@ $roles     = $roles_obj->role_names;
 
 <div class="heatbox misc-settings-box">
 	<h2>
-		<?php _e( 'Layout Settings', 'better-admin-bar' ); ?>
+		<?php _e( 'Display Settings', 'better-admin-bar' ); ?>
 	</h2>
 	<div class="setting-fields">
 		<div class="field" data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>

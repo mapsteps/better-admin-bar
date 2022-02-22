@@ -37,7 +37,7 @@ $GLOBALS['swift_control_widget_settings']  = $saved_widget_settings;
 						<?php _e( 'Better Admin Bar', 'better-admin-bar' ); ?>
 						<span class="version"><?php echo esc_html( SWIFT_CONTROL_PLUGIN_VERSION ); ?></span>
 					</span>
-					<p class="subtitle"><?php _e( 'The #1 plugin to replace admin bar with a better swift control.', 'better-admin-bar' ); ?></p>
+					<p class="subtitle"><?php _e( 'The WordPress Admin Bar reimagined.', 'better-admin-bar' ); ?></p>
 				</div>
 
 				<div>
