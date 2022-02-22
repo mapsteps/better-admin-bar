@@ -184,12 +184,12 @@ class Backwards_Compatibility {
 			}
 		}
 
-		if ( isset( $old_options['hover_area'] ) ) {
-			$new_options['hoverable_area_height'] = $old_options['hover_area'];
+		if ( isset( $old_options['autohide'] ) ) {
+			$new_options['auto_hide'] = $old_options['autohide'];
 
 			$should_update = true;
 
-			unset( $old_options['hover_area'] );
+			unset( $old_options['autohide'] );
 		}
 
 		if ( isset( $old_options['hover_area'] ) ) {
@@ -201,7 +201,7 @@ class Backwards_Compatibility {
 		}
 
 		if ( isset( $old_options['hover_delay'] ) ) {
-			$new_options['transition_delay'] = $old_options['hover_delay'];
+			$new_options['hiding_transition_delay'] = $old_options['hover_delay'];
 
 			$should_update = true;
 

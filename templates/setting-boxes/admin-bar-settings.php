@@ -79,7 +79,7 @@ $roles     = $roles_obj->role_names;
 		<div class="field is-horizontal" data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
 			<div class="field-label">
 				<label for="inactive_opacity" class="label">
-					<?php _e( "The admin bar opacity when it is inactive", 'better-admin-bar' ); ?>
+					<?php _e( 'The admin bar opacity when it is inactive', 'better-admin-bar' ); ?>
 				</label>
 			</div>
 			<div class="field-body">
@@ -95,7 +95,7 @@ $roles     = $roles_obj->role_names;
 		<div class="field is-horizontal" data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
 			<div class="field-label">
 				<label for="active_opacity" class="label">
-					<?php _e( "The admin bar opacity when it is active (on hover)", 'better-admin-bar' ); ?>
+					<?php _e( 'The admin bar opacity when it is active (on hover)', 'better-admin-bar' ); ?>
 				</label>
 			</div>
 			<div class="field-body">
@@ -103,6 +103,50 @@ $roles     = $roles_obj->role_names;
 					<div class="control">
 						<input type="number" name="active_opacity" id="active_opacity" class="general-setting-field" value="<?php echo esc_attr( $admin_bar_settings['active_opacity'] ); ?>">
 						<code>%</code>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<hr data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
+
+		<div class="field" data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
+			<label for="auto_hide" class="label checkbox-label">
+				<?php _e( 'Auto hide admin bar and show it by moving the cursor to the top of the page.', 'better-admin-bar' ); ?>
+				<input type="checkbox" name="auto_hide" id="auto_hide" value="1" class="general-setting-field" <?php checked( $admin_bar_settings['auto_hide'], 1 ); ?>>
+				<div class="indicator"></div>
+			</label>
+		</div>
+
+		<hr data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
+
+		<div class="field is-horizontal" data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
+			<div class="field-label">
+				<label for="hiding_transition_delay" class="label">
+					<?php _e( 'Transition delay (in milliseconds) before hiding the admin bar (after it was shown)', 'better-admin-bar' ); ?>
+				</label>
+			</div>
+			<div class="field-body">
+				<div class="field">
+					<div class="control">
+						<input type="number" name="hiding_transition_delay" id="hiding_transition_delay" class="general-setting-field" value="<?php echo esc_attr( $admin_bar_settings['hiding_transition_delay'] ); ?>">
+						<code>ms</code>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="field is-horizontal" data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
+			<div class="field-label">
+				<label for="transition_duration" class="label">
+					<?php _e( 'The transition speed / duration in milliseconds', 'better-admin-bar' ); ?>
+				</label>
+			</div>
+			<div class="field-body">
+				<div class="field">
+					<div class="control">
+						<input type="number" name="transition_duration" id="transition_duration" class="general-setting-field" placeholder="300" value="<?php echo esc_attr( $admin_bar_settings['transition_duration'] ); ?>">
+						<code>ms</code>
 					</div>
 				</div>
 			</div>

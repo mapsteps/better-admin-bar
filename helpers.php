@@ -308,6 +308,9 @@ function swift_control_get_admin_bar_settings() {
 		'hide_below_screen_width' => isset( $saved_settings['hide_below_screen_width'] ) ? $saved_settings['hide_below_screen_width'] : '',
 		'inactive_opacity'        => isset( $saved_settings['inactive_opacity'] ) && '' !== $saved_settings['inactive_opacity'] ? absint( $saved_settings['inactive_opacity'] ) : '',
 		'active_opacity'          => isset( $saved_settings['active_opacity'] ) && '' !== $saved_settings['active_opacity'] ? absint( $saved_settings['active_opacity'] ) : '',
+		'auto_hide'               => isset( $saved_settings['auto_hide'] ) ? absint( $saved_settings['auto_hide'] ) : 0,
+		'hiding_transition_delay' => isset( $saved_settings['hiding_transition_delay'] ) ? absint( $saved_settings['hiding_transition_delay'] ) : 0,
+		'transition_duration'     => isset( $saved_settings['transition_duration'] ) ? absint( $saved_settings['transition_duration'] ) : 0,
 	);
 
 	// Backward compatibility: old value's format was int (0 / 1).
