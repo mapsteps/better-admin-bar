@@ -29,7 +29,7 @@ $expanded              = $display_settings['expanded'];
 
 		<div class="field" data-show-if-field-unchecked="disable_swift_control">
 			<label for="remove_indicator" class="label checkbox-label">
-				<?php _e( 'Remove Indicator Arrow', 'better-admin-bar' ); ?>
+				<?php _e( 'Remove Click Indicator (Arrow)', 'better-admin-bar' ); ?>
 				<input type="checkbox" name="remove_indicator" id="remove_indicator" value="1" class="general-setting-field" <?php checked( $remove_indicator, 1 ); ?>>
 				<div class="indicator"></div>
 			</label>

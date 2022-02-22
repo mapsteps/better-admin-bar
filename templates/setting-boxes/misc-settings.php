@@ -15,7 +15,7 @@ $delete_on_uninstall = isset( $misc_settings['delete_on_uninstall'] ) ? absint( 
 
 <div class="heatbox misc-settings-box">
 	<h2>
-		<?php _e( 'Misc.', 'better-admin-bar' ); ?>
+		<?php _e( 'Misc', 'better-admin-bar' ); ?>
 	</h2>
 	<div class="setting-fields">
 
