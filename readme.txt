@@ -39,7 +39,6 @@ For more features, check out [Better Admin Bar PRO](https://betteradminbar.com/?
 Learn more about [Better Admin Bar PRO](https://betteradminbar.com/?utm_source=wordpress&utm_medium=description&utm_campaign=bab)
 
 === What's next? ===
-
 If you like Better Admin Bar, you will love our other, free WordPress products:
 
 * **[Page Builder Framework](https://wp-pagebuilderframework.com/?utm_source=bab&utm_medium=repository&utm_campaign=wpbf)** - A fast & minimalistic WordPress theme designed for the new WordPress era.
@@ -57,6 +56,5 @@ If you like Better Admin Bar, you will love our other, free WordPress products:
 3. Admin Bar Settings Page
 
 == Changelog ==
-
 = 4.0 =
 * Release Pending
