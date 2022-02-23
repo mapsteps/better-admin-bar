@@ -461,7 +461,15 @@ class Setup {
 			html,
 			html body,
 			* html body {
-				margin-top: 0;
+				margin-top: -32px;
+			}
+
+			@media screen and (max-width: 782px) {
+				html,
+				html body,
+				* html body {
+					margin-top: -46px;
+				}
 			}
 
 			<?php
@@ -545,6 +553,28 @@ class Setup {
 				top: 0;
 			}
 
+			@media screen and (max-width: 782px) {
+				html,
+				html body,
+				* html body {
+					margin-top: -46px;
+				}
+
+				html #wpadminbar {
+					top: -46px;
+				}
+
+				html.show-wpadminbar,
+				html.show-wpadminbar body,
+				* html.show-wpadminbar body {
+					margin-top: 0;
+				}
+
+				html.show-wpadminbar #wpadminbar {
+					top: 0;
+				}
+			}
+
 			<?php
 		}
 
@@ -556,7 +586,7 @@ class Setup {
 			$screen_max_width = $admin_bar_settings['hide_below_screen_width'] - 1;
 			?>
 
-			@media (max-width: <?php echo esc_attr( $screen_max_width ); ?>) {
+			@media (max-width: <?php echo esc_attr( $screen_max_width ); ?>px) {
 				<?php if ( ! $admin_bar_settings['remove_top_gap'] ) : ?>
 					html,
 					html.show-wpadminbar,
@@ -564,7 +594,7 @@ class Setup {
 					html.show-wpadminbar body,
 					* html.show-wpadminbar body,
 					* html body {
-						margin-top: 0 !important
+						margin-top: 0;
 					}
 				<?php endif; ?>
 

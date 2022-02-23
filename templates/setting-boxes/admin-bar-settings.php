@@ -57,9 +57,9 @@ $roles     = $roles_obj->role_names;
 			</label>
 		</div>
 
-		<hr>
+		<hr data-show-if-field-checked="auto_hide">
 
-		<div class="field is-horizontal">
+		<div class="field is-horizontal" data-show-if-field-checked="auto_hide">
 			<div class="field-label">
 				<label for="hiding_transition_delay" class="label">
 					<?php _e( 'Delay:', 'better-admin-bar' ); ?>
@@ -74,7 +74,7 @@ $roles     = $roles_obj->role_names;
 				</div>
 			</div>
 		</div>
-		<div class="field is-horizontal">
+		<div class="field is-horizontal" data-show-if-field-checked="auto_hide">
 			<div class="field-label">
 				<label for="transition_duration" class="label">
 					<?php _e( 'Animation speed:', 'better-admin-bar' ); ?>
