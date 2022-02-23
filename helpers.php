@@ -309,7 +309,7 @@ function swift_control_get_admin_bar_settings() {
 		'inactive_opacity'        => isset( $saved_settings['inactive_opacity'] ) && '' !== $saved_settings['inactive_opacity'] ? absint( $saved_settings['inactive_opacity'] ) : '',
 		'active_opacity'          => isset( $saved_settings['active_opacity'] ) && '' !== $saved_settings['active_opacity'] ? absint( $saved_settings['active_opacity'] ) : '',
 		'auto_hide'               => isset( $saved_settings['auto_hide'] ) ? absint( $saved_settings['auto_hide'] ) : 0,
-		'hover_intent'            => isset( $saved_settings['hover_intent'] ) && '' !== $saved_settings['hover_intent'] ? absint( $saved_settings['hover_intent'] ) : 250,
+		'hover_intent'            => isset( $saved_settings['hover_intent'] ) && '' !== $saved_settings['hover_intent'] ? absint( $saved_settings['hover_intent'] ) : '',
 		'hiding_transition_delay' => isset( $saved_settings['hiding_transition_delay'] ) && '' !== $saved_settings['hiding_transition_delay'] ? absint( $saved_settings['hiding_transition_delay'] ) : '',
 		'transition_duration'     => isset( $saved_settings['transition_duration'] ) && '' !== $saved_settings['transition_duration'] ? absint( $saved_settings['transition_duration'] ) : '',
 	);

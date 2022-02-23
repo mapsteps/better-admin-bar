@@ -1,36 +1,84 @@
 (function () {
+	// var hoverIntentMs = swiftControlAdminBarOpts.hoverIntent;
+	var hoverIntentMs = 1000;
+	var windowWidth = document.documentElement.clientWidth;
+	var triggerAreaHeight = windowWidth <= 782 ? 46 : 32;
 	var timeoutId = 0;
 
+	var mouseAction = "";
+	var showingIntentMs = 0;
+	var hidingIntentMs = 0;
+
 	function init() {
+		window.addEventListener("resize", onWindowResize);
 		window.addEventListener("mousemove", onMouseMove);
 	}
 
+	function onWindowResize() {
+		windowWidth = document.documentElement.clientWidth;
+
+		triggerAreaHeight = windowWidth <= 782 ? 46 : 32;
+	}
+
 	function onMouseMove(e) {
-		var adminbarShown =
+		var adminbarIsShown =
 			document.documentElement.classList.contains("show-wpadminbar");
-		var safeAreaHeight = adminbarShown ? 32 : 16;
 
-		if (e.clientY > safeAreaHeight) {
-			if (!adminbarShown) {
-				if (timeoutId) clearTimeout(timeoutId);
-				timeoutId = 0;
-				return;
-			}
-
-			timeoutId = setTimeout(
-				hideAdminBar,
-				swiftControlAdminBarOpts.transitionDelay,
-				e.target
-			);
-
+		if (e.clientY > triggerAreaHeight) {
+			handleMouseLeave(e.target, adminbarIsShown);
 			return;
 		}
 
-		clearTimeout(timeoutId);
-		showAdminBar();
+		handleMouseEnter(e.target, adminbarIsShown);
+	}
+
+	function handleMouseLeave(target, adminbarIsShown) {
+		var now = Date.now();
+
+		if (mouseAction !== "mouseleave") {
+			hidingIntentMs = now;
+			mouseAction = "mouseleave";
+		}
+
+		showingIntentMs = now;
+
+		if (!adminbarIsShown) {
+			return;
+		}
+
+		timeoutId = setTimeout(function () {
+			hideAdminBar(target);
+		}, hoverIntentMs);
+	}
+
+	function handleMouseEnter(target, adminbarIsShown) {
+		var now = Date.now();
+
+		if (mouseAction !== "mouseenter") {
+			showingIntentMs = now;
+			mouseAction = "mouseenter";
+		}
+
+		hidingIntentMs = now;
+
+		if (adminbarIsShown) {
+			return;
+		}
+
+		timeoutId = setTimeout(function () {
+			showAdminBar(target);
+		}, hoverIntentMs);
 	}
 
 	function hideAdminBar(target) {
+		if (mouseAction !== "mouseleave") {
+			return;
+		}
+
+		if (Date.now() - hidingIntentMs < hoverIntentMs) {
+			return;
+		}
+
 		if (
 			target.parentNode.classList.contains("ab-item") ||
 			target.classList.contains("ab-item") ||
@@ -38,15 +86,23 @@
 			target.parentNode.classList.contains("ab-sub-wrapper") ||
 			target.parentNode.classList.contains("menupop")
 		) {
-			if (timeoutId) clearTimeout(timeoutId);
-			timeoutId = 0;
 			return;
 		}
 
-		document.documentElement.classList.remove("show-wpadminbar");
+		setTimeout(function () {
+			document.documentElement.classList.remove("show-wpadminbar");
+		}, swiftControlAdminBarOpts.transitionDelay - hoverIntentMs);
 	}
 
 	function showAdminBar() {
+		if (mouseAction !== "mouseenter") {
+			return;
+		}
+
+		if (Date.now() - showingIntentMs < hoverIntentMs) {
+			return;
+		}
+
 		document.documentElement.classList.add("show-wpadminbar");
 	}
 

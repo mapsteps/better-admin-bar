@@ -626,10 +626,10 @@ class Setup {
 			wp_enqueue_style( 'font-awesome', SWIFT_CONTROL_PLUGIN_URL . '/assets/vendor/fontawesome-free/css/all.min.css', array(), '5.14.0' );
 		}
 
-		// Better Admin Bar frontend styling.
+		// Quick access panel frontend styling.
 		wp_enqueue_style( 'swift-control', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/swift-control.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
 
-		// Better Admin Bar frontend script.
+		// Quick access panel frontend script.
 		wp_enqueue_script( 'interact', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/interact.min.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 		wp_enqueue_script( 'swift-control', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/swift-control.js', array( 'jquery', 'interact' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 	}
@@ -675,6 +675,7 @@ class Setup {
 
 		<script>
 		var swiftControlAdminBarOpts = {
+			hoverIntent: <?php echo esc_attr( $admin_bar_settings['hover_intent'] ? $admin_bar_settings['hover_intent'] : 250 ); ?>,
 			transitionDelay: <?php echo esc_attr( $admin_bar_settings['hiding_transition_delay'] ? $admin_bar_settings['hiding_transition_delay'] : 1500 ); ?>
 		};
 		<?php echo file_get_contents( __DIR__ . '/assets/js/admin-bar.js' ); ?>
