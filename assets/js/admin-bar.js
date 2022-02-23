@@ -8,7 +8,7 @@
 	function onMouseMove(e) {
 		var adminbarShown =
 			document.documentElement.classList.contains("show-wpadminbar");
-		var safeAreaHeight = adminbarShown ? 32 : 10;
+		var safeAreaHeight = adminbarShown ? 32 : 16;
 
 		if (e.clientY > safeAreaHeight) {
 			if (!adminbarShown) {
