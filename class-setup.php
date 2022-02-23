@@ -514,42 +514,38 @@ class Setup {
 			if ( $admin_bar_settings['remove_top_gap'] ) {
 				?>
 
-				html #wpadminbar {
-					opacity: 0;
-					visibility: hidden;
-				}
-
-				html.show-wpadminbar #wpadminbar {
-					opacity: <?php echo esc_attr( $inactive_opacity / 100 ); ?>;
+				html.show-wpadminbar #wpadminbar,
+				html.show-wpadminbar #wpadminbar:hover {
+					opacity: <?php echo esc_attr( $active_opacity / 100 ); ?>;
 					visibility: visible;
 				}
 
 				<?php
-			} else {
-				?>
-
-				html,
-				html body,
-				* html body {
-					margin-top: 0;
-				}
-
-				html #wpadminbar {
-					top: -32px;
-				}
-
-				html.show-wpadminbar,
-				html.show-wpadminbar body,
-				* html.show-wpadminbar body {
-					margin-top: 32px;	
-				}
-
-				html.show-wpadminbar #wpadminbar {
-					top: 0;
-				}
-
-				<?php
 			}
+
+			?>
+
+			html,
+			html body,
+			* html body {
+				margin-top: -32px;
+			}
+
+			html #wpadminbar {
+				top: -32px;
+			}
+
+			html.show-wpadminbar,
+			html.show-wpadminbar body,
+			* html.show-wpadminbar body {
+				margin-top: 0;
+			}
+
+			html.show-wpadminbar #wpadminbar {
+				top: 0;
+			}
+
+			<?php
 		}
 
 		/**
