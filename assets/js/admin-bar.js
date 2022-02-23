@@ -17,15 +17,10 @@
 				return;
 			}
 
-			if (e.target.classList.contains('ab-item') || e.target.parentNode.classList.contains('ab-submenu')) {
-				if (timeoutId) clearTimeout(timeoutId);
-				timeoutId = 0;
-				return;
-			}
-
 			timeoutId = setTimeout(
 				hideAdminBar,
-				swiftControlAdminBarOpts.transitionDelay
+				swiftControlAdminBarOpts.transitionDelay,
+				e.target
 			);
 
 			return;
@@ -35,7 +30,19 @@
 		showAdminBar();
 	}
 
-	function hideAdminBar() {
+	function hideAdminBar(target) {
+		if (
+			target.parentNode.classList.contains("ab-item") ||
+			target.classList.contains("ab-item") ||
+			target.parentNode.classList.contains("ab-submenu") ||
+			target.parentNode.classList.contains("ab-sub-wrapper") ||
+			target.parentNode.classList.contains("menupop")
+		) {
+			if (timeoutId) clearTimeout(timeoutId);
+			timeoutId = 0;
+			return;
+		}
+
 		document.documentElement.classList.remove("show-wpadminbar");
 	}
 
