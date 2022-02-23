@@ -675,7 +675,8 @@ class Setup {
 
 		<script>
 		var swiftControlAdminBarOpts = {
-			hoverIntent: <?php echo esc_attr( $admin_bar_settings['hover_intent'] ? $admin_bar_settings['hover_intent'] : 500 ); ?>,
+			showingIntent: <?php echo esc_attr( $admin_bar_settings['showing_intent'] ? $admin_bar_settings['showing_intent'] : 500 ); ?>,
+			hidingIntent: <?php echo esc_attr( $admin_bar_settings['hiding_intent'] ? $admin_bar_settings['hiding_intent'] : 1250 ); ?>,
 			transitionDelay: <?php echo esc_attr( $admin_bar_settings['hiding_transition_delay'] ? $admin_bar_settings['hiding_transition_delay'] : 1500 ); ?>
 		};
 		<?php echo file_get_contents( __DIR__ . '/assets/js/admin-bar.js' ); ?>
