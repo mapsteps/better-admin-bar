@@ -43,12 +43,12 @@ $roles     = $roles_obj->role_names;
 	</div>
 </div>
 
-<div class="heatbox admin-bar-settings-box">
+<div class="heatbox admin-bar-settings-box" data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
 	<h2>
 		<?php _e( 'Auto Hide Admin Bar', 'better-admin-bar' ); ?>
 	</h2>
 	<div class="setting-fields">
-		<div class="field" data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
+		<div class="field">
 			<label for="auto_hide" class="label checkbox-label">
 				<?php _e( 'Auto Hide Admin Bar', 'better-admin-bar' ); ?>
 				<p class="description"><?php _e( 'This feature will auto-hide the Admin Bar from your website.<br> It will reappear when hovering over the top part of the browser window.', 'better-admin-bar' ); ?></p>
@@ -57,9 +57,9 @@ $roles     = $roles_obj->role_names;
 			</label>
 		</div>
 
-		<hr data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
+		<hr>
 
-		<div class="field is-horizontal" data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
+		<div class="field is-horizontal">
 			<div class="field-label">
 				<label for="hiding_transition_delay" class="label">
 					<?php _e( 'Delay:', 'better-admin-bar' ); ?>
@@ -74,7 +74,7 @@ $roles     = $roles_obj->role_names;
 				</div>
 			</div>
 		</div>
-		<div class="field is-horizontal" data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
+		<div class="field is-horizontal">
 			<div class="field-label">
 				<label for="transition_duration" class="label">
 					<?php _e( 'Animation speed:', 'better-admin-bar' ); ?>
@@ -92,12 +92,12 @@ $roles     = $roles_obj->role_names;
 	</div>
 </div>
 
-<div class="heatbox admin-bar-settings-box">
+<div class="heatbox admin-bar-settings-box" data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
 	<h2>
 		<?php _e( 'Display Settings', 'better-admin-bar' ); ?>
 	</h2>
 	<div class="setting-fields">
-		<div class="field" data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
+		<div class="field">
 			<label for="remove_top_gap" class="label checkbox-label">
 				<?php _e( 'Remove Admin Bar Gap', 'better-admin-bar' ); ?>
 				<p class="description"><?php _e( 'Removes the top gap (32px) the Admin Bar adds to your website.', 'better-admin-bar' ); ?></p>
@@ -106,7 +106,7 @@ $roles     = $roles_obj->role_names;
 			</label>
 		</div>
 
-		<div class="field" data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
+		<div class="field">
 			<label for="fix_menu_item_overflow" class="label checkbox-label">
 				<?php _e( 'Fix Menu Item Overflow', 'better-admin-bar' ); ?>
 				<p class="description"><?php _e( 'With too many menu items in the admin bar the layout may break on smaller screens.<br> This setting prevents menu items from overflowing and breaking into the next line.', 'better-admin-bar' ); ?></p>
@@ -115,9 +115,9 @@ $roles     = $roles_obj->role_names;
 			</label>
 		</div>
 
-		<hr data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
+		<hr>
 
-		<div class="field is-horizontal" data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
+		<div class="field is-horizontal">
 			<div class="field-label">
 				<label for="hide_below_screen_width" class="label">
 					<?php _e( 'Hide Admin Bar on screens smaller than:', 'better-admin-bar' ); ?>
@@ -132,7 +132,7 @@ $roles     = $roles_obj->role_names;
 			</div>
 		</div>
 
-		<div class="field is-horizontal" data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
+		<div class="field is-horizontal">
 			<div class="field-label">
 				<label for="inactive_opacity" class="label">
 					<?php _e( 'Admin Bar opacity:', 'better-admin-bar' ); ?>
@@ -148,7 +148,7 @@ $roles     = $roles_obj->role_names;
 			</div>
 		</div>
 
-		<div class="field is-horizontal" data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
+		<div class="field is-horizontal">
 			<div class="field-label">
 				<label for="active_opacity" class="label">
 					<?php _e( 'Admin Bar opacity (on hover):', 'better-admin-bar' ); ?>
