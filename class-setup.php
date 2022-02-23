@@ -426,7 +426,7 @@ class Setup {
 		$admin_bar_settings  = swift_control_get_admin_bar_settings();
 		$inactive_opacity    = '' !== $admin_bar_settings['inactive_opacity'] ? $admin_bar_settings['inactive_opacity'] : 100;
 		$active_opacity      = '' !== $admin_bar_settings['active_opacity'] ? $admin_bar_settings['active_opacity'] : 100;
-		$transition_duration = '' !== $admin_bar_settings['transition_duration'] ? $admin_bar_settings['transition_duration'] : 300;
+		$transition_duration = '' !== $admin_bar_settings['transition_duration'] ? $admin_bar_settings['transition_duration'] : 500;
 
 		echo '<style type="text/css">';
 
