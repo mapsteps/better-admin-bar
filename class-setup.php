@@ -415,6 +415,17 @@ class Setup {
 	 *
 	 * ! Some conditions checking need to be exactly '' (empty string) checking, not just "empty()" check.
 	 * ! DO NOT simply change that to "empty()" or "!" (negation) checking.
+	 *
+	 * The CSS outputting conditions below are already battle tested and working fine.
+	 * Changing it will be risky.
+	 *
+	 * The following conditions need to be tested along with the available options in admin bar setting:
+	 * - Testing with desktop mode and small screen size mode.
+	 * - Testing with the "hide_below_screen_width" value as less than 782 and greater than 782 (782 is WordPress breakpoint).
+	 * - Combination both of the above.
+	 *
+	 * ! So in case in the future, we feel smart enough and would like to make change to the conditions, please think TWICE OR MORE!
+	 * ! Don't change the outputting conditions unless you run the test cases above.
 	 */
 	public function wp_head() {
 
