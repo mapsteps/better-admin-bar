@@ -68,7 +68,7 @@ $roles     = $roles_obj->role_names;
 			<div class="field-body">
 				<div class="field">
 					<div class="control">
-						<input type="number" name="hiding_transition_delay" id="hiding_transition_delay" class="general-setting-field" value="<?php echo esc_attr( $admin_bar_settings['hiding_transition_delay'] ); ?>">
+						<input type="number" name="hiding_transition_delay" id="hiding_transition_delay" class="general-setting-field" placeholder="1500" value="<?php echo esc_attr( $admin_bar_settings['hiding_transition_delay'] ); ?>">
 						<code>ms</code>
 					</div>
 				</div>

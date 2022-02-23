@@ -38,7 +38,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 		</ul>
 
-		<a href="#" class="button button-primary button-larger button-full">Tedst</a>
+		<a href="https://betteradminbar.com/pricing/" target="_blank" class="button button-primary button-larger button-full">View Pricing</a>
 
 	</div>
 

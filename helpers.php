@@ -303,14 +303,14 @@ function swift_control_get_admin_bar_settings() {
 
 	$admin_bar_settings = array(
 		'remove_by_roles'         => isset( $saved_settings['remove_by_roles'] ) ? $saved_settings['remove_by_roles'] : array(),
-		'remove_top_gap'         => isset( $saved_settings['remove_top_gap'] ) ? absint( $saved_settings['remove_top_gap'] ) : 0,
-		'fix_menu_item_overflow' => isset( $saved_settings['fix_menu_item_overflow'] ) ? absint( $saved_settings['fix_menu_item_overflow'] ) : 0,
+		'remove_top_gap'          => isset( $saved_settings['remove_top_gap'] ) ? absint( $saved_settings['remove_top_gap'] ) : 0,
+		'fix_menu_item_overflow'  => isset( $saved_settings['fix_menu_item_overflow'] ) ? absint( $saved_settings['fix_menu_item_overflow'] ) : 0,
 		'hide_below_screen_width' => isset( $saved_settings['hide_below_screen_width'] ) ? $saved_settings['hide_below_screen_width'] : '',
 		'inactive_opacity'        => isset( $saved_settings['inactive_opacity'] ) && '' !== $saved_settings['inactive_opacity'] ? absint( $saved_settings['inactive_opacity'] ) : '',
 		'active_opacity'          => isset( $saved_settings['active_opacity'] ) && '' !== $saved_settings['active_opacity'] ? absint( $saved_settings['active_opacity'] ) : '',
 		'auto_hide'               => isset( $saved_settings['auto_hide'] ) ? absint( $saved_settings['auto_hide'] ) : 0,
-		'hiding_transition_delay' => isset( $saved_settings['hiding_transition_delay'] ) ? absint( $saved_settings['hiding_transition_delay'] ) : 0,
-		'transition_duration'     => isset( $saved_settings['transition_duration'] ) ? absint( $saved_settings['transition_duration'] ) : 0,
+		'hiding_transition_delay' => isset( $saved_settings['hiding_transition_delay'] ) && '' !== $saved_settings['hiding_transition_delay'] ? absint( $saved_settings['hiding_transition_delay'] ) : '',
+		'transition_duration'     => isset( $saved_settings['transition_duration'] ) && '' !== $saved_settings['transition_duration'] ? absint( $saved_settings['transition_duration'] ) : '',
 	);
 
 	// Backward compatibility: old value's format was int (0 / 1).

@@ -355,7 +355,8 @@ class Setup {
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'inline_styles' ) );
-		add_action( 'wp_footer', array( $this, 'frontend_output' ), 5 );
+		add_action( 'wp_footer', array( $this, 'quick_panel_output' ), 5 );
+		add_action( 'wp_footer', array( $this, 'admin_bar_output' ), 15 );
 	}
 
 	/**
@@ -371,7 +372,7 @@ class Setup {
 	}
 
 	/**
-	 * Remove admin bar on frontend for certain roles.
+	 * Remove admin bar on the frontend for certain roles.
 	 */
 	public function remove_admin_bar() {
 		$admin_bar_settings = swift_control_get_admin_bar_settings();
@@ -411,6 +412,9 @@ class Setup {
 
 	/**
 	 * Run script on wp_head action hook.
+	 *
+	 * ! Some conditions checking need to be exactly '' (empty string) checking, not just "empty()" check.
+	 * ! DO NOT simply change that to "empty()" or "!" (negation) checking.
 	 */
 	public function wp_head() {
 
@@ -418,26 +422,135 @@ class Setup {
 			return;
 		}
 
-		$admin_bar_settings = swift_control_get_admin_bar_settings();
+		// The "absint" is already done in Helper.php file.
+		$admin_bar_settings  = swift_control_get_admin_bar_settings();
+		$inactive_opacity    = '' !== $admin_bar_settings['inactive_opacity'] ? $admin_bar_settings['inactive_opacity'] : 100;
+		$active_opacity      = '' !== $admin_bar_settings['active_opacity'] ? $admin_bar_settings['active_opacity'] : 100;
+		$transition_duration = '' !== $admin_bar_settings['transition_duration'] ? $admin_bar_settings['transition_duration'] : 300;
 
 		echo '<style type="text/css">';
 
+		/**
+		 * First, output the CSS for the admin bar items overflow's fix.
+		 * This won't conflict with the other options implementation.
+		 */
+		if ( $admin_bar_settings['fix_menu_item_overflow'] ) {
+			echo file_get_contents( __DIR__ . '/assets/css/fix-items-overflow.css' );
+		}
+
+		/**
+		 * And then output the transition duration option.
+		 * This also won't conflict with the other options implementation.
+		 */
+		?>
+		html #wpadminbar {
+			-webkit-transition: all <?php echo esc_attr( $transition_duration / 1000 ); ?>s ease;
+			transition: all <?php echo esc_attr( $transition_duration / 1000 ); ?>s ease;
+		}
+
+		<?php
+		// Remove the top gap.
 		if ( $admin_bar_settings['remove_top_gap'] ) {
 			?>
 
 			html,
 			html body,
-			* html body{
+			* html body {
 				margin-top: 0 !important
 			}
 
 			<?php
 		}
 
-		if ( $admin_bar_settings['fix_menu_item_overflow'] ) {
-			echo file_get_contents( __DIR__ . '/assets/css/fix-horizontal-overflow.css' );
+		/**
+		 * Implement the "inactive_opacity" option.
+		 */
+		if ( '' !== $admin_bar_settings['inactive_opacity'] ) {
+			?>
+
+			html #wpadminbar {
+				opacity: <?php echo esc_attr( $inactive_opacity / 100 ); ?>;
+			}
+
+			<?php
+			// Implement the "active_opacity".
+			if ( '' === $admin_bar_settings['active_opacity'] ) {
+				// If inactive opacity is set and active opacity is empty, then lets set the active value to use the inactive value.
+				$active_opacity = $inactive_opacity;
+				?>
+
+				html #wpadminbar:hover,
+				html.show-wpadminbar #wpadminbar:hover {
+					opacity: <?php echo esc_attr( $active_opacity / 100 ); ?>
+				}
+
+				<?php
+			}
+		} else {
+			/**
+			 * Implement the "active_opacity".
+			 *
+			 * The active / hover state does not depend on the inactive state.
+			 * Meaning, it can be standalone.
+			 */
+			if ( '' !== $admin_bar_settings['active_opacity'] ) {
+				?>
+
+				html #wpadminbar:hover,
+				html.show-wpadminbar #wpadminbar:hover {
+					opacity: <?php echo esc_attr( $active_opacity / 100 ); ?>
+				}
+
+				<?php
+			}
 		}
 
+		if ( $admin_bar_settings['auto_hide'] ) {
+			if ( $admin_bar_settings['remove_top_gap'] ) {
+				?>
+
+				html #wpadminbar {
+					opacity: 0;
+					visibility: hidden;
+				}
+
+				html.show-wpadminbar #wpadminbar {
+					opacity: <?php echo esc_attr( $inactive_opacity / 100 ); ?>;
+					visibility: visible;
+				}
+
+				<?php
+			} else {
+				?>
+
+				html,
+				html body,
+				* html body {
+					margin-top: 0 !important
+				}
+
+				html #wpadminbar {
+					top: -32px;
+				}
+
+				html.show-wpadminbar,
+				html.show-wpadminbar body,
+				* html.show-wpadminbar body {
+					margin-top: 32 !important;	
+				}
+
+				html.show-wpadminbar #wpadminbar {
+					top: 0;
+				}
+
+				<?php
+			}
+		}
+
+		/**
+		 * Force hide admin bar when the screen width is smaller
+		 * than the value of "hide_below_screen_width".
+		 */
 		if ( $admin_bar_settings['hide_below_screen_width'] ) {
 			$max_width_number = 0;
 			$max_width_unit   = 'px';
@@ -460,7 +573,10 @@ class Setup {
 			@media (max-width: <?php echo esc_attr( $screen_max_width ); ?>) {
 				<?php if ( ! $admin_bar_settings['remove_top_gap'] ) : ?>
 					html,
+					html.show-wpadminbar,
 					html body,
+					html.show-wpadminbar body,
+					* html.show-wpadminbar body,
 					* html body {
 						margin-top: 0 !important
 					}
@@ -469,49 +585,6 @@ class Setup {
 				html #wpadminbar {
 					display: none !important;
 				}
-			}
-
-			<?php
-		}
-
-		// Needs to be exactly '' (empty string) checking, not just empty check.
-		if ( '' !== $admin_bar_settings['inactive_opacity'] ) {
-			$inactive_opacity = absint( $admin_bar_settings['inactive_opacity'] );
-			?>
-
-			html #wpadminbar {
-				opacity: <?php echo esc_attr( $inactive_opacity / 100 ); ?>;
-				-webkit-transition: all .3s ease;
-				transition: all .3s ease;
-			}
-
-			<?php
-			/**
-			 * If inactive opacity is set and active opacity is empty, then lets set the active value to use the inactive value.
-			 * Needs to be exactly '' (empty string) checking, not just empty check.
-			 */
-			if ( '' === $admin_bar_settings['active_opacity'] ) {
-				$active_opacity = $inactive_opacity;
-				?>
-
-				html #wpadminbar:hover {
-					opacity: <?php echo esc_attr( $active_opacity / 100 ); ?>
-				}
-
-				<?php
-			}
-		}
-
-		/**
-		 * The active / hover state does not depend on the inactive state.
-		 * Needs to be exactly '' (empty string) checking, not just empty check.
-		 */
-		if ( '' !== $admin_bar_settings['active_opacity'] ) {
-			$active_opacity = '' !== $admin_bar_settings['active_opacity'] ? absint( $admin_bar_settings['active_opacity'] ) : 100;
-			?>
-
-			html #wpadminbar:hover {
-				opacity: <?php echo esc_attr( $active_opacity / 100 ); ?>
 			}
 
 			<?php
@@ -560,10 +633,38 @@ class Setup {
 	}
 
 	/**
-	 * Output the widgets to frontend.
+	 * Output the quick access panel to frontend.
 	 */
-	public function frontend_output() {
+	public function quick_panel_output() {
+
 		require __DIR__ . '/templates/frontend-output.php';
+
+	}
+
+	/**
+	 * Output the admin bar script to frontend.
+	 */
+	public function admin_bar_output() {
+
+		if ( self::$remove_admin_bar ) {
+			return;
+		}
+
+		$admin_bar_settings = swift_control_get_admin_bar_settings();
+
+		if ( ! $admin_bar_settings['auto_hide'] ) {
+			return;
+		}
+		?>
+
+		<script>
+		var swiftControlAdminBarOpts = {
+			transitionDelay: <?php echo esc_attr( $admin_bar_settings['hiding_transition_delay'] ? $admin_bar_settings['hiding_transition_delay'] : 1500 ); ?>
+		};
+		<?php echo file_get_contents( __DIR__ . '/assets/js/admin-bar.js' ); ?>
+		</script>
+
+		<?php
 	}
 
 	/**
