@@ -11,7 +11,17 @@
 		var safeAreaHeight = adminbarShown ? 32 : 10;
 
 		if (e.clientY > safeAreaHeight) {
-			if (timeoutId && !adminbarShown) clearTimeout(timeoutId);
+			if (!adminbarShown) {
+				if (timeoutId) clearTimeout(timeoutId);
+				timeoutId = 0;
+				return;
+			}
+
+			if (e.target.classList.contains('ab-item') || e.target.parentNode.classList.contains('ab-submenu')) {
+				if (timeoutId) clearTimeout(timeoutId);
+				timeoutId = 0;
+				return;
+			}
 
 			timeoutId = setTimeout(
 				hideAdminBar,
