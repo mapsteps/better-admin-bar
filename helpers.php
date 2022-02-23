@@ -305,7 +305,7 @@ function swift_control_get_admin_bar_settings() {
 		'remove_by_roles'         => isset( $saved_settings['remove_by_roles'] ) ? $saved_settings['remove_by_roles'] : array(),
 		'remove_top_gap'          => isset( $saved_settings['remove_top_gap'] ) ? absint( $saved_settings['remove_top_gap'] ) : 0,
 		'fix_menu_item_overflow'  => isset( $saved_settings['fix_menu_item_overflow'] ) ? absint( $saved_settings['fix_menu_item_overflow'] ) : 0,
-		'hide_below_screen_width' => isset( $saved_settings['hide_below_screen_width'] ) ? $saved_settings['hide_below_screen_width'] : '',
+		'hide_below_screen_width' => isset( $saved_settings['hide_below_screen_width'] ) && '' !== $saved_settings['hide_below_screen_width'] ? absint( $saved_settings['hide_below_screen_width'] ) : '',
 		'inactive_opacity'        => isset( $saved_settings['inactive_opacity'] ) && '' !== $saved_settings['inactive_opacity'] ? absint( $saved_settings['inactive_opacity'] ) : '',
 		'active_opacity'          => isset( $saved_settings['active_opacity'] ) && '' !== $saved_settings['active_opacity'] ? absint( $saved_settings['active_opacity'] ) : '',
 		'auto_hide'               => isset( $saved_settings['auto_hide'] ) ? absint( $saved_settings['auto_hide'] ) : 0,

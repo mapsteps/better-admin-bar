@@ -147,7 +147,7 @@ class Backwards_Compatibility {
 		}
 
 		if ( isset( $old_options['hide_below'] ) ) {
-			$new_options['hide_below_screen_width'] = $old_options['hide_below'] . 'px';
+			$new_options['hide_below_screen_width'] = $old_options['hide_below'];
 
 			$should_update = true;
 

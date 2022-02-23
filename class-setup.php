@@ -448,6 +448,11 @@ class Setup {
 			transition: all <?php echo esc_attr( $transition_duration / 1000 ); ?>s ease;
 		}
 
+		body {
+			-webkit-transition: all <?php echo esc_attr( $transition_duration / 1000 ); ?>s ease;
+			transition: all <?php echo esc_attr( $transition_duration / 1000 ); ?>s ease;
+		}
+
 		<?php
 		// Remove the top gap.
 		if ( $admin_bar_settings['remove_top_gap'] ) {
@@ -456,7 +461,24 @@ class Setup {
 			html,
 			html body,
 			* html body {
-				margin-top: 0 !important
+				margin-top: 0;
+			}
+
+			<?php
+		}
+
+		/**
+		 * Implement the "active_opacity".
+		 *
+		 * The active / hover state does not depend on the inactive state.
+		 * Meaning, it can be standalone.
+		 */
+		if ( '' !== $admin_bar_settings['active_opacity'] ) {
+			?>
+
+			html #wpadminbar:hover,
+			html.show-wpadminbar #wpadminbar:hover {
+				opacity: <?php echo esc_attr( $active_opacity / 100 ); ?>
 			}
 
 			<?php
@@ -477,23 +499,6 @@ class Setup {
 			if ( '' === $admin_bar_settings['active_opacity'] ) {
 				// If inactive opacity is set and active opacity is empty, then lets set the active value to use the inactive value.
 				$active_opacity = $inactive_opacity;
-				?>
-
-				html #wpadminbar:hover,
-				html.show-wpadminbar #wpadminbar:hover {
-					opacity: <?php echo esc_attr( $active_opacity / 100 ); ?>
-				}
-
-				<?php
-			}
-		} else {
-			/**
-			 * Implement the "active_opacity".
-			 *
-			 * The active / hover state does not depend on the inactive state.
-			 * Meaning, it can be standalone.
-			 */
-			if ( '' !== $admin_bar_settings['active_opacity'] ) {
 				?>
 
 				html #wpadminbar:hover,
@@ -526,7 +531,7 @@ class Setup {
 				html,
 				html body,
 				* html body {
-					margin-top: 0 !important
+					margin-top: 0;
 				}
 
 				html #wpadminbar {
@@ -536,7 +541,7 @@ class Setup {
 				html.show-wpadminbar,
 				html.show-wpadminbar body,
 				* html.show-wpadminbar body {
-					margin-top: 32 !important;	
+					margin-top: 32px;	
 				}
 
 				html.show-wpadminbar #wpadminbar {
@@ -551,23 +556,8 @@ class Setup {
 		 * Force hide admin bar when the screen width is smaller
 		 * than the value of "hide_below_screen_width".
 		 */
-		if ( $admin_bar_settings['hide_below_screen_width'] ) {
-			$max_width_number = 0;
-			$max_width_unit   = 'px';
-			$screen_max_width = $admin_bar_settings['hide_below_screen_width'];
-
-			// If the value includes the unit, then replace the `value_unit` (set from choice) with unit from value.
-			if ( ! is_numeric( $screen_max_width ) ) {
-				$max_width_unit   = preg_replace( '/\d+/', '', $screen_max_width );
-				$max_width_number = str_ireplace( $max_width_unit, '', $screen_max_width );
-				$max_width_number = (float) $max_width_number;
-			} else {
-				$max_width_number = (float) $screen_max_width;
-			}
-
-			--$max_width_number;
-
-			$screen_max_width = $max_width_number . $max_width_unit;
+		if ( '' !== $admin_bar_settings['hide_below_screen_width'] ) {
+			$screen_max_width = $admin_bar_settings['hide_below_screen_width'] - 1;
 			?>
 
 			@media (max-width: <?php echo esc_attr( $screen_max_width ); ?>) {

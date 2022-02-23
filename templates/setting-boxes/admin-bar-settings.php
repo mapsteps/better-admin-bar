@@ -126,7 +126,8 @@ $roles     = $roles_obj->role_names;
 			<div class="field-body">
 				<div class="field">
 					<div class="control">
-						<input type="text" name="hide_below_screen_width" id="hide_below_screen_width" class="general-setting-field" value="<?php echo esc_attr( $admin_bar_settings['hide_below_screen_width'] ); ?>">
+						<input type="number" name="hide_below_screen_width" id="hide_below_screen_width" class="general-setting-field" value="<?php echo esc_attr( $admin_bar_settings['hide_below_screen_width'] ); ?>">
+						<code>px</code>
 					</div>
 				</div>
 			</div>
