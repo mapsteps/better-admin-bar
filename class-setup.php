@@ -519,18 +519,6 @@ class Setup {
 		}
 
 		if ( $admin_bar_settings['auto_hide'] ) {
-			if ( $admin_bar_settings['remove_top_gap'] ) {
-				?>
-
-				html.show-wpadminbar #wpadminbar,
-				html.show-wpadminbar #wpadminbar:hover {
-					opacity: <?php echo esc_attr( $active_opacity / 100 ); ?>;
-					visibility: visible;
-				}
-
-				<?php
-			}
-
 			?>
 
 			html,
@@ -576,6 +564,26 @@ class Setup {
 			}
 
 			<?php
+
+			if ( $admin_bar_settings['remove_top_gap'] ) {
+				?>
+
+				html.show-wpadminbar,
+				html.show-wpadminbar body,
+				* html.show-wpadminbar body {
+					margin-top: -32px;
+				}
+
+				@media screen and (max-width: 782px) {
+					html.show-wpadminbar,
+					html.show-wpadminbar body,
+					* html.show-wpadminbar body {
+						margin-top: -46px;
+					}
+				}
+
+				<?php
+			}
 		}
 
 		/**
@@ -587,23 +595,38 @@ class Setup {
 			?>
 
 			@media (max-width: <?php echo esc_attr( $screen_max_width ); ?>px) {
-				<?php if ( ! $admin_bar_settings['remove_top_gap'] ) : ?>
-					html,
-					html.show-wpadminbar,
-					html body,
-					html.show-wpadminbar body,
-					* html.show-wpadminbar body,
-					* html body {
-						margin-top: 0;
-					}
-				<?php endif; ?>
+				html,
+				html.show-wpadminbar,
+				html body,
+				html.show-wpadminbar body,
+				* html.show-wpadminbar body,
+				* html body {
+					margin-top: -32px;
+				}
 
 				html #wpadminbar {
 					display: none !important;
 				}
 			}
 
+			@media (max-width: 782px) {
+				html,
+				html.show-wpadminbar,
+				html body,
+				html.show-wpadminbar body,
+				* html.show-wpadminbar body,
+				* html body {
+					margin-top: -46px;
+				}
+			}
+
 			<?php
+			if ( $screen_max_width <= 782 ) {
+				?>
+
+
+				<?php
+			}
 		}
 
 		echo '</style>';
