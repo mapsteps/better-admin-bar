@@ -422,7 +422,7 @@ class Setup {
 
 		echo '<style type="text/css">';
 
-		if ( $admin_bar_settings['overflow_layout'] ) {
+		if ( $admin_bar_settings['remove_top_gap'] ) {
 			?>
 
 			html,
@@ -434,7 +434,7 @@ class Setup {
 			<?php
 		}
 
-		if ( $admin_bar_settings['fix_horizontal_overflow'] ) {
+		if ( $admin_bar_settings['fix_menu_item_overflow'] ) {
 			echo file_get_contents( __DIR__ . '/assets/css/fix-horizontal-overflow.css' );
 		}
 
@@ -458,7 +458,7 @@ class Setup {
 			?>
 
 			@media (max-width: <?php echo esc_attr( $screen_max_width ); ?>) {
-				<?php if ( ! $admin_bar_settings['overflow_layout'] ) : ?>
+				<?php if ( ! $admin_bar_settings['remove_top_gap'] ) : ?>
 					html,
 					html body,
 					* html body {

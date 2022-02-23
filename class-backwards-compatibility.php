@@ -99,7 +99,7 @@ class Backwards_Compatibility {
 			$is_old_bab_user = true;
 			$should_update   = true;
 
-			$new_options['overflow_layout'] = 1;
+			$new_options['remove_top_gap'] = 1;
 			delete_option( 'admin_bar_settings_compat' );
 		}
 
@@ -139,7 +139,7 @@ class Backwards_Compatibility {
 		}
 
 		if ( isset( $old_options['fix_multiline'] ) ) {
-			$new_options['fix_horizontal_overflow'] = 1;
+			$new_options['fix_menu_item_overflow'] = 1;
 
 			$should_update = true;
 

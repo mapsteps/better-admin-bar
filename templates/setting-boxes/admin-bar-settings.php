@@ -98,19 +98,19 @@ $roles     = $roles_obj->role_names;
 	</h2>
 	<div class="setting-fields">
 		<div class="field" data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
-			<label for="overflow_layout" class="label checkbox-label">
+			<label for="remove_top_gap" class="label checkbox-label">
 				<?php _e( 'Remove Admin Bar Gap', 'better-admin-bar' ); ?>
 				<p class="description"><?php _e( 'Removes the top gap (32px) the Admin Bar adds to your website.', 'better-admin-bar' ); ?></p>
-				<input type="checkbox" name="overflow_layout" id="overflow_layout" value="1" class="general-setting-field" <?php checked( $admin_bar_settings['overflow_layout'], 1 ); ?>>
+				<input type="checkbox" name="remove_top_gap" id="remove_top_gap" value="1" class="general-setting-field" <?php checked( $admin_bar_settings['remove_top_gap'], 1 ); ?>>
 				<div class="indicator"></div>
 			</label>
 		</div>
 
 		<div class="field" data-hide-if-field="remove_by_roles" data-hide-if-value='["all"]'>
-			<label for="fix_horizontal_overflow" class="label checkbox-label">
+			<label for="fix_menu_item_overflow" class="label checkbox-label">
 				<?php _e( 'Fix Menu Item Overflow', 'better-admin-bar' ); ?>
 				<p class="description"><?php _e( 'With too many menu items in the admin bar the layout may break on smaller screens.<br> This setting prevents menu items from overflowing and breaking into the next line.', 'better-admin-bar' ); ?></p>
-				<input type="checkbox" name="fix_horizontal_overflow" id="fix_horizontal_overflow" value="1" class="general-setting-field" <?php checked( $admin_bar_settings['fix_horizontal_overflow'], 1 ); ?>>
+				<input type="checkbox" name="fix_menu_item_overflow" id="fix_menu_item_overflow" value="1" class="general-setting-field" <?php checked( $admin_bar_settings['fix_menu_item_overflow'], 1 ); ?>>
 				<div class="indicator"></div>
 			</label>
 		</div>
