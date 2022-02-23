@@ -1,6 +1,5 @@
 (function () {
-	// var hoverIntentMs = swiftControlAdminBarOpts.hoverIntent;
-	var hoverIntentMs = 1000;
+	var hoverIntentMs = swiftControlAdminBarOpts.hoverIntent;
 	var windowWidth = document.documentElement.clientWidth;
 	var triggerAreaHeight = windowWidth <= 782 ? 46 : 32;
 	var timeoutId = 0;
