@@ -1,12 +1,13 @@
 (function () {
-	var hoverIntentMs = swiftControlAdminBarOpts.hoverIntent;
+	var showingIntentMs = swiftControlAdminBarOpts.hoverIntent;
+	var hidingIntentMs = showingIntentMs * 2;
 	var windowWidth = document.documentElement.clientWidth;
 	var triggerAreaHeight = windowWidth <= 782 ? 46 : 32;
 	var timeoutId = 0;
 
 	var mouseAction = "";
-	var showingIntentMs = 0;
-	var hidingIntentMs = 0;
+	var showingActionMs = 0;
+	var hidingActionMs = 0;
 
 	function init() {
 		window.addEventListener("resize", onWindowResize);
@@ -35,11 +36,11 @@
 		var now = Date.now();
 
 		if (mouseAction !== "mouseleave") {
-			hidingIntentMs = now;
+			hidingActionMs = now;
 			mouseAction = "mouseleave";
 		}
 
-		showingIntentMs = now;
+		showingActionMs = now;
 
 		if (!adminbarIsShown) {
 			return;
@@ -47,18 +48,18 @@
 
 		timeoutId = setTimeout(function () {
 			hideAdminBar(target);
-		}, hoverIntentMs);
+		}, hidingIntentMs);
 	}
 
 	function handleMouseEnter(target, adminbarIsShown) {
 		var now = Date.now();
 
 		if (mouseAction !== "mouseenter") {
-			showingIntentMs = now;
+			showingActionMs = now;
 			mouseAction = "mouseenter";
 		}
 
-		hidingIntentMs = now;
+		hidingActionMs = now;
 
 		if (adminbarIsShown) {
 			return;
@@ -66,7 +67,7 @@
 
 		timeoutId = setTimeout(function () {
 			showAdminBar(target);
-		}, hoverIntentMs);
+		}, showingIntentMs);
 	}
 
 	function hideAdminBar(target) {
@@ -74,7 +75,7 @@
 			return;
 		}
 
-		if (Date.now() - hidingIntentMs < hoverIntentMs) {
+		if (Date.now() - hidingActionMs < hidingIntentMs) {
 			return;
 		}
 
@@ -90,7 +91,7 @@
 
 		setTimeout(function () {
 			document.documentElement.classList.remove("show-wpadminbar");
-		}, swiftControlAdminBarOpts.transitionDelay - hoverIntentMs);
+		}, swiftControlAdminBarOpts.transitionDelay - hidingIntentMs);
 	}
 
 	function showAdminBar() {
@@ -98,7 +99,7 @@
 			return;
 		}
 
-		if (Date.now() - showingIntentMs < hoverIntentMs) {
+		if (Date.now() - showingActionMs < showingIntentMs) {
 			return;
 		}
 
