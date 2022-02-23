@@ -10,6 +10,7 @@
 	var hidingActionMs = 0;
 
 	function init() {
+		document.documentElement.classList.add("auto-hide-admin-bar");
 		window.addEventListener("resize", onWindowResize);
 		window.addEventListener("mousemove", onMouseMove);
 	}
