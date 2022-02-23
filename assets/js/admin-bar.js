@@ -8,9 +8,9 @@
 	function onMouseMove(e) {
 		var adminbarShown =
 			document.documentElement.classList.contains("show-wpadminbar");
-		var limit = adminbarShown ? 32 : 5;
+		var safeAreaHeight = adminbarShown ? 200 : 15;
 
-		if (e.clientY > limit) {
+		if (e.clientY > safeAreaHeight) {
 			if (timeoutId && !adminbarShown) clearTimeout(timeoutId);
 
 			timeoutId = setTimeout(
