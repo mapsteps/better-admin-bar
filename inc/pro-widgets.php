@@ -10,7 +10,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 return array(
 	'custom'        => array(
 		'text'        => __( 'Custom Controls', 'better-admin-bar' ),
-		'description' => __( 'Add Custom Controls to your Quick Access Panel', 'better-admin-bar' ),
+		'description' => __( 'Add Custom Controls to your Quick Access Panel.', 'better-admin-bar' ),
 	),
 	'page_builders' => array(
 		'text'        => __( 'Page Builder Support', 'better-admin-bar' ),
@@ -19,9 +19,6 @@ return array(
 	'cpt'           => array(
 		'text'        => __( 'Custom Post Type Support', 'better-admin-bar' ),
 		'description' => __( 'Better Admin Bar PRO automatically detects registered post types and provides you with the necessary controls.', 'better-admin-bar' ),
-		'url'         => 'https://wpswiftcontrol.com/pro/',
-		'new_tab'     => true,
-		'icon_class'  => 'fa-solid fa-octagon-check',
 	),
 	'multisite'     => array(
 		'text'        => __( 'Multisite Support', 'better-admin-bar' ),

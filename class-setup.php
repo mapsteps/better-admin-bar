@@ -111,18 +111,13 @@ class Setup {
 		?>
 
 		<div class="notice notice-info swift-control-discontinue-notice is-dismissible">
-			<h2>Get 50% OFF Better Admin Bar PRO!</h2>
+			<h2>Better Admin Bar PRO - Launch Offer 🥳</h2>
 
 			<p>
-				Thank you for checking out Better Admin Bar! 🎉<br>
-				As a valued user of our plugin we would like to offer you a <strong style="color: green;">50% discount</strong> on <strong>Better Admin Bar PRO</strong> (yearly plan) for the first year.
+				As a valued user of our plugin we would like to offer you a <strong style="color: green;">50% discount</strong> on <strong>Better Admin Bar PRO</strong> for the first year.
 			</p>
 
-			<p><strong>Alternatively, check out our <a target="_blank" href="https://wp-pagebuilderframework.com/pricing/">Agency Bundle</a> which includes Better Admin Bar PRO for free.</strong></p>
-
-			<p>Grab it while it lasts.</p>
-
-			<p><a target="_blank" href="https://betteradminbar.com/?edd_action=add_to_cart&download_id=241&edd_options%5Bprice_id%5D=1&discount=SCPRO50" style="font-weight: 700;" class="button button-primary">Get Better Admin Bar PRO and save 50%</a> <strong>Coupon limited to 100 users!</strong></p>
+			<p><a target="_blank" href="https://betteradminbar.com/?edd_action=add_to_cart&download_id=241&edd_options%5Bprice_id%5D=1&discount=SCPRO50" style="font-weight: 700;" class="button button-primary">Grab the deal</a> <strong>Coupon limited to 50 users!</strong></p>
 		</div>
 
 		<?php

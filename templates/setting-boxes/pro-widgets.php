@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 	<div class="heatbox-content">
 
-		<p><?php _e( 'Better Admin Bar PRO allows you to', 'better-admin-bar' ); ?></p>
+		<p><?php _e( 'Get <strong>Better Admin Bar PRO</strong> & provide your customers with the user experience they deserve.', 'better-admin-bar' ); ?></p>
 
 		<ul id="pro-items" class="widget-items pro-items">
 
@@ -38,7 +38,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 		</ul>
 
-		<a href="https://betteradminbar.com/pricing/" target="_blank" class="button button-primary button-larger button-full">View Pricing</a>
+		<a href="https://betteradminbar.com/pricing/" target="_blank" class="button button-primary button-larger button-full">Learn more</a>
 
 	</div>
 
