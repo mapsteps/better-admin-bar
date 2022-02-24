@@ -95,12 +95,12 @@ class Backwards_Compatibility {
 		$is_old_bab_user = false;
 		$should_update   = false;
 
-		if ( get_option( 'admin_bar_settings_compat' ) ) {
+		if ( get_option( 'admin_bar_settings_backwards_compat' ) ) {
 			$is_old_bab_user = true;
 			$should_update   = true;
 
 			$new_options['remove_top_gap'] = 1;
-			delete_option( 'admin_bar_settings_compat' );
+			delete_option( 'admin_bar_settings_backwards_compat' );
 		}
 
 		// Move "remove_admin_bar" sub-option key.
