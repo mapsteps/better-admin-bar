@@ -17,15 +17,6 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 			<p>
 				<?php _e( 'Use the export button to generate a .json file which you can then import to another WordPress installation.', 'better-admin-bar' ); ?>
 			</p>
-			<div class="setting-fields is-gapless">
-				<div class="field">
-					<label for="swift_control_export_settings" class="label checkbox-label">
-						<?php _e( 'Include Settings', 'better-admin-bar' ); ?>
-						<input type="checkbox" name="swift_control_export_settings" id="swift_control_export_settings" value="1" class="export-widgets-field">
-						<div class="indicator"></div>
-					</label>
-				</div>
-			</div>
 			<?php submit_button( __( 'Export File', 'better-admin-bar' ), 'primary', 'submit_export' ); ?>
 		</div>
 	</form>

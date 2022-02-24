@@ -23,7 +23,9 @@ class Import {
 		$options_meta = array(
 			'swift_control_active_widgets',
 			'swift_control_widget_settings',
+			'swift_control_display_settings',
 			'swift_control_color_settings',
+			'swift_control_admin_bar_settings',
 			'swift_control_misc_settings',
 		);
 		$import_file  = $_FILES['swift_control_import_file'];
@@ -64,8 +66,6 @@ class Import {
 			return;
 		}
 
-		$include_settings = count( $imports ) > 1 ? true : false;
-
 		foreach ( $imports as $meta_key => $meta_value ) {
 			if ( in_array( $meta_key, $options_meta, true ) ) {
 				update_option( $meta_key, $meta_value );
@@ -75,18 +75,9 @@ class Import {
 		add_settings_error(
 			'swift_control_import',
 			esc_attr( 'swift-control-widgets-imported' ),
-			__( 'Widgets imported', 'better-admin-bar' ),
+			__( 'Data imported', 'better-admin-bar' ),
 			'success'
 		);
-
-		if ( $include_settings ) {
-			add_settings_error(
-				'swift_control_import',
-				esc_attr( 'swift-control-settings-imported' ),
-				__( 'Settings imported', 'better-admin-bar' ),
-				'success'
-			);
-		}
 
 	}
 }
