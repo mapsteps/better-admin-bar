@@ -12,7 +12,8 @@
 	function init() {
 		document.documentElement.classList.add("auto-hide-admin-bar");
 		window.addEventListener("resize", onWindowResize);
-		window.addEventListener("mousemove", onMouseMove);
+		window.addEventListener("mouseover", onMouseOver);
+		document.addEventListener("mouseleave", onMouseLeave);
 	}
 
 	function onWindowResize() {
@@ -21,7 +22,11 @@
 		triggerAreaHeight = windowWidth <= 782 ? 46 : 32;
 	}
 
-	function onMouseMove(e) {
+	function onMouseLeave(e) {
+		mouseAction = "";
+	}
+
+	function onMouseOver(e) {
 		var adminbarIsShown =
 			document.documentElement.classList.contains("show-wpadminbar");
 
