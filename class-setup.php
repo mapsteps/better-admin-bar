@@ -114,7 +114,7 @@ class Setup {
 			<h2>Better Admin Bar PRO - Launch Offer 🥳</h2>
 
 			<p>
-				As a valued user of our plugin we would like to offer you a <strong style="color: green;">50% discount</strong> on <strong>Better Admin Bar PRO</strong> for the first year.
+				<strong>Better Admin Bar PRO</strong> is now available!<br> As a valued user of our plugin we would like to offer you a <strong style="color: #d63638;">50% discount</strong> on our new plugin.
 			</p>
 
 			<p><a target="_blank" href="https://betteradminbar.com/?edd_action=add_to_cart&download_id=241&edd_options%5Bprice_id%5D=1&discount=SCPRO50" style="font-weight: 700;" class="button button-primary">Grab the deal</a> <strong>Coupon limited to 50 users!</strong></p>
