@@ -185,7 +185,7 @@ class Backwards_Compatibility {
 		}
 
 		if ( isset( $old_options['autohide'] ) ) {
-			$new_options['auto_hide'] = $old_options['autohide'];
+			$new_options['auto_hide'] = 1;
 
 			$should_update = true;
 
