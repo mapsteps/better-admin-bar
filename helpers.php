@@ -7,7 +7,7 @@
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
- * Output memu items on settings page.
+ * Output menu items on settings page.
  *
  * @param string $widget_key The widget key.
  */
