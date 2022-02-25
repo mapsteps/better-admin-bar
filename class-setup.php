@@ -126,10 +126,10 @@ class Setup {
 		$activation_url = add_query_arg(
 			array(
 				'action'        => 'activate',
-				'plugin'        => rawurlencode( $plugin ),
+				'plugin'        => rawurlencode( $old_plugin_slug ),
 				'plugin_status' => 'all',
 				'paged'         => '1',
-				'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $plugin ),
+				'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $old_plugin_slug ),
 			),
 			esc_url( network_admin_url( 'plugins.php' ) )
 		);
