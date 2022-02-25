@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-$setting_url = admin_url( 'options-general.php?page=swift-control' );
+$setting_url = admin_url( 'options-general.php?page=better-admin-bar' );
 
 $active_widgets   = swift_control_get_active_widgets();
 $display_settings = swift_control_get_display_settings();
