@@ -49,7 +49,9 @@
 				currentActiveTabMenu = document.querySelector(
 					".heatbox-tab-nav-item.active"
 				);
-				hashValue = currentActiveTabMenu.dataset.tab;
+				hashValue = currentActiveTabMenu
+					? currentActiveTabMenu.dataset.tab
+					: "";
 				hashValue = hashValue ? hashValue : "settings";
 			}
 
