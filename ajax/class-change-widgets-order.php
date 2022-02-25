@@ -2,7 +2,7 @@
 /**
  * Change widget order.
  *
- * @package Better_Admin_Bar
+ * @package Swift_Control
  */
 
 namespace SwiftControl\Ajax;
@@ -60,7 +60,7 @@ class Change_Widgets_Order {
 	public function validate() {
 		// Check if nonce is incorrect.
 		if ( ! check_ajax_referer( 'change_widgets_order', 'nonce', false ) ) {
-			wp_send_json_error( __( 'Invalid token', 'better-admin-bar' ) );
+			wp_send_json_error( __( 'Invalid token', 'swift-control' ) );
 		}
 	}
 
@@ -69,6 +69,6 @@ class Change_Widgets_Order {
 	 */
 	public function save() {
 		update_option( 'swift_control_active_widgets', $this->data['active_widgets'] );
-		wp_send_json_success( __( 'Widget order is changed' ), 'better-admin-bar' );
+		wp_send_json_success( __( 'Widget order is changed' ), 'swift-control' );
 	}
 }

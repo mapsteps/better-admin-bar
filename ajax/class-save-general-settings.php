@@ -2,7 +2,7 @@
 /**
  * Change widget item's setting.
  *
- * @package Better_Admin_Bar
+ * @package Swift_Control
  */
 
 namespace SwiftControl\Ajax;
@@ -16,14 +16,14 @@ class Save_General_Settings {
 	 *
 	 * @var array
 	 */
-	private $fields = array( 'widget_bg_color', 'widget_bg_color_hover', 'widget_icon_color', 'setting_button_bg_color', 'setting_button_icon_color', 'disable_swift_control', 'remove_indicator', 'expanded', 'delete_on_uninstall', 'remove_font_awesome', 'remove_by_roles', 'remove_top_gap', 'fix_menu_item_overflow', 'hide_below_screen_width', 'inactive_opacity', 'active_opacity', 'auto_hide', 'transition_duration', 'hiding_transition_delay' );
+	private $fields = array( 'widget_bg_color', 'widget_bg_color_hover', 'widget_icon_color', 'setting_button_bg_color', 'setting_button_icon_color', 'remove_indicator', 'expanded', 'delete_on_uninstall', 'remove_font_awesome', 'remove_admin_bar' );
 
 	/**
 	 * Allowed empty fields.
 	 *
 	 * @var array
 	 */
-	private $empty_allowed = array( 'disable_swift_control', 'remove_indicator', 'expanded', 'delete_on_uninstall', 'remove_font_awesome', 'remove_by_roles', 'remove_top_gap', 'fix_menu_item_overflow', 'hide_below_screen_width', 'inactive_opacity', 'active_opacity', 'auto_hide', 'transition_duration', 'hiding_transition_delay' );
+	private $empty_allowed = array( 'remove_indicator', 'expanded', 'delete_on_uninstall', 'remove_font_awesome', 'remove_admin_bar' );
 
 	/**
 	 * Color setting fields.
@@ -37,21 +37,14 @@ class Save_General_Settings {
 	 *
 	 * @var array
 	 */
-	private $display_setting_fields = array( 'disable_swift_control', 'remove_indicator', 'expanded' );
+	private $display_setting_fields = array( 'remove_indicator', 'expanded' );
 
 	/**
 	 * Misc setting fields.
 	 *
 	 * @var array
 	 */
-	private $misc_setting_fields = array( 'delete_on_uninstall', 'remove_font_awesome' );
-
-	/**
-	 * Admin bar setting fields.
-	 *
-	 * @var array
-	 */
-	private $admin_bar_setting_fields = array( 'remove_by_roles', 'remove_top_gap', 'fix_menu_item_overflow', 'hide_below_screen_width', 'inactive_opacity', 'active_opacity', 'auto_hide', 'transition_duration', 'hiding_transition_delay' );
+	private $misc_setting_fields = array( 'delete_on_uninstall', 'remove_font_awesome', 'remove_admin_bar' );
 
 	/**
 	 * Sanitized data.
@@ -75,7 +68,7 @@ class Save_General_Settings {
 	public function sanitize() {
 		foreach ( $this->fields as $field ) {
 			if ( isset( $_POST[ $field ] ) ) {
-				if ( 'remove_by_roles' === $field ) {
+				if ( 'remove_admin_bar' === $field ) {
 					$roles = array();
 
 					foreach ( $_POST[ $field ] as $role ) {
@@ -97,7 +90,7 @@ class Save_General_Settings {
 	public function validate() {
 		// Check if nonce is incorrect.
 		if ( ! check_ajax_referer( 'save_general_settings', 'nonce', false ) ) {
-			wp_send_json_error( __( 'Invalid token', 'better-admin-bar' ) );
+			wp_send_json_error( __( 'Invalid token', 'swift-control' ) );
 		}
 
 		// Check if there is empty field.
@@ -107,7 +100,7 @@ class Save_General_Settings {
 					$field_name = str_ireplace( '_', ' ', $field );
 					$field_name = ucfirst( $field_name );
 
-					wp_send_json_error( $field_name . ' ' . __( 'is empty', 'better-admin-bar' ) );
+					wp_send_json_error( $field_name . ' ' . __( 'is empty', 'swift-control' ) );
 				}
 			}
 		}
@@ -117,10 +110,9 @@ class Save_General_Settings {
 	 * Save the data.
 	 */
 	public function save() {
-		$color_settings     = array();
-		$display_settings   = array();
-		$misc_settings      = array();
-		$admin_bar_settings = array();
+		$color_settings   = array();
+		$display_settings = array();
+		$misc_settings    = array();
 
 		foreach ( $this->color_setting_fields as $field ) {
 			if ( isset( $this->data[ $field ] ) ) {
@@ -140,17 +132,10 @@ class Save_General_Settings {
 			}
 		}
 
-		foreach ( $this->admin_bar_setting_fields as $field ) {
-			if ( isset( $this->data[ $field ] ) ) {
-				$admin_bar_settings[ $field ] = $this->data[ $field ];
-			}
-		}
-
 		update_option( 'swift_control_color_settings', $color_settings );
 		update_option( 'swift_control_display_settings', $display_settings );
 		update_option( 'swift_control_misc_settings', $misc_settings );
-		update_option( 'swift_control_admin_bar_settings', $admin_bar_settings );
 
-		wp_send_json_success( __( 'The settings are saved' ), 'better-admin-bar' );
+		wp_send_json_success( __( 'The settings are saved' ), 'swift-control' );
 	}
 }

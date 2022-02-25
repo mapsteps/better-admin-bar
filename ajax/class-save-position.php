@@ -2,7 +2,7 @@
 /**
  * Change widget order.
  *
- * @package Better_Admin_Bar
+ * @package Swift_Control
  */
 
 namespace SwiftControl\Ajax;
@@ -57,7 +57,7 @@ class Save_Position {
 	public function validate() {
 		// Check if nonce is incorrect.
 		if ( ! check_ajax_referer( 'save_position', 'nonce', false ) ) {
-			wp_send_json_error( __( 'Invalid token', 'better-admin-bar' ) );
+			wp_send_json_error( __( 'Invalid token', 'swift-control' ) );
 		}
 
 		// Check if there is empty field.
@@ -67,7 +67,7 @@ class Save_Position {
 					$field_name = str_ireplace( '_', ' ', $field );
 					$field_name = ucfirst( $field_name );
 
-					wp_send_json_error( $field_name . ' ' . __( 'is empty', 'better-admin-bar' ) );
+					wp_send_json_error( $field_name . ' ' . __( 'is empty', 'swift-control' ) );
 				}
 			}
 		}
@@ -78,6 +78,6 @@ class Save_Position {
 	 */
 	public function save() {
 		update_user_meta( get_current_user_id(), 'swift_control_position', $this->data );
-		wp_send_json_success( __( 'Widget position is saved' ), 'better-admin-bar' );
+		wp_send_json_success( __( 'Widget position is saved' ), 'swift-control' );
 	}
 }

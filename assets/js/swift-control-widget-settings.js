@@ -5,7 +5,7 @@
  * - SwiftControl
  */
 (function ($) {
-	var statusButton = document.querySelector('.active-widgets-box .saved-status');
+	var statusButton = document.querySelector('.active-items-box .saved-status');
 	var isRequesting = false;
 	var elms = {};
 	var $elms = {};
@@ -57,8 +57,8 @@
 	 * Register necessary elements which are related to settings area.
 	 */
 	function setupSettingsArea() {
-		$elms.heatboxStacked = $(".stacked-heatbox-placeholder");
-		$elms.activeItemsArea = $('.swift-control-settings-panel .heatbox-sidebar');
+		$elms.page = $('.swift-control-page');
+		$elms.activeItemsArea = $('.left-section');
 
 		moveSettingsArea();
 	}
@@ -71,9 +71,9 @@
 	 */
 	function moveSettingsArea() {
 		if (window.innerWidth < 992) {
-			$('.sidebar-heatbox').appendTo($elms.heatboxStacked);
+			$('.general-settings-area').appendTo($elms.page);
 		} else {
-			$('.sidebar-heatbox').appendTo($elms.activeItemsArea);
+			$('.general-settings-area').appendTo($elms.activeItemsArea);
 		}
 	}
 
@@ -116,12 +116,13 @@
 
 		$(document).on('iconPicker:selected', onIconpickerSelected);
 
+
 		// Widget events.
 		$('.swift-control-settings .widget-item-col .edit-button').on('click', onEditButtonClick);
 		$('.swift-control-settings .widget-items .dblclick-trigger').on('dblclick', onWidgetDoubleClick);
-		$('.swift-control-settings .widget-text-field').on('keydown', onWidgetEnter);
-		$('.swift-control-settings .new-tab-field').on('keydown', onWidgetEnter);
-		$('.swift-control-settings .widget-item .blur-trigger').on('click', onBlurTriggerClick);
+		$('.swift-control-page .widget-text-field').on('keydown', onWidgetEnter);
+		$('.swift-control-page .new-tab-field').on('keydown', onWidgetEnter);
+		$('.swift-control-page .widget-item .blur-trigger').on('click', onBlurTriggerClick);
 	}
 
 	function onEditButtonClick(e) {
@@ -219,8 +220,8 @@
 	 */
 	function escapeEditMode(widgetItem) {
 		if (widgetItem === 'all') {
-			$('.swift-control-settings .active-items .widget-item').removeClass('edit-mode');
-			$('.swift-control-settings .active-items .edit-button').html(SwiftControl.labels.edit);
+			$('.swift-control-page .active-items .widget-item').removeClass('edit-mode');
+			$('.swift-control-page .active-items .edit-button').html(SwiftControl.labels.edit);
 			setWidgetTextFieldState('all', true);
 		} else {
 			var editButton = widgetItem.querySelector('.edit-button');

@@ -1,8 +1,8 @@
 <?php
 /**
- * Script to run on Better Admin Bar's un-installation.
+ * Script to run on Swift Control's un-installation.
  *
- * @package Better_Admin_Bar
+ * @package Swift_Control
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
@@ -14,16 +14,9 @@ if ( ! $delete_on_uninstall ) {
 	return;
 }
 
-// Delete the core options.
 delete_option( 'swift_control_active_widgets' );
 delete_option( 'swift_control_widget_settings' );
-delete_option( 'swift_control_display_settings' );
+delete_option( 'swift_control_widget_settings' );
 delete_option( 'swift_control_color_settings' );
-delete_option( 'swift_control_admin_bar_settings' );
 delete_option( 'swift_control_misc_settings' );
-
-// Delete the notice(s) option(s).
 delete_option( 'swift_control_discontinue_message' );
-
-// Delete the backwards compatibility option(s).
-delete_option( 'swift_control_compat_migrate_options' );

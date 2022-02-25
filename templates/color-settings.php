@@ -1,8 +1,8 @@
 <?php
 /**
- * Color settings template.
+ * Swift Control color settings template.
  *
- * @package Better_Admin_Bar
+ * @package Swift_Control
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
@@ -11,11 +11,10 @@ $default_color_settings = swift_control_get_default_color_settings();
 $color_settings         = swift_control_get_color_settings();
 ?>
 
-<div class="heatbox color-settings-box">
+<div class="neatbox is-smooth has-medium-gap has-bigger-heading color-settings-box">
 	<h2>
-		<?php _e( 'Color Settings', 'better-admin-bar' ); ?>
+		<?php _e( 'Color Settings', 'swift-control' ); ?>
 	</h2>
-
 	<div class="setting-fields">
 
 		<div class="field is-horizontal">

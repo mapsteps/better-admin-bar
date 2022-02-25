@@ -2,7 +2,7 @@
 /**
  * Setup export functions.
  *
- * @package Better_Admin_Bar
+ * @package Swift_Control
  */
 
 namespace SwiftControl\Helpers;
@@ -20,16 +20,21 @@ class Export {
 	 * Run importer.
 	 */
 	public function export() {
-		$options_data = array();
+		$options_data     = array();
+		$include_settings = isset( $_POST['swift_control_export_settings'] ) ? 1 : 0;
 
-		$options_meta = array(
-			'swift_control_active_widgets',
-			'swift_control_widget_settings',
-			'swift_control_display_settings',
-			'swift_control_color_settings',
-			'swift_control_admin_bar_settings',
-			'swift_control_misc_settings',
-		);
+		if ( ! $include_settings ) {
+			$options_meta = array(
+				'swift_control_active_widgets',
+			);
+		} else {
+			$options_meta = array(
+				'swift_control_active_widgets',
+				'swift_control_widget_settings',
+				'swift_control_color_settings',
+				'swift_control_misc_settings',
+			);
+		}
 
 		foreach ( $options_meta as $meta_key ) {
 			$options_data[ $meta_key ] = get_option( $meta_key, array() );

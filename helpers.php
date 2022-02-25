@@ -1,13 +1,13 @@
 <?php
-/** Better Admin Bar's functions.
+/** WP Swift Control's functions.
  *
- * @package Better_Admin_Bar
+ * @package Swift_Control
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
- * Output menu items on settings page.
+ * Output memu items on settings page.
  *
  * @param string $widget_key The widget key.
  */
@@ -33,32 +33,32 @@ function swift_control_settings_output_widget_item( $widget_key ) {
 	?>
 
 	<li class="widget-item" data-widget-key="<?php echo esc_attr( $widget_key ); ?>">
-		<div class="heatbox-cols widget-default-area">
-			<div class="widget-item-col drag-wrapper">
+		<div class="cols widget-default-area">
+			<div class="col widget-item-col drag-wrapper">
 				&nbsp;
 				<span class="drag-handle"></span>
 			</div>
-			<div class="widget-item-col icon-wrapper">
+			<div class="col widget-item-col icon-wrapper">
 				<div class="widget-icon dblclick-trigger">
 					<i class="<?php echo esc_attr( $icon_class ); ?>"></i>
 					<button type="button" class="icon-picker blur-trigger"></button>
 				</div>
 			</div>
-			<div class="widget-item-col text-wrapper">
+			<div class="col widget-item-col text-wrapper">
 				<input type="text" name="swift_control_<?php echo esc_attr( $widget_key ); ?>_text" class="text-field widget-text-field dblclick-trigger" value="<?php echo esc_html( $widget_name ); ?>" readonly>
 			</div>
-			<div class="widget-item-col extra-settings-wrapper">
+			<div class="col widget-item-col extra-settings-wrapper">
 
 				<?php if ( isset( $default_widget_settings['redirect_url'] ) || isset( $widget_settings['redirect_url'] ) ) : ?>
 					<div class="widget-item-control edit-mode-control redirect-url-setting">
-						<input type="url" id="swift_control_<?php echo esc_attr( $widget_key ); ?>_redirect_url" name="swift_control_<?php echo esc_attr( $widget_key ); ?>_redirect_url" class="text-field redirect-url-field" value="<?php echo esc_html( $redirect_url ); ?>" placeholder="<?php _e( 'Redirect Url', 'better-admin-bar' ); ?>">
+						<input type="url" id="swift_control_<?php echo esc_attr( $widget_key ); ?>_redirect_url" name="swift_control_<?php echo esc_attr( $widget_key ); ?>_redirect_url" class="text-field redirect-url-field" value="<?php echo esc_html( $redirect_url ); ?>" placeholder="<?php _e( 'Redirect Url', 'swift-control' ); ?>">
 					</div>
 				<?php endif; ?>
 
 				<?php if ( isset( $default_widget_settings['new_tab'] ) || isset( $widget_settings['new_tab'] ) ) : ?>
 					<div class="widget-item-control edit-mode-control new-tab-setting">
 						<label for="swift_control_<?php echo esc_attr( $widget_key ); ?>_new_tab" class="label checkbox-label blur-trigger">
-							<?php _e( 'New tab', 'better-admin-bar' ); ?>
+							<?php _e( 'New tab', 'swift-control' ); ?>
 							<input type="checkbox" name="swift_control_<?php echo esc_attr( $widget_key ); ?>_new_tab" id="swift_control_<?php echo esc_attr( $widget_key ); ?>_new_tab" value="1" class="new-tab-field" <?php checked( $tab_target, 1 ); ?>>
 							<div class="indicator"></div>
 						</label>
@@ -66,9 +66,9 @@ function swift_control_settings_output_widget_item( $widget_key ) {
 				<?php endif; ?>
 
 			</div>
-			<div class="widget-item-col actions-wrapper">
+			<div class="col widget-item-col actions-wrapper">
 				<button type="button" class="widget-item-control edit-button">
-					<?php _e( 'Edit', 'better-admin-bar' ); ?>
+					<?php _e( 'Edit', 'swift-control' ); ?>
 				</button>
 			</div>
 		</div><!-- .cols -->
@@ -294,37 +294,6 @@ function swift_control_get_misc_settings() {
 }
 
 /**
- * Get admin bar settings.
- *
- * @return array The admin bar settings.
- */
-function swift_control_get_admin_bar_settings() {
-	$saved_settings = get_option( 'swift_control_admin_bar_settings', array() );
-
-	$admin_bar_settings = array(
-		'remove_by_roles'         => isset( $saved_settings['remove_by_roles'] ) ? $saved_settings['remove_by_roles'] : array(),
-		'remove_top_gap'          => isset( $saved_settings['remove_top_gap'] ) ? absint( $saved_settings['remove_top_gap'] ) : 0,
-		'fix_menu_item_overflow'  => isset( $saved_settings['fix_menu_item_overflow'] ) ? absint( $saved_settings['fix_menu_item_overflow'] ) : 0,
-		'hide_below_screen_width' => isset( $saved_settings['hide_below_screen_width'] ) && '' !== $saved_settings['hide_below_screen_width'] ? absint( $saved_settings['hide_below_screen_width'] ) : '',
-		'inactive_opacity'        => isset( $saved_settings['inactive_opacity'] ) && '' !== $saved_settings['inactive_opacity'] ? absint( $saved_settings['inactive_opacity'] ) : '',
-		'active_opacity'          => isset( $saved_settings['active_opacity'] ) && '' !== $saved_settings['active_opacity'] ? absint( $saved_settings['active_opacity'] ) : '',
-		'auto_hide'               => isset( $saved_settings['auto_hide'] ) ? absint( $saved_settings['auto_hide'] ) : 0,
-		'showing_intent'          => isset( $saved_settings['showing_intent'] ) && '' !== $saved_settings['showing_intent'] ? absint( $saved_settings['showing_intent'] ) : '',
-		'hiding_intent'           => isset( $saved_settings['hiding_intent'] ) && '' !== $saved_settings['hiding_intent'] ? absint( $saved_settings['hiding_intent'] ) : '',
-		'hiding_transition_delay' => isset( $saved_settings['hiding_transition_delay'] ) && '' !== $saved_settings['hiding_transition_delay'] ? absint( $saved_settings['hiding_transition_delay'] ) : '',
-		'transition_duration'     => isset( $saved_settings['transition_duration'] ) && '' !== $saved_settings['transition_duration'] ? absint( $saved_settings['transition_duration'] ) : '',
-	);
-
-	// Backward compatibility: old value's format was int (0 / 1).
-	if ( is_numeric( $admin_bar_settings['remove_by_roles'] ) ) {
-		$admin_bar_settings['remove_by_roles'] = absint( $admin_bar_settings['remove_by_roles'] );
-		$admin_bar_settings['remove_by_roles'] = $admin_bar_settings['remove_by_roles'] ? array( 'all' ) : array();
-	}
-
-	return $admin_bar_settings;
-}
-
-/**
  * Get display settings.
  *
  * @return array The display settings.
@@ -333,9 +302,8 @@ function swift_control_get_display_settings() {
 	$saved_settings = get_option( 'swift_control_display_settings', array() );
 
 	$display_settings = array(
-		'disable_swift_control' => isset( $saved_settings['disable_swift_control'] ) ? absint( $saved_settings['disable_swift_control'] ) : 0,
-		'remove_indicator'      => isset( $saved_settings['remove_indicator'] ) ? absint( $saved_settings['remove_indicator'] ) : 0,
-		'expanded'              => isset( $saved_settings['expanded'] ) ? absint( $saved_settings['expanded'] ) : 0,
+		'remove_indicator' => isset( $saved_settings['remove_indicator'] ) ? absint( $saved_settings['remove_indicator'] ) : 0,
+		'expanded'         => isset( $saved_settings['expanded'] ) ? absint( $saved_settings['expanded'] ) : 0,
 	);
 
 	return $display_settings;
@@ -435,7 +403,7 @@ function swift_control_parse_widget_name( $widget_name, $widget_key, $settings =
 		}
 	} else {
 		if ( 'edit_post_type' === $widget_key ) {
-			$widget_name = __( 'Disabled', 'better-admin-bar' );
+			$widget_name = __( 'Disabled', 'swift-control' );
 		}
 	}
 

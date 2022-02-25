@@ -2,7 +2,7 @@
 /**
  * Setup import functions.
  *
- * @package Better_Admin_Bar
+ * @package Swift_Control
  */
 
 namespace SwiftControl\Helpers;
@@ -23,9 +23,7 @@ class Import {
 		$options_meta = array(
 			'swift_control_active_widgets',
 			'swift_control_widget_settings',
-			'swift_control_display_settings',
 			'swift_control_color_settings',
-			'swift_control_admin_bar_settings',
 			'swift_control_misc_settings',
 		);
 		$import_file  = $_FILES['swift_control_import_file'];
@@ -38,7 +36,7 @@ class Import {
 			add_settings_error(
 				'swift_control_import',
 				esc_attr( 'swift-control-invalid-import' ),
-				__( 'Please upload a valid .json file', 'better-admin-bar' )
+				__( 'Please upload a valid .json file', 'swift-control' )
 			);
 			return;
 		}
@@ -49,7 +47,7 @@ class Import {
 			add_settings_error(
 				'swift_control_import',
 				esc_attr( 'swift-control-import-not-exist' ),
-				__( 'Please upload a file to import', 'better-admin-bar' )
+				__( 'Please upload a file to import', 'swift-control' )
 			);
 			return;
 		}
@@ -61,10 +59,12 @@ class Import {
 			add_settings_error(
 				'swift_control_import',
 				esc_attr( 'swift-control-empty-import' ),
-				__( 'Your import is empty', 'better-admin-bar' )
+				__( 'Your import is empty', 'swift-control' )
 			);
 			return;
 		}
+
+		$include_settings = count( $imports ) > 1 ? true : false;
 
 		foreach ( $imports as $meta_key => $meta_value ) {
 			if ( in_array( $meta_key, $options_meta, true ) ) {
@@ -75,9 +75,18 @@ class Import {
 		add_settings_error(
 			'swift_control_import',
 			esc_attr( 'swift-control-widgets-imported' ),
-			__( 'Data imported', 'better-admin-bar' ),
+			__( 'Widgets imported', 'swift-control' ),
 			'success'
 		);
+
+		if ( $include_settings ) {
+			add_settings_error(
+				'swift_control_import',
+				esc_attr( 'swift-control-settings-imported' ),
+				__( 'Settings imported', 'swift-control' ),
+				'success'
+			);
+		}
 
 	}
 }

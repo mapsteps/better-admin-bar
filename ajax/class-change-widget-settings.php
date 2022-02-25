@@ -2,7 +2,7 @@
 /**
  * Change widget item's setting.
  *
- * @package Better_Admin_Bar
+ * @package Swift_Control
  */
 
 namespace SwiftControl\Ajax;
@@ -66,7 +66,7 @@ class Change_Widget_Settings {
 	public function validate() {
 		// Check if nonce is incorrect.
 		if ( ! check_ajax_referer( 'change_widget_settings', 'nonce', false ) ) {
-			wp_send_json_error( __( 'Invalid token', 'better-admin-bar' ) );
+			wp_send_json_error( __( 'Invalid token', 'swift-control' ) );
 		}
 
 		// Check if there is empty field.
@@ -76,7 +76,7 @@ class Change_Widget_Settings {
 					$field_name = str_ireplace( '_', ' ', $field );
 					$field_name = ucfirst( $field_name );
 
-					wp_send_json_error( $field_name . ' ' . __( 'is empty', 'better-admin-bar' ) );
+					wp_send_json_error( $field_name . ' ' . __( 'is empty', 'swift-control' ) );
 				}
 			}
 		}
@@ -104,7 +104,7 @@ class Change_Widget_Settings {
 		wp_send_json_success(
 			array(
 				'widget_key' => $widget_key,
-				'message'    => __( 'Widget setting is saved', 'better-admin-bar' ),
+				'message'    => __( 'Widget setting is saved', 'swift-control' ),
 			)
 		);
 	}

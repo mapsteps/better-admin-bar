@@ -1,20 +1,16 @@
 <?php
 /**
- * Better Admin Bar's frontend output template.
+ * Swift Control's frontend output template.
  *
- * @package Better_Admin_Bar
+ * @package Swift_Control
  */
 
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
-$setting_url = admin_url( 'options-general.php?page=better-admin-bar' );
+$setting_url = admin_url( 'options-general.php?page=swift-control' );
 
 $active_widgets   = swift_control_get_active_widgets();
 $display_settings = swift_control_get_display_settings();
-
-if ( $display_settings['disable_swift_control'] ) {
-	return;
-}
 
 // Get saved widget settings.
 $saved_widget_settings = swift_control_get_saved_widget_settings();
