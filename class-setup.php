@@ -132,23 +132,26 @@ class Setup {
 		$old_plugin_slug = 'better-admin-bar';
 		$old_plugin_slug = $old_plugin_slug . '/' . $old_plugin_slug . '.php';
 
+		$new_plugin_slug = 'better-admin-bar';
+		$new_plugin_slug = $new_plugin_slug . '/' . $new_plugin_slug . '.php';
+
 		$activation_url = add_query_arg(
 			array(
 				'action'        => 'activate',
-				'plugin'        => rawurlencode( $old_plugin_slug ),
+				'plugin'        => rawurlencode( $new_plugin_slug ),
 				'plugin_status' => 'all',
 				'paged'         => '1',
-				'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $old_plugin_slug ),
+				'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $new_plugin_slug ),
 			),
 			esc_url( network_admin_url( 'plugins.php' ) )
 		);
 
 		$js_objects = array(
 			'oldPlugin' => [
-				'pluginSlug' => 'swift-control/swift-control.php',
+				'pluginSlug' => $old_plugin_slug,
 			],
 			'newPlugin' => [
-				'pluginSlug'    => $old_plugin_slug,
+				'pluginSlug'    => $new_plugin_slug,
 				'activationUrl' => $activation_url,
 			],
 			'nonces'    => array(

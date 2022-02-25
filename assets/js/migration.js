@@ -79,7 +79,7 @@
     isRequesting = true;
 
     wp.updates.installPlugin({
-      slug: SwiftControlMigration.oldPlugin.pluginSlug,
+      slug: SwiftControlMigration.newPlugin.pluginSlug,
       success: function () {
         console.log("Better Admin Bar installed successfully.");
 
@@ -104,7 +104,7 @@
     $.ajax({
       async: true,
       type: "GET",
-      url: SwiftControlMigration.oldPlugin.activationUrl,
+      url: SwiftControlMigration.newPlugin.activationUrl,
       success: function () {
         console.log("Better Admin Bar is activated.");
 
