@@ -47,20 +47,22 @@ class Migration {
 	 * Migrate to Better Admin Bar.
 	 */
 	public function migrate() {
-		if ( file_exists( WP_PLUGIN_DIR . '/' . $this->old_plugin_slug ) ) {
-			$deleted = delete_plugins( [ $this->old_plugin_slug ] );
-
-			if ( $deleted && ! is_wp_error( $deleted ) ) {
-				wp_send_json_success( __( 'Old Swift Control plugin has been uninstalled', 'swift-control' ) );
-			} elseif ( is_wp_error( $deleted ) ) {
-				wp_send_json_error( $deleted->get_error_message() );
-			} elseif ( null === $deleted ) {
-				wp_send_json_error( __( 'Filesystem credentials are required', 'swift-control' ) );
-			} else {
-				wp_send_json_error( __( 'Old plugin is not specified', 'swift-control' ) );
-			}
-		} else {
+		if ( ! file_exists( WP_PLUGIN_DIR . '/' . $this->old_plugin_slug ) ) {
 			wp_send_json_error( __( 'Old plugin is not found', 'swift-control' ) );
+		}
+
+		deactivate_plugins( $this->old_plugin_slug );
+
+		$deletion = delete_plugins( [ $this->old_plugin_slug ] );
+
+		if ( $deletion && ! is_wp_error( $deletion ) ) {
+			wp_send_json_success( __( 'Old Swift Control plugin has been uninstalled', 'swift-control' ) );
+		} elseif ( is_wp_error( $deletion ) ) {
+			wp_send_json_error( $deletion->get_error_message() );
+		} elseif ( null === $deletion ) {
+			wp_send_json_error( __( 'Filesystem credentials are required', 'swift-control' ) );
+		} else {
+			wp_send_json_error( __( 'Old plugin is not specified', 'swift-control' ) );
 		}
 	}
 }
