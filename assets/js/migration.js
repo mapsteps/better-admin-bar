@@ -25,6 +25,14 @@
   ajax.migrate = function (e) {
     e.preventDefault();
 
+    if (
+      !confirm(
+        "Your settings will be brought to the new \"Better Admin Bar\". However, this action can't be cancelled nor be un-done. Once it's' running, it needs to be done. Migrate now?"
+      )
+    ) {
+      return;
+    }
+
     if (!migrateButton) migrateButton = this;
 
     if (isRequesting) return;
