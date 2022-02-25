@@ -89,9 +89,64 @@ class Setup {
 					Migrate to Better Admin Bar Now
 				</a>
 			</p>
+
+			<p>
+				<div class="swift-control-migration-status old-swift-control-uninstalled">
+					<i class="dashicons dashicons-yes"></i>
+					Old Swift Control is uninstalled.
+				</div>
+				<div class="swift-control-migration-status new-better-admin-bar-installed">
+					<i class="dashicons dashicons-yes"></i>
+					New Better Admin Bar is installed.
+				</div>
+				<div class="swift-control-migration-status new-better-admin-bar-activated">
+					<i class="dashicons dashicons-yes"></i>
+					New Better Admin Bar is activated.
+				</div>
+			</p>
+
 		</div>
 
 		<?php
+
+	}
+
+	/**
+	 * Script that handles migration notice.
+	 */
+	public function migration_notice_script() {
+
+		wp_enqueue_style( 'swift-control-admin', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/swift-control-admin.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
+
+		wp_enqueue_script( 'swift-control-migration', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/migration.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
+
+		$slug   = 'better-admin-bar';
+		$plugin = $slug . '/' . $slug . '.php';
+
+		$activation_url = add_query_arg(
+			array(
+				'action'        => 'activate',
+				'plugin'        => rawurlencode( $plugin ),
+				'plugin_status' => 'all',
+				'paged'         => '1',
+				'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $plugin ),
+			),
+			esc_url( network_admin_url( 'plugins.php' ) )
+		);
+
+		wp_localize_script(
+			'swift-control-migration',
+			'SwiftControlMigration',
+			array(
+				'activationUrl'  => $activation_url,
+				'pluginSlug'     => $slug,
+				'pluginBasename' => $plugin,
+				'nonces'         => array(
+					'migration'   => wp_create_nonce( 'swift_control_migration' ),
+					'redirectUrl' => admin_url( 'options-general.php?page=better-admin-bar' ),
+				),
+			)
+		);
 
 	}
 
@@ -152,43 +207,6 @@ class Setup {
 			array(
 				'nonces' => array(
 					'dismissalNonce' => wp_create_nonce( 'Swift_Control_Dismiss_Discount_Notice' ),
-				),
-			)
-		);
-
-	}
-
-	/**
-	 * Script that handles migration notice.
-	 */
-	public function migration_notice_script() {
-
-		wp_enqueue_script( 'swift-control-migration', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/migration.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
-
-		$slug   = 'better-admin-bar';
-		$plugin = $slug . '/' . $slug . '.php';
-
-		$activation_url = add_query_arg(
-			array(
-				'action'        => 'activate',
-				'plugin'        => rawurlencode( $plugin ),
-				'plugin_status' => 'all',
-				'paged'         => '1',
-				'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $plugin ),
-			),
-			esc_url( network_admin_url( 'plugins.php' ) )
-		);
-
-		wp_localize_script(
-			'swift-control-migration',
-			'SwiftControlMigration',
-			array(
-				'activationUrl'  => $activation_url,
-				'pluginSlug'     => $slug,
-				'pluginBasename' => $plugin,
-				'nonces'         => array(
-					'migration'   => wp_create_nonce( 'swift_control_migration' ),
-					'redirectUrl' => admin_url( 'options-general.php?page=better-admin-bar' ),
 				),
 			)
 		);

@@ -34,5 +34,6 @@ class Migration {
 	 */
 	public function migrate() {
 		uninstall_plugin( 'swift-control/swift-control.php' );
+		wp_send_json_success( __( 'Old Swift Control plugin has been uninstalled', 'swift-control' ) );
 	}
 }

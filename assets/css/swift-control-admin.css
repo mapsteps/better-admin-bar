@@ -106,6 +106,18 @@
 	animation: loadingSpinAround 0.5s infinite linear;
 }
 
+.swift-control-migration-status {
+	display: none;
+}
+
+.swift-control-migration-status i {
+	color: rgb(39, 223, 39);
+}
+
+.swift-control-migration-status.is-checked {
+	display: block;
+}
+
 /**
  * --------------------------------------------------
  * Drag & locked handle

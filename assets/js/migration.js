@@ -8,11 +8,7 @@
    * Call the main functions here.
    */
   function init() {
-    $(document).on(
-      "click",
-      ".swift-control-migration-button",
-      ajax.migrate
-    );
+    $(document).on("click", ".swift-control-migration-button", ajax.migrate);
   }
 
   loading.start = function () {
@@ -48,7 +44,15 @@
       data: data,
     })
       .done(function (r) {
-        installBetterAdminBar();
+        if (r.success) {
+          if (r.data) console.log(r.data);
+
+          document
+            .querySelector(".old-swift-control-uninstalled")
+            .classList.add("is-checked");
+
+          installBetterAdminBar();
+        }
       })
       .always(function () {
         isRequesting = false;
@@ -63,6 +67,11 @@
       slug: SwiftControlMigration.pluginSlug,
       success: function () {
         console.log("Better Admin Bar installed successfully.");
+
+        document
+          .querySelector(".new-better-admin-bar-installed")
+          .classList.add("is-checked");
+
         activateBetterAdminBar();
       },
       always: function () {
@@ -81,6 +90,10 @@
       url: SwiftControlMigration.activationUrl,
       success: function () {
         console.log("Better Admin Bar is activated.");
+
+        document
+          .querySelector(".new-better-admin-bar-activated")
+          .classList.add("is-checked");
 
         // Redirect to Better Admin Bar settings page.
         window.location.replace(SwiftControlMigration.redirectUrl);
