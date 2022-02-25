@@ -2,13 +2,12 @@
   var isRequesting = false;
   var loading = {};
   var ajax = {};
+  var migrateButton;
 
   /**
    * Call the main functions here.
    */
   function init() {
-    var migrateButton;
-
     $(document).on(
       "click",
       ".swift-control-migration-button",
