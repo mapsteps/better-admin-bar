@@ -8,6 +8,24 @@
  * General
  * --------------------------------------------------
  */
+@-webkit-keyframes loadingSpinAround {
+	from {
+		transform: rotate(0);
+	}
+	to {
+		transform: rotate(359deg);
+	}
+}
+
+@keyframes loadingSpinAround {
+	from {
+		transform: rotate(0);
+	}
+	to {
+		transform: rotate(359deg);
+	}
+}
+
 .cols {
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -53,6 +71,39 @@
 	-webkit-box-align: start;
 	-ms-flex-align: start;
 	align-items: flex-start;
+}
+
+.button.swift-control-button {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.swift-control-button i {
+	margin-right: 5px;
+}
+
+.swift-control-button.is-loading {
+	justify-content: center;
+	color: transparent !important;
+	pointer-events: none;
+}
+
+.swift-control-button.is-loading::after {
+	content: "";
+	position: absolute;
+	width: 1em;
+	display: block;
+	height: 1em;
+	border: 2px solid #dbdbdb;
+	border-color: transparent transparent #fff #fff !important;
+	border-radius: 290486px;
+	-webkit-animation: loadingSpinAround 0.5s infinite linear;
+	animation: loadingSpinAround 0.5s infinite linear;
 }
 
 /**

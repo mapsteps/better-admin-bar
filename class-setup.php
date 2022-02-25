@@ -41,6 +41,7 @@ class Setup {
 		add_action( 'wp_ajax_swift_control_change_widget_settings', array( new Ajax\Change_Widget_Settings(), 'ajax' ) );
 		add_action( 'wp_ajax_swift_control_save_general_settings', array( new Ajax\Save_General_Settings(), 'ajax' ) );
 		add_action( 'wp_ajax_swift_control_save_position', array( new Ajax\Save_Position(), 'ajax' ) );
+		add_action( 'wp_ajax_swift_control_migration', array( new Ajax\Migration(), 'ajax' ) );
 
 		add_filter( 'plugin_action_links', array( $this, 'add_settings_link' ), 10, 4 );
 
@@ -83,7 +84,7 @@ class Setup {
 			<p>Finally, to get the newest version and to keep notified when there's new update, please migrate to the new <strong>Better Admin Bar</strong>.</p>
 
 			<p>
-				<a href="" style="font-weight: 700;" class="button button-primary swift-control-migration-button">
+				<a href="" style="font-weight: 700;" class="button button-primary swift-control-button swift-control-migration-button">
 					Migrate to Better Admin Bar Now
 				</a>
 			</p>
@@ -118,11 +119,9 @@ class Setup {
 				As a valued user of our plugin we would like to offer you a <strong style="color: green;">50% discount</strong> on <strong>Better Admin Bar PRO</strong> (yearly plan) for the first year.
 			</p>
 
-			<p><strong>Alternatively, check out our <a target="_blank" href="https://wp-pagebuilderframework.com/pricing/">Agency Bundle</a> which includes Better Admin Bar PRO for free.</strong></p>
-
 			<p>Grab it while it lasts.</p>
 
-			<p><a target="_blank" href="https://wpswiftcontrol.com/?edd_action=add_to_cart&download_id=241&edd_options%5Bprice_id%5D=1&discount=SCPRO50" style="font-weight: 700;" class="button button-primary">Upgrade to Better Admin Bar PRO and save 50%</a> <strong>Coupon limited to 100 users!</strong></p>
+			<p><a target="_blank" href="https://betteradminbar.com/?edd_action=add_to_cart&download_id=241&edd_options%5Bprice_id%5D=1&discount=SCPRO50" style="font-weight: 700;" class="button button-primary">Upgrade to Better Admin Bar PRO and save 50%</a> <strong>Coupon limited to 100 users!</strong></p>
 		</div>
 
 		<?php
@@ -234,6 +233,7 @@ class Setup {
 
 		wp_enqueue_script( 'swift-control-widget-settings', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/swift-control-widget-settings.js', array( 'jquery-ui-sortable', 'icon-picker' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 		wp_enqueue_script( 'swift-control-general-settings', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/swift-control-general-settings.js', array( 'select2', 'wp-color-picker-alpha' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'swift-control-migration', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/migration.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 
 		wp_localize_script(
 			'swift-control-widget-settings',
@@ -247,6 +247,34 @@ class Setup {
 				'labels' => array(
 					'edit' => __( 'Edit', 'swift-control' ),
 					'save' => __( 'Save', 'swift-control' ),
+				),
+			)
+		);
+
+		$slug   = 'better-admin-bar';
+		$plugin = $slug . '/' . $slug . '.php';
+
+		$activation_url = add_query_arg(
+			array(
+				'action'        => 'activate',
+				'plugin'        => rawurlencode( $plugin ),
+				'plugin_status' => 'all',
+				'paged'         => '1',
+				'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $plugin ),
+			),
+			esc_url( network_admin_url( 'plugins.php' ) )
+		);
+
+		wp_localize_script(
+			'swift-control-migration',
+			'SwiftControlMigration',
+			array(
+				'activationUrl'  => $activation_url,
+				'pluginSlug'     => $slug,
+				'pluginBasename' => $plugin,
+				'nonces'         => array(
+					'migration'   => wp_create_nonce( 'swift_control_migration' ),
+					'redirectUrl' => admin_url( 'options-general.php?page=better-admin-bar' ),
 				),
 			)
 		);

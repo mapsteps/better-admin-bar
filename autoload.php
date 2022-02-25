@@ -19,6 +19,7 @@ require __DIR__ . '/ajax/class-change-widgets-order.php';
 require __DIR__ . '/ajax/class-change-widget-settings.php';
 require __DIR__ . '/ajax/class-save-general-settings.php';
 require __DIR__ . '/ajax/class-save-position.php';
+require __DIR__ . '/ajax/class-migration.php';
 
 // Require setup classes.
 require __DIR__ . '/class-setup.php';
