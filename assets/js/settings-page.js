@@ -25,6 +25,9 @@
 			$(this).addClass("active");
 
 			var link = this.querySelector("a");
+
+			if (link.href.indexOf("#") === -1) return;
+
 			var hashValue = link.href.substring(link.href.indexOf("#") + 1);
 
 			if ("tools" === hashValue) {
