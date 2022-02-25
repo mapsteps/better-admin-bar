@@ -132,7 +132,7 @@ class Setup {
 		$old_plugin_slug = 'better-admin-bar';
 		$old_plugin_slug = $old_plugin_slug . '/' . $old_plugin_slug . '.php';
 
-		$new_plugin_slug = 'better-admin-bar';
+		$new_plugin_slug = 'swift-control';
 		$new_plugin_slug = $new_plugin_slug . '/' . $new_plugin_slug . '.php';
 
 		$activation_url = add_query_arg(
