@@ -1,3 +1,6 @@
+/**
+ * Migrate from old Swift Control to the new Better Admin Bar.
+ */
 (function ($) {
   var isRequesting = false;
   var loading = {};

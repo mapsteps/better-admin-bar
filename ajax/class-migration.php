@@ -11,6 +11,11 @@ namespace SwiftControl\Ajax;
  * Class to manage ajax request of changing widget order.
  */
 class Migration {
+	/**
+	 * The old plugin slug.
+	 *
+	 * @var string
+	 */
 	private $old_plugin_slug = '';
 
 	/**
