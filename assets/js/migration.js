@@ -44,6 +44,8 @@
 
     data.action = "swift_control_migration";
     data.nonce = SwiftControlMigration.nonces.migration;
+    data.old_plugin_slug = SwiftControlMigration.oldPlugin.pluginSlug;
+    data.new_plugin_slug = SwiftControlMigration.newPlugin.pluginSlug;
 
     $.ajax({
       url: ajaxurl,
@@ -72,7 +74,7 @@
     isRequesting = true;
 
     wp.updates.installPlugin({
-      slug: SwiftControlMigration.pluginSlug,
+      slug: SwiftControlMigration.oldPlugin.pluginSlug,
       success: function () {
         console.log("Better Admin Bar installed successfully.");
 
@@ -95,7 +97,7 @@
     $.ajax({
       async: true,
       type: "GET",
-      url: SwiftControlMigration.activationUrl,
+      url: SwiftControlMigration.oldPlugin.activationUrl,
       success: function () {
         console.log("Better Admin Bar is activated.");
 

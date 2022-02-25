@@ -120,8 +120,8 @@ class Setup {
 
 		wp_enqueue_script( 'swift-control-migration', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/migration.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 
-		$slug   = 'better-admin-bar';
-		$plugin = $slug . '/' . $slug . '.php';
+		$old_plugin_slug = 'better-admin-bar';
+		$old_plugin_slug = $old_plugin_slug . '/' . $old_plugin_slug . '.php';
 
 		$activation_url = add_query_arg(
 			array(
@@ -138,10 +138,14 @@ class Setup {
 			'swift-control-migration',
 			'SwiftControlMigration',
 			array(
-				'activationUrl'  => $activation_url,
-				'pluginSlug'     => $slug,
-				'pluginBasename' => $plugin,
-				'nonces'         => array(
+				'oldPlugin' => [
+					'pluginSlug' => 'swift-control/swift-control.php',
+				],
+				'newPlugin' => [
+					'pluginSlug'    => $old_plugin_slug,
+					'activationUrl' => $activation_url,
+				],
+				'nonces'    => array(
 					'migration'   => wp_create_nonce( 'swift_control_migration' ),
 					'redirectUrl' => admin_url( 'options-general.php?page=better-admin-bar' ),
 				),
