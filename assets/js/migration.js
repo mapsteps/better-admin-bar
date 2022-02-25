@@ -11,7 +11,7 @@
 
     $(document).on(
       "click",
-      ".swift-control-discontinue-notice.is-dismissible .notice-dismiss",
+      ".swift-control-migration-button",
       ajax.migrate
     );
   }
