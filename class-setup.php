@@ -44,6 +44,7 @@ class Setup {
 
 		add_filter( 'plugin_action_links', array( $this, 'add_settings_link' ), 10, 4 );
 
+		add_action( 'admin_notices', array( $this, 'migration_notice' ) );
 		add_action( 'admin_notices', array( $this, 'discount_notice' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'discount_notice_script' ) );
 		add_action( 'wp_ajax_sc_discount_notice_dismissal', array( $this, 'dismiss_discount_notice' ) );
@@ -55,6 +56,41 @@ class Setup {
 	 */
 	public function setup_text_domain() {
 		load_plugin_textdomain( 'swift-control', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
+	}
+
+	/**
+	 * Notice about migration to the new "Better Admin Bar".
+	 *
+	 * @return void
+	 */
+	public function migration_notice() {
+
+		$current_user = wp_get_current_user();
+		?>
+
+		<div class="notice notice-info swift-control-migration-notice">
+			<h2>Swift Control is now Better Admin Bar! 🎉</h2>
+
+			<p>
+				Dear <?php echo esc_html( $current_user->display_name ); ?>, we're excited to let you know that Swift Control has rebranded to <strong>Better Admin Bar</strong>.
+			</p>
+
+			<p>
+				In the new version, your Swift Control panel will work like you have before. So it's <strong>safe to update!</strong><br>
+				You'll also get more option to customize the admin bar. And again, don't worry, your old Swift Control settings will be brought over automatically.
+			</p>
+
+			<p>Finally, to get the newest version and to keep notified when there's new update, please migrate to the new <strong>Better Admin Bar</strong>.</p>
+
+			<p>
+				<a href="" style="font-weight: 700;" class="button button-primary swift-control-migration-button">
+					Migrate to Better Admin Bar Now
+				</a>
+			</p>
+		</div>
+
+		<?php
+
 	}
 
 	/**
@@ -75,18 +111,18 @@ class Setup {
 		?>
 
 		<div class="notice notice-info swift-control-discontinue-notice is-dismissible">
-			<h2>Get 50% OFF Swift Control PRO!</h2>
+			<h2>Get 50% OFF Better Admin Bar PRO!</h2>
 
 			<p>
-				Thank you for checking out Swift Control! 🎉<br>
-				As a valued user of our plugin we would like to offer you a <strong style="color: green;">50% discount</strong> on <strong>Swift Control PRO</strong> (yearly plan) for the first year.
+				Not going to update to the new Better Admin Bar free version? Would like to upgrade directly to Better Admin Bar PRO?<br>
+				As a valued user of our plugin we would like to offer you a <strong style="color: green;">50% discount</strong> on <strong>Better Admin Bar PRO</strong> (yearly plan) for the first year.
 			</p>
 
-			<p><strong>Alternatively, check out our <a target="_blank" href="https://wp-pagebuilderframework.com/pricing/">Agency Bundle</a> which includes Swift Control PRO for free.</strong></p>
+			<p><strong>Alternatively, check out our <a target="_blank" href="https://wp-pagebuilderframework.com/pricing/">Agency Bundle</a> which includes Better Admin Bar PRO for free.</strong></p>
 
 			<p>Grab it while it lasts.</p>
 
-			<p><a target="_blank" href="https://wpswiftcontrol.com/?edd_action=add_to_cart&download_id=241&edd_options%5Bprice_id%5D=1&discount=SCPRO50" style="font-weight: 700;" class="button button-primary">Get Swift Control PRO and save 50%</a> <strong>Coupon limited to 100 users!</strong></p>
+			<p><a target="_blank" href="https://wpswiftcontrol.com/?edd_action=add_to_cart&download_id=241&edd_options%5Bprice_id%5D=1&discount=SCPRO50" style="font-weight: 700;" class="button button-primary">Upgrade to Better Admin Bar PRO and save 50%</a> <strong>Coupon limited to 100 users!</strong></p>
 		</div>
 
 		<?php
