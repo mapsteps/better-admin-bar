@@ -129,29 +129,31 @@ class Setup {
 	 */
 	public function print_migration_scripts() {
 
-		$old_plugin_slug = 'swift-control';
-		$old_plugin_slug = $old_plugin_slug . '/' . $old_plugin_slug . '.php';
+		$old_plugin_slug     = 'swift-control';
+		$old_plugin_basename = $old_plugin_slug . '/' . $old_plugin_slug . '.php';
 
-		$new_plugin_slug = 'better-admin-bar';
-		$new_plugin_slug = $new_plugin_slug . '/' . $new_plugin_slug . '.php';
+		$new_plugin_slug     = 'better-admin-bar';
+		$new_plugin_basename = $new_plugin_slug . '/' . $new_plugin_slug . '.php';
 
 		$activation_url = add_query_arg(
 			array(
 				'action'        => 'activate',
-				'plugin'        => rawurlencode( $new_plugin_slug ),
+				'plugin'        => rawurlencode( $new_plugin_basename ),
 				'plugin_status' => 'all',
 				'paged'         => '1',
-				'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $new_plugin_slug ),
+				'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $new_plugin_basename ),
 			),
 			esc_url( network_admin_url( 'plugins.php' ) )
 		);
 
 		$js_objects = array(
 			'oldPlugin' => [
-				'pluginSlug' => $old_plugin_slug,
+				'slug'     => $old_plugin_slug,
+				'basename' => $old_plugin_basename,
 			],
 			'newPlugin' => [
-				'pluginSlug'    => $new_plugin_slug,
+				'slug'          => $new_plugin_slug,
+				'basename'      => $new_plugin_basename,
 				'activationUrl' => $activation_url,
 			],
 			'nonces'    => array(
