@@ -64,6 +64,8 @@
             .querySelector(".old-swift-control-uninstalled")
             .classList.add("is-checked");
 
+          isRequesting = false;
+
           installBetterAdminBar();
         }
       })
@@ -84,6 +86,8 @@
         document
           .querySelector(".new-better-admin-bar-installed")
           .classList.add("is-checked");
+
+        isRequesting = false;
 
         activateBetterAdminBar();
       },
@@ -107,6 +111,9 @@
         document
           .querySelector(".new-better-admin-bar-activated")
           .classList.add("is-checked");
+
+        loading.stop();
+        isRequesting = false;
 
         // Redirect to Better Admin Bar settings page.
         window.location.replace(SwiftControlMigration.redirectUrl);
