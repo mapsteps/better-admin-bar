@@ -43,9 +43,14 @@
 
 		window.addEventListener("load", function () {
 			var hashValue = window.location.hash.substring(1);
+			var currentActiveTabMenu;
 
 			if (!hashValue) {
-				hashValue = "settings";
+				currentActiveTabMenu = document.querySelector(
+					".heatbox-tab-nav-item.active"
+				);
+				hashValue = currentActiveTabMenu.dataset.tab;
+				hashValue = hashValue ? hashValue : "settings";
 			}
 
 			if ("tools" === hashValue) {
