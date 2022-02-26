@@ -56,7 +56,7 @@ class Migration {
 		$deletion = delete_plugins( [ $this->old_plugin_basename ] );
 
 		if ( $deletion && ! is_wp_error( $deletion ) ) {
-			wp_send_json_success( __( 'Old Swift Control plugin has been uninstalled', 'swift-control' ) );
+			wp_send_json_success( __( 'Old Swift Control plugin has been removed', 'swift-control' ) );
 		} elseif ( is_wp_error( $deletion ) ) {
 			wp_send_json_error( $deletion->get_error_message(), 403 );
 		} elseif ( null === $deletion ) {

@@ -5,6 +5,69 @@
 
 /**
  * --------------------------------------------------
+ * Migration
+ * --------------------------------------------------
+ */
+.swift-control-migration-status {
+  display: none;
+}
+
+.swift-control-migration-status.migration-failed,
+.swift-control-migration-status.migration-failed i {
+  color: tomato;
+}
+
+.swift-control-migration-status i {
+  color: rgb(39, 223, 39);
+}
+
+.swift-control-migration-status.is-waiting {
+  display: block;
+}
+
+.swift-control-migration-status.is-waiting i {
+  display: none;
+}
+
+.swift-control-migration-status .loader {
+  display: none;
+  position: relative;
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.swift-control-migration-status.is-waiting .loader {
+  display: inline-flex;
+  justify-content: center;
+  color: transparent !important;
+  pointer-events: none;
+}
+
+.swift-control-migration-status.is-waiting .loader::after {
+  content: "";
+  position: absolute;
+  width: 1em;
+  display: block;
+  height: 1em;
+  border: 2px solid #999;
+  border-color: transparent transparent #777 #777 !important;
+  border-radius: 290486px;
+  -webkit-animation: loadingSpinAround 0.5s infinite linear;
+  animation: loadingSpinAround 0.5s infinite linear;
+}
+
+.swift-control-migration-status.is-done {
+  display: block;
+}
+
+/**
+ * --------------------------------------------------
  * General
  * --------------------------------------------------
  */
@@ -104,23 +167,6 @@
   border-radius: 290486px;
   -webkit-animation: loadingSpinAround 0.5s infinite linear;
   animation: loadingSpinAround 0.5s infinite linear;
-}
-
-.swift-control-migration-status {
-  display: none;
-}
-
-.swift-control-migration-status.migration-failed,
-.swift-control-migration-status.migration-failed i {
-  color: tomato;
-}
-
-.swift-control-migration-status i {
-  color: rgb(39, 223, 39);
-}
-
-.swift-control-migration-status.is-checked {
-  display: block;
 }
 
 /**

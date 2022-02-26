@@ -5,50 +5,65 @@
   var isRequesting = false;
   var loading = {};
   var ajax = {};
-  var migrateButton;
+  var migrationButton;
 
   var elms = {};
 
   elms.migrationFailed = document.querySelector(
     ".swift-control-migration-status.migration-failed"
   );
-
   elms.errorMessage = elms.migrationFailed.querySelector(".error-message");
+
+  elms.uninstallOldPlugin = document.querySelector(
+    ".swift-control-migration-status.old-swift-control-uninstalled"
+  );
+  elms.uninstallOldPluginMsg =
+    elms.uninstallOldPlugin.querySelector(".process-message");
+
+  elms.installNewPlugin = document.querySelector(
+    ".swift-control-migration-status.new-better-admin-bar-installed"
+  );
+  elms.installNewPluginMsg =
+    elms.installNewPlugin.querySelector(".process-message");
+
+  elms.activateNewPlugin = document.querySelector(
+    ".swift-control-migration-status.new-better-admin-bar-activated"
+  );
+  elms.activateNewPluginMsg =
+    elms.activateNewPlugin.querySelector(".process-message");
 
   /**
    * Call the main functions here.
    */
   function init() {
-    $(document).on("click", ".swift-control-migration-button", ajax.migrate);
+    $(document).on("click", ".swift-control-migration-button", ajax.migration);
   }
 
   loading.start = function () {
-    migrateButton.classList.add("is-loading");
+    migrationButton.classList.add("is-loading");
   };
 
   loading.stop = function () {
-    migrateButton.classList.remove("is-loading");
+    migrationButton.classList.remove("is-loading");
   };
 
   /**
    * Send ajax request to save the settings.
    */
-  ajax.migrate = function (e) {
+  ajax.migration = function (e) {
     e.preventDefault();
 
-    if (
-      !confirm(
-        "Your settings will be brought to the new \"Better Admin Bar\". However, this action can't be cancelled nor be un-done. Once it's' running, it needs to be done. Migrate now?"
-      )
-    ) {
+    var confirmMsg =
+      "Your settings will be brought to the new \"Better Admin Bar\". However, this action can't be cancelled nor be un-done. Once it's' running, it needs to be done. Migrate now?";
+
+    if (!confirm(confirmMsg)) {
       return;
     }
 
-    if (!migrateButton) migrateButton = this;
+    if (!migrationButton) migrationButton = this;
 
     if (isRequesting) return;
     isRequesting = true;
-
     loading.start();
 
     var data = {};
@@ -62,6 +77,10 @@
     data.new_plugin_slug = SwiftControlMigration.newPlugin.slug;
     data.new_plugin_basename = SwiftControlMigration.newPlugin.basename;
 
+    elms.uninstallOldPluginMsg.innerHTML =
+      "Uninstalling old Swift Control plugin...";
+    elms.uninstallOldPlugin.classList.add("is-waiting");
+
     $.ajax({
       url: ajaxurl,
       type: "post",
@@ -70,14 +89,19 @@
     })
       .done(function (r) {
         if (!r.success) {
+          elms.uninstallOldPlugin.classList.remove("is-waiting");
           elms.errorMessage.innerHTML = r.data;
-          elms.migrationFailed.classList.add("is-checked");
+          elms.migrationFailed.classList.add("is-done");
           return;
         }
 
-        document
-          .querySelector(".old-swift-control-uninstalled")
-          .classList.add("is-checked");
+        elms.uninstallOldPluginMsg.innerHTML = r.data;
+        elms.uninstallOldPlugin.classList.remove("is-waiting");
+        elms.uninstallOldPlugin.classList.add("is-done");
+
+        elms.installNewPluginMsg.innerHTML =
+          "Installing Better Admin Bar plugin...";
+        elms.installNewPlugin.classList.add("is-waiting");
 
         isRequesting = false;
         installBetterAdminBar();
@@ -87,7 +111,8 @@
           elms.errorMessage.innerHTML = jqXHR.responseJSON.data;
         }
 
-        elms.migrationFailed.classList.add("is-checked");
+        elms.uninstallOldPlugin.classList.remove("is-waiting");
+        elms.migrationFailed.classList.add("is-done");
         loading.stop();
         isRequesting = false;
       });
@@ -100,23 +125,25 @@
     wp.updates.installPlugin({
       slug: SwiftControlMigration.newPlugin.slug,
       success: function () {
-        console.log("Better Admin Bar installed successfully.");
+        elms.installNewPluginMsg.innerHTML =
+          "Better Admin Bar plugin has been installed";
+        elms.installNewPlugin.classList.remove("is-waiting");
+        elms.installNewPlugin.classList.add("is-done");
 
-        document
-          .querySelector(".new-better-admin-bar-installed")
-          .classList.add("is-checked");
+        elms.activateNewPluginMsg.innerHTML =
+          "Activating Better Admin Bar plugin...";
+        elms.activateNewPlugin.classList.add("is-waiting");
 
         isRequesting = false;
-
         activateBetterAdminBar();
       },
       error: function (jqXHR) {
         if (jqXHR.responseJSON && jqXHR.responseJSON.data) {
-          console.log(jqXHR.responseJSON.data);
           elms.errorMessage.innerHTML = jqXHR.responseJSON.data;
         }
 
-        elms.migrationFailed.classList.add("is-checked");
+        elms.installNewPlugin.classList.remove("is-waiting");
+        elms.migrationFailed.classList.add("is-done");
         loading.stop();
         isRequesting = false;
       },
@@ -132,11 +159,10 @@
       type: "GET",
       url: SwiftControlMigration.newPlugin.activationUrl,
       success: function () {
-        console.log("Better Admin Bar is activated.");
-
-        document
-          .querySelector(".new-better-admin-bar-activated")
-          .classList.add("is-checked");
+        elms.activateNewPluginMsg.innerHTML =
+          "Better Admin Bar plugin has been activated";
+        elms.activateNewPlugin.classList.remove("is-waiting");
+        elms.activateNewPlugin.classList.add("is-done");
 
         loading.stop();
         isRequesting = false;
@@ -146,11 +172,11 @@
       },
       error: function (jqXHR) {
         if (jqXHR.responseJSON && jqXHR.responseJSON.data) {
-          console.log(jqXHR.responseJSON.data);
           elms.errorMessage.innerHTML = jqXHR.responseJSON.data;
         }
 
-        elms.migrationFailed.classList.add("is-checked");
+        elms.activateNewPlugin.classList.remove("is-waiting");
+        elms.migrationFailed.classList.add("is-done");
         loading.stop();
         isRequesting = false;
       },

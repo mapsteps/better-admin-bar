@@ -98,16 +98,19 @@ class Setup {
 					<span>Migration failed:</span> <span class="error-message"></span>
 				</div>
 				<div class="swift-control-migration-status old-swift-control-uninstalled">
+					<span class="loader"></span>
 					<i class="dashicons dashicons-yes"></i>
-					Old Swift Control is uninstalled.
+					<span class="process-message">Old Swift Control is uninstalled.</span>
 				</div>
 				<div class="swift-control-migration-status new-better-admin-bar-installed">
+					<span class="loader"></span>
 					<i class="dashicons dashicons-yes"></i>
-					New Better Admin Bar is installed.
+					<span class="process-message">New Better Admin Bar is installed.</span>
 				</div>
 				<div class="swift-control-migration-status new-better-admin-bar-activated">
+					<span class="loader"></span>
 					<i class="dashicons dashicons-yes"></i>
-					New Better Admin Bar is activated.
+					<span class="process-message">New Better Admin Bar is activated.</span>
 				</div>
 			</p>
 
