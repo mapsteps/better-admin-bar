@@ -55,12 +55,12 @@
 
     data.action = "swift_control_migration";
     data.nonce = SwiftControlMigration.nonces.migration;
+
     data.old_plugin_slug = SwiftControlMigration.oldPlugin.slug;
-    data.old_plugin_basename =
-      SwiftControlMigration.oldPlugin.old_plugin_basename;
+    data.old_plugin_basename = SwiftControlMigration.oldPlugin.basename;
+
     data.new_plugin_slug = SwiftControlMigration.newPlugin.slug;
-    data.new_plugin_basename =
-      SwiftControlMigration.newPlugin.new_plugin_basename;
+    data.new_plugin_basename = SwiftControlMigration.newPlugin.basename;
 
     $.ajax({
       url: ajaxurl,
@@ -114,6 +114,7 @@
         activateBetterAdminBar();
       },
       fail: function (jqXHR) {
+        console.log(jqXHR);
         if (jqXHR.responseJSON && jqXHR.responseJSON.data) {
           elms.errorMessage.innerHTML = jqXHR.responseJSON.data;
         }
