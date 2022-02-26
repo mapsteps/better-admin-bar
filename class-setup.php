@@ -41,7 +41,7 @@ class Setup {
 		add_action( 'wp_ajax_swift_control_change_widget_settings', array( new Ajax\Change_Widget_Settings(), 'ajax' ) );
 		add_action( 'wp_ajax_swift_control_save_general_settings', array( new Ajax\Save_General_Settings(), 'ajax' ) );
 		add_action( 'wp_ajax_swift_control_save_position', array( new Ajax\Save_Position(), 'ajax' ) );
-		add_action( 'wp_ajax_sc_discount_notice_dismissal', array( $this, 'dismiss_discount_notice' ) );
+		// add_action( 'wp_ajax_sc_discount_notice_dismissal', array( $this, 'dismiss_discount_notice' ) );
 		add_action( 'wp_ajax_swift_control_migration', array( new Ajax\Migration(), 'ajax' ) );
 
 		add_filter( 'plugin_action_links', array( $this, 'add_settings_link' ), 10, 4 );
@@ -49,8 +49,8 @@ class Setup {
 		add_action( 'admin_notices', array( $this, 'migration_notice' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'migration_notice_scripts' ) );
 
-		add_action( 'admin_notices', array( $this, 'discount_notice' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'discount_notice_script' ) );
+		// add_action( 'admin_notices', array( $this, 'discount_notice' ) );
+		// add_action( 'admin_enqueue_scripts', array( $this, 'discount_notice_script' ) );
 
 	}
 
@@ -72,22 +72,24 @@ class Setup {
 		?>
 
 		<div class="notice notice-info swift-control-migration-notice">
-			<h2>Swift Control is now Better Admin Bar! 🎉</h2>
+			<h2>Swift Control is now Better Admin Bar</h2>
 
 			<p>
-				Dear <?php echo esc_html( $current_user->display_name ); ?>, we're excited to let you know that Swift Control has rebranded to <strong>Better Admin Bar</strong>.
+				Dear <?php echo esc_html( $current_user->display_name ); ?>, we're excited to let you know that Swift Control is now <strong>Better Admin Bar</strong>.
 			</p>
 
 			<p>
-				In the new version, your Swift Control panel will work like you have before. So it's <strong>safe to update!</strong><br>
-				You'll also get more option to customize the admin bar. And again, don't worry, your old Swift Control settings will be brought over automatically.
+				<strong>What does that mean for me?</strong><br>
+				Everything will stay the same. In fact, we have added some amazing new features to the plugin!<br>
 			</p>
 
-			<p>Finally, to get the newest version and to keep notified when there's new update, please migrate to the new <strong>Better Admin Bar</strong>.</p>
+			<p>
+				Please click the button below to migrate to the latest version.
+			</p>
 
 			<p>
 				<a href="" style="font-weight: 700;" class="button button-primary swift-control-button swift-control-migration-button">
-					Migrate to Better Admin Bar Now
+					Start Migration
 				</a>
 			</p>
 

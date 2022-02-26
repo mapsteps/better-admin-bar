@@ -54,7 +54,7 @@
     e.preventDefault();
 
     var confirmMsg =
-      "Your settings will be brought to the new \"Better Admin Bar\". However, this action can't be cancelled nor be un-done. Once it's' running, it needs to be done. Migrate now?";
+      "Please don't leave this page until the migration is complete. Migrate now?";
 
     if (!confirm(confirmMsg)) {
       return;
