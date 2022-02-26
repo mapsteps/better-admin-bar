@@ -151,18 +151,18 @@ class Setup {
 		);
 
 		$js_objects = array(
-			'oldPlugin' => [
+			'redirectUrl' => admin_url( 'options-general.php?page=better-admin-bar' ),
+			'oldPlugin'   => [
 				'slug'     => $old_plugin_slug,
 				'basename' => $old_plugin_basename,
 			],
-			'newPlugin' => [
+			'newPlugin'   => [
 				'slug'          => $new_plugin_slug,
 				'basename'      => $new_plugin_basename,
 				'activationUrl' => $activation_url,
 			],
-			'nonces'    => array(
-				'migration'   => wp_create_nonce( 'swift_control_migration' ),
-				'redirectUrl' => admin_url( 'options-general.php?page=better-admin-bar' ),
+			'nonces'      => array(
+				'migration' => wp_create_nonce( 'swift_control_migration' ),
 			),
 		);
 

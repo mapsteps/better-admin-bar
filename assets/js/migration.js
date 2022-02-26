@@ -80,7 +80,6 @@
           .classList.add("is-checked");
 
         isRequesting = false;
-
         installBetterAdminBar();
       })
       .fail(function (jqXHR) {
@@ -90,8 +89,6 @@
 
         elms.migrationFailed.classList.add("is-checked");
         loading.stop();
-      })
-      .always(function () {
         isRequesting = false;
       });
   };
@@ -114,15 +111,13 @@
         activateBetterAdminBar();
       },
       error: function (jqXHR) {
-        console.log(jqXHR);
         if (jqXHR.responseJSON && jqXHR.responseJSON.data) {
+          console.log(jqXHR.responseJSON.data);
           elms.errorMessage.innerHTML = jqXHR.responseJSON.data;
         }
 
         elms.migrationFailed.classList.add("is-checked");
         loading.stop();
-      },
-      always: function () {
         isRequesting = false;
       },
     });
@@ -151,13 +146,11 @@
       },
       error: function (jqXHR) {
         if (jqXHR.responseJSON && jqXHR.responseJSON.data) {
+          console.log(jqXHR.responseJSON.data);
           elms.errorMessage.innerHTML = jqXHR.responseJSON.data;
         }
 
         elms.migrationFailed.classList.add("is-checked");
-        loading.stop();
-      },
-      always: function () {
         loading.stop();
         isRequesting = false;
       },
