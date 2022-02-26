@@ -92,7 +92,7 @@ class Setup {
 				</a>
 			</p>
 
-			<p>
+			<div class="swift-control-migration-statuses">
 				<div class="swift-control-migration-status migration-failed">
 					<i class="dashicons dashicons-no"></i>
 					<span>Migration failed:</span> <span class="error-message"></span>
@@ -112,7 +112,7 @@ class Setup {
 					<i class="dashicons dashicons-yes"></i>
 					<span class="process-message">New Better Admin Bar is activated.</span>
 				</div>
-			</p>
+			</div>
 
 		</div>
 

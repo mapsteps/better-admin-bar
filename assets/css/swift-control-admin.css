@@ -8,8 +8,14 @@
  * Migration
  * --------------------------------------------------
  */
+.swift-control-migration-statuses {
+  margin-top: 7px;
+	margin-bottom: 8px;
+}
+
 .swift-control-migration-status {
   display: none;
+	margin-bottom: 3px;
 }
 
 .swift-control-migration-status.migration-failed,
@@ -32,9 +38,10 @@
 .swift-control-migration-status .loader {
   display: none;
   position: relative;
+	bottom: -4px;
   margin-right: 5px;
-  width: 20px;
-  height: 20px;
+  width: 14px;
+  height: 14px;
   align-items: center;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -55,8 +62,8 @@
   width: 1em;
   display: block;
   height: 1em;
-  border: 2px solid #999;
-  border-color: transparent transparent #777 #777 !important;
+  border: 2px solid #bbb;
+  border-color: transparent transparent #aaa #aaa !important;
   border-radius: 290486px;
   -webkit-animation: loadingSpinAround 0.5s infinite linear;
   animation: loadingSpinAround 0.5s infinite linear;
