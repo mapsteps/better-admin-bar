@@ -113,7 +113,7 @@
 
         activateBetterAdminBar();
       },
-      fail: function (jqXHR) {
+      error: function (jqXHR) {
         console.log(jqXHR);
         if (jqXHR.responseJSON && jqXHR.responseJSON.data) {
           elms.errorMessage.innerHTML = jqXHR.responseJSON.data;
@@ -149,7 +149,7 @@
         // Redirect to Better Admin Bar settings page.
         window.location.replace(SwiftControlMigration.redirectUrl);
       },
-      fail: function (jqXHR) {
+      error: function (jqXHR) {
         if (jqXHR.responseJSON && jqXHR.responseJSON.data) {
           elms.errorMessage.innerHTML = jqXHR.responseJSON.data;
         }
