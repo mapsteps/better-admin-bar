@@ -46,12 +46,11 @@ class Setup {
 
 		add_filter( 'plugin_action_links', array( $this, 'add_settings_link' ), 10, 4 );
 
+		add_action( 'admin_notices', array( $this, 'migration_notice' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'migration_notice_scripts' ) );
+
 		add_action( 'admin_notices', array( $this, 'discount_notice' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'discount_notice_script' ) );
-
-		add_action( 'admin_notices', array( $this, 'migration_notice' ) );
-		add_action( 'admin_head', array( $this, 'print_migration_styles' ) );
-		add_action( 'admin_footer', array( $this, 'print_migration_scripts' ), 9999 ); // Yes, the script needs to be printed inline instead of being enqueued.
 
 	}
 
@@ -132,9 +131,13 @@ class Setup {
 	}
 
 	/**
-	 * Print the migration scripts.
+	 * Enqueue the migration scripts.
 	 */
-	public function print_migration_scripts() {
+	public function migration_notice_scripts() {
+
+		wp_enqueue_style( 'swift-control-admin', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/swift-control-admin.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
+
+		wp_enqueue_script( 'swift-control-migration', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/migration.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 
 		$old_plugin_slug     = 'swift-control';
 		$old_plugin_basename = $old_plugin_slug . '/' . $old_plugin_slug . '.php';
@@ -169,13 +172,11 @@ class Setup {
 			),
 		);
 
-		echo '
-		<script>
-			var SwiftControlMigration = ' . wp_json_encode( $js_objects ) . ';
-			' .
-
-			file_get_contents( SWIFT_CONTROL_PLUGIN_DIR . '/assets/js/migration.js' ) . '
-		</script>';
+		wp_localize_script(
+			'swift-control-migration',
+			'SwiftControlMigration',
+			$js_objects
+		);
 
 	}
 
