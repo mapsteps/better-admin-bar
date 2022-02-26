@@ -7,6 +7,14 @@
   var ajax = {};
   var migrateButton;
 
+  var elms = {};
+
+  elms.migrationFailed = document.querySelector(
+    ".swift-control-migration-status.migration-failed"
+  );
+
+  elms.errorMessage = elms.migrationFailed.querySelector(".error-message");
+
   /**
    * Call the main functions here.
    */
@@ -48,7 +56,11 @@
     data.action = "swift_control_migration";
     data.nonce = SwiftControlMigration.nonces.migration;
     data.old_plugin_slug = SwiftControlMigration.oldPlugin.slug;
+    data.old_plugin_basename =
+      SwiftControlMigration.oldPlugin.old_plugin_basename;
     data.new_plugin_slug = SwiftControlMigration.newPlugin.slug;
+    data.new_plugin_basename =
+      SwiftControlMigration.newPlugin.new_plugin_basename;
 
     $.ajax({
       url: ajaxurl,
@@ -57,17 +69,27 @@
       data: data,
     })
       .done(function (r) {
-        if (r.success) {
-          if (r.data) console.log(r.data);
-
-          document
-            .querySelector(".old-swift-control-uninstalled")
-            .classList.add("is-checked");
-
-          isRequesting = false;
-
-          installBetterAdminBar();
+        if (!r.success) {
+          elms.errorMessage.innerHTML = r.data;
+          elms.migrationFailed.classList.add("is-checked");
+          return;
         }
+
+        document
+          .querySelector(".old-swift-control-uninstalled")
+          .classList.add("is-checked");
+
+        isRequesting = false;
+
+        installBetterAdminBar();
+      })
+      .fail(function (jqXHR) {
+        if (jqXHR.responseJSON && jqXHR.responseJSON.data) {
+          elms.errorMessage.innerHTML = jqXHR.responseJSON.data;
+        }
+
+        elms.migrationFailed.classList.add("is-checked");
+        loading.stop();
       })
       .always(function () {
         isRequesting = false;
@@ -90,6 +112,14 @@
         isRequesting = false;
 
         activateBetterAdminBar();
+      },
+      fail: function (jqXHR) {
+        if (jqXHR.responseJSON && jqXHR.responseJSON.data) {
+          elms.errorMessage.innerHTML = jqXHR.responseJSON.data;
+        }
+
+        elms.migrationFailed.classList.add("is-checked");
+        loading.stop();
       },
       always: function () {
         isRequesting = false;
@@ -118,26 +148,13 @@
         // Redirect to Better Admin Bar settings page.
         window.location.replace(SwiftControlMigration.redirectUrl);
       },
-      error: function (jqXHR, exception) {
-        var msg = "";
-
-        if (jqXHR.status === 0) {
-          msg = "Not connect.\n Verify Network.";
-        } else if (jqXHR.status === 404) {
-          msg = "Requested page not found. [404]";
-        } else if (jqXHR.status === 500) {
-          msg = "Internal Server Error [500].";
-        } else if (exception === "parsererror") {
-          msg = "Requested JSON parse failed.";
-        } else if (exception === "timeout") {
-          msg = "Time out error.";
-        } else if (exception === "abort") {
-          msg = "Ajax request aborted.";
-        } else {
-          msg = "Uncaught Error.\n" + jqXHR.responseText;
+      fail: function (jqXHR) {
+        if (jqXHR.responseJSON && jqXHR.responseJSON.data) {
+          elms.errorMessage.innerHTML = jqXHR.responseJSON.data;
         }
 
-        console.log(msg);
+        elms.migrationFailed.classList.add("is-checked");
+        loading.stop();
       },
       always: function () {
         loading.stop();

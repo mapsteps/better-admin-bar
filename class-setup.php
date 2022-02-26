@@ -93,6 +93,10 @@ class Setup {
 			</p>
 
 			<p>
+				<div class="swift-control-migration-status migration-failed">
+					<i class="dashicons dashicons-no"></i>
+					<span>Migration failed:</span> <span class="error-message"></span>
+				</div>
 				<div class="swift-control-migration-status old-swift-control-uninstalled">
 					<i class="dashicons dashicons-yes"></i>
 					Old Swift Control is uninstalled.
