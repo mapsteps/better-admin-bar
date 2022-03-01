@@ -12,8 +12,8 @@
 	function init() {
 		document.documentElement.classList.add("auto-hide-admin-bar");
 		window.addEventListener("resize", onWindowResize);
-		window.addEventListener("mouseover", onMouseOver);
-		document.addEventListener("mouseleave", onMouseLeave);
+		window.addEventListener("mousemove", onMouseMove);
+		document.body.addEventListener("mouseleave", onMouseLeave);
 	}
 
 	function onWindowResize() {
@@ -26,7 +26,7 @@
 		mouseAction = "";
 	}
 
-	function onMouseOver(e) {
+	function onMouseMove(e) {
 		var adminbarIsShown =
 			document.documentElement.classList.contains("show-wpadminbar");
 
@@ -85,14 +85,19 @@
 			return;
 		}
 
-		if (
-			target.parentNode.classList.contains("ab-item") ||
-			target.classList.contains("ab-item") ||
-			target.parentNode.classList.contains("ab-submenu") ||
-			target.parentNode.classList.contains("ab-sub-wrapper") ||
-			target.parentNode.classList.contains("menupop")
-		) {
+		if (target.classList.contains("ab-item")) {
 			return;
+		}
+
+		if (target.parentNode && target.parentNode.classList) {
+			if (
+				target.parentNode.classList.contains("ab-item") ||
+				target.parentNode.classList.contains("ab-submenu") ||
+				target.parentNode.classList.contains("ab-sub-wrapper") ||
+				target.parentNode.classList.contains("menupop")
+			) {
+				return;
+			}
 		}
 
 		setTimeout(function () {
