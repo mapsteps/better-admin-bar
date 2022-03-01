@@ -27,5 +27,5 @@ require __DIR__ . '/class-backwards-compatibility.php';
 require __DIR__ . '/class-setup.php';
 
 // Init classes.
-// Backwards_Compatibility::init(); // Let's NOT forget this!
+Backwards_Compatibility::init();
 Setup::init();
