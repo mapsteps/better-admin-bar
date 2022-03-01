@@ -25,6 +25,9 @@
 			$(this).addClass("active");
 
 			var link = this.querySelector("a");
+
+			if (link.href.indexOf("#") === -1) return;
+
 			var hashValue = link.href.substring(link.href.indexOf("#") + 1);
 
 			if ("tools" === hashValue) {
@@ -43,9 +46,16 @@
 
 		window.addEventListener("load", function () {
 			var hashValue = window.location.hash.substring(1);
+			var currentActiveTabMenu;
 
 			if (!hashValue) {
-				hashValue = "settings";
+				currentActiveTabMenu = document.querySelector(
+					".heatbox-tab-nav-item.active"
+				);
+				hashValue = currentActiveTabMenu
+					? currentActiveTabMenu.dataset.tab
+					: "";
+				hashValue = hashValue ? hashValue : "settings";
 			}
 
 			if ("tools" === hashValue) {

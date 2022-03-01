@@ -27,6 +27,8 @@
 	}
 
 	function onMouseOver(e) {
+		if (!e.toElement || !e.relatedTarget) return;
+
 		var adminbarIsShown =
 			document.documentElement.classList.contains("show-wpadminbar");
 
