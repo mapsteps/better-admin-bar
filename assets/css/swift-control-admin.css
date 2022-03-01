@@ -443,7 +443,7 @@ hr {
 	opacity: 1;
 }
 
-.swift-control-settings .available-items-box .widget-item .icon-picker {
+.swift-control-settings .available-widgets-box .widget-item .icon-picker {
 	display: none;
 }
 
@@ -613,7 +613,7 @@ hr {
 	z-index: 9991;
 }
 
-.swift-control-settings .available-items-box .iconpicker-popover {
+.swift-control-settings .available-widgets-box .iconpicker-popover {
 	display: none !important;
 }
 
