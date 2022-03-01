@@ -51,7 +51,6 @@ class Setup {
 
 		// add_action( 'admin_notices', array( $this, 'discount_notice' ) );
 		// add_action( 'admin_enqueue_scripts', array( $this, 'discount_notice_script' ) );
-
 	}
 
 	/**
@@ -70,14 +69,14 @@ class Setup {
 
 		$current_screen = get_current_screen();
 
-		if ( 'settings_page_swift-control' === $current_screen->id ) {
+		if ( 'dashboard' !== $current_screen->id ) {
 			return;
 		}
 
 		$current_user = wp_get_current_user();
 		?>
 
-		<div class="notice notice-info swift-control-migration-notice">
+		<div class="notice notice-error swift-control-migration-notice">
 			<h2>Swift Control is now Better Admin Bar</h2>
 
 			<p>
@@ -145,7 +144,7 @@ class Setup {
 
 		$current_screen = get_current_screen();
 
-		if ( 'settings_page_swift-control' === $current_screen->id ) {
+		if ( 'dashboard' !== $current_screen->id ) {
 			return;
 		}
 
