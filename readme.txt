@@ -57,4 +57,6 @@ If you like Better Admin Bar, you will love our other, free WordPress products:
 
 == Changelog ==
 = 4.0 =
-* Release Pending
+* New: Quick Access Panel
+* Tweak: Improved "Auto-Hide Admin Bar" setting
+* Tweak: Improved admin bar settings page
