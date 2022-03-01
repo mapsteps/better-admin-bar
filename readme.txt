@@ -1,16 +1,16 @@
-=== Swift Control - A Better WordPress Admin Bar ===
+=== Swift Control (Now Better Admin Bar) ===
 Contributors: davidvongries
 Tags: Quick Edit, Admin Bar, Replace Admin Bar, Frontend Access, Swift Edit, Swift
 Requires at least: 4.0
 Tested up to: 5.8
-Stable tag: 1.5.2
+Stable tag: 1.5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 Replace the default WordPress admin bar and give logged-in users the user experience they deserve.
 
-[Swift Control](https://wpswiftcontrol.com/) allows you to quickly navigate to the key areas of your website like the theme customizer, your WordPress dashboard and edit the current page/post/custom post type.
+This plugin is deprecated. Please install [Better Admin Bar](https://wordpress.org/plugins/better-admin-bar/) instead.
 
 == Installation ==
 1. Download the swift-control.zip file to your computer.
@@ -27,6 +27,9 @@ Navigate to Settings > Swift Control to change the order the controls are displa
 2. Swift Control Admin Settings Page
 
 == Changelog ==
+
+= 1.5.4 March 01, 2022 =
+* Migrate to Better Admin Bar
 
 = 1.5.2 May 25, 2021 =
 * Fixed: FontAwesome icons don't render properly on Swift Controls settings page if other 3rd party plugins load an older version of FA across the entire WordPress admin
