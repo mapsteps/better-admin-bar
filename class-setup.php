@@ -67,7 +67,7 @@ class Setup {
 		add_filter( 'admin_body_class', array( $this, 'admin_body_class' ), 20 );
 		add_action( 'wp', array( $this, 'check_page' ) );
 		add_action( 'wp', array( $this, 'remove_admin_bar' ) );
-		add_action( 'wp_head', array( $this, 'wp_head' ), PHP_INT_MAX );
+		add_action( 'wp_head', array( $this, 'admin_bar_wp_head' ), PHP_INT_MAX );
 
 		// Process export-import.
 		add_action( 'admin_init', array( $this, 'process_export' ) );
@@ -406,7 +406,7 @@ class Setup {
 	}
 
 	/**
-	 * Run script on wp_head action hook.
+	 * Print admin bar styles on wp_head action hook.
 	 *
 	 * ! Some conditions checking need to be exactly '' (empty string) checking, not just "empty()" check.
 	 * ! DO NOT simply change that to "empty()" or "!" (negation) checking.
@@ -422,7 +422,11 @@ class Setup {
 	 * ! So in case in the future, we feel smart enough and would like to make change to the conditions, please think TWICE OR MORE!
 	 * ! Don't change the outputting conditions unless you run the test cases above.
 	 */
-	public function wp_head() {
+	public function admin_bar_wp_head() {
+
+		if ( ! is_user_logged_in() ) {
+			return;
+		}
 
 		if ( self::$remove_admin_bar ) {
 			return;
@@ -719,6 +723,10 @@ class Setup {
 	 * Output the admin bar script to frontend.
 	 */
 	public function admin_bar_output() {
+
+		if ( ! is_user_logged_in() ) {
+			return;
+		}
 
 		if ( self::$remove_admin_bar ) {
 			return;
