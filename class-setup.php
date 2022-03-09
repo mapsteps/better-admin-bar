@@ -428,6 +428,10 @@ class Setup {
 			return;
 		}
 
+		if ( is_customize_preview() ) {
+			return;
+		}
+
 		if ( self::$remove_admin_bar ) {
 			return;
 		}
