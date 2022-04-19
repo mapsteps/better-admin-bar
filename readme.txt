@@ -3,7 +3,7 @@ Contributors: davidvongries
 Tags: Quick Edit, Admin Bar, Replace Admin Bar, Frontend Access, Swift Edit, Swift
 Requires at least: 4.0
 Tested up to: 5.8
-Stable tag: 1.5.3
+Stable tag: 2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,6 +27,9 @@ Navigate to Settings > Swift Control to change the order the controls are displa
 2. Swift Control Admin Settings Page
 
 == Changelog ==
+
+= 2.0 April 19, 2022 =
+* Show the migration notice everywhere
 
 = 1.5.4 March 01, 2022 =
 * Migrate to Better Admin Bar
