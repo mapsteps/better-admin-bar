@@ -67,12 +67,6 @@ class Setup {
 	 */
 	public function migration_notice() {
 
-		$current_screen = get_current_screen();
-
-		if ( 'dashboard' !== $current_screen->id ) {
-			return;
-		}
-
 		$current_user = wp_get_current_user();
 		?>
 
@@ -142,11 +136,7 @@ class Setup {
 	 */
 	public function migration_notice_scripts() {
 
-		$current_screen = get_current_screen();
-
-		if ( 'dashboard' !== $current_screen->id ) {
-			return;
-		}
+		wp_enqueue_script('updates');
 
 		wp_enqueue_style( 'swift-control-admin', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/swift-control-admin.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
 
