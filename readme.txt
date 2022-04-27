@@ -25,16 +25,14 @@ The WordPress Admin Bar reimagined. Replace the default WordPress admin bar and 
 For more features, check out [Better Admin Bar PRO](https://betteradminbar.com/?utm_source=wordpress&utm_medium=description&utm_campaign=bab).
 
 == 🏆 Better Admin Bar PRO ==
-* Remove 3rd party widgets
-* Restrict dashboard widgets & admin pages to specific users or user roles
-* Fully white label & rebrand WordPress
-* Advanced Login Customizer features
-* Create Custom Admin Pages with Elementor, Beaver Builder & Brizy
-* Create video widgets
-* Create contact form widgets
-* WordPress multisite support
-* Admin Menu Editor
-* Admin Bar Editor
+Better Admin Bar PRO brings super-powers to your Quick Access Panel with features such as:
+- Add Custom Links
+- Page Builder Support
+- Limit User Role Access
+- Custom Post Type Support
+- Sign-Out Widget
+- WordPress Multisite Support
+- WooCommerce Support
 
 Learn more about [Better Admin Bar PRO](https://betteradminbar.com/?utm_source=wordpress&utm_medium=description&utm_campaign=bab)
 
