@@ -26,6 +26,7 @@ For more features, check out [Better Admin Bar PRO](https://betteradminbar.com/?
 
 == 🏆 Better Admin Bar PRO ==
 Better Admin Bar PRO brings super-powers to your Quick Access Panel with features such as:
+
 - Custom Links
 - Page Builder Support
 - Limit User Role Access
