@@ -125,7 +125,7 @@ $GLOBALS['swift_control_widget_settings']  = $saved_widget_settings;
 
 		<div class="heatbox-container heatbox-container-wide heatbox-container-center featured-products">
 
-			<h2><?php _e( 'Check out our other free WordPress products!', 'ultimate-dashboard' ); ?></h2>
+			<h2><?php _e( 'Check out our other free WordPress products!', 'better-admin-bar' ); ?></h2>
 
 			<ul class="products">
 				<li class="heatbox">
@@ -155,15 +155,15 @@ $GLOBALS['swift_control_widget_settings']  = $saved_widget_settings;
 						<img src="<?php echo esc_url( SWIFT_CONTROL_PLUGIN_URL ); ?>/assets/images/wp-video-popup.jpg">
 					</a>
 					<div class="heatbox-content">
-						<h3><?php _e( 'WP Video Popup', 'ultimate-dashboard' ); ?></h3>
-						<p class="subheadline"><?php _e( 'The #1 Video Popup Plugin for WordPress.', 'ultimate-dashboard' ); ?></p>
-						<p><?php _e( 'Add beautiful responsive YouTube & Vimeo video lightbox popups to any post, page or custom post type of website without sacrificing performance.', 'ultimate-dashboard' ); ?></p>
-						<a href="https://wordpress.org/plugins/responsive-youtube-vimeo-popup/" target="_blank" class="button"><?php _e( 'View Features', 'ultimate-dashboard' ); ?></a>
+						<h3><?php _e( 'WP Video Popup', 'better-admin-bar' ); ?></h3>
+						<p class="subheadline"><?php _e( 'The #1 Video Popup Plugin for WordPress.', 'better-admin-bar' ); ?></p>
+						<p><?php _e( 'Add beautiful responsive YouTube & Vimeo video lightbox popups to any post, page or custom post type of website without sacrificing performance.', 'better-admin-bar' ); ?></p>
+						<a href="https://wordpress.org/plugins/responsive-youtube-vimeo-popup/" target="_blank" class="button"><?php _e( 'View Features', 'better-admin-bar' ); ?></a>
 					</div>
 				</li>
 			</ul>
 
-			<p class="credit"><?php _e( 'Made with ❤ in Aschaffenburg, Germany', 'ultimate-dashboard' ); ?></p>
+			<p class="credit"><?php _e( 'Made with ❤ in Aschaffenburg, Germany', 'better-admin-bar' ); ?></p>
 
 		</div>
 
