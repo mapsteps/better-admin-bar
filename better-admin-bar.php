@@ -5,7 +5,7 @@
  * Description: Hide WordPress admin bar, replace it with a better swift control.
  * Version: 4.0.2
  * Author: David Vongries
- * Author URI: https://github.com/MapSteps/
+ * Author URI: https://davidvongries.com/
  * Text Domain: better-admin-bar
  *
  * @package Better_Admin_Bar
