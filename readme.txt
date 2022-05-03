@@ -8,11 +8,11 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
-Replace the default WordPress admin bar and give logged-in users the user experience they deserve.
-
 **Swift Control is now Better Admin Bar. Please install [Better Admin Bar](https://wordpress.org/plugins/better-admin-bar/) instead.**
 
-If you have Swift Control installed on your site, please make use of the 1-click migration that you're prompted with on your WordPress admin dashboard immediately. This plugin will be removed from the WordPress directory soon.
+If you have Swift Control installed on your site, please make use of the 1-click migration that you're prompted with on your WordPress admin dashboard immediately.
+
+**This plugin will be removed from the WordPress directory soon.**
 
 == Installation ==
 1. Download the swift-control.zip file to your computer.
