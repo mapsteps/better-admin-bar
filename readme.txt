@@ -56,7 +56,7 @@ If you like Better Admin Bar, you will love our other, free WordPress products:
 
 == Changelog ==
 = 4.0.3 =
-* The Launch offer for Better Admin Bar PRO is about to expire! There are only a few coupons left! [Get Better Admin Bar PRO at 50% off!](https://betteradminbar.com/launch-offer/)
+* The Launch offer for Better Admin Bar PRO is about to expire. There are only a few coupons left! [Get Better Admin Bar PRO at 50% off!](https://betteradminbar.com/launch-offer/)
 * Tweak: Make admin notice match our branding
 = 4.0.2 =
 * Minor tweaks & improvements
