@@ -111,13 +111,22 @@ class Setup {
 		?>
 
 		<div class="notice notice-info swift-control-discontinue-notice is-dismissible">
-			<h2>50% Off Better Admin Bar PRO - Launch Offer 🥳</h2>
 
-			<p>
-				<strong>Better Admin Bar PRO</strong> is now available!<br> As a valued user of our plugin we would like to offer you a <strong style="color: #d63638;">50% discount</strong> on <strong>Better Admin Bar PRO</strong>.
-			</p>
+			<div class="notice-body">
+				<div class="notice-icon">
+					<img src="<?php echo esc_url( SWIFT_CONTROL_PLUGIN_URL ); ?>/assets/images/logo.png">
+				</div>
+				<div class="notice-content">
+					<h2>
+						50% Off Better Admin Bar PRO - Launch Offer 🥳
+					</h2>
+					<p>
+						<strong>Better Admin Bar PRO</strong> is now available!<br> As a valued user of our plugin we would like to offer you a <strong style="color: #d63638;">50% discount</strong> on <strong>Better Admin Bar PRO</strong>.
+					</p>
+					<p><a target="_blank" href="https://betteradminbar.com/launch-offer/?utm_source=bab&utm_medium=repository&utm_campaign=launch_offer" style="font-weight: 700;" class="button button-primary">Grab the deal</a> <strong>Coupon limited to 50 users!</strong></p>
+				</div>
+			</div>
 
-			<p><a target="_blank" href="https://betteradminbar.com/launch-offer/?utm_source=bab&utm_medium=repository&utm_campaign=launch_offer" style="font-weight: 700;" class="button button-primary">Grab the deal</a> <strong>Coupon limited to 50 users!</strong></p>
 		</div>
 
 		<?php
@@ -176,6 +185,9 @@ class Setup {
 	 * Enqueue admin styles & scripts.
 	 */
 	public function admin_scripts() {
+
+		wp_enqueue_style( 'swift-control-discount-notice', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/discount-notice.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
+
 		$current_screen = get_current_screen();
 
 		if ( 'settings_page_better-admin-bar' !== $current_screen->id ) {
