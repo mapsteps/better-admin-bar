@@ -71,46 +71,53 @@ class Setup {
 		?>
 
 		<div class="notice notice-error swift-control-migration-notice">
-			<h2>Swift Control is now Better Admin Bar</h2>
 
-			<p>
-				Dear <?php echo esc_html( $current_user->display_name ); ?>, we're excited to let you know that Swift Control is now <strong>Better Admin Bar</strong>.
-			</p>
-
-			<p>
-				<strong>What does that mean for me?</strong><br>
-				Everything will stay the same. In fact, we have added some amazing new features to the plugin!<br>
-			</p>
-
-			<p>
-				Please click the button below to migrate to the latest version.
-			</p>
-
-			<p>
-				<a href="" style="font-weight: 700;" class="button button-primary swift-control-button swift-control-migration-button">
-					Start Migration
-				</a>
-			</p>
-
-			<div class="swift-control-migration-statuses">
-				<div class="swift-control-migration-status migration-failed">
-					<i class="dashicons dashicons-no"></i>
-					<span>Migration failed:</span> <span class="error-message"></span>
+			<div class="notice-body">
+				<div class="notice-icon">
+					<img src="<?php echo esc_url( SWIFT_CONTROL_PLUGIN_URL ); ?>/assets/img/logo.png">
 				</div>
-				<div class="swift-control-migration-status old-swift-control-uninstalled">
-					<span class="loader"></span>
-					<i class="dashicons dashicons-yes"></i>
-					<span class="process-message">Old Swift Control is uninstalled.</span>
-				</div>
-				<div class="swift-control-migration-status new-better-admin-bar-installed">
-					<span class="loader"></span>
-					<i class="dashicons dashicons-yes"></i>
-					<span class="process-message">New Better Admin Bar is installed.</span>
-				</div>
-				<div class="swift-control-migration-status new-better-admin-bar-activated">
-					<span class="loader"></span>
-					<i class="dashicons dashicons-yes"></i>
-					<span class="process-message">New Better Admin Bar is activated.</span>
+				<div class="notice-content">
+					<h2>Swift Control is now Better Admin Bar!</h2>
+					<p>
+						Dear <?php echo esc_html( $current_user->display_name ); ?>, we're excited to let you know that Swift Control is now <strong>Better Admin Bar</strong>.
+					</p>
+
+					<p>
+						<strong>What does that mean for me?</strong><br>
+						Everything will stay the same. In fact, we have added some amazing new features to the plugin!<br>
+					</p>
+
+					<p>
+						Please click the button below to migrate to the latest version.
+					</p>
+
+					<p>
+						<a href="" style="font-weight: 700;" class="button button-primary swift-control-button swift-control-migration-button">
+							Start Migration
+						</a>
+					</p>
+
+					<div class="swift-control-migration-statuses">
+						<div class="swift-control-migration-status migration-failed">
+							<i class="dashicons dashicons-no"></i>
+							<span>Migration failed:</span> <span class="error-message"></span>
+						</div>
+						<div class="swift-control-migration-status old-swift-control-uninstalled">
+							<span class="loader"></span>
+							<i class="dashicons dashicons-yes"></i>
+							<span class="process-message">Old Swift Control is uninstalled.</span>
+						</div>
+						<div class="swift-control-migration-status new-better-admin-bar-installed">
+							<span class="loader"></span>
+							<i class="dashicons dashicons-yes"></i>
+							<span class="process-message">New Better Admin Bar is installed.</span>
+						</div>
+						<div class="swift-control-migration-status new-better-admin-bar-activated">
+							<span class="loader"></span>
+							<i class="dashicons dashicons-yes"></i>
+							<span class="process-message">New Better Admin Bar is activated.</span>
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -137,6 +144,8 @@ class Setup {
 	public function migration_notice_scripts() {
 
 		wp_enqueue_script('updates');
+
+		wp_enqueue_style( 'swift-control-discount', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/discount-notice.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
 
 		wp_enqueue_style( 'swift-control-admin', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/swift-control-admin.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
 
