@@ -199,7 +199,7 @@ class Setup {
 		wp_enqueue_style( 'font-awesome', SWIFT_CONTROL_PLUGIN_URL . '/assets/vendor/fontawesome-free/css/all.min.css', array(), '5.14.0' );
 
 		// Icon picker.
-		wp_enqueue_style( 'icon-picker', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/icon-picker.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
+		wp_enqueue_style( 'swift-control-icon-picker', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/icon-picker.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
 
 		// Select2.
 		wp_enqueue_style( 'select2', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/select2.min.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
@@ -223,14 +223,14 @@ class Setup {
 		wp_enqueue_script( 'select2', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/select2.min.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 
 		// Icon picker.
-		wp_enqueue_script( 'icon-picker', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/icon-picker.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'swift-control-icon-picker', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/icon-picker.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 
 		$icons = file_get_contents( SWIFT_CONTROL_PLUGIN_DIR . '/assets/json/fontawesome5.json' );
 		$icons = json_decode( $icons, true );
 		$icons = $icons ? $icons : array();
 
 		wp_localize_script(
-			'icon-picker',
+			'swift-control-icon-picker',
 			'iconPickerIcons',
 			$icons
 		);
@@ -240,7 +240,7 @@ class Setup {
 
 		wp_enqueue_script( 'swift-control-settings-page', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/settings-page.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 
-		wp_enqueue_script( 'swift-control-widget-settings', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/widget-settings.js', array( 'jquery-ui-sortable', 'icon-picker' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'swift-control-widget-settings', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/widget-settings.js', array( 'jquery-ui-sortable', 'swift-control-icon-picker' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 
 		wp_enqueue_script( 'swift-control-general-settings', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/general-settings.js', array( 'select2', 'wp-color-picker-alpha' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 
