@@ -3,7 +3,7 @@ Contributors: davidvongries, kubiq
 Tags: Adminbar, Margin, Quick Edit, Admin Bar, Replace Admin Bar, Frontend Access, Swift Control, 32px
 Requires at least: 3.0.1
 Tested up to: 5.9
-Stable tag: 4.0.3
+Stable tag: 4.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,6 +55,8 @@ If you like Better Admin Bar, you will love our other, free WordPress products:
 3. Admin Bar Settings Page
 
 == Changelog ==
+= 4.0.4 =
+* Fixed: Prefix icon picker handle to not interfere with BuddyBoss' icon-picker.js
 = 4.0.3 =
 * The Launch offer for Better Admin Bar PRO is about to expire. There are only a few coupons left! [Get Better Admin Bar PRO at 50% off!](https://betteradminbar.com/launch-offer/)
 * Tweak: Make admin notice match our branding
