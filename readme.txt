@@ -1,4 +1,4 @@
-=== Better Admin Bar ===
+=== Hide Admin Bar & More - Better Admin Bar ===
 Contributors: davidvongries, kubiq
 Tags: Adminbar, Margin, Quick Edit, Admin Bar, Replace Admin Bar, Frontend Access, Swift Control, 32px
 Requires at least: 3.0.1
