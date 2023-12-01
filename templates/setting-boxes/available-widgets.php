@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 		<?php _e( 'Widgets', 'better-admin-bar' ); ?>
 		<span class="heatbox-tooltip">
 			<span class="dashicons dashicons-editor-help"></span>
-			<span class="tooltipcontent"><?php _e( 'Drag & drop widgets over into the Quick Access Panel to make them available.', 'better-admin-bar' ); ?></span>
+			<span class="tooltip-content"><?php _e( 'Drag & drop widgets over into the Quick Access Panel to make them available.', 'better-admin-bar' ); ?></span>
 		</span>
 	</h2>
 
