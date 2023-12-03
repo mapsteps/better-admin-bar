@@ -24,7 +24,7 @@
 
 	function init() {
 		if (!menu) return;
-		setupPreviewToggle();
+		setupPreview();
 		setupMenu();
 		checkDisabledWidget();
 		checkInlineEditing();
@@ -32,12 +32,21 @@
 		setupPositions();
 	}
 
-	function setupPreviewToggle() {
+	function setupPreview() {
 		var previewToggle = document.getElementById("swift_control_preview_toggle");
-		if (!previewToggle) return;
 
-		handlePreviewToggleState();
-		previewToggle.addEventListener("change", handlePreviewToggleChange);
+		if (previewToggle) {
+			handlePreviewToggleState();
+			previewToggle.addEventListener("change", handlePreviewToggleChange);
+		}
+
+		$(document).on(
+			"click",
+			".swift-control-widgets .swift-control-widget-link",
+			function (e) {
+				e.preventDefault();
+			}
+		);
 	}
 
 	function handlePreviewToggleChange(e) {

@@ -5,9 +5,10 @@
  * - SwiftControl
  */
 (function ($) {
-	var statusButton = document.querySelector('.active-widgets-box .saved-status');
+	var statusButton = document.querySelector(
+		".active-widgets-box .saved-status"
+	);
 	var isRequesting = false;
-	var elms = {};
 	var $elms = {};
 	var ajax = {};
 
@@ -27,7 +28,7 @@
 	 */
 	function setupElms() {
 		// jQuery elements.
-		$elms.activeItems = $('#active-items');
+		$elms.activeItems = $("#active-items");
 	}
 
 	/**
@@ -35,21 +36,23 @@
 	 */
 	function setupSortable() {
 		$elms.activeItems.sortable({
-			connectWith: '.widget-items',
+			connectWith: ".widget-items",
 			receive: function (e, ui) {
-				var isReadonly = ui.item[0].classList.contains('edit-mode') ? false : true;
+				var isReadonly = ui.item[0].classList.contains("edit-mode")
+					? false
+					: true;
 				setWidgetTextFieldState(ui.item[0], isReadonly);
 			},
 			update: function (e, ui) {
 				ajax.changeWidgetsOrder();
-			}
+			},
 		});
 
-		$('#available-items').sortable({
-			connectWith: '.widget-items',
+		$("#available-items").sortable({
+			connectWith: ".widget-items",
 			receive: function (e, ui) {
 				setWidgetTextFieldState(ui.item[0], true);
-			}
+			},
 		});
 	}
 
@@ -58,7 +61,7 @@
 	 */
 	function setupSettingsArea() {
 		$elms.heatboxStacked = $(".stacked-heatbox-placeholder");
-		$elms.activeItemsArea = $('.swift-control-settings-panel .heatbox-sidebar');
+		$elms.activeItemsArea = $(".swift-control-settings-panel .heatbox-sidebar");
 
 		moveSettingsArea();
 	}
@@ -71,9 +74,9 @@
 	 */
 	function moveSettingsArea() {
 		if (window.innerWidth < 992) {
-			$('.sidebar-heatbox').appendTo($elms.heatboxStacked);
+			$(".sidebar-heatbox").appendTo($elms.heatboxStacked);
 		} else {
-			$('.sidebar-heatbox').appendTo($elms.activeItemsArea);
+			$(".sidebar-heatbox").appendTo($elms.activeItemsArea);
 		}
 	}
 
@@ -104,30 +107,44 @@
 	 */
 	function setupEvents() {
 		// General events.
-		window.addEventListener('resize', function (e) {
+		window.addEventListener("resize", function (e) {
 			moveSettingsArea();
 		});
 
-		document.querySelector('.widget-items.active-items').addEventListener('keydown', function (e) {
-			if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
-				escapeEditMode('all');
-			}
-		});
+		document
+			.querySelector(".widget-items.active-items")
+			.addEventListener("keydown", function (e) {
+				if (e.key === "Escape" || e.key === "Esc" || e.keyCode === 27) {
+					escapeEditMode("all");
+				}
+			});
 
-		$(document).on('iconPicker:selected', onIconpickerSelected);
+		$(document).on("iconPicker:selected", onIconpickerSelected);
 
 		// Widget events.
-		$('.swift-control-settings .widget-item-col .edit-button').on('click', onEditButtonClick);
-		$('.swift-control-settings .widget-items .dblclick-trigger').on('dblclick', onWidgetDoubleClick);
-		$('.swift-control-settings .widget-text-field').on('keydown', onWidgetEnter);
-		$('.swift-control-settings .new-tab-field').on('keydown', onWidgetEnter);
-		$('.swift-control-settings .widget-item .blur-trigger').on('click', onBlurTriggerClick);
+		$(".swift-control-settings .widget-item-col .edit-button").on(
+			"click",
+			onEditButtonClick
+		);
+		$(".swift-control-settings .widget-items .dblclick-trigger").on(
+			"dblclick",
+			onWidgetDoubleClick
+		);
+		$(".swift-control-settings .widget-text-field").on(
+			"keydown",
+			onWidgetEnter
+		);
+		$(".swift-control-settings .new-tab-field").on("keydown", onWidgetEnter);
+		$(".swift-control-settings .widget-item .blur-trigger").on(
+			"click",
+			onBlurTriggerClick
+		);
 	}
 
 	function onEditButtonClick(e) {
 		var widgetItem = this.parentNode.parentNode.parentNode;
 
-		if (widgetItem.classList.contains('edit-mode')) {
+		if (widgetItem.classList.contains("edit-mode")) {
 			saveWidgetSettings(widgetItem);
 		} else {
 			switchEditMode(widgetItem);
@@ -138,31 +155,31 @@
 		var widgetItem = this.parentNode.parentNode.parentNode;
 
 		// Stop if current item is inside available items.
-		if (widgetItem.parentNode.classList.contains('available-items')) return;
+		if (widgetItem.parentNode.classList.contains("available-items")) return;
 
 		// Stop if current item is already in edit-mode.
-		if (widgetItem.classList.contains('edit-mode')) return;
+		if (widgetItem.classList.contains("edit-mode")) return;
 
 		switchEditMode(widgetItem);
 	}
 
 	function onIconpickerSelected(evt, trigger, selectedIcon) {
-		var icon = trigger.parentNode.parentNode.querySelector('.widget-icon > i');
+		var icon = trigger.parentNode.parentNode.querySelector(".widget-icon > i");
 		icon.className = selectedIcon;
 	}
 
 	function onWidgetEnter(e) {
-		if (e.key === 'Enter' || e.keyCode === 13) {
+		if (e.key === "Enter" || e.keyCode === 13) {
 			e.preventDefault();
-			if (this.classList.contains('widget-text-field')) this.blur();
-			saveWidgetSettings($(this).closest('.widget-item')[0]);
+			if (this.classList.contains("widget-text-field")) this.blur();
+			saveWidgetSettings($(this).closest(".widget-item")[0]);
 		}
 	}
 
 	function onBlurTriggerClick(e) {
 		var widgetItem = this.parentNode.parentNode.parentNode.parentNode;
 		window.getSelection().removeAllRanges();
-		widgetItem.querySelector('.widget-text-field').blur();
+		widgetItem.querySelector(".widget-text-field").blur();
 	}
 
 	/**
@@ -174,14 +191,16 @@
 	function setWidgetTextFieldState(widgetItem, readonly) {
 		if (!widgetItem) return;
 
-		if (widgetItem === 'all') {
-			$('.swift-control-settings .widget-item .widget-text-field').attr('readonly', readonly);
+		if (widgetItem === "all") {
+			$(".swift-control-settings .widget-item .widget-text-field").attr(
+				"readonly",
+				readonly
+			);
 		} else {
-			var field = widgetItem.querySelector('.widget-text-field');
+			var field = widgetItem.querySelector(".widget-text-field");
 			if (!field) return;
 			field.readOnly = readonly;
 		}
-
 	}
 
 	/**
@@ -190,43 +209,48 @@
 	 * @param {HTMLElement} widgetItem The current widget item.
 	 */
 	function switchEditMode(widgetItem) {
-		var textField = widgetItem.querySelector('.widget-text-field');
+		var textField = widgetItem.querySelector(".widget-text-field");
 
-		escapeEditMode('all');
-		widgetItem.classList.add('edit-mode');
+		escapeEditMode("all");
+		widgetItem.classList.add("edit-mode");
 		setWidgetTextFieldState(widgetItem, false);
-		widgetItem.querySelector('.edit-button').innerHTML = SwiftControl.labels.save;
+		widgetItem.querySelector(".edit-button").innerHTML =
+			SwiftControl.labels.save;
 	}
 
 	/**
 	 * Switch saved status in the metabox header.
 	 *
-	 * @param {string} state Whether or not to show the "Saved" status. 
+	 * @param {string} state Whether or not to show the "Saved" status.
 	 *                       Accepted values: "show" or "hide". Default is "show".
 	 */
 	function switchSavedStatus(state) {
-		if (state === 'hide') {
-			statusButton.classList.remove('is-shown');
+		if (state === "hide") {
+			statusButton.classList.remove("is-shown");
 		} else {
-			statusButton.classList.add('is-shown');
+			statusButton.classList.add("is-shown");
 		}
 	}
 
 	/**
 	 * Escape edit mode when esc key pressed.
-	 * 
+	 *
 	 * @param {HTMLElement|string} widgetItem The current widget item.
 	 */
 	function escapeEditMode(widgetItem) {
-		if (widgetItem === 'all') {
-			$('.swift-control-settings .active-items .widget-item').removeClass('edit-mode');
-			$('.swift-control-settings .active-items .edit-button').html(SwiftControl.labels.edit);
-			setWidgetTextFieldState('all', true);
+		if (widgetItem === "all") {
+			$(".swift-control-settings .active-items .widget-item").removeClass(
+				"edit-mode"
+			);
+			$(".swift-control-settings .active-items .edit-button").html(
+				SwiftControl.labels.edit
+			);
+			setWidgetTextFieldState("all", true);
 		} else {
-			var editButton = widgetItem.querySelector('.edit-button');
+			var editButton = widgetItem.querySelector(".edit-button");
 			editButton.innerHTML = SwiftControl.labels.edit;
 
-			widgetItem.classList.remove('edit-mode');
+			widgetItem.classList.remove("edit-mode");
 			setWidgetTextFieldState(widgetItem, true);
 		}
 
@@ -237,11 +261,11 @@
 	}
 
 	function displaySavedStatus() {
-		switchSavedStatus('show');
+		switchSavedStatus("show");
 
 		// We need some delay to give visual effect.
 		setTimeout(function () {
-			switchSavedStatus('hide');
+			switchSavedStatus("hide");
 		}, 2500);
 	}
 
@@ -256,13 +280,13 @@
 
 		var settings = {};
 
-		settings.icon_class = widgetItem.querySelector('.widget-icon i').className;
-		settings.text = widgetItem.querySelector('.widget-text-field').value;
+		settings.icon_class = widgetItem.querySelector(".widget-icon i").className;
+		settings.text = widgetItem.querySelector(".widget-text-field").value;
 
 		var extraFields = {
-			url: widgetItem.querySelector('.widget-url-field'),
-			newTab: widgetItem.querySelector('.new-tab-field'),
-			redirectUrl: widgetItem.querySelector('.redirect-url-field')
+			url: widgetItem.querySelector(".widget-url-field"),
+			newTab: widgetItem.querySelector(".new-tab-field"),
+			redirectUrl: widgetItem.querySelector(".redirect-url-field"),
 		};
 
 		if (extraFields.url) {
@@ -270,7 +294,7 @@
 		}
 
 		if (extraFields.newTab) {
-			settings.new_tab = (extraFields.newTab.checked ? 1 : 0);
+			settings.new_tab = extraFields.newTab.checked ? 1 : 0;
 		}
 
 		if (extraFields.redirectUrl) {
@@ -279,8 +303,8 @@
 
 		prepareAjaxRequest(ajax.changeWidgetSettings, {
 			widget: widgetItem,
-			widget_key: widgetItem.getAttribute('data-widget-key'),
-			settings: settings
+			widget_key: widgetItem.getAttribute("data-widget-key"),
+			settings: settings,
 		});
 	}
 
@@ -319,7 +343,7 @@
 		isRequesting = true;
 		var data = {};
 
-		data.action = 'swift_control_change_widget_settings';
+		data.action = "swift_control_change_widget_settings";
 		data.nonce = SwiftControl.nonces.changeWidgetSettings;
 		data.widget_key = itemData.widget_key;
 
@@ -331,21 +355,23 @@
 
 		$.ajax({
 			url: ajaxurl,
-			type: 'post',
-			dataType: 'json',
-			data: data
-		}).done(function (r) {
-			displaySavedStatus();
-		}).always(function () {
-			isRequesting = false;
-		});
-	}
+			type: "post",
+			dataType: "json",
+			data: data,
+		})
+			.done(function (r) {
+				displaySavedStatus();
+			})
+			.always(function () {
+				isRequesting = false;
+			});
+	};
 
 	/**
 	 * Send ajax request to change active widget's order.
 	 */
 	ajax.changeWidgetsOrder = function () {
-		var activeItems = document.querySelectorAll('#active-items .widget-item');
+		var activeItems = document.querySelectorAll("#active-items .widget-item");
 		var activeWidget = [];
 
 		[].slice.call(activeItems).forEach(function (el) {
@@ -354,17 +380,82 @@
 
 		$.ajax({
 			url: ajaxurl,
-			type: 'post',
-			dataType: 'json',
+			type: "post",
+			dataType: "json",
 			data: {
-				action: 'swift_control_change_widgets_order',
+				action: "swift_control_change_widgets_order",
 				nonce: SwiftControl.nonces.changeWidgetsOrder,
-				active_widgets: activeWidget
-			}
+				active_widgets: activeWidget,
+			},
 		}).done(function (r) {
+			buildPreview();
 			displaySavedStatus();
 		});
 	};
+
+	function buildPreview() {
+		var activeWidgetList = document.getElementById("active-items");
+		if (!activeWidgetList) return;
+
+		var previewPanel = document.querySelector(".swift-control-widgets");
+		if (!previewPanel) return;
+
+		var output = "";
+		var activeItems = activeWidgetList.querySelectorAll(".widget-item");
+
+		[].slice.call(activeItems).forEach(function (el) {
+			var widgetNameField = el.querySelector(".widget-text-field");
+			var widgetName = widgetNameField ? widgetNameField.value : "";
+
+			// Slug version of widgetName
+			var widgetKey = widgetName.toLowerCase().replace(/\s/g, "-");
+
+			var widgetIconField = el.querySelector(".widget-icon > i");
+			var widgetIcon = widgetIconField ? widgetIconField.className : "";
+
+			var widgetData = {
+				widgetClass: "",
+				widgetKey: widgetKey,
+				widgetUrl: "",
+				iconClass: widgetIcon,
+				widgetName: widgetName,
+			};
+
+			output += buildWidgetPreviewItem(widgetData);
+		});
+
+		// Remove all existing widget preview items except the first one.
+		$(previewPanel).find(".swift-control-widget-item").not(":first").remove();
+
+		// Append the new widget preview items.
+		$(previewPanel).append(output);
+	}
+
+	function buildWidgetPreviewItem(data) {
+		var output =
+			'\
+		<li class="swift-control-widget-item {widget_class}" data-widget-key="{widget_key}">\
+			<a class="swift-control-widget-link" href="{widget_url}">\
+				<i class="{icon_class}"></i>\
+			</a>\
+			<span class="swift-control-widget-title">{widget_name}</span>\
+		</li>\
+		';
+
+		var widgetClass = data && data.widgetClass ? data.widgetClass : "";
+		var widgetKey = data && data.widgetKey ? data.widgetKey : "";
+		var widgetUrl = data && data.widgetUrl ? data.widgetUrl : "";
+		var iconClass = data && data.iconClass ? data.iconClass : "";
+		var widgetName = data && data.widgetName ? data.widgetName : "";
+
+		output = output.replace("{widget_class}", widgetClass);
+		output = output.replace("{widget_key}", widgetKey);
+		output = output.replace("{widget_url}", widgetUrl);
+		output = output.replace("{icon_class}", iconClass);
+		output = output.replace("{widget_name}", widgetName);
+
+		return output;
+	}
 
 	// Let's initialize!
 	init();
