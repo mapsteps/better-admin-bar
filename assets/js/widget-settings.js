@@ -360,6 +360,7 @@
 			data: data,
 		})
 			.done(function (r) {
+				buildPreview();
 				displaySavedStatus();
 			})
 			.always(function () {
