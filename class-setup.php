@@ -180,7 +180,7 @@ class Setup {
 	 * Dismiss discount notice.
 	 */
 	public function dismiss_discount_notice() {
-		$nonce   = isset( $_POST['nonce'] ) ? $_POST['nonce'] : 0;
+		$nonce   = isset( $_POST['nonce'] ) ? sanitize_text_field( $_POST['nonce'] ) : 0;
 		$dismiss = isset( $_POST['dismiss'] ) ? absint( $_POST['dismiss'] ) : 0;
 
 		if ( empty( $dismiss ) ) {
@@ -280,7 +280,7 @@ class Setup {
 	 */
 	public function quick_panel_admin_enqueue() {
 
-		$this->frontend_scripts();
+		$this->preview_scripts();
 		$this->inline_styles();
 
 	}
@@ -294,7 +294,7 @@ class Setup {
 			return;
 		}
 
-		require __DIR__ . '/templates/frontend-output.php';
+		swift_control_quick_access_panel( true );
 
 	}
 
@@ -741,12 +741,25 @@ class Setup {
 			wp_enqueue_style( 'font-awesome', SWIFT_CONTROL_PLUGIN_URL . '/assets/vendor/fontawesome-free/css/all.min.css', array(), '5.14.0' );
 		}
 
-		// Quick access panel frontend styling.
+		// Quick access panel styling.
 		wp_enqueue_style( 'swift-control', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/swift-control.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
 
-		// Quick access panel frontend script.
+		// Quick access panel's frontend scripts.
 		wp_enqueue_script( 'interact', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/interact.min.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 		wp_enqueue_script( 'swift-control', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/swift-control.js', array( 'jquery', 'interact' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
+	}
+
+	/**
+	 * Enqueue quick access panel's preview scripts.
+	 */
+	public function preview_scripts() {
+
+		// Quick access panel styling.
+		wp_enqueue_style( 'swift-control', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/swift-control.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
+
+		// Quick access panel's preview script.
+		wp_enqueue_script( 'swift-control', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/swift-control-preview.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
+
 	}
 
 	/**
@@ -768,7 +781,7 @@ class Setup {
 	 */
 	public function quick_panel_output() {
 
-		require __DIR__ . '/templates/frontend-output.php';
+		swift_control_quick_access_panel();
 
 	}
 
