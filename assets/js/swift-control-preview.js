@@ -24,11 +24,37 @@
 
 	function init() {
 		if (!menu) return;
+		setupPreviewToggle();
 		setupMenu();
 		checkDisabledWidget();
 		checkInlineEditing();
 		setupWallaceSupport();
 		setupPositions();
+	}
+
+	function setupPreviewToggle() {
+		var previewToggle = document.getElementById("swift_control_preview_toggle");
+		if (!previewToggle) return;
+
+		handlePreviewToggleState();
+		previewToggle.addEventListener("change", handlePreviewToggleChange);
+	}
+
+	function handlePreviewToggleChange(e) {
+		if (!e.target) return;
+		var isChecked = e.target.checked;
+		handlePreviewToggleState(isChecked);
+	}
+
+	function handlePreviewToggleState(checked) {
+		var quickAccessPanel = document.querySelector(".swift-control-widgets");
+		if (!quickAccessPanel) return;
+
+		if (checked) {
+			quickAccessPanel.classList.remove("is-hidden");
+		} else {
+			quickAccessPanel.classList.add("is-hidden");
+		}
 	}
 
 	function setupMenu() {
