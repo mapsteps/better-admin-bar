@@ -53,6 +53,17 @@ class Setup {
 	public function __construct() {}
 
 	/**
+	 * Check if we're on the Kirki settings page.
+	 *
+	 * @return bool
+	 */
+	private function is_settings_page() {
+		$current_screen = get_current_screen();
+
+		return ( 'settings_page_better-admin-bar' === $current_screen->id ? true : false );
+	}
+
+	/**
 	 * Setup action & filters.
 	 */
 	public function setup() {
@@ -79,6 +90,9 @@ class Setup {
 		add_action( 'wp_ajax_swift_control_save_position', array( new Ajax\Save_Position(), 'ajax' ) );
 
 		add_filter( 'plugin_action_links', array( $this, 'add_settings_link' ), 10, 4 );
+
+		add_action( 'admin_enqueue_scripts', array( $this, 'quick_panel_admin_enqueue' ) );
+		add_action( 'admin_footer', array( $this, 'quick_panel_admin_preview' ) );
 
 		add_action( 'admin_notices', array( $this, 'discount_notice' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'discount_notice_script' ) );
@@ -259,6 +273,29 @@ class Setup {
 				),
 			)
 		);
+	}
+
+	/**
+	 * Enqueue quick panel's styles & scripts to admin area.
+	 */
+	public function quick_panel_admin_enqueue() {
+
+		$this->frontend_scripts();
+		$this->inline_styles();
+
+	}
+
+	/**
+	 * Output the quick panel preview to admin area.
+	 */
+	public function quick_panel_admin_preview() {
+
+		if ( ! $this->is_settings_page() ) {
+			return;
+		}
+
+		require __DIR__ . '/templates/frontend-output.php';
+
 	}
 
 	/**

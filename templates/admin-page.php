@@ -57,6 +57,20 @@ $GLOBALS['swift_control_widget_settings']  = $saved_widget_settings;
 					<li class="heatbox-tab-nav-item swift-control-tools-panel">
 						<a href="#tools"><?php _e( 'Tools', 'better-admin-bar' ); ?></a>
 					</li>
+					<li class="swift-control-preview">
+						<label for="swift_control_preview_toggle" class="toggle-switch">
+							<input
+								type="checkbox"
+								name="swift_control_preview_toggle"
+								id="swift_control_preview_toggle"
+								value="1"
+							/>
+							<div class="switch-track">
+								<div class="switch-thumb"></div>
+							</div>
+						</label>
+						<span class="preview-text"><?php _e( 'Preview', 'better-admin-bar' ); ?></span>
+					</li>
 				</ul>
 			</nav>
 

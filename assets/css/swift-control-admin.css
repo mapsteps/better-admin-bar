@@ -678,6 +678,20 @@ hr {
  * Responsiveness
  * --------------------------------------------------
  */
+.heatbox-tab-nav .swift-control-preview {
+	float: right;
+	padding-right: 0;
+}
+
+.swift-control-preview .preview-text {
+	margin-left: 10px;
+}
+
+/**
+ * --------------------------------------------------
+ * Responsiveness
+ * --------------------------------------------------
+ */
 @media (max-width: 1200.32px) {
 	/** Menu item's columns width */
 	.swift-control-settings .widget-item .drag-wrapper {
