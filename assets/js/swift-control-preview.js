@@ -5,8 +5,6 @@
 
 	if (!window.swiftControlOpt) return;
 
-	var ajax = {};
-
 	var menu = document.querySelector(".swift-control-widgets");
 	var panelsWrapper = document.querySelector(".swift-control-helper-panels");
 	var widgetSize = parseInt(swiftControlOpt.size, 10);
@@ -61,6 +59,11 @@
 
 		if (checked) {
 			quickAccessPanel.classList.remove("is-hidden");
+
+			// Trigger window resize event to reposition the menu.
+			setTimeout(function () {
+				window.dispatchEvent(new Event("resize"));
+			}, 10);
 		} else {
 			quickAccessPanel.classList.add("is-hidden");
 		}
@@ -178,12 +181,6 @@
 		panelsWrapper.appendChild(fragment);
 	}
 
-	function hideHelperPanels() {
-		while (panelsWrapper.firstChild) {
-			panelsWrapper.removeChild(panelsWrapper.firstChild);
-		}
-	}
-
 	function createElement(tagName, className, child) {
 		var tag = document.createElement(tagName);
 		tag.className = className;
@@ -191,31 +188,6 @@
 		if (child) tag.appendChild(child);
 		return tag;
 	}
-
-	ajax.savePosition = function () {
-		var data = {};
-		data.action = "swift_control_save_position";
-		data.nonce = swiftControlOpt.nonce;
-
-		for (var prop in position) {
-			if (position.hasOwnProperty(prop)) {
-				data[prop] = position[prop];
-			}
-		}
-
-		$.ajax({
-			url: swiftControlOpt.ajaxUrl,
-			type: "post",
-			dataType: "json",
-			data: data,
-		})
-			.done(function (r) {
-				// console.log(r.data);
-			})
-			.fail(function () {
-				console.log("Failed to save widget position");
-			});
-	};
 
 	init();
 })(jQuery);
