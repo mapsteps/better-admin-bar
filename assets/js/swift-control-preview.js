@@ -117,6 +117,11 @@
 					hexColor +
 					";\
 					}\
+					.swift-control-widgets .swift-control-widget-setting::after {\
+						color: " +
+					hexColor +
+					"\
+					};\
 				";
 
 				break;
