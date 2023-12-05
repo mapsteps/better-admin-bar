@@ -45,6 +45,93 @@
 				e.preventDefault();
 			}
 		);
+
+		var colorFieldsWithInstantPreview = document.querySelectorAll(
+			".color-picker-field.has-instant-preview"
+		);
+
+		colorFieldsWithInstantPreview.forEach(function (el) {
+			var id = el.id;
+
+			document.addEventListener(
+				"swift_control_" + id + "_change",
+				handleColorFieldChange
+			);
+		});
+	}
+
+	function handleColorFieldChange(e) {
+		if (!e.detail) return;
+
+		var hexColor = e.detail.hexColor;
+		var fieldId = e.detail.fieldId;
+
+		var styleTag = document.querySelector(
+			'.swift-control-preview-style[data-field-id="' + fieldId + '"]'
+		);
+		if (!styleTag) return;
+
+		var styleContent = "";
+
+		switch (fieldId) {
+			case "setting_button_bg_color":
+				styleContent =
+					"\
+					.swift-control-widgets .swift-control-widget-setting .swift-control-widget-link, .swift-control-widgets .swift-control-widget-setting .swift-control-widget-link:hover {\
+						background-color: " +
+					hexColor +
+					";\
+					}\
+				";
+
+				break;
+			case "setting_button_icon_color":
+				styleContent =
+					"\
+					.swift-control-widgets .swift-control-widget-setting a {\
+						color: " +
+					hexColor +
+					";\
+					}\
+				";
+
+				break;
+			case "widget_bg_color":
+				styleContent =
+					"\
+					.swift-control-widgets .swift-control-widget-link {\
+						background-color: " +
+					hexColor +
+					";\
+					}\
+				";
+
+				break;
+			case "widget_bg_color_hover":
+				styleContent =
+					"\
+					.swift-control-widgets .swift-control-widget-link:hover {\
+						background-color: " +
+					hexColor +
+					";\
+					}\
+				";
+
+				break;
+			case "widget_icon_color":
+				styleContent =
+					"\
+					.swift-control-widgets .swift-control-widget-link {\
+						color: " +
+					hexColor +
+					";\
+					}\
+				";
+
+				break;
+		}
+
+		styleTag.innerHTML = styleContent;
 	}
 
 	function handlePreviewToggleChange(e) {

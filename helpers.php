@@ -571,6 +571,14 @@ function swift_control_quick_access_panel( $is_preview = false ) {
 		?>
 	</style>
 
+	<?php if ( $is_preview ) : ?>
+		<style class="swift-control-preview-style" data-field-id="setting_button_bg_color"></style>
+		<style class="swift-control-preview-style" data-field-id="setting_button_icon_color"></style>
+		<style class="swift-control-preview-style" data-field-id="widget_bg_color"></style>
+		<style class="swift-control-preview-style" data-field-id="widget_bg_color_hover"></style>
+		<style class="swift-control-preview-style" data-field-id="widget_icon_color"></style>
+	<?php endif; ?>
+
 	<?php
 	$position       = array();
 	$saved_position = get_user_meta( get_current_user_id(), 'swift_control_position', true );
@@ -621,7 +629,7 @@ function swift_control_quick_access_panel( $is_preview = false ) {
 
 	<?php
 	wp_localize_script(
-		'swift-control',
+		( $is_preview ? 'swift-control-preview' : 'swift-control' ),
 		'swiftControlOpt',
 		array(
 			'size'          => 55,

@@ -758,7 +758,7 @@ class Setup {
 		wp_enqueue_style( 'swift-control', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/swift-control.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
 
 		// Quick access panel's preview script.
-		wp_enqueue_script( 'swift-control', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/swift-control-preview.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'swift-control-preview', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/swift-control-preview.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 
 	}
 
