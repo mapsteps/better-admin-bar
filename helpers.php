@@ -602,14 +602,24 @@ function swift_control_quick_access_panel( $is_preview = false ) {
 	$expanded_class  = $display_settings['expanded'] ? 'is-expanded' : '';
 	$pinned_class    = '';
 
-	if ( ! isset( $saved_position['x_direction'] ) ) {
+	if ( $is_preview ) {
 		if ( is_rtl() ) {
-			$position['x_direction'] = 'right';
+			$position['x_direction'] = 'left';
 
+			$pinned_class = 'is-pinned-left';
+		} else {
 			$pinned_class = 'is-pinned-right';
 		}
 	} else {
-		$pinned_class = 'right' === $position['x_direction'] ? 'is-pinned-right' : '';
+		if ( ! isset( $saved_position['x_direction'] ) ) {
+			if ( is_rtl() ) {
+				$position['x_direction'] = 'right';
+
+				$pinned_class = 'is-pinned-right';
+			}
+		} else {
+			$pinned_class = 'right' === $position['x_direction'] ? 'is-pinned-right' : '';
+		}
 	}
 	?>
 
