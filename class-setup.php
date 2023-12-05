@@ -280,8 +280,12 @@ class Setup {
 	 */
 	public function quick_panel_admin_enqueue() {
 
+		if ( ! $this->is_settings_page() ) {
+			return;
+		}
+
 		$this->preview_scripts();
-		$this->inline_styles();
+		$this->inline_styles( true );
 
 	}
 
@@ -820,7 +824,7 @@ class Setup {
 	/**
 	 * Output the inline styles to frontend.
 	 */
-	public function inline_styles() {
+	public function inline_styles( $is_preview = false ) {
 
 		$color_settings = swift_control_get_color_settings();
 		$default_colors = swift_control_get_default_color_settings();
