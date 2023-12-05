@@ -46,6 +46,21 @@
 			}
 		);
 
+		var arrowIndicatorCheckbox = document.getElementById("remove_indicator");
+
+		if (arrowIndicatorCheckbox) {
+			arrowIndicatorCheckbox.addEventListener(
+				"change",
+				handleRemoveIndicatorChange
+			);
+		}
+
+		var expandPanelCheckbox = document.getElementById("expanded");
+
+		if (expandPanelCheckbox) {
+			expandPanelCheckbox.addEventListener("change", handleExpandPanelChange);
+		}
+
 		var colorFieldsWithInstantPreview = document.querySelectorAll(
 			".color-picker-field.has-instant-preview"
 		);
@@ -58,6 +73,26 @@
 				handleColorFieldChange
 			);
 		});
+	}
+
+	function handleRemoveIndicatorChange(e) {
+		if (!e.target) return;
+
+		if (e.target.checked) {
+			menu.classList.remove("has-arrow");
+		} else {
+			menu.classList.add("has-arrow");
+		}
+	}
+
+	function handleExpandPanelChange(e) {
+		if (!e.target) return;
+
+		if (e.target.checked) {
+			menu.classList.add("is-expanded");
+		} else {
+			menu.classList.remove("is-expanded");
+		}
 	}
 
 	function handleColorFieldChange(e) {
@@ -141,18 +176,15 @@
 	}
 
 	function handlePreviewToggleState(checked) {
-		var quickAccessPanel = document.querySelector(".swift-control-widgets");
-		if (!quickAccessPanel) return;
-
 		if (checked) {
-			quickAccessPanel.classList.remove("is-hidden");
+			menu.classList.remove("is-hidden");
 
 			// Trigger window resize event to reposition the menu.
 			setTimeout(function () {
 				window.dispatchEvent(new Event("resize"));
 			}, 10);
 		} else {
-			quickAccessPanel.classList.add("is-hidden");
+			menu.classList.add("is-hidden");
 		}
 	}
 
