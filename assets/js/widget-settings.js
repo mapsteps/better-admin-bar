@@ -430,6 +430,8 @@
 
 		// Append the new widget preview items.
 		$(previewPanel).append(output);
+
+		rebuildTransition();
 	}
 
 	function buildWidgetPreviewItem(data) {
@@ -456,6 +458,64 @@
 		output = output.replace("{widget_name}", widgetName);
 
 		return output;
+	}
+
+	function rebuildTransition() {
+		var quickAccessPanel = document.querySelector(".swift-control-widgets");
+		if (!quickAccessPanel) return;
+
+		var widgetItems = quickAccessPanel.querySelectorAll(
+			".swift-control-widget-item"
+		);
+		if (!widgetItems) return;
+
+		// Exclude first widget item.
+		widgetItems = [].slice.call(widgetItems).slice(1);
+		if (widgetItems.length === 0) return;
+
+		var oldStyleElm = document.querySelector(".swift-control-transition-style");
+
+		if (oldStyleElm) {
+			oldStyleElm.remove();
+		}
+
+		var styleElm = document.querySelector(
+			".swift-control-preview-transition-style"
+		);
+		if (!styleElm) return;
+
+		var transitionValue = 75;
+		var showingDelay = 0;
+		var hidingDelay = (widgetItems.length - 1) * transitionValue;
+
+		var styleContent = "";
+
+		widgetItems.forEach(function (el, i) {
+			var widgetKey = el.dataset.widgetKey ? el.dataset.widgetKey : "";
+
+			styleContent +=
+				'\
+				.swift-control-widgets [data-widget-key="' +
+				widgetKey +
+				'"] {\
+					transition-delay: ' +
+				hidingDelay +
+				'ms;\
+				}\
+				.swift-control-widgets.is-expanded [data-widget-key="' +
+				widgetKey +
+				'"] {\
+					transition-delay: ' +
+				showingDelay +
+				"ms;\
+				}\
+			";
+
+			showingDelay += transitionValue;
+			hidingDelay -= transitionValue;
+		});
+
+		styleElm.innerHTML = styleContent;
 	}
 
 	// Let's initialize!

@@ -566,7 +566,7 @@ function swift_control_quick_access_panel( $is_preview = false ) {
 	}
 	?>
 
-	<style>
+	<style class="swift-control-transition-style">
 		<?php
 		// We don't hook this extra styles to `class-setup.php` because we need the loop.
 		echo $extra_styles;
@@ -579,6 +579,8 @@ function swift_control_quick_access_panel( $is_preview = false ) {
 		<style class="swift-control-preview-style" data-field-id="widget_bg_color"></style>
 		<style class="swift-control-preview-style" data-field-id="widget_bg_color_hover"></style>
 		<style class="swift-control-preview-style" data-field-id="widget_icon_color"></style>
+
+		<style class="swift-control-preview-transition-style"></style>
 	<?php endif; ?>
 
 	<?php
