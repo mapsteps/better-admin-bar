@@ -494,6 +494,8 @@ function swift_control_parse_widget_class( $widget_class, $widget_key, $settings
 
 /**
  * Output quick access panel.
+ *
+ * @param bool $is_preview Whether the panel is in preview mode inside admin area or not.
  */
 function swift_control_quick_access_panel( $is_preview = false ) {
 
