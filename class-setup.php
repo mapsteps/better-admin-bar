@@ -823,6 +823,8 @@ class Setup {
 
 	/**
 	 * Output the inline styles to frontend.
+	 *
+	 * @param bool $is_preview Whether the panel is in preview mode inside admin area or not.
 	 */
 	public function inline_styles( $is_preview = false ) {
 
