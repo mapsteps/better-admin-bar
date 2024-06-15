@@ -138,13 +138,15 @@
 
 /* Version */
 .heatbox-wrap .version {
-	font-size: 50%;
+	font-size: 45%;
 	opacity: 0.6;
 	font-weight: 600;
 	background: #ccc;
 	border-radius: 5px;
 	padding: 5px 12px;
 	line-height: 1;
+	vertical-align: middle;
+	margin: 0 5px;
 }
 
 /* 2 Column Layout - Wrapper */
@@ -331,6 +333,11 @@
 	cursor: pointer;
 }
 
+.heatbox .radio-label {
+	padding-left: 30px;
+	margin-right: 25px;
+}
+
 .heatbox .label input {
 	position: absolute;
 	z-index: -1;
@@ -382,6 +389,7 @@
 	display: block;
 }
 
+.heatbox .radio-label,
 .heatbox .checkbox-label {
 	padding-left: 30px;
 }
@@ -506,6 +514,45 @@
 }
 
 /* Tags / chips */
+.tags-heatbox .action-status {
+	height: auto;
+}
+
+.tags-heatbox .tags-wrapper {
+	line-height: 1.8;
+}
+
+.tags-heatbox h2 {
+	position: relative;
+}
+
+.tags-heatbox h2 .action-status {
+	display: inline-block;
+	position: absolute;
+	right: 20px;
+	top: 50%;
+	padding: 10px;
+	height: 30px;
+	line-height: 10px;
+	font-size: 11px;
+	color: #fff;
+	background-color: #444;
+	border-radius: 4px;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(-50%);
+	transition: all 0.3s ease-in-out;
+}
+
+.tags-heatbox h2 .action-status.is-shown {
+	opacity: 1;
+	visibility: visible;
+}
+
+.tags-heatbox .heatbox-content p:last-child {
+	margin-bottom: 0;
+}
+
 .heatbox .tags-wrapper code {
 	display: inline-block;
 	margin-bottom: 5px;
