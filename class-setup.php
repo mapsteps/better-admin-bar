@@ -72,7 +72,6 @@ class Setup {
 			return;
 		}
 
-		add_action( 'init', array( $this, 'setup_text_domain' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ), 999 );
 		add_action( 'admin_menu', array( $this, 'add_submenu_page' ) );
 		add_filter( 'admin_body_class', array( $this, 'admin_body_class' ), 20 );
@@ -98,13 +97,6 @@ class Setup {
 		add_action( 'admin_enqueue_scripts', array( $this, 'discount_notice_script' ) );
 		add_action( 'wp_ajax_sc_discount_notice_dismissal', array( $this, 'dismiss_discount_notice' ) );
 
-	}
-
-	/**
-	 * Setup textdomain.
-	 */
-	public function setup_text_domain() {
-		load_plugin_textdomain( 'better-admin-bar', false, plugin_basename( __DIR__ ) . '/languages' );
 	}
 
 	/**
