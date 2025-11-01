@@ -530,6 +530,7 @@ function swift_control_quick_access_panel( $is_preview = false ) {
 		$widget_name  = swift_control_parse_widget_name( $widget_name, $widget_key );
 		$widget_url   = $parsed_settings['url'];
 		$widget_url   = swift_control_parse_widget_url( $widget_url, $widget_key );
+		$widget_url   = $widget_url ? $widget_url : '#';
 		$tab_target   = $parsed_settings['new_tab'];
 		$redirect_url = $parsed_settings['redirect_url'];
 		$target_attr  = $tab_target ? 'target="_blank"' : '';
