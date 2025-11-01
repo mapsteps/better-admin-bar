@@ -6,6 +6,8 @@
  * Version: 4.1.2
  * Author: David Vongries
  * Author URI: https://davidvongries.com/
+ * License: GPL v2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: better-admin-bar
  *
  * @package Better_Admin_Bar
