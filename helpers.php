@@ -409,7 +409,7 @@ function swift_control_generate_random_string( $length = 10 ) {
 	$random_string     = '';
 
 	for ( $i = 0; $i < $length; $i++ ) {
-		$random_string .= $characters[ rand( 0, $characters_length - 1 ) ];
+		$random_string .= $characters[ wp_rand( 0, $characters_length - 1 ) ];
 	}
 
 	return $random_string;
