@@ -570,7 +570,7 @@ function swift_control_quick_access_panel( $is_preview = false ) {
 	<style class="swift-control-transition-style">
 		<?php
 		// We don't hook this extra styles to `class-setup.php` because we need the loop.
-		echo wp_strip_all_tags( $extra_styles );
+		echo wp_kses( $extra_styles, array() );
 		?>
 	</style>
 
