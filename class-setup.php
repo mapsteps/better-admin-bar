@@ -104,7 +104,7 @@ class Setup {
 	 * Setup textdomain.
 	 */
 	public function setup_text_domain() {
-		load_plugin_textdomain( 'better-admin-bar', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( 'better-admin-bar', false, plugin_basename( __DIR__ ) . '/languages' );
 	}
 
 	/**
@@ -502,7 +502,7 @@ class Setup {
 		 * This won't conflict with the other options implementation.
 		 */
 		if ( $admin_bar_settings['fix_menu_item_overflow'] ) {
-			echo file_get_contents( __DIR__ . '/assets/css/fix-items-overflow.css' );
+			echo wp_strip_all_tags( file_get_contents( __DIR__ . '/assets/css/fix-items-overflow.css' ) );
 		}
 
 		/**
@@ -815,7 +815,7 @@ class Setup {
 			hidingIntent: <?php echo esc_attr( $admin_bar_settings['hiding_intent'] ? $admin_bar_settings['hiding_intent'] : 1250 ); ?>,
 			transitionDelay: <?php echo esc_attr( $admin_bar_settings['hiding_transition_delay'] ? $admin_bar_settings['hiding_transition_delay'] : 1500 ); ?>
 		};
-		<?php echo file_get_contents( __DIR__ . '/assets/js/admin-bar.js' ); ?>
+		<?php echo wp_strip_all_tags( file_get_contents( __DIR__ . '/assets/js/admin-bar.js' ) ); ?>
 		</script>
 
 		<?php

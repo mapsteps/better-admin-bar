@@ -540,7 +540,7 @@ function swift_control_quick_access_panel( $is_preview = false ) {
 		?>
 
 		<li class="swift-control-widget-item <?php echo esc_attr( $widget_class ); ?>" data-widget-key="<?php echo esc_attr( $widget_key ); ?>">
-			<a class="swift-control-widget-link" href="<?php echo esc_url( $widget_url ); ?>" <?php echo $target_attr; ?>>
+			<a class="swift-control-widget-link" href="<?php echo esc_url( $widget_url ); ?>" <?php echo wp_kses_post( $target_attr ); ?>>
 				<i class="<?php echo esc_attr( $icon_class ); ?>"></i>
 			</a>
 			<span class="swift-control-widget-title"><?php echo esc_html( $widget_name ); ?></span>
@@ -570,7 +570,7 @@ function swift_control_quick_access_panel( $is_preview = false ) {
 	<style class="swift-control-transition-style">
 		<?php
 		// We don't hook this extra styles to `class-setup.php` because we need the loop.
-		echo $extra_styles;
+		echo wp_strip_all_tags( $extra_styles );
 		?>
 	</style>
 
@@ -636,7 +636,7 @@ function swift_control_quick_access_panel( $is_preview = false ) {
 			</a>
 		</li>
 
-		<?php echo $widget_list; ?>
+		<?php echo wp_kses_post( $widget_list ); ?>
 
 	</ul>
 
