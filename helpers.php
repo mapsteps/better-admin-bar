@@ -51,14 +51,14 @@ function swift_control_settings_output_widget_item( $widget_key ) {
 
 				<?php if ( isset( $default_widget_settings['redirect_url'] ) || isset( $widget_settings['redirect_url'] ) ) : ?>
 					<div class="widget-item-control edit-mode-control redirect-url-setting">
-						<input type="url" id="swift_control_<?php echo esc_attr( $widget_key ); ?>_redirect_url" name="swift_control_<?php echo esc_attr( $widget_key ); ?>_redirect_url" class="text-field redirect-url-field" value="<?php echo esc_html( $redirect_url ); ?>" placeholder="<?php _e( 'Redirect Url', 'better-admin-bar' ); ?>">
+						<input type="url" id="swift_control_<?php echo esc_attr( $widget_key ); ?>_redirect_url" name="swift_control_<?php echo esc_attr( $widget_key ); ?>_redirect_url" class="text-field redirect-url-field" value="<?php echo esc_html( $redirect_url ); ?>" placeholder="<?php esc_attr_e( 'Redirect Url', 'better-admin-bar' ); ?>">
 					</div>
 				<?php endif; ?>
 
 				<?php if ( isset( $default_widget_settings['new_tab'] ) || isset( $widget_settings['new_tab'] ) ) : ?>
 					<div class="widget-item-control edit-mode-control new-tab-setting">
 						<label for="swift_control_<?php echo esc_attr( $widget_key ); ?>_new_tab" class="label checkbox-label blur-trigger">
-							<?php _e( 'New tab', 'better-admin-bar' ); ?>
+							<?php esc_html_e( 'New tab', 'better-admin-bar' ); ?>
 							<input type="checkbox" name="swift_control_<?php echo esc_attr( $widget_key ); ?>_new_tab" id="swift_control_<?php echo esc_attr( $widget_key ); ?>_new_tab" value="1" class="new-tab-field" <?php checked( $tab_target, 1 ); ?>>
 							<div class="indicator"></div>
 						</label>
@@ -68,7 +68,7 @@ function swift_control_settings_output_widget_item( $widget_key ) {
 			</div>
 			<div class="widget-item-col actions-wrapper">
 				<button type="button" class="widget-item-control edit-button">
-					<?php _e( 'Edit', 'better-admin-bar' ); ?>
+					<?php esc_html_e( 'Edit', 'better-admin-bar' ); ?>
 				</button>
 			</div>
 		</div><!-- .cols -->
