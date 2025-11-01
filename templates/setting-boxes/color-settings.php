@@ -21,7 +21,7 @@ $color_settings         = swift_control_get_color_settings();
 		<div class="field is-horizontal">
 			<div class="field-label">
 				<label for="setting_button_bg_color" class="label">
-					<?php _e( 'Accent Color' ); ?>
+					<?php _e( 'Accent Color', 'better-admin-bar' ); ?>
 				</label>
 			</div>
 			<div class="field-body">
@@ -36,7 +36,7 @@ $color_settings         = swift_control_get_color_settings();
 		<div class="field is-horizontal">
 			<div class="field-label">
 				<label for="setting_button_icon_color" class="label">
-					<?php _e( 'Icon Color' ); ?>
+					<?php _e( 'Icon Color', 'better-admin-bar' ); ?>
 				</label>
 			</div>
 			<div class="field-body">
@@ -53,7 +53,7 @@ $color_settings         = swift_control_get_color_settings();
 		<div class="field is-horizontal">
 			<div class="field-label">
 				<label for="widget_bg_color" class="label">
-					<?php _e( 'Background Color' ); ?>
+					<?php _e( 'Background Color', 'better-admin-bar' ); ?>
 				</label>
 			</div>
 			<div class="field-body">
@@ -68,7 +68,7 @@ $color_settings         = swift_control_get_color_settings();
 		<div class="field is-horizontal">
 			<div class="field-label">
 				<label for="widget_bg_color_hover" class="label">
-					<?php _e( 'Hover' ); ?>
+					<?php _e( 'Hover', 'better-admin-bar' ); ?>
 				</label>
 			</div>
 			<div class="field-body">
@@ -83,7 +83,7 @@ $color_settings         = swift_control_get_color_settings();
 		<div class="field is-horizontal">
 			<div class="field-label">
 				<label for="widget_icon_color" class="label">
-					<?php _e( 'Icon Color' ); ?>
+					<?php _e( 'Icon Color', 'better-admin-bar' ); ?>
 				</label>
 			</div>
 			<div class="field-body">
