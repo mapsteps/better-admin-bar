@@ -33,8 +33,8 @@
 				var boxWidth = field.dataset.width;
 
 				var popup = $('<div class="icon-picker-container"> \
-						<div class="icon-picker-control" /> \
-						<ul class="icon-picker-list" /> \
+						<div class="icon-picker-control"></div> \
+						<ul class="icon-picker-list"></ul> \
 					</div>' ),
 					list = popup.find('.icon-picker-list');
 
@@ -80,7 +80,7 @@
 
 				popup.appendTo(field.parentNode).show();
 
-				$('input', control).on('keyup', function (e) {
+				$('input', control).on('input', function (e) {
 					var search = $(this).val();
 					if (search === '') {
 						$('li:lt(25)', list).show();

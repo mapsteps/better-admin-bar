@@ -148,8 +148,14 @@
 	cursor: inherit;
 }
 
+.swift-control-settings .widget-item .widget-text-field[readonly],
 .swift-control-settings .widget-item .widget-text-field[readonly]:focus {
 	box-shadow: none;
+}
+
+/* The PRO features are too long for two columns in the sidebar */
+.swift-control-settings .pro-widgets-box .heatbox-features {
+	grid-template-columns: 1fr;
 }
 
 .swift-control-settings .available-items .widget-text-field {
