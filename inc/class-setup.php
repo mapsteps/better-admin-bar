@@ -185,7 +185,8 @@ class Setup {
 
 		$current_user = wp_get_current_user();
 
-		$classes .= ' swift-control-user-' . sanitize_html_class( $current_user->user_nicename );
+		// Not sanitize_html_class(): it strips the "%" of encoded non-Latin names and changes the class.
+		$classes .= ' swift-control-user-' . esc_attr( $current_user->user_nicename );
 
 		foreach ( (array) $current_user->roles as $role ) {
 			$classes .= ' swift-control-role-' . sanitize_html_class( $role );

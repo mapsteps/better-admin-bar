@@ -524,7 +524,14 @@ function swift_control_sanitize_admin_bar_settings( $settings ) {
 	$sanitized = swift_control_sanitize_flags( $settings, swift_control_admin_bar_flag_fields() );
 
 	if ( isset( $settings['remove_by_roles'] ) ) {
-		$sanitized['remove_by_roles'] = swift_control_sanitize_roles( $settings['remove_by_roles'] );
+		$roles = $settings['remove_by_roles'];
+
+		// Old values were 0 / 1 (none / all), older exports still have them.
+		if ( is_numeric( $roles ) ) {
+			$roles = absint( $roles ) ? array( 'all' ) : array();
+		}
+
+		$sanitized['remove_by_roles'] = swift_control_sanitize_roles( $roles );
 	}
 
 	foreach ( swift_control_admin_bar_number_fields() as $field ) {
@@ -534,7 +541,8 @@ function swift_control_sanitize_admin_bar_settings( $settings ) {
 
 		$value = trim( (string) $settings[ $field ] );
 
-		$sanitized[ $field ] = '' === $value ? '' : absint( $value );
+		// Anything that isn't a number means "use the default".
+		$sanitized[ $field ] = is_numeric( $value ) ? absint( $value ) : '';
 	}
 
 	// Opacity is a percentage.

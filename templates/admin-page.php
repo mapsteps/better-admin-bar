@@ -79,7 +79,8 @@ $swift_control_products = array(
 		<hr class="wp-header-end">
 	</div>
 
-	<form method="post" class="swift-control-settings-form general-settings-area">
+	<?php // The browser's checks would silently block saving for a field on a hidden tab; the values are cleaned on save. ?>
+	<form method="post" class="swift-control-settings-form general-settings-area" novalidate>
 
 		<div class="heatbox-admin-panel" data-panel="settings">
 			<div class="heatbox-container heatbox-container-center heatbox-column-container">

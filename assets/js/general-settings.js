@@ -35,17 +35,26 @@
 	}
 
 	/**
-	 * "All users" checks & locks every role.
+	 * "All users" checks & locks every role. Unchecking it brings back the roles picked before.
 	 */
 	function setupRoles() {
 		var all = form.querySelector(".remove-by-roles-all");
 		var roles = form.querySelectorAll(".remove-by-roles-role");
+		var picked = [];
 
 		if (!all) return;
 
 		all.addEventListener("change", function () {
+			if (all.checked) {
+				picked = [];
+
+				roles.forEach(function (role) {
+					if (role.checked) picked.push(role.value);
+				});
+			}
+
 			roles.forEach(function (role) {
-				role.checked = all.checked;
+				role.checked = all.checked || picked.indexOf(role.value) !== -1;
 				role.disabled = all.checked;
 			});
 		});

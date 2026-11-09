@@ -52,7 +52,8 @@ class Output {
 			return;
 		}
 
-		if ( ! swift_control_has_active_widgets() ) {
+		// Nothing to show: don't load the panel's files (nor replace the theme's Font Awesome).
+		if ( ! swift_control_has_active_widgets() || swift_control_get_display_settings()['disable_swift_control'] ) {
 			return;
 		}
 

@@ -122,7 +122,12 @@ class Tools {
 		$imports = json_decode( (string) file_get_contents( $file['tmp_name'] ), true );
 		$options = $this->options();
 
-		if ( ! is_array( $imports ) || ! array_intersect_key( $imports, $options ) ) {
+		if ( ! is_array( $imports ) || ( $imports && ! array_intersect_key( $imports, $options ) ) ) {
+			$this->notice( 'swift-control-invalid-import', __( 'This file isn\'t a valid Better Admin Bar export.', 'better-admin-bar' ) );
+			return;
+		}
+
+		if ( ! array_intersect_key( $imports, $options ) ) {
 			$this->notice( 'swift-control-empty-import', __( 'Your import is empty', 'better-admin-bar' ) );
 			return;
 		}

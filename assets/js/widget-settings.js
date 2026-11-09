@@ -59,6 +59,8 @@
 	function switchEditMode(widgetItem) {
 		escapeEditMode("all");
 
+		// Remember the saved values, Escape puts them back.
+		widgetItem.swiftControlSaved = getValues(widgetItem);
 		widgetItem.classList.add("edit-mode");
 		widgetItem.querySelector(".edit-button").textContent = SwiftControl.labels.save;
 		setReadonly(widgetItem, false);
@@ -66,11 +68,46 @@
 	}
 
 	/**
-	 * Stop editing a widget (or all with "all").
+	 * Get the editable values of a widget.
+	 *
+	 * @param {HTMLElement} widgetItem The widget item.
+	 * @return {Object} The values.
+	 */
+	function getValues(widgetItem) {
+		var newTab = widgetItem.querySelector(".new-tab-field");
+		var redirectUrl = widgetItem.querySelector(".redirect-url-field");
+
+		return {
+			icon: widgetItem.querySelector(".widget-icon i").className,
+			text: widgetItem.querySelector(".widget-text-field").value,
+			newTab: newTab ? newTab.checked : null,
+			redirectUrl: redirectUrl ? redirectUrl.value : null,
+		};
+	}
+
+	/**
+	 * Put values back into a widget.
+	 *
+	 * @param {HTMLElement} widgetItem The widget item.
+	 * @param {Object}      values     The values from getValues().
+	 */
+	function setValues(widgetItem, values) {
+		var newTab = widgetItem.querySelector(".new-tab-field");
+		var redirectUrl = widgetItem.querySelector(".redirect-url-field");
+
+		widgetItem.querySelector(".widget-icon i").className = values.icon;
+		widgetItem.querySelector(".widget-text-field").value = values.text;
+		if (newTab && values.newTab !== null) newTab.checked = values.newTab;
+		if (redirectUrl && values.redirectUrl !== null) redirectUrl.value = values.redirectUrl;
+	}
+
+	/**
+	 * Stop editing a widget (or all with "all"). Unsaved changes are undone.
 	 *
 	 * @param {HTMLElement|string} widgetItem The widget item or "all".
+	 * @param {boolean}            keep       Keep the changes (they are being saved).
 	 */
-	function escapeEditMode(widgetItem) {
+	function escapeEditMode(widgetItem, keep) {
 		var items =
 			widgetItem === "all"
 				? document.querySelectorAll(".swift-control-settings .widget-item")
@@ -78,6 +115,10 @@
 
 		items.forEach(function (item) {
 			var button = item.querySelector(".edit-button");
+
+			if (item.classList.contains("edit-mode") && !keep && item.swiftControlSaved) {
+				setValues(item, item.swiftControlSaved);
+			}
 
 			item.classList.remove("edit-mode");
 			if (button) button.textContent = SwiftControl.labels.edit;
@@ -111,12 +152,13 @@
 	/**
 	 * Run one request at a time, they write to the same option.
 	 *
-	 * @param {Function} request The request, returns a jqXHR.
+	 * @param {Function} request The request, returns a promise.
+	 * @param {Function} onFail  Called when the request fails (optional).
 	 */
-	function queue(request) {
+	function queue(request, onFail) {
 		if (isRequesting) {
 			setTimeout(function () {
-				queue(request);
+				queue(request, onFail);
 			}, 250);
 
 			return;
@@ -130,9 +172,10 @@
 				buildPreview();
 				setStatus("done");
 			})
-			.fail(function () {
+			.fail(function (message) {
 				setStatus("");
-				window.alert(SwiftControl.labels.error);
+				if (onFail) onFail();
+				window.alert(typeof message === "string" && message ? message : SwiftControl.labels.error);
 			})
 			.always(function () {
 				isRequesting = false;
@@ -158,11 +201,19 @@
 		if (newTab) data.new_tab = newTab.checked ? 1 : 0;
 		if (redirectUrl) data.redirect_url = redirectUrl.value;
 
-		escapeEditMode(widgetItem);
+		var saved = widgetItem.swiftControlSaved;
 
-		queue(function () {
-			return post(data);
-		});
+		escapeEditMode(widgetItem, true);
+
+		queue(
+			function () {
+				return post(data);
+			},
+			function () {
+				// Not saved: show the saved values again.
+				if (saved) setValues(widgetItem, saved);
+			}
+		);
 	}
 
 	/**
@@ -173,7 +224,7 @@
 	 */
 	function post(data) {
 		return $.post(ajaxurl, data, null, "json").then(function (r) {
-			return r && r.success ? r : $.Deferred().reject();
+			return r && r.success ? r : $.Deferred().reject(r && r.data);
 		});
 	}
 
@@ -279,6 +330,11 @@
 			var widgetItem = this.closest(".widget-item");
 
 			if (!widgetItem.classList.contains("edit-mode")) switchEditMode(widgetItem);
+		});
+
+		// Enter in the icon search would submit the settings form.
+		$settings.on("keydown", ".icon-picker-container input", function (e) {
+			if (e.key === "Enter") e.preventDefault();
 		});
 
 		// Not the search field of the icon picker.

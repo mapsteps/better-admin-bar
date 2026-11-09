@@ -32,10 +32,13 @@ foreach ( $swift_control_widgets as $swift_control_widget_key ) {
 		'new_tab' => $swift_control_parsed['new_tab'] && 'logout' !== $swift_control_widget_key,
 	);
 
-	$swift_control_selector = '[data-widget-key="' . sanitize_key( $swift_control_widget_key ) . '"]';
+	// Valid keys are letters, digits, "_" and "-" only, safe in CSS as they are (PRO's keys are mixed case).
+	if ( swift_control_is_valid_widget_key( $swift_control_widget_key ) ) {
+		$swift_control_selector = '[data-widget-key="' . $swift_control_widget_key . '"]';
 
-	$swift_control_styles .= '.swift-control-widgets ' . $swift_control_selector . ' { transition-delay: ' . absint( $swift_control_hiding_delay ) . 'ms; }';
-	$swift_control_styles .= '.swift-control-widgets.is-expanded ' . $swift_control_selector . ' { transition-delay: ' . absint( $swift_control_showing_delay ) . 'ms; }';
+		$swift_control_styles .= '.swift-control-widgets ' . $swift_control_selector . ' { transition-delay: ' . absint( $swift_control_hiding_delay ) . 'ms; }';
+		$swift_control_styles .= '.swift-control-widgets.is-expanded ' . $swift_control_selector . ' { transition-delay: ' . absint( $swift_control_showing_delay ) . 'ms; }';
+	}
 
 	$swift_control_showing_delay += $swift_control_transition;
 	$swift_control_hiding_delay  -= $swift_control_transition;
