@@ -1,9 +1,13 @@
-# node
-node_modules
-package-lock.json
+# OS specific files
+.DS_Store
 
-# phpcs & editor's setting related
-.vscode
+# Editor settings
+.idea
+.vscode/
+.editorconfig
 
-# cache
-.parcel-cache
+# Build tools
+node_modules/
+
+# Composer
+/vendor/

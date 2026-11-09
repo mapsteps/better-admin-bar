@@ -1,28 +1,31 @@
 <?xml version="1.0"?>
-<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         name="Better Admin Bar Coding Standards"
-         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/PHPCSStandards/PHP_CodeSniffer/master/phpcs.xsd">
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="MapSteps Coding Standards" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/PHPCSStandards/PHP_CodeSniffer/master/phpcs.xsd">
 
-	<description>The coding standard for the Better Admin Bar plugin.</description>
+	<description>MapSteps's Coding Standards.</description>
 
-	<!-- Scan only this plugin folder -->
-	<file>.</file>
+	<!-- Exclude some directories. -->
+	<exclude-pattern>*/wp-admin/*</exclude-pattern>
+	<exclude-pattern>*/wp-includes/*</exclude-pattern>
+	<exclude-pattern>*/vendor/*</exclude-pattern>
 
-	<!-- Only check PHP files -->
+	<!-- Only check PHP files. -->
 	<arg name="extensions" value="php"/>
 
-	<!-- Show progress and error sources -->
+	<!-- Show progress, show the error codes for each message (source). -->
 	<arg value="ps"/>
 
-	<!-- Strip base path to local folder -->
+	<!-- Strip the filepaths down to the relevant bit. -->
 	<arg name="basepath" value="."/>
 
-	<!-- Parallel processing -->
+	<!-- Check up to 50 files simultaneously. -->
 	<arg name="parallel" value="50"/>
 
-	<!-- ========================================================================= -->
-	<!-- RULESETS                                                                 -->
-	<!-- ========================================================================= -->
+
+	<!--
+	#############################################################################
+	SET UP THE RULESETS
+	#############################################################################
+	-->
 
 	<rule ref="WordPress">
 		<exclude name="WordPress.Files.FileName"/>
@@ -30,6 +33,7 @@
 		<exclude name="WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents"/>
 		<exclude name="WordPress.WhiteSpace.ControlStructureSpacing.BlankLineAfterEnd"/>
 	</rule>
+
 
 	<rule ref="WordPress-Extra">
 		<exclude name="Universal.Operators.DisallowShortTernary.Found"/>
