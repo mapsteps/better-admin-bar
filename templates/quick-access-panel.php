@@ -28,7 +28,7 @@ foreach ( $swift_control_widgets as $swift_control_widget_key ) {
 		'class'   => swift_control_parse_widget_class( '', $swift_control_widget_key ),
 		'icon'    => $swift_control_parsed['icon_class'],
 		'name'    => swift_control_parse_widget_name( $swift_control_parsed['text'], $swift_control_widget_key ),
-		'url'     => swift_control_parse_widget_url( $swift_control_parsed['url'], $swift_control_widget_key ),
+		'url'     => swift_control_parse_widget_url( $swift_control_parsed['url'], $swift_control_widget_key ) ?: '#',
 		'new_tab' => $swift_control_parsed['new_tab'] && 'logout' !== $swift_control_widget_key,
 	);
 

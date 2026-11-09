@@ -88,7 +88,7 @@ class Tools {
 		$data['swift_control_active_widgets'] = swift_control_get_active_widgets();
 
 		nocache_headers();
-		header( 'Content-Disposition: attachment; filename=swift-control-export-' . gmdate( 'Y-m-d-H.i.s' ) . '.json' );
+		header( 'Content-Disposition: attachment; filename=better-admin-bar-export-' . gmdate( 'Y-m-d-H.i.s' ) . '.json' );
 		header( 'Content-Type: application/json; charset=utf-8' );
 
 		echo wp_json_encode( $data );
