@@ -29,6 +29,20 @@ class Output {
 		add_action( 'wp', array( $this, 'check_page' ) );
 		add_action( 'wp', array( $this, 'remove_admin_bar' ) );
 		add_action( 'wp_head', array( $this, 'admin_bar_wp_head' ), PHP_INT_MAX );
+		add_action( 'wp_footer', array( $this, 'admin_bar_output' ), 15 );
+
+	}
+
+	/**
+	 * Check if the admin bar settings apply on this page.
+	 *
+	 * Not when the admin bar is removed, turned off in the user's profile or in the customizer preview.
+	 *
+	 * @return bool
+	 */
+	private function admin_bar_is_styled() {
+
+		return is_user_logged_in() && ! is_customize_preview() && ! self::$remove_admin_bar && is_admin_bar_showing();
 
 	}
 
@@ -58,7 +72,6 @@ class Output {
 		add_action( 'wp_enqueue_scripts', array( $this, 'frontend_scripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'inline_styles' ) );
 		add_action( 'wp_footer', array( $this, 'quick_panel_output' ), 5 );
-		add_action( 'wp_footer', array( $this, 'admin_bar_output' ), 15 );
 
 	}
 
@@ -109,7 +122,7 @@ class Output {
 	 */
 	public function admin_bar_wp_head() {
 
-		if ( ! is_user_logged_in() || is_customize_preview() || self::$remove_admin_bar ) {
+		if ( ! $this->admin_bar_is_styled() ) {
 			return;
 		}
 
@@ -348,7 +361,7 @@ class Output {
 	 */
 	public function admin_bar_output() {
 
-		if ( ! is_user_logged_in() || self::$remove_admin_bar ) {
+		if ( ! $this->admin_bar_is_styled() ) {
 			return;
 		}
 
