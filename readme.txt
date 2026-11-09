@@ -114,6 +114,7 @@ Only if you check *Remove all data when the plugin is deleted* under *Misc*. Dea
 * Fixed: Admin bar settings moved the page up for users who turned the toolbar off in their profile.
 * Fixed: The icon picker layout was broken.
 * Fixed: Deleting the free plugin with "Remove data" checked could delete the settings of Better Admin Bar PRO.
+* Tweak: When the quick access panel is disabled, none of its files load on your website.
 * Tweak: Removed the expired launch offer notice.
 * Tweak: Tested up to WordPress 7.1.
 
