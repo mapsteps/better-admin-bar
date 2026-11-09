@@ -15,13 +15,6 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 class Output {
 
 	/**
-	 * Whether the admin bar is removed for the current user.
-	 *
-	 * @var bool
-	 */
-	public static $remove_admin_bar = false;
-
-	/**
 	 * Register the action & filter hooks.
 	 */
 	public function __construct() {
@@ -42,7 +35,7 @@ class Output {
 	 */
 	private function admin_bar_is_styled() {
 
-		return is_user_logged_in() && ! is_customize_preview() && ! self::$remove_admin_bar && is_admin_bar_showing();
+		return ! is_customize_preview() && is_admin_bar_showing();
 
 	}
 
@@ -105,7 +98,7 @@ class Output {
 			return;
 		}
 
-		self::$remove_admin_bar = true;
+		Setup::$remove_admin_bar = true;
 
 		add_filter( 'show_admin_bar', '__return_false' );
 

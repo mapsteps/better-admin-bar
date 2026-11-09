@@ -161,9 +161,19 @@
 		escapeEditMode(widgetItem);
 
 		queue(function () {
-			return $.post(ajaxurl, data, null, "json").then(function (r) {
-				return r && r.success ? r : $.Deferred().reject();
-			});
+			return post(data);
+		});
+	}
+
+	/**
+	 * Send an ajax request that fails unless the server says it worked.
+	 *
+	 * @param {Object} data The request data.
+	 * @return {Promise} The request.
+	 */
+	function post(data) {
+		return $.post(ajaxurl, data, null, "json").then(function (r) {
+			return r && r.success ? r : $.Deferred().reject();
 		});
 	}
 
@@ -178,16 +188,11 @@
 		});
 
 		queue(function () {
-			return $.post(
-				ajaxurl,
-				{
-					action: "swift_control_change_widgets_order",
-					nonce: SwiftControl.nonces.changeWidgetsOrder,
-					active_widgets: keys,
-				},
-				null,
-				"json"
-			);
+			return post({
+				action: "swift_control_change_widgets_order",
+				nonce: SwiftControl.nonces.changeWidgetsOrder,
+				active_widgets: keys,
+			});
 		});
 	}
 
@@ -276,7 +281,8 @@
 			if (!widgetItem.classList.contains("edit-mode")) switchEditMode(widgetItem);
 		});
 
-		$settings.on("keydown", ".widget-item input", function (e) {
+		// Not the search field of the icon picker.
+		$settings.on("keydown", ".widget-item > input, .widget-extra-settings input", function (e) {
 			var widgetItem = this.closest(".widget-item");
 
 			if (e.key === "Enter") {

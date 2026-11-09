@@ -39,9 +39,19 @@ function swift_control_uninstall_site() {
 
 }
 
-// Better Admin Bar PRO uses the same data, keep it.
+// Better Admin Bar PRO uses the same data, keep it while PRO is installed (active or not).
 if ( defined( 'SWIFT_CONTROL_PRO_PLUGIN_URL' ) ) {
 	return;
+}
+
+if ( ! function_exists( 'get_plugins' ) ) {
+	require_once ABSPATH . 'wp-admin/includes/plugin.php';
+}
+
+foreach ( array_keys( get_plugins() ) as $swift_control_plugin_file ) {
+	if ( 'swift-control-pro.php' === basename( $swift_control_plugin_file ) ) {
+		return;
+	}
 }
 
 $swift_control_deleted = false;

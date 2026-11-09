@@ -15,6 +15,13 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 class Setup {
 
 	/**
+	 * Whether the admin bar is removed for the current user (kept here, other code may read it).
+	 *
+	 * @var bool
+	 */
+	public static $remove_admin_bar = false;
+
+	/**
 	 * Hook in once all plugins are loaded.
 	 */
 	public static function init() {

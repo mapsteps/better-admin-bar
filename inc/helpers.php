@@ -113,8 +113,14 @@ function swift_control_get_locked_widgets() {
  */
 function swift_control_get_default_widget_settings() {
 
+	static $defaults = null;
+
 	// The active widgets come first, their settings win.
-	return ( require __DIR__ . '/widgets/active-widgets.php' ) + ( require __DIR__ . '/widgets/available-widgets.php' );
+	if ( null === $defaults ) {
+		$defaults = ( require __DIR__ . '/widgets/active-widgets.php' ) + ( require __DIR__ . '/widgets/available-widgets.php' );
+	}
+
+	return $defaults;
 
 }
 
@@ -315,8 +321,12 @@ function swift_control_sanitize_color( $color ) {
 		return $color;
 	}
 
-	if ( preg_match( '/^rgba?\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*(,\s*(0|1|0?\.\d+)\s*)?\)$/i', $color ) ) {
+	if ( preg_match( '/^rgba?\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*(,\s*(\d*\.?\d+|\d+\.)\s*)?\)$/i', $color ) ) {
 		return $color;
+	}
+
+	if ( 'transparent' === strtolower( $color ) ) {
+		return 'transparent';
 	}
 
 	return '';
@@ -432,7 +442,13 @@ function swift_control_sanitize_widget_settings( $widget_settings ) {
 	$sanitized = array();
 
 	foreach ( swift_control_sanitize_widget_keys( array_keys( $widget_settings ) ) as $widget_key ) {
-		$sanitized[ $widget_key ] = swift_control_sanitize_widget_setting( $widget_settings[ $widget_key ] );
+		$settings = is_array( $widget_settings[ $widget_key ] ) ? $widget_settings[ $widget_key ] : array();
+		$known    = swift_control_sanitize_widget_setting( $settings );
+
+		// Keep the settings only Better Admin Bar PRO uses (as plain text), PRO shares this option.
+		$extra = map_deep( array_diff_key( $settings, array_flip( array( 'icon_class', 'text', 'url', 'new_tab', 'redirect_url' ) ) ), 'sanitize_text_field' );
+
+		$sanitized[ $widget_key ] = $known + $extra;
 	}
 
 	return $sanitized;
