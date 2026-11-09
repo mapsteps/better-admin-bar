@@ -4,7 +4,7 @@ Tags: admin bar, toolbar, hide admin bar, auto hide admin bar, quick access
 Requires at least: 5.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 4.1.4
+Stable tag: 5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -104,6 +104,18 @@ Only if you check *Remove all data when the plugin is deleted* under *Misc*. Dea
 3. Admin bar settings
 
 == Changelog ==
+
+= 5.0 | November 10, 2026 =
+* New: Redesigned settings page with tabs for the quick access panel, the admin bar and tools.
+* New: Remove the admin bar per user role with simple checkboxes.
+* Tweak: Requires PHP 7.4 and WordPress 5.0.
+* Tweak: Security improvements: every setting is checked and cleaned when it's saved or imported.
+* Fixed: Auto-hide didn't bring the admin bar back on hover for authors, subscribers & other roles.
+* Fixed: Admin bar settings moved the page up for users who turned the toolbar off in their profile.
+* Fixed: The icon picker layout was broken.
+* Fixed: Deleting the free plugin with "Remove data" checked could delete the settings of Better Admin Bar PRO.
+* Tweak: Removed the expired launch offer notice.
+* Tweak: Tested up to WordPress 7.1.
 
 = 4.1.4 | November 17, 2025 =
 * Fixed: HTML entity escaping in inline JavaScript and CSS that broke the Auto Hide Admin Bar feature.
