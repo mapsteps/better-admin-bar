@@ -116,11 +116,9 @@ class Setup {
 
 		wp_enqueue_style( 'heatbox', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/heatbox.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
 		wp_enqueue_style( 'swift-control-icon-picker', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/icon-picker.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
-		wp_enqueue_style( 'select2', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/select2.min.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
 		wp_enqueue_style( 'swift-control-admin', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/swift-control-admin.css', array( 'heatbox' ), SWIFT_CONTROL_PLUGIN_VERSION );
 		wp_enqueue_style( 'wp-color-picker' );
 
-		wp_enqueue_script( 'select2', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/select2.min.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 		wp_enqueue_script( 'swift-control-icon-picker', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/icon-picker.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 
 		$icons = json_decode( file_get_contents( SWIFT_CONTROL_PLUGIN_DIR . '/assets/json/fontawesome5.json' ), true );
@@ -130,7 +128,7 @@ class Setup {
 		wp_enqueue_script( 'wp-color-picker-alpha', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/wp-color-picker-alpha.js', array( 'wp-color-picker', 'wp-i18n' ), '2.1.3', true );
 		wp_enqueue_script( 'swift-control-settings-page', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/settings-page.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 		wp_enqueue_script( 'swift-control-widget-settings', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/widget-settings.js', array( 'jquery-ui-sortable', 'swift-control-icon-picker' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
-		wp_enqueue_script( 'swift-control-general-settings', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/general-settings.js', array( 'select2', 'wp-color-picker-alpha' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
+		wp_enqueue_script( 'swift-control-general-settings', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/general-settings.js', array( 'jquery', 'wp-color-picker-alpha' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 
 		wp_localize_script(
 			'swift-control-widget-settings',
@@ -142,8 +140,10 @@ class Setup {
 					'saveGeneralSettings'  => wp_create_nonce( 'save_general_settings' ),
 				),
 				'labels' => array(
-					'edit' => __( 'Edit', 'better-admin-bar' ),
-					'save' => __( 'Save', 'better-admin-bar' ),
+					'edit'  => __( 'Edit', 'better-admin-bar' ),
+					'save'  => __( 'Save', 'better-admin-bar' ),
+					'saved' => __( 'Settings saved', 'better-admin-bar' ),
+					'error' => __( 'Something went wrong. Please try again.', 'better-admin-bar' ),
 				),
 			)
 		);
