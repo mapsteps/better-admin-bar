@@ -7,8 +7,6 @@
 
 namespace SwiftControl;
 
-use WP_Roles;
-
 defined( 'ABSPATH' ) || die( "Can't access directly" );
 
 /**
@@ -17,30 +15,10 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 class Backwards_Compatibility {
 
 	/**
-	 * The class instance.
-	 *
-	 * @var object
-	 */
-	public static $instance;
-
-	/**
-	 * Get instance of the class.
-	 */
-	public static function get_instance() {
-
-		if ( null === self::$instance ) {
-			self::$instance = new self();
-		}
-
-		return self::$instance;
-
-	}
-
-	/**
 	 * Init the class setup.
 	 */
 	public static function init() {
-		$instance = new Backwards_Compatibility();
+		$instance = new self();
 		$instance->setup();
 	}
 
@@ -59,7 +37,7 @@ class Backwards_Compatibility {
 	public function options_compatibility() {
 
 		// Don't run checking on heartbeat request.
-		if ( isset( $_POST['action'] ) && 'heartbeat' === $_POST['action'] ) {
+		if ( isset( $_POST['action'] ) && 'heartbeat' === $_POST['action'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Only compared.
 			return;
 		}
 
@@ -121,17 +99,7 @@ class Backwards_Compatibility {
 		}
 
 		if ( isset( $old_options['show_admin'] ) ) {
-			$roles_obj = new WP_Roles();
-			$roles     = $roles_obj->role_names;
-			$hide_from = array();
-
-			foreach ( $roles as $role_key => $role_name ) {
-				if ( 'administrator' !== $role_key ) {
-					array_push( $hide_from, $role_key );
-				}
-			}
-
-			$new_options['remove_by_roles'] = $hide_from;
+			$new_options['remove_by_roles'] = array_values( array_diff( array_keys( swift_control_get_roles() ), array( 'administrator' ) ) );
 
 			$should_update = true;
 
@@ -160,13 +128,11 @@ class Backwards_Compatibility {
 			$should_update = true;
 
 			unset( $old_options['inactive_opacity'] );
-		} else {
+		} elseif ( $is_old_bab_user ) {
 			// Old "Better Admin Bar" plugin implemented 30 (%) as default inactive opacity.
-			if ( $is_old_bab_user ) {
-				$new_options['inactive_opacity'] = 30;
+			$new_options['inactive_opacity'] = 30;
 
-				$should_update = true;
-			}
+			$should_update = true;
 		}
 
 		if ( isset( $old_options['active_opacity'] ) ) {
@@ -175,13 +141,11 @@ class Backwards_Compatibility {
 			$should_update = true;
 
 			unset( $old_options['active_opacity'] );
-		} else {
+		} elseif ( $is_old_bab_user ) {
 			// Old "Better Admin Bar" plugin implemented 100 (%) as default active opacity.
-			if ( $is_old_bab_user ) {
-				$new_options['active_opacity'] = 100;
+			$new_options['active_opacity'] = 100;
 
-				$should_update = true;
-			}
+			$should_update = true;
 		}
 
 		if ( isset( $old_options['autohide'] ) ) {
