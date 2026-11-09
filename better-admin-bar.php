@@ -5,7 +5,7 @@
  * Description: Replace the WordPress admin bar with a quick access panel, auto-hide it or hide it for specific user roles.
  * Version: 4.1.4
  * Requires at least: 5.0
- * Requires PHP: 5.6
+ * Requires PHP: 7.4
  * Author: David Vongries
  * Author URI: https://mapsteps.com
  * License: GPL v2 or later

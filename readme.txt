@@ -3,7 +3,7 @@ Contributors: davidvongries, kubiq
 Tags: admin bar, toolbar, hide admin bar, auto hide admin bar, quick access
 Requires at least: 5.0
 Tested up to: 7.1
-Requires PHP: 5.6
+Requires PHP: 7.4
 Stable tag: 4.1.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
