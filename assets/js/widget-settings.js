@@ -22,6 +22,15 @@
 			cancel: ".edit-mode, button",
 			distance: 5,
 			placeholder: "widget-item-placeholder",
+			tolerance: "pointer",
+			// The dragged widget shrinks to the size of the ones in the Widgets box, keep it under the cursor.
+			cursorAt: { left: 28, top: 29 },
+			start: function (e, ui) {
+				ui.helper.css({
+					width: $("#available-items").width(),
+					height: "auto",
+				});
+			},
 		};
 
 		$(activeList).sortable(

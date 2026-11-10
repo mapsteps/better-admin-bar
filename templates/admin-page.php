@@ -119,10 +119,12 @@ $swift_control_products = array(
 
 	<div class="heatbox-admin-panel" data-panel="tools">
 		<div class="heatbox-container heatbox-container-center">
-			<?php
-			require __DIR__ . '/settings/export.php';
-			require __DIR__ . '/settings/import.php';
-			?>
+			<div class="heatbox-columns">
+				<?php
+				require __DIR__ . '/settings/export.php';
+				require __DIR__ . '/settings/import.php';
+				?>
+			</div>
 		</div>
 	</div>
 

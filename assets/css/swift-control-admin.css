@@ -51,6 +51,11 @@
 	border-bottom: 0;
 }
 
+.swift-control-settings .available-items .widget-item,
+.swift-control-settings .widget-item.ui-sortable-helper {
+	flex-wrap: nowrap;
+}
+
 .swift-control-settings .available-items .widget-item {
 	margin-bottom: 8px;
 	padding: 8px;
@@ -97,13 +102,6 @@
 	color: var(--heatbox-text);
 	background-color: var(--heatbox-surface-muted);
 	border-radius: var(--heatbox-radius-control);
-}
-
-.swift-control-settings .available-items .widget-icon {
-	width: 32px;
-	height: 32px;
-	line-height: 32px;
-	font-size: 14px;
 }
 
 .swift-control-settings .widget-icon .icon-picker {
@@ -158,11 +156,6 @@
 	grid-template-columns: 1fr;
 }
 
-.swift-control-settings .available-items .widget-text-field {
-	height: 32px;
-	min-height: 32px;
-}
-
 /* Extra settings, only while editing */
 .swift-control-settings .widget-extra-settings {
 	display: none;
@@ -190,24 +183,30 @@
 	display: none;
 }
 
-/* Drag & drop */
+/* Drag & drop: the dragged widget looks like the ones in the Widgets box (width set by the JS) */
 .swift-control-settings .widget-item.ui-sortable-helper {
+	padding: 8px;
 	border: 1px solid var(--heatbox-accent-soft-border);
 	border-radius: var(--heatbox-radius-control);
 	cursor: grabbing;
 }
 
+.swift-control-settings .ui-sortable-helper :is(.drag-handle, .edit-button, .widget-extra-settings) {
+	display: none;
+}
+
+/* An inset slot with room around it */
 .swift-control-settings .widget-item-placeholder {
 	visibility: visible !important;
-	min-height: 64px;
+	height: 58px !important;
+	margin: 8px 12px;
 	background-color: var(--heatbox-accent-soft);
 	border: 1px dashed var(--heatbox-accent);
 	border-radius: var(--heatbox-radius-control);
 }
 
 .swift-control-settings .available-items .widget-item-placeholder {
-	min-height: 50px;
-	margin-bottom: 8px;
+	margin: 0 0 8px;
 }
 
 /* An active widget dropped into the sidebar looks like the others there */
