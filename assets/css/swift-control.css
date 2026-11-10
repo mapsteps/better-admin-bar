@@ -173,7 +173,7 @@ body.has-swift-control {
 	padding: 0;
 	opacity: 0;
 	visibility: hidden;
-	transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+	transition: all 0.35s;
 }
 
 .swift-control-widgets.is-pinned-right .swift-control-widget-setting {
@@ -188,36 +188,22 @@ body.has-swift-control {
 }
 
 .swift-control-widgets .swift-control-widget-setting .swift-control-widget-link {
-	border-color: transparent;
+	border-top-width: 0;
 }
 
 .swift-control-widgets .swift-control-widget-link {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	box-sizing: border-box;
-	width: 44px;
-	height: 44px;
-	margin: 5.5px;
-	font-size: 16px;
-	line-height: 1;
+	display: inline-block;
+	width: 55px;
+	height: 55px;
+	line-height: 55px;
 	text-align: center;
-	text-decoration: none;
 	color: #616666;
 	background-color: #f5f5f7;
-	border: 1px solid rgba(0, 0, 0, 0.08);
-	border-radius: 12px;
-	transition: background-color 0.2s, transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+	border-top: 1px solid #e1e1e7;
 }
 
 .swift-control-widgets .swift-control-widget-link:hover {
 	background-color: #ededf0;
-	transform: scale(1.08);
-}
-
-.swift-control-widgets .swift-control-widget-link:focus-visible {
-	outline: 2px solid currentColor;
-	outline-offset: 2px;
 }
 
 .swift-control-widgets .is-disabled .swift-control-widget-link i {
@@ -238,48 +224,29 @@ body.has-swift-control {
 	position: absolute;
 	left: 55px;
 	margin-left: 0;
-	padding: 7px 11px;
+	padding: 7px 10px;
 	width: max-content;
-	line-height: 1.2;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-	font-size: 13px !important;
-	font-weight: 500 !important;
+	line-height: 1;
+	font-size: 12px !important;
+	font-weight: 400 !important;
 	color: #fff;
-	background-color: rgba(30, 30, 30, 0.92);
-	border-radius: 8px;
+	background-color: rgba(62, 67, 73, 0.8);
+	border-radius: 4px;
 	opacity: 0;
 	visibility: hidden;
-	transform: translateX(-4px);
-	pointer-events: none;
-	transition: opacity 0.2s, visibility 0.2s, transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.swift-control-widgets.is-pinned-right .swift-control-widget-title {
-	transform: translateX(4px);
+	-webkit-transition: all 0.2s linear;
+	transition: all 0.2s linear;
 }
 
 .swift-control-widgets.is-pinned-right .swift-control-widget-link:hover + .swift-control-widget-title {
 	margin-left: auto;
-	margin-right: 6px;
+	margin-right: 9px;
 }
 
 .swift-control-widgets .swift-control-widget-link:hover + .swift-control-widget-title {
-	margin-left: 6px;
+	margin-left: 9px;
 	visibility: visible;
 	opacity: 1;
-	transform: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.swift-control-widgets .swift-control-widget-item,
-	.swift-control-widgets .swift-control-widget-link,
-	.swift-control-widgets .swift-control-widget-title {
-		transition: none;
-	}
-
-	.swift-control-widgets .swift-control-widget-link:hover {
-		transform: none;
-	}
 }
 
 /* Draggable */
