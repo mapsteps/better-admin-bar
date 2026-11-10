@@ -61,6 +61,32 @@
 	}
 
 	/**
+	 * Get the icon of a widget.
+	 *
+	 * @param {HTMLElement} widgetItem The widget item.
+	 * @return {SVGElement} The icon.
+	 */
+	function getIcon(widgetItem) {
+		return widgetItem.querySelector(".widget-icon > svg");
+	}
+
+	/**
+	 * Replace the icon of a widget.
+	 *
+	 * @param {HTMLElement} widgetItem The widget item.
+	 * @param {string}      markup     The SVG markup of the new icon.
+	 */
+	function setIcon(widgetItem, markup) {
+		var icon = getIcon(widgetItem);
+		var template = document.createElement("template");
+
+		template.innerHTML = markup.trim();
+		if (icon && template.content.firstElementChild) {
+			icon.replaceWith(template.content.firstElementChild);
+		}
+	}
+
+	/**
 	 * Start editing a widget.
 	 *
 	 * @param {HTMLElement} widgetItem The widget item.
@@ -87,7 +113,7 @@
 		var redirectUrl = widgetItem.querySelector(".redirect-url-field");
 
 		return {
-			icon: widgetItem.querySelector(".widget-icon i").className,
+			icon: getIcon(widgetItem).outerHTML,
 			text: widgetItem.querySelector(".widget-text-field").value,
 			newTab: newTab ? newTab.checked : null,
 			redirectUrl: redirectUrl ? redirectUrl.value : null,
@@ -104,7 +130,7 @@
 		var newTab = widgetItem.querySelector(".new-tab-field");
 		var redirectUrl = widgetItem.querySelector(".redirect-url-field");
 
-		widgetItem.querySelector(".widget-icon i").className = values.icon;
+		setIcon(widgetItem, values.icon);
 		widgetItem.querySelector(".widget-text-field").value = values.text;
 		if (newTab && values.newTab !== null) newTab.checked = values.newTab;
 		if (redirectUrl && values.redirectUrl !== null) redirectUrl.value = values.redirectUrl;
@@ -201,7 +227,7 @@
 			action: "swift_control_change_widget_settings",
 			nonce: SwiftControl.nonces.changeWidgetSettings,
 			widget_key: widgetItem.dataset.widgetKey,
-			icon_class: widgetItem.querySelector(".widget-icon i").className,
+			icon_class: getIcon(widgetItem).getAttribute("data-icon"),
 			text: widgetItem.querySelector(".widget-text-field").value,
 		};
 		var newTab = widgetItem.querySelector(".new-tab-field");
@@ -269,18 +295,16 @@
 		activeList.querySelectorAll(".widget-item").forEach(function (el) {
 			var item = document.createElement("li");
 			var link = document.createElement("a");
-			var icon = document.createElement("i");
 			var title = document.createElement("span");
 
 			item.className = "swift-control-widget-item";
 			item.dataset.widgetKey = el.dataset.widgetKey;
 			link.className = "swift-control-widget-link";
 			link.href = "#";
-			icon.className = el.querySelector(".widget-icon > i").className;
 			title.className = "swift-control-widget-title";
 			title.textContent = el.querySelector(".widget-text-field").value;
 
-			link.appendChild(icon);
+			link.appendChild(getIcon(el).cloneNode(true));
 			item.appendChild(link);
 			item.appendChild(title);
 			panel.appendChild(item);
@@ -315,6 +339,9 @@
 			showingDelay += transition;
 			hidingDelay -= transition;
 		});
+
+		// The settings button rounds its bottom corner while the first widget fades out.
+		css += ".swift-control-widgets { --swift-control-radius-delay: " + (Math.max(0, items.length - 1) * transition + 150) + "ms; }";
 
 		style.textContent = css;
 	}
@@ -368,8 +395,8 @@
 			widgetItem.querySelector(".widget-text-field").blur();
 		});
 
-		$(document).on("iconPicker:selected", function (e, trigger, selectedIcon) {
-			trigger.closest(".widget-icon").querySelector("i").className = selectedIcon;
+		$(document).on("iconPicker:selected", function (e, trigger, name, markup) {
+			setIcon(trigger.closest(".widget-item"), markup);
 		});
 	}
 

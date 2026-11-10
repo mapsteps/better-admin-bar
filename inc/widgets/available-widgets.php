@@ -12,24 +12,24 @@ return array(
 		'text'       => __( 'New Page', 'better-admin-bar' ),
 		'url'        => admin_url( 'post-new.php?post_type=page' ),
 		'new_tab'    => false,
-		'icon_class' => 'fas fa-file-alt',
+		'icon_class' => 'file-plus',
 	),
 	'new_post' => array(
 		'text'       => __( 'New Post', 'better-admin-bar' ),
 		'url'        => admin_url( 'post-new.php' ),
 		'new_tab'    => false,
-		'icon_class' => 'fas fa-pencil-alt',
+		'icon_class' => 'pencil',
 	),
 	'themes'   => array(
 		'text'       => __( 'Themes', 'better-admin-bar' ),
 		'url'        => admin_url( 'themes.php' ),
 		'new_tab'    => false,
-		'icon_class' => 'far fa-images',
+		'icon_class' => 'images',
 	),
 	'plugins'  => array(
 		'text'       => __( 'Plugins', 'better-admin-bar' ),
 		'url'        => admin_url( 'plugins.php' ),
 		'new_tab'    => false,
-		'icon_class' => 'fas fa-plug',
+		'icon_class' => 'plug',
 	),
 );

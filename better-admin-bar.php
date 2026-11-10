@@ -24,6 +24,7 @@ define( 'SWIFT_CONTROL_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 define( 'SWIFT_CONTROL_PLUGIN_VERSION', '5.0' );
 
 require_once __DIR__ . '/inc/helpers.php';
+require_once __DIR__ . '/inc/icons.php';
 require_once __DIR__ . '/inc/class-backwards-compatibility.php';
 require_once __DIR__ . '/inc/class-output.php';
 require_once __DIR__ . '/inc/class-save-settings.php';

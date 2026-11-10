@@ -34,9 +34,7 @@ class Tools {
 		return array(
 			'swift_control_active_widgets'     => 'swift_control_sanitize_widget_keys',
 			'swift_control_widget_settings'    => 'swift_control_sanitize_widget_settings',
-			'swift_control_display_settings'   => function ( $value ) {
-				return swift_control_sanitize_flags( $value, swift_control_display_fields() );
-			},
+			'swift_control_display_settings'   => 'swift_control_sanitize_display_settings',
 			'swift_control_color_settings'     => 'swift_control_sanitize_color_settings',
 			'swift_control_admin_bar_settings' => 'swift_control_sanitize_admin_bar_settings',
 			'swift_control_misc_settings'      => function ( $value ) {

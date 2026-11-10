@@ -15,7 +15,7 @@ $swift_control_field_id = 'swift_control_' . $widget_key;
 <li class="widget-item" data-widget-key="<?php echo esc_attr( $widget_key ); ?>">
 	<span class="drag-handle" aria-hidden="true"></span>
 	<div class="widget-icon dblclick-trigger">
-		<i class="<?php echo esc_attr( $parsed_settings['icon_class'] ); ?>" aria-hidden="true"></i>
+		<?php echo swift_control_icon_svg( $parsed_settings['icon_class'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Our own SVG markup. ?>
 		<button type="button" class="icon-picker blur-trigger" aria-label="<?php esc_attr_e( 'Change icon', 'better-admin-bar' ); ?>"></button>
 	</div>
 	<input type="text" name="<?php echo esc_attr( $swift_control_field_id ); ?>_text" class="text-field widget-text-field dblclick-trigger" value="<?php echo esc_attr( $parsed_settings['text'] ); ?>" aria-label="<?php esc_attr_e( 'Name', 'better-admin-bar' ); ?>" readonly>

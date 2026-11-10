@@ -29,6 +29,7 @@ function swift_control_uninstall_site() {
 		'swift_control_misc_settings',
 		'swift_control_discontinue_message',
 		'swift_control_compat_migrate_options',
+		'swift_control_compat_panel_colors',
 	);
 
 	foreach ( $options as $option ) {

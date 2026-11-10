@@ -12,18 +12,18 @@ return array(
 		'text'       => __( 'Dashboard', 'better-admin-bar' ),
 		'url'        => admin_url(),
 		'new_tab'    => false,
-		'icon_class' => 'fas fa-tachometer-alt',
+		'icon_class' => 'gauge',
 	),
 	'edit_post_type'   => array(
 		'text'       => __( 'Edit {Post_Type}', 'better-admin-bar' ),
 		'url'        => 'auto',
 		'new_tab'    => false,
-		'icon_class' => 'fas fa-edit',
+		'icon_class' => 'square-pen',
 	),
 	'theme_customizer' => array(
 		'text'       => __( 'Customize', 'better-admin-bar' ),
 		'url'        => admin_url( 'customize.php' ),
 		'new_tab'    => false,
-		'icon_class' => 'fas fa-paint-brush',
+		'icon_class' => 'paintbrush',
 	),
 );

@@ -42,6 +42,7 @@ class Backwards_Compatibility {
 		}
 
 		$this->migrate_options();
+		$this->migrate_panel_colors();
 
 		do_action( 'swift_control_options_compatibility' );
 
@@ -184,6 +185,44 @@ class Backwards_Compatibility {
 
 		// Make sure we don't check again.
 		update_option( 'swift_control_compat_migrate_options', 1 );
+
+	}
+
+	/**
+	 * Give the panel the new light look (5.0) on sites that saved the old default colors.
+	 *
+	 * The settings page saves every color, also the ones nobody changed. Colors that still have the old
+	 * default are removed, so the new defaults apply. Colors someone picked stay.
+	 */
+	public function migrate_panel_colors() {
+
+		if ( get_option( 'swift_control_compat_panel_colors' ) ) {
+			return;
+		}
+
+		$old_defaults = array(
+			'widget_bg_color'       => '#f5f5f7',
+			'widget_bg_color_hover' => '#ededf0',
+			'widget_icon_color'     => '#616666',
+		);
+		$colors       = get_option( 'swift_control_color_settings', array() );
+
+		if ( is_array( $colors ) ) {
+			$changed = false;
+
+			foreach ( $old_defaults as $key => $old_default ) {
+				if ( isset( $colors[ $key ] ) && is_string( $colors[ $key ] ) && strtolower( trim( $colors[ $key ] ) ) === $old_default ) {
+					unset( $colors[ $key ] );
+					$changed = true;
+				}
+			}
+
+			if ( $changed ) {
+				update_option( 'swift_control_color_settings', $colors );
+			}
+		}
+
+		update_option( 'swift_control_compat_panel_colors', 1 );
 
 	}
 

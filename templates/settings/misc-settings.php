@@ -14,19 +14,6 @@ $swift_control_misc = swift_control_get_misc_settings();
 	<h2><?php esc_html_e( 'Misc', 'better-admin-bar' ); ?></h2>
 	<table class="form-table" role="presentation">
 		<tr>
-			<th scope="row">
-				<?php esc_html_e( 'Font Awesome', 'better-admin-bar' ); ?>
-				<p class="description"><?php esc_html_e( 'The icons of the panel use Font Awesome 5.', 'better-admin-bar' ); ?></p>
-			</th>
-			<td>
-				<label class="label checkbox-label">
-					<?php esc_html_e( 'Don\'t load Font Awesome 5 (your theme or another plugin may already include it)', 'better-admin-bar' ); ?>
-					<input type="checkbox" name="remove_font_awesome" id="remove_font_awesome" value="1" class="general-setting-field" <?php checked( ! empty( $swift_control_misc['remove_font_awesome'] ) ); ?>>
-					<div class="indicator"></div>
-				</label>
-			</td>
-		</tr>
-		<tr>
 			<th scope="row"><?php esc_html_e( 'Uninstall', 'better-admin-bar' ); ?></th>
 			<td>
 				<label class="label checkbox-label">

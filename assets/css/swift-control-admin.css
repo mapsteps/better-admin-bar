@@ -93,15 +93,20 @@
 /* Icon & icon picker */
 .swift-control-settings .widget-icon {
 	position: relative;
+	display: flex;
 	flex: none;
+	align-items: center;
+	justify-content: center;
 	width: var(--heatbox-control-height);
 	height: var(--heatbox-control-height);
-	line-height: var(--heatbox-control-height);
-	font-size: 16px;
-	text-align: center;
 	color: var(--heatbox-text);
 	background-color: var(--heatbox-surface-muted);
 	border-radius: var(--heatbox-radius-control);
+}
+
+.swift-control-settings .widget-icon > svg {
+	width: 18px;
+	height: 18px;
 }
 
 .swift-control-settings .widget-icon .icon-picker {

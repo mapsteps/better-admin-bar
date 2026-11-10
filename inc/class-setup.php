@@ -42,7 +42,6 @@ class Setup {
 
 		add_filter( 'plugin_action_links', array( $this, 'add_settings_link' ), 10, 2 );
 		add_action( 'admin_menu', array( $this, 'add_submenu_page' ) );
-		// Late, so our Font Awesome replaces the ones of other plugins.
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ), 999 );
 		add_filter( 'admin_body_class', array( $this, 'admin_body_class' ), 20 );
 		add_action( 'admin_footer', array( $this, 'quick_panel_admin_preview' ) );
@@ -119,8 +118,6 @@ class Setup {
 			return;
 		}
 
-		Output::enqueue_font_awesome();
-
 		wp_enqueue_style( 'heatbox', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/heatbox.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
 		wp_enqueue_style( 'swift-control-icon-picker', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/icon-picker.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
 		wp_enqueue_style( 'swift-control-admin', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/swift-control-admin.css', array( 'heatbox' ), SWIFT_CONTROL_PLUGIN_VERSION );
@@ -128,9 +125,21 @@ class Setup {
 
 		wp_enqueue_script( 'swift-control-icon-picker', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/icon-picker.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
 
-		$icons = json_decode( file_get_contents( SWIFT_CONTROL_PLUGIN_DIR . '/assets/json/fontawesome5.json' ), true );
-
-		wp_localize_script( 'swift-control-icon-picker', 'iconPickerIcons', $icons ? $icons : array() );
+		// The picker loads the icons when it's opened the first time (they're big).
+		wp_localize_script(
+			'swift-control-icon-picker',
+			'SwiftControlIcons',
+			array(
+				'iconsUrl' => add_query_arg( 'ver', SWIFT_CONTROL_PLUGIN_VERSION, SWIFT_CONTROL_PLUGIN_URL . '/assets/icons/lucide.json' ),
+				'tagsUrl'  => add_query_arg( 'ver', SWIFT_CONTROL_PLUGIN_VERSION, SWIFT_CONTROL_PLUGIN_URL . '/assets/icons/lucide-tags.json' ),
+				'labels'   => array(
+					'search'  => __( 'Search icons', 'better-admin-bar' ),
+					'loading' => __( 'Loading icons…', 'better-admin-bar' ),
+					'error'   => __( 'The icons couldn\'t be loaded. Please try again.', 'better-admin-bar' ),
+					'none'    => __( 'No icons found.', 'better-admin-bar' ),
+				),
+			)
+		);
 
 		wp_enqueue_script( 'wp-color-picker-alpha', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/wp-color-picker-alpha.js', array( 'wp-color-picker', 'wp-i18n' ), '2.1.3', true );
 		wp_enqueue_script( 'swift-control-settings-page', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/settings-page.js', array( 'jquery' ), SWIFT_CONTROL_PLUGIN_VERSION, true );

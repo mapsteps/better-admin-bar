@@ -44,6 +44,9 @@ foreach ( $swift_control_widgets as $swift_control_widget_key ) {
 	$swift_control_hiding_delay  -= $swift_control_transition;
 }
 
+// The settings button rounds its bottom corner while the first widget fades out.
+$swift_control_styles .= '.swift-control-widgets { --swift-control-radius-delay: ' . absint( max( 0, count( $swift_control_widgets ) - 1 ) * $swift_control_transition + 150 ) . 'ms; }';
+
 $swift_control_display = swift_control_get_display_settings();
 $swift_control_saved   = get_user_meta( get_current_user_id(), 'swift_control_position', true );
 $swift_control_saved   = is_array( $swift_control_saved ) ? $swift_control_saved : array();
@@ -107,14 +110,14 @@ if ( $swift_control_pinned ) {
 
 	<li class="swift-control-widget-item swift-control-widget-setting">
 		<a class="swift-control-widget-link" href="<?php echo esc_url( admin_url( 'options-general.php?page=better-admin-bar' ) ); ?>" target="_blank" aria-label="<?php esc_attr_e( 'Toggle the quick access panel', 'better-admin-bar' ); ?>">
-			<i class="fas fa-cog" aria-hidden="true"></i>
+			<?php echo swift_control_icon_svg( 'settings' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Our own SVG markup. ?>
 		</a>
 	</li>
 
 	<?php foreach ( $swift_control_items as $swift_control_item ) : ?>
 		<li class="swift-control-widget-item <?php echo esc_attr( $swift_control_item['class'] ); ?>" data-widget-key="<?php echo esc_attr( $swift_control_item['key'] ); ?>">
 			<a class="swift-control-widget-link" href="<?php echo esc_url( $swift_control_item['url'] ); ?>"<?php echo $swift_control_item['new_tab'] ? ' target="_blank"' : ''; ?> aria-label="<?php echo esc_attr( $swift_control_item['name'] ); ?>">
-				<i class="<?php echo esc_attr( $swift_control_item['icon'] ); ?>" aria-hidden="true"></i>
+				<?php echo swift_control_icon_svg( $swift_control_item['icon'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Our own SVG markup. ?>
 			</a>
 			<span class="swift-control-widget-title" aria-hidden="true"><?php echo esc_html( $swift_control_item['name'] ); ?></span>
 		</li>

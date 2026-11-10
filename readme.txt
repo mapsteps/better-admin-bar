@@ -92,8 +92,8 @@ Go to *Settings → Better Admin Bar → Admin Bar* and check every role except 
 = Does it change the admin bar inside the WordPress dashboard? =
 No. All settings apply to the frontend of your website only.
 
-= My theme already loads Font Awesome. =
-Check *Don't load Font Awesome 5* under *Misc* to use the version of your theme. The icons of the panel need Font Awesome 5.
+= Which icons can I use? =
+Any of the 2,000+ [Lucide](https://lucide.dev) icons. Click *Edit* on a widget, then its icon, and search by name or topic. The icons are part of the page, nothing extra is loaded.
 
 = Are my settings deleted when I delete the plugin? =
 Only if you check *Remove all data when the plugin is deleted* under *Misc*. Deactivating the plugin always keeps them.
@@ -108,11 +108,14 @@ Only if you check *Remove all data when the plugin is deleted* under *Misc*. Dea
 = 5.0 | November 10, 2026 =
 * New: Redesigned settings page with tabs for the quick access panel, the admin bar and tools.
 * New: Remove the admin bar per user role with simple checkboxes.
+* New: Fresh look for the quick access panel: a white rounded column with a soft shadow and dark labels.
+* New: Lucide line icons replace Font Awesome, with a searchable icon picker. Icons you picked before get the closest Lucide icon.
+* New: Icon size setting for the quick access panel.
+* Tweak: Font Awesome is no longer loaded, so the panel no longer replaces your theme's Font Awesome.
 * Tweak: Requires PHP 7.4 and WordPress 5.0.
 * Tweak: Security improvements: every setting is checked and cleaned when it's saved or imported.
 * Fixed: Auto-hide didn't bring the admin bar back on hover for authors, subscribers & other roles.
 * Fixed: Admin bar settings moved the page up for users who turned the toolbar off in their profile.
-* Fixed: The icon picker layout was broken.
 * Fixed: Deleting the free plugin with "Remove data" checked could delete the settings of Better Admin Bar PRO.
 * Tweak: When the quick access panel is disabled, none of its files load on your website.
 * Tweak: Removed the expired launch offer notice.

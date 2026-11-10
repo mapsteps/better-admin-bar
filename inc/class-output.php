@@ -52,7 +52,7 @@ class Output {
 			return;
 		}
 
-		// Nothing to show: don't load the panel's files (nor replace the theme's Font Awesome).
+		// Nothing to show: don't load the panel's files.
 		if ( ! swift_control_has_active_widgets() || swift_control_get_display_settings()['disable_swift_control'] ) {
 			return;
 		}
@@ -313,31 +313,10 @@ class Output {
 	 */
 	public function frontend_scripts() {
 
-		$misc_settings = swift_control_get_misc_settings();
-
-		// Replace any other Font Awesome with ours, unless "Don't load Font Awesome" is checked.
-		if ( empty( $misc_settings['remove_font_awesome'] ) ) {
-			self::enqueue_font_awesome();
-		}
-
 		wp_enqueue_style( 'swift-control', SWIFT_CONTROL_PLUGIN_URL . '/assets/css/swift-control.css', array(), SWIFT_CONTROL_PLUGIN_VERSION );
 
 		wp_enqueue_script( 'interact', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/interact.min.js', array(), SWIFT_CONTROL_PLUGIN_VERSION, true );
 		wp_enqueue_script( 'swift-control', SWIFT_CONTROL_PLUGIN_URL . '/assets/js/swift-control.js', array( 'jquery', 'interact' ), SWIFT_CONTROL_PLUGIN_VERSION, true );
-
-	}
-
-	/**
-	 * Replace any registered Font Awesome with our version 5, so the icons look the same everywhere.
-	 */
-	public static function enqueue_font_awesome() {
-
-		foreach ( array( 'font-awesome', 'fontawesome' ) as $handle ) {
-			wp_dequeue_style( $handle );
-			wp_deregister_style( $handle );
-		}
-
-		wp_enqueue_style( 'font-awesome', SWIFT_CONTROL_PLUGIN_URL . '/assets/vendor/fontawesome-free/css/all.min.css', array(), '5.14.0' );
 
 	}
 
@@ -392,17 +371,17 @@ class Output {
 				'.swift-control-widgets .swift-control-widget-setting::after' => 'color',
 			),
 			'setting_button_icon_color' => array(
-				'.swift-control-widgets .swift-control-widget-setting a' => 'color',
+				'.swift-control-widgets .swift-control-widget-setting a, .swift-control-widgets .swift-control-widget-setting a:hover' => 'color',
 			),
 			'widget_bg_color_hover'     => array(
 				'.swift-control-widgets .swift-control-widget-link:hover' => 'background-color',
 			),
 			'widget_bg_color'           => array(
 				'.swift-control-widgets .swift-control-widget-link' => 'background-color',
-				'.swift-control-widgets .is-disabled .swift-control-widget-link' => 'background-color',
+				'.swift-control-widgets .is-disabled .swift-control-widget-link, .swift-control-widgets .is-disabled .swift-control-widget-link:hover' => 'background-color',
 			),
 			'widget_icon_color'         => array(
-				'.swift-control-widgets .swift-control-widget-link' => 'color',
+				'.swift-control-widgets .swift-control-widget-link, .swift-control-widgets .is-disabled .swift-control-widget-link:hover' => 'color',
 			),
 		);
 		$css      = '';
@@ -415,6 +394,12 @@ class Output {
 			foreach ( $selectors as $selector => $property ) {
 				$css .= $selector . ' {' . $property . ': ' . $colors[ $color_key ] . ';}';
 			}
+		}
+
+		$icon_size = swift_control_get_icon_size();
+
+		if ( swift_control_icon_size_limits()['default'] !== $icon_size ) {
+			$css .= '.swift-control-widgets {--swift-control-icon-size: ' . absint( $icon_size ) . 'px;}';
 		}
 
 		wp_add_inline_style( 'swift-control', $css );

@@ -156,9 +156,9 @@ function swift_control_get_locked_widget_settings() {
 function swift_control_get_default_color_settings() {
 
 	return array(
-		'widget_bg_color'           => '#f5f5f7',
-		'widget_bg_color_hover'     => '#ededf0',
-		'widget_icon_color'         => '#616666',
+		'widget_bg_color'           => '#ffffff',
+		'widget_bg_color_hover'     => '#f4f2f9',
+		'widget_icon_color'         => '#2b2b33',
 		'setting_button_bg_color'   => '#860ee6',
 		'setting_button_icon_color' => '#ffffff',
 	);
@@ -268,13 +268,84 @@ function swift_control_display_fields() {
 }
 
 /**
+ * The icon size of the quick access panel: default, smallest & biggest (in pixels).
+ *
+ * @return array The sizes, keyed "default", "min" & "max".
+ */
+function swift_control_icon_size_limits() {
+
+	return array(
+		'default' => 20,
+		'min'     => 12,
+		'max'     => 32,
+	);
+
+}
+
+/**
+ * Sanitize an icon size. Empty or invalid means the default.
+ *
+ * @param mixed $size The icon size in pixels.
+ *
+ * @return int|string The icon size within the limits, or '' for the default.
+ */
+function swift_control_sanitize_icon_size( $size ) {
+
+	if ( ! is_scalar( $size ) || '' === trim( (string) $size ) || ! is_numeric( $size ) ) {
+		return '';
+	}
+
+	$limits = swift_control_icon_size_limits();
+
+	return min( $limits['max'], max( $limits['min'], absint( $size ) ) );
+
+}
+
+/**
+ * Get the icon size of the quick access panel.
+ *
+ * @return int The icon size in pixels.
+ */
+function swift_control_get_icon_size() {
+
+	$saved_settings = get_option( 'swift_control_display_settings', array() );
+	$size           = is_array( $saved_settings ) && isset( $saved_settings['icon_size'] ) ? swift_control_sanitize_icon_size( $saved_settings['icon_size'] ) : '';
+
+	return '' !== $size ? $size : swift_control_icon_size_limits()['default'];
+
+}
+
+/**
+ * Sanitize the display settings: the on/off fields & the icon size.
+ *
+ * @param mixed $settings The display settings.
+ *
+ * @return array The sanitized display settings.
+ */
+function swift_control_sanitize_display_settings( $settings ) {
+
+	$sanitized = swift_control_sanitize_flags( $settings, swift_control_display_fields() );
+
+	if ( is_array( $settings ) && isset( $settings['icon_size'] ) ) {
+		$size = swift_control_sanitize_icon_size( $settings['icon_size'] );
+
+		if ( '' !== $size ) {
+			$sanitized['icon_size'] = $size;
+		}
+	}
+
+	return $sanitized;
+
+}
+
+/**
  * The on/off fields of the miscellaneous settings.
  *
  * @return array The field names.
  */
 function swift_control_misc_fields() {
 
-	return array( 'delete_on_uninstall', 'remove_font_awesome' );
+	return array( 'delete_on_uninstall' );
 
 }
 

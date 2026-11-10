@@ -112,7 +112,7 @@ class Save_Settings {
 		$data = wp_unslash( $_POST );
 
 		update_option( 'swift_control_color_settings', swift_control_sanitize_color_settings( $data ) );
-		update_option( 'swift_control_display_settings', swift_control_sanitize_flags( $data, swift_control_display_fields() ) );
+		update_option( 'swift_control_display_settings', swift_control_sanitize_display_settings( $data ) );
 		update_option( 'swift_control_misc_settings', swift_control_sanitize_flags( $data, swift_control_misc_fields() ) );
 
 		// An empty role selection isn't sent at all.

@@ -2,69 +2,75 @@
 .icon-picker-container {
 	position: absolute;
 	z-index: 10;
-	width: 268px;
+	width: 300px;
 	padding: 8px;
 	font-size: 14px;
 	background-color: var(--heatbox-surface, #fff);
 	border: 1px solid var(--heatbox-box-border, #e2e4e7);
 	border-radius: var(--heatbox-radius, 8px);
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.icon-picker-container .icon-picker-search {
+	width: 100%;
+}
+
+.icon-picker-container .icon-picker-message {
+	margin: 8px 0 0;
+	color: var(--heatbox-text-muted, #646970);
+}
+
+.icon-picker-container .icon-picker-message:empty {
+	display: none;
 }
 
 .icon-picker-container ul {
 	display: grid;
-	grid-template-columns: repeat(5, 1fr);
+	grid-template-columns: repeat(6, 1fr);
 	gap: 4px;
-	max-height: 240px;
+	max-height: 252px;
 	margin: 8px 0 0;
+	padding: 0;
 	overflow-y: auto;
+	list-style: none;
+}
+
+.icon-picker-container ul:empty {
+	display: none;
 }
 
 .icon-picker-container ul li {
 	margin: 0;
 }
 
-.icon-picker-container ul li a {
-	display: block;
-	box-shadow: none;
+.icon-picker-container ul li[hidden] {
+	display: none;
 }
 
-.icon-picker-container ul li a span {
-	display: block;
-	height: 44px;
-	line-height: 44px;
-	font-size: 18px;
-	text-align: center;
+.icon-picker-container .icon-picker-item {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 42px;
+	padding: 0;
 	color: var(--heatbox-text, #1e1e1e);
+	background: transparent;
 	border: 1px solid var(--heatbox-box-border, #e2e4e7);
 	border-radius: var(--heatbox-radius-small, 4px);
+	cursor: pointer;
 	transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
-.icon-picker-container ul li a:hover span,
-.icon-picker-container ul li a:focus span {
+.icon-picker-container .icon-picker-item svg {
+	width: 20px;
+	height: 20px;
+}
+
+.icon-picker-container .icon-picker-item:hover,
+.icon-picker-container .icon-picker-item:focus-visible,
+.icon-picker-container .icon-picker-item.is-current {
 	border-color: var(--heatbox-accent, #3858e9);
 	background-color: var(--heatbox-accent-soft, #f0f6fc);
-}
-
-/* Search & paging */
-.icon-picker-control {
-	display: flex;
-	align-items: center;
-	gap: 4px;
-}
-
-.icon-picker-control a {
-	flex: none;
-	width: 28px;
-	text-align: center;
-	text-decoration: none;
-	color: var(--heatbox-text-muted, #646970);
-}
-
-.icon-picker--search-wrapper {
-	flex: 1;
-}
-
-.icon-picker--search-wrapper input {
-	width: 100%;
+	outline: none;
 }
