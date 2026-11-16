@@ -49,6 +49,7 @@ class Setup {
 		new Output();
 		new Save_Settings();
 		new Tools();
+		new Bfcm_Notice();
 
 	}
 

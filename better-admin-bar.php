@@ -29,6 +29,7 @@ require_once __DIR__ . '/inc/class-backwards-compatibility.php';
 require_once __DIR__ . '/inc/class-output.php';
 require_once __DIR__ . '/inc/class-save-settings.php';
 require_once __DIR__ . '/inc/class-tools.php';
+require_once __DIR__ . '/inc/class-bfcm-notice.php';
 require_once __DIR__ . '/inc/class-setup.php';
 
 SwiftControl\Backwards_Compatibility::init();

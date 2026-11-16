@@ -30,6 +30,7 @@ function swift_control_uninstall_site() {
 		'swift_control_discontinue_message',
 		'swift_control_compat_migrate_options',
 		'swift_control_compat_panel_colors',
+		'swift_control_bfcm_dismissed',
 	);
 
 	foreach ( $options as $option ) {
