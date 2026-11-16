@@ -108,7 +108,7 @@ Only if you check *Remove all data when the plugin is deleted* under *Misc*. Dea
 = 5.0 | November 10, 2026 =
 * New: Redesigned settings page with tabs for the quick access panel, the admin bar and tools.
 * New: Remove the admin bar per user role with simple checkboxes.
-* New: Fresh look for the quick access panel: a white rounded column with a soft shadow and dark labels.
+* New: Fresh look for the quick access panel: a white column with a soft shadow and dark labels.
 * New: Lucide line icons replace Font Awesome, with a searchable icon picker. Icons you picked before get the closest Lucide icon.
 * New: Icon size setting for the quick access panel.
 * Tweak: Font Awesome is no longer loaded, so the panel no longer replaces your theme's Font Awesome.

@@ -44,9 +44,6 @@ foreach ( $swift_control_widgets as $swift_control_widget_key ) {
 	$swift_control_hiding_delay  -= $swift_control_transition;
 }
 
-// The settings button rounds its bottom corner while the first widget fades out.
-$swift_control_styles .= '.swift-control-widgets { --swift-control-radius-delay: ' . absint( max( 0, count( $swift_control_widgets ) - 1 ) * $swift_control_transition + 150 ) . 'ms; }';
-
 $swift_control_display = swift_control_get_display_settings();
 $swift_control_saved   = get_user_meta( get_current_user_id(), 'swift_control_position', true );
 $swift_control_saved   = is_array( $swift_control_saved ) ? $swift_control_saved : array();

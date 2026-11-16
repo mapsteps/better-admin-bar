@@ -163,7 +163,7 @@ body.has-swift-control {
 	border-top: 1px solid rgba(0, 0, 0, 0.07);
 	text-decoration: none;
 	box-shadow: none;
-	transition: background-color 0.15s, color 0.15s, border-radius 0.2s;
+	transition: background-color 0.15s, color 0.15s;
 }
 
 .swift-control-widgets .swift-control-widget-link:hover,
@@ -177,53 +177,6 @@ body.has-swift-control {
 	color: #fff;
 	background-color: #860ee6;
 	border-top-width: 0;
-}
-
-/*
- * Rounded column, flat on the side of the screen edge: the settings button alone, or the top & bottom of the open panel.
- *
- * The corners follow the edge the panel sticks to: the left one, the right one (is-pinned-right), and while dragging
- * the side it will stick to when dropped (is-dragged-left / is-dragged-right, switched at the middle of the screen).
- */
-.swift-control-widgets {
-	--swift-control-corners-alone: 0 14px 14px 0;
-	--swift-control-corners-top: 0 14px 0 0;
-	--swift-control-corners-bottom: 0 0 14px 0;
-}
-
-.swift-control-widgets.is-pinned-right,
-.swift-control-widgets.is-dragged-right {
-	--swift-control-corners-alone: 14px 0 0 14px;
-	--swift-control-corners-top: 14px 0 0 0;
-	--swift-control-corners-bottom: 0 0 0 14px;
-}
-
-.swift-control-widgets.is-pinned-right.is-dragged-left {
-	--swift-control-corners-alone: 0 14px 14px 0;
-	--swift-control-corners-top: 0 14px 0 0;
-	--swift-control-corners-bottom: 0 0 14px 0;
-}
-
-/*
- * When the panel closes, the bottom corner of the settings button rounds once the first widget fades out
- * (--swift-control-radius-delay, set by the template & the preview). Not while dragging, the corners switch right away.
- */
-.swift-control-widgets .swift-control-widget-setting .swift-control-widget-link {
-	border-radius: var(--swift-control-corners-alone);
-	transition: background-color 0.15s, color 0.15s, border-radius 0.25s var(--swift-control-radius-delay, 0s);
-}
-
-.swift-control-widgets.is-expanded .swift-control-widget-setting .swift-control-widget-link {
-	border-radius: var(--swift-control-corners-top);
-}
-
-.swift-control-widgets.is-expanded .swift-control-widget-setting .swift-control-widget-link,
-.swift-control-widgets.is-dragging .swift-control-widget-setting .swift-control-widget-link {
-	transition-delay: 0s;
-}
-
-.swift-control-widgets .swift-control-widget-item:last-child .swift-control-widget-link {
-	border-radius: var(--swift-control-corners-bottom);
 }
 
 /* --swift-control-icon-size: the "Icon size" setting. */

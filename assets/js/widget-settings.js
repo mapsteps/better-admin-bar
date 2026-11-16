@@ -340,9 +340,6 @@
 			hidingDelay -= transition;
 		});
 
-		// The settings button rounds its bottom corner while the first widget fades out.
-		css += ".swift-control-widgets { --swift-control-radius-delay: " + (Math.max(0, items.length - 1) * transition + 150) + "ms; }";
-
 		style.textContent = css;
 	}
 
