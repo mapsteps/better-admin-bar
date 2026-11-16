@@ -4,7 +4,7 @@ Tags: admin bar, toolbar, hide admin bar, auto hide admin bar, quick access
 Requires at least: 5.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 5.0
+Stable tag: 5.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -105,10 +105,14 @@ Only if you check *Remove all data when the plugin is deleted* under *Misc*. Dea
 
 == Changelog ==
 
+= 5.0.1 | November 16, 2026 =
+* Tweak: The quick access panel is square again.
+* Tweak: Tidier settings page with less space between the settings.
+
 = 5.0 | November 10, 2026 =
 * New: Redesigned settings page with tabs for the quick access panel, the admin bar and tools.
 * New: Remove the admin bar per user role with simple checkboxes.
-* New: Fresh look for the quick access panel: a white column with a soft shadow and dark labels.
+* New: Fresh look for the quick access panel: a white rounded column with a soft shadow and dark labels.
 * New: Lucide line icons replace Font Awesome, with a searchable icon picker. Icons you picked before get the closest Lucide icon.
 * New: Icon size setting for the quick access panel.
 * Tweak: Font Awesome is no longer loaded, so the panel no longer replaces your theme's Font Awesome.

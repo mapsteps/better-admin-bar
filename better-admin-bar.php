@@ -3,7 +3,7 @@
  * Plugin Name: Better Admin Bar
  * Plugin URI: https://betteradminbar.com/
  * Description: Replace the WordPress admin bar with a quick access panel, auto-hide it or hide it for specific user roles.
- * Version: 5.0
+ * Version: 5.0.1
  * Requires at least: 5.0
  * Requires PHP: 7.4
  * Author: David Vongries
@@ -21,7 +21,7 @@ defined( 'ABSPATH' ) || die( "Can't access directly" );
 define( 'SWIFT_CONTROL_PLUGIN_DIR', rtrim( plugin_dir_path( __FILE__ ), '/' ) );
 define( 'SWIFT_CONTROL_PLUGIN_URL', rtrim( plugin_dir_url( __FILE__ ), '/' ) );
 define( 'SWIFT_CONTROL_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
-define( 'SWIFT_CONTROL_PLUGIN_VERSION', '5.0' );
+define( 'SWIFT_CONTROL_PLUGIN_VERSION', '5.0.1' );
 
 require_once __DIR__ . '/inc/helpers.php';
 require_once __DIR__ . '/inc/icons.php';
