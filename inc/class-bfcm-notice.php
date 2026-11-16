@@ -78,7 +78,7 @@ class Bfcm_Notice {
 		<div class="notice notice-info is-dismissible swift-control-bfcm-notice" data-nonce="<?php echo esc_attr( wp_create_nonce( 'swift_control_dismiss_bfcm_notice' ) ); ?>">
 			<img class="swift-control-bfcm-notice-logo" src="<?php echo esc_url( SWIFT_CONTROL_PLUGIN_URL . '/assets/img/logo.png' ); ?>" alt="">
 			<div>
-				<h2><?php esc_html_e( 'Black Friday: up to 25% off Better Admin Bar PRO', 'better-admin-bar' ); ?></h2>
+				<h2><?php esc_html_e( 'Black Friday: up to 20% off Better Admin Bar PRO', 'better-admin-bar' ); ?></h2>
 				<p><?php esc_html_e( 'All prices are reduced, no coupon code needed. The deal ends soon.', 'better-admin-bar' ); ?></p>
 				<p>
 					<a href="<?php echo esc_url( $url ); ?>" target="_blank" class="button button-primary">
